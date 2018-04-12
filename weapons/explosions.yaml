@@ -1,0 +1,231 @@
+FlametankExplode:
+	Warhead@1Dam: SpreadDamage
+		Spread: 1c0
+		Damage: 115
+		DamageTypes: Prone50Percent, TriggerProne, FireDeath
+	Warhead@2Eff: CreateEffect
+		Explosions: big_napalm
+		ImpactSounds: xplobig6.wav
+	Warhead@3Smu: LeaveSmudge
+		SmudgeType: Scorch
+
+HeliCrash:
+	Warhead@1Dam: SpreadDamage
+		Spread: 426
+		Damage: 40
+		DamageTypes: Prone50Percent, TriggerProne, ExplosionDeath
+	Warhead@2Eff: CreateEffect
+		Explosions: poof
+		ImpactSounds: xplos.aud
+	Warhead@3Smu: LeaveSmudge
+		SmudgeType: Crater
+		InvalidTargets: Vehicle, Structure, Wall, Husk, Trees, Creep
+
+HeliExplode:
+	Warhead@1Dam: SpreadDamage
+		DamageTypes: ExplosionDeath
+	Warhead@2Eff: CreateEffect
+		Explosions: small_building
+		ImpactSounds: xplos.aud
+
+UnitExplode:
+	Warhead@1Dam: SpreadDamage
+		Spread: 426
+		Damage: 50
+		Versus:
+			None: 90
+			Wood: 75
+			Light: 60
+			Heavy: 25
+		DamageTypes: Prone50Percent, TriggerProne, ExplosionDeath
+	Warhead@2Eff: CreateEffect
+		Explosions: poof
+		ImpactSounds: xplobig6.wav
+
+UnitExplodeSmall:
+	Warhead@1Dam: SpreadDamage
+		Spread: 426
+		Damage: 40
+		Versus:
+			None: 90
+			Wood: 75
+			Light: 60
+			Heavy: 25
+		DamageTypes: Prone50Percent, TriggerProne, ExplosionDeath
+	Warhead@2Eff: CreateEffect
+		Explosions: big_frag
+		ImpactSounds: xplobig4.wav
+
+FighterExplode:
+	Warhead@1Dam: SpreadDamage
+		Spread: 32
+		Damage: 500
+		Versus:
+			Fighter: 90
+			Corvette: 75
+			Frigate: 60
+			CapitalShip: 25
+			Mothership: 10
+		DamageTypes: Prone50Percent, TriggerProne, ExplosionDeath
+	Warhead@2Eff: CreateEffect
+		Explosions: jflmtrail, jhtrkpuff, jsclsn16
+		ExplosionPalette: gensmkexploj
+
+CorvetteExplode:
+	Inherits: FighterExplode
+	Warhead@1Dam: SpreadDamage
+		Damage: 1000
+	Warhead@2Eff: CreateEffect
+	Warhead@1: FireShrapnel
+		Weapon: DebrisSmall1
+		Amount: 2
+		AimChance: 0
+		AllowDirectHit: False
+		ThrowWithoutTarget: True
+		ValidTargets: CapitalShip, Frigate, Corvette, Ground, Air, Airhit
+	Warhead@2: FireShrapnel
+		Weapon: DebrisSmall2
+		Amount: 2
+		AimChance: 0
+		AllowDirectHit: False
+		ThrowWithoutTarget: True
+		ValidTargets: CapitalShip, Frigate, Corvette, Ground, Air, Airhit
+	Warhead@3: FireShrapnel
+		Weapon: DebrisSmall3
+		Amount: 2
+		AimChance: 0
+		AllowDirectHit: False
+		ThrowWithoutTarget: True
+		ValidTargets: CapitalShip, Frigate, Corvette, Ground, Air, Airhit
+	Warhead@2Eff: CreateEffect
+		Explosions: jsbang24b, jsbrnl20, jsbrnl30b, jsbang16, jexplosml
+
+FrigateExplode:
+	Inherits: CorvetteExplode
+	Warhead@1Dam: SpreadDamage
+		Spread: 256
+		Damage: 10000
+	Warhead@2Eff: CreateEffect
+	Warhead@4: FireShrapnel
+		Weapon: DebrisMedium1
+		Amount: 2
+		AimChance: 0
+		AllowDirectHit: False
+		ThrowWithoutTarget: True
+		ValidTargets: CapitalShip, Frigate, Corvette, Ground, Air, Airhit
+	Warhead@2Eff: CreateEffect
+		Explosions: jtwlt050b, jtwlt050, jstumu42b, jstumu30b, jsbang48, jexplomed
+		ExplosionPalette: gensmkexploj
+	Warhead@4Ore: CreateResource
+		AddsResourceType: Junk
+		Size: 0,0
+
+CapShipExplode:
+	Inherits: FrigateExplode
+	Warhead@1Dam: SpreadDamage
+		Spread: 512
+		Damage: 20000
+	Warhead@2Eff: CreateEffect
+	Warhead@5: FireShrapnel
+		Weapon: DebrisMedium2
+		Amount: 4
+		AimChance: 0
+		AllowDirectHit: False
+		ThrowWithoutTarget: True
+		ValidTargets: CapitalShip, Frigate, Corvette, Ground, Air, Airhit
+	Warhead@6: FireShrapnel
+		Weapon: DebrisBig
+		Amount: 2
+		AimChance: 0
+		AllowDirectHit: False
+		ThrowWithoutTarget: True
+		ValidTargets: CapitalShip, Frigate, Corvette, Ground, Air, Airhit
+	Warhead@7: FireShrapnel
+		Weapon: DebrisHuge
+		Amount: 1
+		AimChance: 0
+		AllowDirectHit: False
+		ThrowWithoutTarget: True
+		ValidTargets: CapitalShip, Frigate, Corvette, Ground, Air, Airhit
+	Warhead@2Eff: CreateEffect
+		Explosions: jtwlt100, jtwlt100b, jtwlt070, jtwlt070b, jsclsn58, jexplolrg
+		ExplosionPalette: gensmkexploj
+	Warhead@4Ore: CreateResource
+		AddsResourceType: Junk
+		Size: 1,0
+
+MotherShipExplode:
+	Inherits: CapShipExplode
+	Warhead@1Dam: SpreadDamage
+		Spread: 1c0
+		Damage: 40000
+		InvalidTargets: Mine
+	Warhead@5: FireShrapnel
+		Weapon: DebrisMedium2
+		Amount: 3
+	Warhead@6: FireShrapnel
+		Weapon: DebrisBig
+		Amount: 4
+	Warhead@7: FireShrapnel
+		Weapon: DebrisHuge
+		Amount: 4
+	Warhead@2Eff: CreateEffect
+		Explosions: jtwlt100, jtwlt100b, jtwlt070, jtwlt070b, jsclsn58, jexplolrg
+		ExplosionPalette: gensmkexploj
+	Warhead@4Ore: CreateResource
+		AddsResourceType: Junk
+		Size: 2,0
+
+CrystalExplosion:
+	Inherits: FighterExplode
+	Warhead@1Dam: SpreadDamage
+		Spread: 1c0
+		Damage: 400000
+		InvalidTargets: Mine
+	Warhead@2Eff: CreateEffect
+		Explosions: jtwlt036, jtwlt036b, jtwlt050
+		ExplosionPalette: gensmkexploj
+	Warhead@op: FireShrapnel
+		Weapon: SolarWave
+		Amount: 100
+		AllowDirectHit: true
+		ValidTargets: CapitalShip, Frigate, Corvette, Fighter, Ground, Air, Airhit
+
+UnitExplodeShip:
+	Inherits: UnitExplodeSmall
+	Warhead@2Eff: CreateEffect
+		Explosions: building
+
+GrenadierExplode:
+	Warhead@1Dam: SpreadDamage
+		Spread: 256
+		Damage: 10
+		Versus:
+			None: 90
+			Wood: 75
+			Light: 60
+			Heavy: 25
+		DamageTypes: Prone50Percent, TriggerProne, SmallExplosionDeath
+	Warhead@2Eff: CreateEffect
+		Explosions: poof
+		ImpactSounds: xplosml2.aud
+	Warhead@3Smu: LeaveSmudge
+		SmudgeType: Crater
+
+Napalm.Crate:
+	Warhead@1Dam: SpreadDamage
+		Spread: 170
+		Damage: 50
+		Falloff: 1000, 368, 135, 50, 18, 7, 0
+		Versus:
+			None: 90
+			Wood: 100
+			Light: 60
+			Heavy: 25
+		AffectsParent: true
+		DamageTypes: Prone50Percent, TriggerProne, FireDeath
+	Warhead@2Smu: LeaveSmudge
+		SmudgeType: Scorch
+	Warhead@3Eff: CreateEffect
+		Explosions: med_napalm
+		ImpactSounds: flamer2.aud

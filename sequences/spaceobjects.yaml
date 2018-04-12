@@ -1,0 +1,281 @@
+^nebulas:
+	Defaults:
+		Offset: 0,0,0
+		ZOffset: -999999
+		UseTilesetExtension: false
+	idle:
+		Offset: 0,0,0
+		ZOffset: -999999
+
+^SpaceObject:
+	Defaults:
+		ZOffset: -2000
+		UseTilesetExtension: false
+		Length: *
+	idle:
+		ZOffset: -2000
+
+^planet:
+	Inherits: ^SpaceObject
+	Defaults:
+		Length: 1
+	idle:
+
+dustcloud1:
+	Inherits: ^SpaceObject
+	idle:
+		ZOffset: 9999
+		Length: 1
+	asteroidfield1: asteroidfield
+		Start: 0
+		Length: 1
+	asteroidfield2: asteroidfield
+		Start: 1
+		Length: 1
+	asteroidfield3: asteroidfield
+		Start: 2
+		Length: 1
+	asteroidfield4: asteroidfield
+		Start: 3
+		Length: 1
+	asteroidfield5: asteroidfield
+		Start: 4
+		Length: 1
+	asteroidfield6: asteroidfield
+		Start: 5
+		Length: 1
+	asteroidfield7: asteroidfield
+		Start: 6
+		Length: 1
+	asteroidfield8: asteroidfield
+		Start: 7
+		Length: 1
+	lane: lane
+
+crystaltibtree:
+	idle: crystalasteroid
+		Start: 0
+		Length: 1
+
+crystaltibtree2:
+	idle: crystalasteroid
+		Start: 1
+		Length: 1
+
+crystaltibtree3:
+	idle: crystalasteroid
+		Start: 2
+		Length: 1
+
+crystaltibtree4:
+	idle: crystalasteroid
+		Start: 3
+		Length: 1
+
+dustcloud2:
+	Inherits: dustcloud1
+	idle: dustcloud1
+		Start: 1
+
+dustcloud3:
+	Inherits: dustcloud1
+	idle: dustcloud1
+		Start: 2
+
+dustcloud4:
+	Inherits: dustcloud1
+	idle: dustcloud1
+		Start: 3
+
+dustcloud5:
+	Inherits: dustcloud1
+	idle: dustcloud1
+		Start: 4
+
+dustcloud6:
+	Inherits: dustcloud1
+	idle: dustcloud1
+		Start: 5
+
+dustcloud7:
+	Inherits: dustcloud1
+	idle: dustcloud1
+		Start: 6
+
+dustcloud8:
+	Inherits: dustcloud1
+	idle: dustcloud1
+		Start: 7
+
+secondcloud:
+	Inherits: ^SpaceObject
+	idle:
+		ZOffset: 9999
+		Length: 1
+
+sun:
+	Inherits: ^SpaceObject
+	idle:
+		Length: *
+	scorch: sunscorch
+
+blackhole:
+	Inherits: ^SpaceObject
+	idle:
+		Length: *
+
+whitehole:
+	Inherits: ^SpaceObject
+	idle:
+		Length: *
+
+spacebgdone:
+	Inherits: ^nebulas
+	idle:
+
+spacebg1:
+	Inherits: ^nebulas
+	idle:
+
+spacebg2:
+	Inherits: ^nebulas
+	idle:
+
+spacebg3:
+	Inherits: ^nebulas
+	idle:
+
+spacebg4:
+	Inherits: ^nebulas
+	idle:
+
+spacebg06:
+	Inherits: ^nebulas
+	idle:
+
+spacebg07:
+	Inherits: ^nebulas
+	idle:
+
+spacebg08:
+	Inherits: ^nebulas
+	idle:
+
+spacebg09:
+	Inherits: ^nebulas
+	idle:
+
+spacebg10:
+	Inherits: ^nebulas
+	idle:
+
+spacebg11:
+	Inherits: ^nebulas
+	idle:
+
+spacebg12:
+	Inherits: ^nebulas
+	idle:
+
+spacebg13:
+	Inherits: ^nebulas
+	idle:
+
+spacebg14:
+	Inherits: ^nebulas
+	idle:
+
+spacebg15:
+	Inherits: ^nebulas
+	idle:
+
+spacebg16:
+	Inherits: ^nebulas
+	idle:
+
+spacebg17:
+	Inherits: ^nebulas
+	idle:
+
+spacebg18:
+	Inherits: ^nebulas
+	idle:
+
+spacebg19:
+	Inherits: ^nebulas
+	idle:
+
+spacebg20:
+	Inherits: ^nebulas
+	idle:
+
+spacebg21:
+	Inherits: ^nebulas
+	idle:
+
+spacebg22:
+	Inherits: ^nebulas
+	idle:
+
+spacebg23:
+	Inherits: ^nebulas
+	idle:
+
+nasadonex:
+	Inherits: ^nebulas
+	idle:
+
+planetearth:
+	Inherits: ^planet
+	idle:
+		Tick: 1000
+
+planet:
+	Inherits: ^planet
+	idle:
+	stand:
+
+planet1:
+	Inherits: ^planet
+	idle:
+
+planet2:
+	Inherits: ^planet
+	idle:
+
+planet3:
+	Inherits: ^planet
+	idle:
+
+planet4:
+	Inherits: ^planet
+	idle:
+
+planet5:
+	Inherits: ^planet
+	idle:
+
+planet6:
+	Inherits: ^planet
+	idle:
+
+planet7:
+	Inherits: ^planet
+	idle:
+
+planet8:
+	Inherits: ^planet
+	idle:
+
+planet9:
+	Inherits: ^planet
+	idle:
+
+planet10:
+	Inherits: ^planet
+	idle:
+
+orecrystal:
+	Inherits: ^planet
+	idle:
+		Tick: 60

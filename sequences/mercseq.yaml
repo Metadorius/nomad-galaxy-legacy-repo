@@ -1,0 +1,80 @@
+dunit1:
+	Inherits: ^shipdefault
+	idle:
+		Facings: -32
+		Length: 10
+		Tick: 150
+		UseClassicFacingFudge: True
+	stand:
+		Facings: -32
+		Length: 10
+		Tick: 150
+		UseClassicFacingFudge: True	
+	icon: dunit1icon
+
+dunit2:
+	Inherits: ^shipdefault
+	icon: dunit2icon
+
+dunit3:
+	Inherits: ^shipdefault
+	make:
+		Start: 32
+		Length: 9
+	deployed:
+		Facings: 1
+		Start: 42
+		Length: 31
+	icon: dunit3icon
+
+pcarrier:
+	Inherits: ^shipdefault
+	icon: pcarriericon
+
+punit1:
+	Inherits: ^shipdefault
+	icon: punit1icon
+
+punit2:
+	Inherits: ^shipdefault
+	icon: punit2icon
+
+punit3:
+	Inherits: ^shipdefault
+	icon: punit3icon
+
+iunit1:
+	Inherits: ^shipdefault
+	icon: iunit1icon
+
+iunit2:
+	Inherits: ^shipdefault
+	icon: iunit2icon
+
+iunit3:
+	Inherits: ^shipdefault
+	icon: iunit3icon
+
+cunit1:
+	Inherits: ^shipdefault
+	idle:
+		Facings: -32
+		Stride: 6
+		Tick: 150
+		UseClassicFacingFudge: True
+	stand:
+		Facings: -32
+		Length: 6
+		Tick: 150
+		UseClassicFacingFudge: True
+	aura: gravgenaura
+		Length: *
+	icon: cunit1icon
+
+cunit2:
+	Inherits: ^shipdefault
+	icon: cunit2icon
+
+cunit3:
+	Inherits: ^shipdefault
+	icon: cunit3icon

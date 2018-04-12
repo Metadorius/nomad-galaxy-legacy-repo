@@ -1,0 +1,51 @@
+GFRIG1H:
+	Inherits: ^Frigate
+	Valued:
+		Cost: 1
+	Tooltip:
+		Name: Husk
+	-SelectionDecorations:
+	-BlocksProjectiles:
+	Aircraft:
+		TurnSpeed: 7
+	Health:
+		HP: 1000000
+	-RevealsShroud:
+	RejectsOrders:
+	Burns:
+		Damage: 10000
+	EditorTilesetFilter:
+		Categories: Husks
+
+GFRIG2H:
+	Inherits: GFRIG1H
+
+GFRIG3H:
+	Inherits: GFRIG1H
+
+GSURVEYFRIGATEH:
+	Inherits: GFRIG1H
+
+GBC1H:
+	Inherits: GFRIG1H
+
+GPATROLCRUISERH:
+	Inherits: GFRIG1H
+
+GHABITATSHIPH:
+	Inherits: GFRIG1H
+
+GFRIGATEASSEMBLYBAYH:
+	Inherits: GFRIG1H
+
+GSHIPYARDH:
+	Inherits: GFRIG1H
+
+GENGINEERH:
+	Inherits: GFRIG1H
+
+GRESEARCHSHIPH:
+	Inherits: GFRIG1H
+
+GREFINERYH:
+	Inherits: GFRIG1H

@@ -1,0 +1,168 @@
+^BaseWorld:
+	AlwaysVisible:
+	Inherits: ^Palettes
+	ScreenMap:
+	ActorMap:
+	MusicPlaylist:
+		VictoryMusic: win1
+		DefeatMusic: nod_map1
+	TerrainGeometryOverlay:
+	ShroudRenderer:
+		ShroudVariants: typea, typeb, typec, typed
+		FogVariants: typea, typeb, typec, typed
+		OverrideFullShroud: full
+		OverrideFullFog: full
+	Faction@gkor:
+		Name: G'kor
+		InternalName: gkor
+		Description A race of nomads that use organic ships.:
+	Faction@terran:
+		Name: Terran
+		InternalName: terran
+		Description: A race of mammals that enjoy solving problems with explosive weaponry.
+	Faction@Random:
+		Name: Random
+		InternalName: Random
+		RandomFactionMembers: gkor, terran
+		Description: Selection is a lie
+	ResourceType@green-tib:
+		Name: Minerals ($18)
+		PipColor: Green
+		ResourceType: 1
+		Palette: apolcybl
+		Type: BlueOre
+		TerrainType: Tiberium
+		Sequences: astore1, astore2, astore3, astore4, astore5, astore6, astore7, astore8, astore9, astore10, astore11, astore12, astore13
+		MaxDensity: 4
+		ValuePerUnit: 18
+		AllowedTerrainTypes: Clear, SpaceGray, SpaceGreen, SpaceBlue, SpaceRed, SpaceGray2, SpaceGreen2, SpaceBlue2, SpaceRed2, Notifier
+		AllowUnderActors: true
+	ResourceType@blue-tib:
+		Name: High density minerals ($10)
+		PipColor: Blue
+		ResourceType: 2
+		Palette: chrome
+		Type: CyanOre
+		TerrainType: BlueTiberium
+		Sequences: astorecyan1, astorecyan2, astorecyan3, astorecyan4, astorecyan5, astorecyan6, astorecyan7, astorecyan8, astorecyan9, astorecyan10, astorecyan11, astorecyan12, astorecyan13
+		MaxDensity: 1300
+		ValuePerUnit: 10
+		AllowedTerrainTypes: Clear, SpaceGray, SpaceGreen, SpaceBlue, SpaceRed, SpaceGray2, SpaceGreen2, SpaceBlue2, SpaceRed2, Notifier
+		AllowUnderActors: true
+	ResourceType@junk:
+		Name: Junk ($15)
+		PipColor: Red
+		ResourceType: 3
+		Palette: apolgrey
+		Type: Junk
+		TerrainType: Junk
+		Sequences: junk1, junk2, junk3, junk4, junk5, junk6, junk7, junk8, junk9, junk10, junk11
+		MaxDensity: 12
+		ValuePerUnit: 15
+		AllowedTerrainTypes: Clear, SpaceGray, SpaceGreen, SpaceBlue, SpaceRed, SpaceGray2, SpaceGreen2, SpaceBlue2, SpaceRed2, Notifier
+		AllowUnderActors: true
+	ResourceType@gray-tib:
+		Name: Minerals ($13)
+		PipColor: Gray
+		ResourceType: 4
+		Palette: apolgrey
+		Type: Minerals
+		TerrainType: BlueTiberium
+		Sequences: astore1, astore2, astore3, astore4, astore5, astore6, astore7, astore8, astore9, astore10, astore11, astore12, astore13
+		MaxDensity: 25
+		ValuePerUnit: 13
+		AllowedTerrainTypes: Clear, SpaceGray, SpaceGreen, SpaceBlue, SpaceRed, SpaceGray2, SpaceGreen2, SpaceBlue2, SpaceRed2, Notifier
+		AllowUnderActors: true
+	ResourceType@gas:
+		Name: Gas ($9)
+		PipColor: Blue
+		ResourceType: 8
+		Palette: yellowpal
+		Type: Gas
+		TerrainType: Gas
+		Sequences: gas1, gas2, gas3, gas4, gas5, gas6, gas7, gas8, gas9, gas10, gas11, gas12
+		MaxDensity: 12
+		ValuePerUnit: 9
+		AllowedTerrainTypes: Clear, SpaceGray, SpaceGreen, SpaceBlue, SpaceRed, SpaceGray2, SpaceGreen2, SpaceBlue2, SpaceRed2, Notifier
+		AllowUnderActors: true
+
+World:
+	Inherits: ^BaseWorld
+	ChatCommands:
+	DevCommands:
+	PlayerCommands:
+	HelpCommand:
+	ScreenShaker:
+	BuildingInfluence:
+	BridgeLayer:
+		Bridges: bridge1, bridge2, bridge3, bridge4
+	ProductionQueueFromSelection:
+		ProductionTabsWidget: PRODUCTION_TABS
+	DomainIndex:
+	SmudgeLayer@SCORCH:
+		Type: Scorch
+		Sequence: scorches
+		SmokePercentage: 50
+	SmudgeLayer@CRATER:
+		Type: Crater
+		Sequence: craters
+	ResourceLayer:
+	ResourceClaimLayer:
+	WarheadDebugOverlay:
+	CustomTerrainDebugOverlay:
+	MapCreeps:
+	SpawnMapActors:
+	MapBuildRadius:
+	MapOptions:
+	MPStartLocations:
+	CreateMPPlayers:
+	SpawnMPUnits:
+		StartingUnitsClass: none
+	MPStartUnits@gkormcv:
+		Class: none
+		ClassName: MCV Only
+		Factions: gkor
+		BaseActor: gmothership
+		SupportActors: grefinery, research.dummy, merc.dummy
+	MPStartUnits@terranmcv:
+		Class: none
+		ClassName: MCV Only
+		Factions: terran
+		BaseActor: tmothership
+		SupportActors: tref, research.dummy, merc.dummy
+	MPStartUnits@mcvonly:
+		Class: none
+		ClassName: MCV Only
+		Factions: gdi, nod
+		BaseActor: gmothership
+	CrateSpawner:
+		Minimum: 10
+		Maximum: 30
+		SpawnInterval: 200
+		WaterChance: 0
+		InitialSpawnDelay: 2000
+	PathFinder:
+	ValidateOrder:
+	DebugPauseState:
+	ObjectivesPanel:
+		PanelName: SKIRMISH_STATS
+	RadarPings:
+	LoadWidgetAtGameStart:
+		ShellmapRoot: MENU_BACKGROUND
+	WeaponStorm:
+		Weapon: CometSummon2
+		CooldownDuration: 500
+		ActiveDuration: 1
+		Density: 1
+	WeaponStorm@1:
+		Weapon: FlashProjSummon
+		CooldownDuration: 200
+		ActiveDuration: 2
+		Density: 1
+
+EditorWorld:
+	Inherits: ^BaseWorld
+	EditorActorLayer:
+	EditorResourceLayer:
+	EditorSelectionLayer:
+	LoadWidgetAtGameStart:

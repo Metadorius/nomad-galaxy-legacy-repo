@@ -1,0 +1,16 @@
+^shipdefault:
+	idle:
+		Facings: -32
+		UseClassicFacingFudge: True
+	stand:
+		Facings: -32
+		UseClassicFacingFudge: True
+	subspaceanim: subspaceanim
+		Length: *
+	subspaceanim2: subspaceanim2
+		Length: *
+	subspaceanim3: subspaceanim3
+		Length: *
+	icon: gbc1icon
+
+^fighterdefault:

@@ -1,0 +1,32 @@
+navbeacon:
+	idle:
+		Length: *
+
+lane:
+	idle:
+		Length: *
+
+minestation:
+	idle:
+		Length: *
+
+dangerbeacon:
+	idle:
+		Length: *
+
+box:
+	idle:
+		Length: *
+
+warpgate:
+	idle:
+		Length: *
+		# Tick: 200
+
+starbase:
+	idle:
+		Length: *
+		Tick: 400
+
+convoyship:
+	Inherits: ^shipdefault

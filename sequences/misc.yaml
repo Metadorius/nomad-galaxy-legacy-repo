@@ -1,0 +1,750 @@
+resources:
+	Defaults:
+		UseTilesetExtension: true
+		ZOffset: -4096
+	astore1: astore
+		ZOffset: -4096
+	astore2: astore
+		Start: 1
+		ZOffset: -4096
+	astore3: astore
+		Start: 2
+		ZOffset: -4096
+	astore4: astore
+		Start: 3
+		ZOffset: -4096
+	astore5: astore
+		Start: 4
+		ZOffset: -4096
+	astore6: astore
+		Start: 5
+		ZOffset: -4096
+	astore7: astore
+		Start: 6
+		ZOffset: -4096
+	astore8: astore
+		Start: 7
+		ZOffset: -4096
+	astore9: astore
+		Start: 8
+		ZOffset: -4096
+	astore10: astore
+		Start: 9
+		ZOffset: -4096
+	astore11: astore
+		Start: 10
+		ZOffset: -4096
+	astore12: astore
+		Start: 11
+		ZOffset: -4096
+	astore13: astore
+		Start: 12
+		ZOffset: -4096
+	astorecyan1: astorecyan
+	astorecyan2: astorecyan
+		Start: 1
+	astorecyan3: astorecyan
+		Start: 2
+	astorecyan4: astorecyan
+		Start: 3
+	astorecyan5: astorecyan
+		Start: 4
+	astorecyan6: astorecyan
+		Start: 5
+	astorecyan7: astorecyan
+		Start: 6
+	astorecyan8: astorecyan
+		Start: 7
+	astorecyan9: astorecyan
+		Start: 8
+	astorecyan10: astorecyan
+		Start: 9
+	astorecyan11: astorecyan
+		Start: 10
+	astorecyan12: astorecyan
+		Start: 11
+	astorecyan13: astorecyan
+		Start: 12
+	junk1: junk
+	junk2: junk
+		Start: 1
+	junk3: junk
+		Start: 2
+	junk4: junk
+		Start: 3
+	junk5: junk
+		Start: 4
+	junk6: junk
+		Start: 5
+	junk7: junk
+		Start: 6
+	junk8: junk
+		Start: 7
+	junk9: junk
+		Start: 8
+	junk10: junk
+		Start: 9
+	junk11: junk
+		Start: 10
+	gas1: gas
+	gas2: gas
+		Start: 1
+	gas3: gas
+		Start: 2
+	gas4: gas
+		Start: 3
+	gas5: gas
+		Start: 4
+	gas6: gas
+		Start: 5
+	gas7: gas
+		Start: 6
+	gas8: gas
+		Start: 7
+	gas9: gas
+		Start: 8
+	gas10: gas
+		Start: 9
+	gas11: gas
+		Start: 10
+	gas12: gas
+		Start: 11
+
+explosion:
+	Defaults:
+		Length: *
+		ZOffset: 511
+	nuke_explosion: atomsfx
+	piff: piff
+	piffs: piffpiff
+	chemball: chemball # Same size as small_napalm, but bright green.
+	small_napalm: napalm1 # Not used by much. Currently used for flamethrower.
+	med_napalm: napalm2 # Explosion for bomblets
+	big_napalm: napalm3 # Huge; not used. (SSM used this explosion in C&C Gold?)
+	small_frag: veh-hit3 # The most common weapon-hit explosion. For rockets, tank shells, etc.
+	med_frag: frag1 # Fragmentation-style; quite large. (MLRS used this explosion in C&C Gold?)
+	big_frag: frag3 # Same as med_frag, except fire hangs around longer.
+	small_poof: veh-hit2 # For Grenades, tower missiles, boat missiles and APC AA gun.
+	poof: art-exp1 # For UnitExplode (artillery), artillery shell hit, building explosion and GrenadierExplode
+	small_building: veh-hit1 # Used for heli-explosion in C&C Gold?
+	building: fball1
+	building_napalm: napalm2
+		FlipX: true
+	jaccexp: jaccexp
+	japmuzzle: japmuzzle
+	japmuzzleb: japmuzzleb
+	japocexp: japocexp
+	jbiggunfx: jbiggunfx
+	jbrrlexp1: jbrrlexp1
+	jbrrlexp1b: jbrrlexp1b
+	jbrrlexp2: jbrrlexp2
+	jbrrlexp2b: jbrrlexp2b
+	jcrivexp: jcrivexp
+	jcrivexpb: jcrivexpb
+	jcrivexpc: jcrivexpc
+	jdurasmoke: jdurasmoke
+	jexplolrg: jexplolrg
+	jexplolrgb: jexplolrgb
+	jexplomed: jexplomed
+	jexplomedb: jexplomedb
+	jexplosml: jexplosml
+	jexplosmlb: jexplosmlb
+	jflmtrail: jflmtrail
+	jgcmuzzle: jgcmuzzle
+	jgrpowexp: jgrpowexp
+	jgtpowerxpb: jgtpowerxpb
+	jhtrkpuff: jhtrkpuff
+	jlgrysmk1: jlgrysmk1
+	jsbang16: jsbang16
+	jsbang16b: jsbang16b
+	jsbang24: jsbang24
+	jsbang24b: jsbang24b
+	jsbang34: jsbang34
+	jsbang34b: jsbang34b
+	jsbang48: jsbang48
+	jsbang48b: jsbang48b
+	jsbrnl: jsbrnl
+	jsbrnlb: jsbrnlb
+	jsbrnl20: jsbrnl20
+	jsbrnl20b: jsbrnl20b
+	jsbrnl30: jsbrnl30
+	jsbrnl30b: jsbrnl30b
+	jsbrnl40: jsbrnl40
+	jsbrnl40b: jsbrnl40b
+	jsbrnl58: jsbrnl58
+	jsbrnl40: jsbrnl40
+	jsbrnl40b: jsbrnl40b
+	jsbrnl58: jsbrnl58
+	jsbrnl58b: jsbrnl58b
+	jsclsn16: jsclsn16
+	jsclsn16b: jsclsn16b
+	jsclsn22: jsclsn22
+	jsclsn22b: jsclsn22b
+	jsclsn30: jsclsn30
+	jsclsn30b: jsclsn30b
+	jsclsn42: jsclsn42
+	jsclsn42b: jsclsn42b
+	jsclsn58: jsclsn58
+	jsclsn58b: jsclsn58b
+	jsgrysmk1: jsgrysmk1
+	jsmkblast: jsmkblast
+	jsmkpuff: jsmkpuff
+	jsmkpuffb: jsmkpuffb
+	jsmokey: jsmokey
+	jstumu22: jstumu22
+	jstumu22b: jstumu22b
+	jstumu30: jstumu30
+	jstumu30b: jstumu30b
+	jstumu42: jstumu42
+	jstumu42b: jstumu42b
+	jstumu60: jstumu60
+	jstumu60b: jstumu60b
+	jtwlt026: jtwlt026
+	jtwlt026b: jtwlt026b
+	jtwlt036: jtwlt036
+	jtwlt036b: jtwlt036b
+	jtwlt050: jtwlt050
+	jtwlt050b: jtwlt050b
+	jtwlt070: jtwlt070
+	jtwlt070b: jtwlt070b
+	jtwlt100: jtwlt100
+	jtwlt100b: jtwlt100b
+	jxgrymed1: jxgrymed1
+	jsclsn58: jsclsn58
+	jxgrymed1b: jxgrymed1b
+	jxgrymed2: jxgrymed2
+	jxgrymed2b: jxgrymed2b
+	jxgrysml1: jxgrysml1
+	jxgrysml1b: jxgrysml1b
+	jxgrysml2: jxgrysml2
+	jxgrysml2b: jxgrysml2b
+	jucflash: jucflash
+	jgunfire: jgunfire
+	jvtmuzzle: jvtmuzzle
+	infdeathexplo1: infdeathexplo1
+	infdeathexplo2: infdeathexplo2
+	infdeathexplo3: infdeathexplo3
+#GKOR
+	ggas: ggas
+	ggas2: ggas2
+	gadrenbuff: gadrenbuff
+		ZOffset: -500
+	babaexplo1: babaexplo1
+	babaexplo2: babaexplo2
+	babaexplo3: babaexplo3
+	babaexplo4: babaexplo4
+	meteorexplo: meteorexplo
+	subpsess: subpessanimship
+	subpessanim2: subpessanim2
+	subspaceanim3: subspaceanim3
+	dot: dot
+#TERRAN
+	tgas: tgas
+	tgas2: tgas2
+
+^nebulas:
+	Defaults:
+		ZOffset: -4096
+		UseTilesetExtension: false
+		Length: *
+
+nebula1:
+	Inherits: ^nebulas
+	Defaults:
+		ZOffset: -9999
+	idle:
+	stand:
+
+nebula2:
+	Inherits: ^nebulas
+	idle:
+	stand:
+
+planetearth:
+	Inherits: ^nebulas
+	idle:
+		Tick: 1000
+	stand:
+		Tick: 1000
+
+planetearthgiant:
+	Inherits: ^nebulas
+	idle:
+		Tick: 1000
+	stand:
+		Tick: 1000
+
+planet2:
+	Inherits: ^nebulas
+	idle:
+		Tick: 1000
+	stand:
+		Tick: 1000
+
+fb4:
+	idle:
+		Length: 4
+		ZOffset: 1023
+
+fire:
+	1: fire1
+		Length: *
+		Offset: 0,-3
+		ZOffset: 1023
+	2: fire2
+		Length: *
+		Offset: 0,-3
+		ZOffset: 1023
+
+burn-l:
+	idle:
+		Length: *
+		ZOffset: 512
+	loop:
+		Start: 16
+		Length: 44
+		ZOffset: 512
+	end:
+		Start: 60
+		Length: 6
+		ZOffset: 512
+
+################################################################
+#	Shared Projectiles
+################################################################
+
+bulletinterceptor:
+	idle:
+		Facings: -32
+
+bulletbomber:
+	idle:
+		Facings: -32
+
+shell:
+	idle:
+		Facings: -32
+
+shellmini:
+	idle:
+		Facings: -32
+
+################################################################
+#	Gkor Projectiles
+################################################################
+spinesphere:
+	idle:
+		Facings: -32
+
+spineprojectile:
+	idle:
+		Facings: -32
+
+spineprojectile2:
+	idle:
+		Facings: -32
+
+babaproj:
+	idle:
+		Length: *
+
+babaproj2:
+	idle:
+		Length: *
+
+gacid:
+	idle:
+		Facings: -32
+
+babatrail:
+	idle:
+		Length: *
+		Tick: 25
+
+################################################################
+#	Terran Projectiles
+################################################################
+
+
+################################################################
+#	Enviroment Projectiles
+################################################################
+
+solarwave:
+	idle:
+		Facings: -32
+		ZOffset: -6000
+
+comet:
+	idle:
+		Length: 9
+		Tick: 150
+		Facings: -16
+
+comet2:
+	Inherits: comet
+
+debrishuge:
+	Inherits: comet
+
+debrisbig:
+	Inherits: comet
+
+debrismedium1:
+	Inherits: comet
+
+debrismedium2:
+	Inherits: comet
+
+debrissmall1:
+	Inherits: comet
+
+debrissmall2:
+	Inherits: comet
+
+debrissmall3:
+	Inherits: comet
+
+################################################################
+#	Mercenary Projectiles
+################################################################
+
+piratepod:
+	idle:
+		Facings: -32
+
+dmine:
+	idle:
+		Length: 10
+
+dmine1:
+	idle:
+		Length: 10
+
+litning:
+	bright:
+		Length: 4
+		Offset: 0,0,3
+	dim:
+		Offset: 0,0,3
+		Start: 4
+		Length: 4
+
+burn-m:
+	idle:
+		Length: *
+		ZOffset: 512
+	loop:
+		Start: 16
+		Length: 44
+		ZOffset: 512
+	end:
+		Start: 60
+		Length: 6
+		ZOffset: 512
+
+burn-s:
+	idle:
+		Length: *
+		ZOffset: 512
+	loop:
+		Start: 12
+		Length: 46
+		ZOffset: 512
+	end:
+		Start: 59
+		Length: 5
+		ZOffset: 512
+
+120mm:
+	idle:
+		ZOffset: 1023
+
+smoke_m:
+	idle:
+		Length: *
+		Offset: 2, -5
+		ZOffset: 512
+	loop:
+		Start: 49
+		Length: 42
+		Offset: 2, -5
+		ZOffset: 512
+	end:
+		Start: 26
+		Length: -26
+		Offset: 2, -5
+		ZOffset: 512
+
+laserfire:
+	idle: veh-hit3
+		Length: *
+		ZOffset: 511
+
+dragon:
+	idle:
+		Facings: 32
+		ZOffset: 1023
+
+smokey:
+	idle:
+		Length: *
+		ZOffset: 1023
+	fighterflametrails: jucflash
+		Length: *
+		Tick: 50
+		ZOffset: -1023
+
+bomb:
+	idle:
+		Length: *
+		ZOffset: 1023
+
+missile:
+	idle:
+		Facings: 32
+		ZOffset: 1023
+
+patriot:
+	idle:
+		Facings: 32
+		ZOffset: 1023
+
+rank:
+	rank:
+		Length: *
+	dishicon: dishicon
+		Length: *
+	vialicon: vialicon
+		Length: *
+	towericon: towericon
+		Length: *
+	factoryicon: factoryicon
+		Length: *
+	wrenchicon: wrenchicon
+		Length: *
+	houseicon: houseicon
+		Length: *
+
+rallypoint:
+	flag: flagfly
+		Length: *
+		Offset: 10,-5
+		ZOffset: 2535
+	circles: fpls
+		Length: *
+		ZOffset: 2047
+
+beacon:
+	Defaults:
+		ZOffset: 2535
+	arrow: mouse2
+		Start: 5
+		Offset: 1,-12
+	circles: fpls
+		Length: *
+		ZOffset: 2047
+	airstrike: bombicon
+		Offset: 0,-42
+	atomic: atomicon
+		Offset: 0,-42
+	clock: beaconclock
+		Length: *
+		Offset: 0,-42
+
+select:
+	repair:
+		Start: 2
+
+allyrepair:
+	repair:
+		Length: *
+		Tick: 160
+		ZOffset: 2047
+
+crate:
+	idle:
+		ZOffset: -511
+
+xcratea:
+	idle: xcrate
+		ZOffset: -511
+
+xcrateb:
+	idle: xcrate
+		Start: 1
+		ZOffset: -511
+
+xcratec:
+	idle: xcrate
+		Start: 2
+		ZOffset: -511
+
+xcrated:
+	idle: xcrate
+		Start: 3
+		ZOffset: -511
+
+dot:
+	idle:
+		ZOffset: -9999
+
+crate-effects:
+	Defaults:
+		Length: *
+		ZOffset: 2047
+	airstrike: deviator
+	nuke: missile2
+	dollar: dollar
+	reveal-map: radarcrate
+	hide-map: empulse
+	heal: healcrate
+	mine: mine
+	redskull: rapid
+	cloak: cloakcrate
+	levelup: levelup
+		Tick: 200
+	firepowerup: firepowercrate
+	armorup: armorcrate
+	speedup: speedcrate
+
+atomic:
+	Defaults:
+		Length: *
+		ZOffset: 1023
+	up: atomicup
+	down: atomicdn
+
+ionsfx:
+	idle:
+		Length: *
+		Offset: 0, -78
+		ZOffset: 1023
+
+bomblet:
+	idle:
+		Length: *
+		ZOffset: 1023
+
+mpspawn:
+	idle:
+		Length: *
+
+waypoint:
+	idle:
+		Length: *
+
+camera:
+	idle: dot
+		Length: *
+
+clock:
+	idle: hclock
+		Length: *
+
+pips:
+	pip-empty:
+	pip-green:
+		Start: 1
+	pip-yellow:
+		Start: 2
+	pip-gray:
+		Start: 3
+	pip-red:
+		Start: 4
+	pip-blue:
+		Start: 5
+	pip-heal: pip-heal
+		Length: *
+	groups: pdigits
+		Length: *
+		Offset: 9, 5
+	pip-hazmat: pip-hazmat
+		Length: *
+
+overlay:
+	build-valid-space:
+	build-invalid-space:
+	target-invalid-space:
+		Start: 1
+	build-valid:
+	build-invalid:
+	target-invalid:
+		Start: 1
+	target-select: targetselect
+
+editor-overlay:
+	copy: overlay
+		Start: 0
+	pastoree: overlay
+		Start: 1
+	paste: overlay
+		Start: 1
+
+poweroff:
+	offline:
+		Length: *
+		Tick: 160
+		ZOffset: 2047
+
+icon:
+	Defaults:
+		# AddExtension: False
+	airstrike: bombicnh.tem
+	ioncannon: ionicnh.tem
+	FighterCleanup: gfighter1icon
+	abomb: atomicnh.tem
+
+moveflsh:
+	idle:
+		Length: *
+		Tick: 80
+		ZOffset: 2047
+
+shroud:
+	Defaults:
+		Length: 12
+	typea: shadow
+	typeb: shadow
+		Start: 12
+	typec: shadow
+		Start: 24
+	typed: shadow
+		Start: 36
+	full: fullshroud
+		Length: 1
+
+# Note: The order of smudges and craters determines
+# the index that is mapped to them in maps
+scorches:
+	Defaults:
+		UseTilesetExtension: true
+		Length: *
+	sc1: sc1
+	sc2: sc2
+	sc3: sc3
+	sc4: sc4
+	sc5: sc5
+	sc6: sc6
+
+craters:
+	Defaults:
+		UseTilesetExtension: true
+		Length: *
+	cr1: cr1
+	cr2: cr2
+	cr3: cr3
+	cr4: cr4
+	cr5: cr5
+	cr6: cr6
+
+smokland:
+	open:
+		Length: 60
+		Tick: 120
+		ZOffset: 1023
+	idle:
+		Start: 60
+		Length: 32
+		Tick: 120
+		ZOffset: 1023

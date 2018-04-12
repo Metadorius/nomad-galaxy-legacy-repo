@@ -1,0 +1,217 @@
+^GeneralDebuffs:
+	ValidTargets: CapitalShip, Frigate, Corvette, Fighter, Ground
+	MinRange: 20
+
+^Flak:
+	Inherits: ^GeneralDebuffs
+	ValidTargets: CapitalShip, Frigate, Corvette, Fighter, Ground
+	Range: 4c0
+	Projectile: Missile
+		Speed: 300
+		Image: bulletinterceptor
+		Palette: chrome
+		RangeLimit: 15c0
+		HorizontalRateOfTurn: 50
+		VerticalRateOfTurn: 50
+		Blockable: False
+		LaserShootable: False
+	Warhead@1Dam: SpreadDamage
+		Spread: 96
+		Damage: 15
+		Versus:
+			Fighter: 200
+			Corvette: 30
+			Frigate: 20
+			CapitalShip: 10
+		ValidStances: Neutral, Enemy
+		ValidTargets: CapitalShip, Frigate, Corvette, Fighter, Ground
+	Warhead@2Eff: CreateEffect
+		Explosions: piff
+	Warhead@SlowFighter: GrantExternalCondition
+		Range: 256
+		Duration: 25
+		Condition: SlowdownFighter
+		ValidTargets: CapitalShip, Frigate, Corvette, Fighter, Ground, Air, AirHit
+		AffectsParent: False
+		ValidStances: Neutral, Enemy
+
+^FighterBullet:
+	Inherits: ^Flak
+	Projectile: InstantHit
+		Inaccuracy: 0c128
+	Warhead@1Dam: SpreadDamage
+		Damage: 5000
+		ValidTargets: Fighter, Ground
+		InvalidTargets: CapitalShip, Frigate
+		ValidStances: Neutral, Enemy
+
+^AutoCannon:
+	Inherits: ^GeneralDebuffs
+	ValidTargets: CapitalShip, Frigate, Corvette, Ground
+	InvalidTargets: Fighter
+	Range: 4c0
+	Report: rmachinegun1.wav, rmachinegun2.wav
+	Projectile: Bullet
+		Speed: 300
+		Blockable: False
+		Image: bulletinterceptor
+		Palette: chrome
+		Inaccuracy: 200
+	Warhead@1Dam: SpreadDamage
+		Spread: 96
+		Damage: 15
+		Versus:
+			Fighter: 25
+			Corvette: 100
+			Frigate: 25
+			CapitalShip: 13
+			Station: 13
+		ValidTargets: CapitalShip, Frigate, Corvette, Ground
+	Warhead@2Eff: CreateEffect
+		Explosions: piff
+
+^PlasmaBomb:
+	Inherits: ^GeneralDebuffs
+	ValidTargets: CapitalShip, Frigate, Corvette, Fighter, Ground
+	Range: 3c0
+	MinRange: 1c0
+	Report: bomber1.wav, bomber2.wav
+	Projectile: Missile
+		Speed: 150
+		Image: bulletinterceptor
+		HorizontalRateOfTurn: 50
+		VerticalRateOfTurn: 50
+		Palette: chrome
+		Blockable: False
+		Inaccuracy: 350
+		RangeLimit: 6c0
+		LaserShootable: False
+	Warhead@1Dam: SpreadDamage
+		Spread: 90
+		Damage: 15
+		Versus:
+			Fighter: 1
+			Corvette: 10
+			Frigate: 120
+			CapitalShip: 100
+			Station: 150
+		ValidStances: Ally, Neutral, Enemy
+		ValidTargets: CapitalShip, Frigate, Corvette, Ground
+	Warhead@2Eff: CreateEffect
+		Explosions: jtwlt026, jtwlt026b, jstumu22b, jsbang16
+		ImpactSound: expnew12.aud
+		ExplosionPalette: gensmkexplojFBlue
+	Warhead@SlowFighter: GrantExternalCondition
+		Range: 256
+		Duration: 25
+		Condition: SlowdownFighter
+		ValidTargets: CapitalShip, Frigate, Corvette, Fighter, Ground, Air, AirHit
+		AffectsParent: False
+		ValidStances: Neutral, Enemy
+
+HeavyCannon:
+	Inherits: ^GeneralDebuffs
+	ReloadDelay: 75
+	Range: 4c768
+	Report: cannon1.wav, cannon2.wav
+	InvalidTargets: Fighter
+	ValidTargets: CapitalShip, Frigate, Corvette, Ground
+	Projectile: Bullet
+		Image: SHELL
+		Speed: 300
+		Palette: temperatra
+		Inaccuracy: 300
+		Blockable: False
+	Warhead@1Dam: SpreadDamage
+		Spread: 64
+		Damage: 30
+		Versus:
+			Fighter: 1
+			Corvette: 40
+			Frigate: 150
+			CapitalShip: 100
+		InvalidTargets: Fighter
+		ValidTargets: CapitalShip, Frigate, Corvette, Ground
+		DamageTypes: Prone50Percent, TriggerProne, ExplosionDeath
+	Warhead@3Eff: CreateEffect
+		Explosions: jsclsn16, jsclsn16b, jexplosml, jexplosml
+		ExplosionPalette: gensmkexploj
+		ValidTargets: CapitalShip, Frigate, Corvette, Ground
+
+^Missile:
+	Inherits: ^GeneralDebuffs
+	ReloadDelay: 50
+	Range: 6c0
+	MinRange: 0c512
+	Report: rocket1.wav, rocket2.wav, rocket3.wav
+	ValidTargets: CapitalShip, Frigate, Corvette, Ground
+	InvalidTargets: Fighter
+	Projectile: Missile
+		Arm: 0
+		Inaccuracy: 64
+		Image: DRAGON
+		HorizontalRateOfTurn: 25
+		TrailImage: smokey
+		ContrailLength: 8
+		ContrailWidth: 5
+		Speed: 100
+		RangeLimit: 8c0
+		Blockable: False
+	Warhead@1Dam: SpreadDamage
+		Spread: 250
+		Damage: 3500
+		ValidStances: Neutral, Enemy
+		ValidTargets: CapitalShip, Frigate, Corvette, Ground
+		Versus:
+			Fighter: 1
+			Corvette: 100
+			Frigate: 80
+			CapitalShip: 60
+	Warhead@3Eff: CreateEffect
+		Explosions: jsbang16, jsbang16b, jsbang24
+		ExplosionPalette: gensmkexploj
+		ImpactSounds: xplos.aud
+
+^Torpedo:
+	Inherits: ^GeneralDebuffs
+	ReloadDelay: 50
+	Range: 6c0
+	MinRange: 0c512
+	Report: rocket1.wav, rocket2.wav, rocket3.wav
+	ValidTargets: CapitalShip, Frigate, Corvette, Ground
+	InvalidTargets: Fighter
+	Projectile: Missile
+		Arm: 0
+		Inaccuracy: 64
+		Image: DRAGON
+		HorizontalRateOfTurn: 25
+		TrailImage: smokey
+		ContrailLength: 8
+		ContrailWidth: 5
+		Speed: 100
+		RangeLimit: 8c0
+		Blockable: False
+	Warhead@1Dam: SpreadDamage
+		Spread: 32
+		Damage: 3500
+		ValidTargets: CapitalShip, Frigate, Corvette, Ground
+		Versus:
+			Fighter: 1
+			Corvette: 150
+			Frigate: 50
+			CapitalShip: 30
+	Warhead@3Eff: CreateEffect
+		Explosions: jsbang16, jsbang16b, jsbang24
+		ExplosionPalette: gensmkexploj
+		ImpactSounds: xplos.aud
+
+ChaseWeapon:
+	ReloadDelay: 200
+	Range: 1c0
+	Projectile: Bullet
+	Warhead@1Dam: SpreadDamage
+		Spread: 64
+		Damage: 1
+		AffectsParent: True
+		Versus:
+		DamageTypes: Prone50Percent, TriggerProne, ExplosionDeath

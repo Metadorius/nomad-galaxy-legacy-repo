@@ -1,0 +1,990 @@
+^CivilianShipWeaponsGkor:
+	ExplodeWeapon@Repairs:
+		Weapon: FieldRepairLaserSpawn
+	Armament@AntiCorvette:
+		Weapon: CapitalShipAutoCannon
+	Armament@PDLASER:
+		Weapon: PDLaser
+		LocalOffset: 0,213,-85
+		Name: pdlaser
+	AttackTurreted:
+	ExplodeWeapon@1:
+		Weapon: FieldDefenceLaserSpawnAntiFighter
+	Turreted:
+	AutoTarget:
+
+GMOTHERSHIP:
+	Inherits: MOTHERSHIP
+	Tooltip:
+		Name: G'kor Mothership
+	ProximityExternalCondition@LogisticShipWanderer:
+		Condition: LogisticShipWanderer
+		Range: 5c0
+		AffectsParent: False
+	ProductionQueue@Building:
+		Type: GUtility
+		Group: Building
+	Production:
+		Produces: GUtility
+
+GSURVEYFRIGATE:
+	Inherits: SURVEYFRIGATE
+	Buildable:
+		Queue: GUtility
+		BuildPaletteOrder: 4
+		Prerequisites: ~mothership, research.Improved.Detection.Systems
+		Description: Exploration vessel equipped with long range scanners.\nEnables the radar upon construction.\nDetects cloaked units.
+	Tooltip:
+		Name: Survey Frigate
+	AnnounceOnBuildAS:
+		Voice: SurveyFrigateReady
+		OnlyToOwner: True
+	SpawnActorOnDeath:
+		Actor: gsurveyfrigateh
+		OwnerType: InternalName
+		InternalOwner: Neutral
+
+GREFINERY:
+	Inherits: REFINERY
+	Buildable:
+		Queue: GUtility
+		BuildPaletteOrder: 2
+		Prerequisites: ~mothership
+		Description: Resource gatherer, builds miners slowly.\nSupports up to 5 miners.
+	SpawnActorOnDeath:
+		Actor: grefineryh
+		OwnerType: InternalName
+		InternalOwner: Neutral
+	GrantConditionOnDeploy:
+		DeployedCondition: deployed
+
+GPATROLCRUISER:
+	Inherits@1: PATROLCRUISER
+	Inherits@2: ^CivilianShipWeaponsGkor
+	Buildable:
+		Queue: GUtility
+		BuildPaletteOrder: 3
+		Prerequisites: ~mothership, grefinery
+		Description: Small carrier outfitted with small craft production machines.\nWhen deployed, it becomes static but supports rally points.
+	Transforms:
+		IntoActor: dgpatrolcruiser
+		Facing: 180
+		Offset: -1,-1
+	ProductionQueue@Infantry:
+		Type: GCorvette
+		Group: Infantry
+	Production:
+		Produces: GCorvette
+	AnnounceOnBuildAS:
+		Voice: PatrolCruiserReady
+		OnlyToOwner: True
+
+GHABITATSHIP:
+	Inherits: HABITATSHIP
+	Buildable:
+		Queue: GUtility
+		BuildPaletteOrder: 1
+		Prerequisites: ~mothership, research.Logistic.Systems
+		Description: Civilian Ship, increases fleep capacity.\nCan be used to construct Space stations on planets.\nDefence platforms 2 cells near this ship or the station\nhave their power consumption reduced to half.
+	AnnounceOnBuildAS:
+		Voice: LogisticShipReady
+		OnlyToOwner: True
+
+GFRIGATEASSEMBLYBAY:
+	Inherits: FRIGATEASSEMBLYBAY
+	Inherits@3: ^CivilianShipWeaponsGkor
+	Buildable:
+		Queue: GUtility
+		BuildPaletteOrder: 4
+		Prerequisites: ~mothership, research.Frigate.Drive
+		Description: Heavy armored carrier that supports frigate production.\nCan be deployed to become static to and use rallypoints.
+	Transforms:
+		IntoActor: dgfrigateassemblybay
+		Facing: 180
+		Offset: -1,-1
+	AnnounceOnBuildAS:
+		Voice: FrigateAssemblyBayReady
+		OnlyToOwner: True
+	ProductionQueue@Defence:
+		Type: GFrigate
+		Group: Defence
+	Production:
+		Produces: GFrigate
+
+GRESEARCHSHIP:
+	Inherits: RESEARCHSHIP
+	AnnounceOnBuildAS:
+		Voice: ResearchShipReady
+		OnlyToOwner: True
+	-AttackMove:
+
+GENGINEER:
+	Inherits: ENGINEER
+	Buildable:
+		Queue: GUtility
+		BuildPaletteOrder: 6
+		Prerequisites: ~mothership, research.Platform.Construction
+		Description: Captures neutral objects and Repairs nearby ships.\ncan repair while moving.
+	AnnounceOnBuildAS:
+		Voice: EngineerCrewReady
+		OnlyToOwner: True
+
+GSUBSPESS:
+	Inherits: RESEARCHSHIP
+	Valued:
+		Cost: 3000
+	Tooltip:
+		Name: Subspace Field Generator
+	Power:
+		Amount: -50
+	Aircraft:
+		Speed: 15
+	Health:
+		HP: 3500000
+	WithDecoration@Role:
+		Image: rank
+		Sequence: vialicon
+		Palette: effect
+		ReferencePoint: Top, Right
+		RequiresCondition: !weonqloweonlawea
+		ZOffset: 256
+	WithIdleOverlay@HyperSpaceGenerator:
+		Sequence: subpessanimship
+		Palette: darkbluepal
+		Offset: 25,0,-500
+		RequiresCondition: HyperSpaceGenerator && !HyperSpaceFadeOut
+	GrantTimedConditionOnDeploy:
+		DeployedCondition: HyperSpaceGenerator
+		CooldownTicks: 1500
+		DeployedTicks: 350
+		StartsFullyCharged: True
+	ExplodeWeapon@HyperSpace:
+		Weapon: HyperSpaceGenerator
+		RequiresCondition: HyperSpaceGenerator && !HyperSpaceFadeOut
+	ExternalCondition@HyperSpaceGenerator:
+		Condition: HyperSpaceGenerator
+	AnnounceOnBuildAS:
+		Voice: SubspaceGeneratorReady
+		OnlyToOwner: True
+
+GBC1:
+	Inherits: ^Frigate
+	Inherits@2: ^CorvetteTargetPriority
+	Buildable:
+		Queue: GFrigate
+		BuildPaletteOrder: 8
+		Prerequisites: ~gmothership, research.Destroyer.Drive
+		Description: Basic capital ship armed with heavy cannons and point defence lasers.\nEffective against Frigates and Capital Ships.
+	Valued:
+		Cost: 2000
+	Tooltip:
+		Name: Light Cruiser
+	Power:
+		Amount: -20
+	Aircraft:
+		Speed: 27
+	Health:
+		HP: 3000000
+	RevealsShroud:
+		Range: 5c0
+	Armament@1:
+		Weapon: CapitalShipAutoCannon
+	Armament@2:
+		Weapon: CapitalShipAutoCannon
+	Armament@3:
+		Weapon: CapitalShipAutoCannon
+	ExplodeWeapon@1:
+		Weapon: FieldDefenceLaserSpawnMothership
+		LocalOffset: -600,-350,0
+	ExplodeWeapon@2:
+		Weapon: FieldDefenceLaserSpawnMothership
+		LocalOffset: -600,350,0
+	ExplodeWeapon@3:
+		Weapon: FieldDefenceLaserSpawnMothership
+		LocalOffset: -900,0,0
+	ExplodeWeapon@4:
+		Weapon: FieldDefenceLaserSpawnMothership
+		LocalOffset: -600,350,0
+	ExplodeWeapon@5:
+		Weapon: FieldDefenceLaserSpawnMothership
+		LocalOffset: -900,0,0
+	MustBeDestroyed:
+	AttackHeli:
+	SelectionDecorations:
+		VisualBounds: 90,90
+	Voiced:
+		VoiceSet: GenericVoice
+	ExternalCondition@BeamReady:
+		Condition: BeamReady
+	AnnounceOnBuildAS:
+		Voice: CapitalShipReady
+		OnlyToOwner: True
+	SpawnActorOnDeath:
+		Actor: gbc1h
+		OwnerType: InternalName
+		InternalOwner: Neutral
+
+GBC2:
+	Inherits: ^CapitalShip
+	Inherits@2: ^FrigateTargetPriority
+	Buildable:
+		Queue: GFrigate
+		BuildPaletteOrder: 9
+		Prerequisites: ~gmothership, research.Destroyer.Drive
+		Description: Heavy capital ship, armed with heavy cannons, and ion cannons. It's\nheavy armor allows it to Take great amounts of punshiment.
+	Valued:
+		Cost: 3500
+	Tooltip:
+		Name: Dreadnaught
+	Power:
+		Amount: -30
+	Aircraft:
+		Speed: 20
+	Health:
+		HP: 4500000
+	RevealsShroud:
+		Range: 5c0
+	MustBeDestroyed:
+	SelectionDecorations:
+		VisualBounds: 120,120
+	AttackFrontal:
+	Armament:
+		Weapon: IonBeamCharge
+	PortableChrono:
+		ChargeDelay: 1500
+		TargetCursor: deploy
+		MaxDistance: 6
+		TargetBlockedCursor: deploy-blocked
+	Armament@1:
+		Weapon: IonBeam
+		LocalOffset: 1000,800,0
+		RequiresCondition: BeamReady
+	Armament@2:
+		Weapon: IonBeam2
+		LocalOffset: 1000,800,0
+		RequiresCondition: BeamReady
+	Armament@3:
+		Weapon: IonBeam
+		LocalOffset: 1000,-800,0
+		RequiresCondition: BeamReady
+	Armament@4:
+		Weapon: IonBeam2
+		LocalOffset: 1000,-800,0
+		RequiresCondition: BeamReady
+	ExplodeWeapon@4:
+		Weapon: FieldDefenceLaserSpawnMothership
+		LocalOffset: 250,-250,0
+	ExplodeWeapon@5:
+		Weapon: FieldDefenceLaserSpawnMothership
+		LocalOffset: 250,250,0
+	ExternalCondition@BeamReady:
+		Condition: BeamReady
+	AnnounceOnBuildAS:
+		Voice: CapitalShipReady
+		OnlyToOwner: True
+
+GFRIG1:
+	Inherits: ^AFrontalFrigate
+	Inherits@2: ^FrigateTargetPriority
+	Buildable:
+		Queue: GFrigate
+		BuildPaletteOrder: 2
+		Prerequisites: ~fab, research.Enhanced.Cannons
+		Description: Combat craft armed with three Heavy Cannon.\nEffective against Frigates, Capital Ships.\nModerate against Corvettes.\nIneffective against Fighters.
+	Valued:
+		Cost: 1100
+	Tooltip:
+		Name: Assault Frigate
+	Aircraft:
+		TurnSpeed: 7
+	Health:
+		HP: 1500000
+	RevealsShroud:
+		Range: 5c0
+	Armament:
+		Weapon: FrigateCannon
+		RequiresCondition: !HyperSpaceFadeOut
+		LocalOffset: 250,0,0
+	Armament@1:
+		Weapon: FrigateCannon
+		RequiresCondition: !HyperSpaceFadeOut
+		LocalOffset: 250,200,0
+		FireDelay: 5
+	Armament@2:
+		Weapon: FrigateCannon
+		RequiresCondition: !HyperSpaceFadeOut
+		LocalOffset: 250,-200,0
+		FireDelay: 10
+	SpawnActorOnDeath:
+		Actor: gfrig1h
+		OwnerType: InternalName
+		InternalOwner: Neutral
+
+GFRIG2:
+	Inherits: ^AFrontalFrigate
+	Buildable:
+		Queue: GFrigate
+		BuildPaletteOrder: 3
+		Prerequisites: ~fab, research.Long.Range.Targeting.Systems
+		Description: Frigate designed for long range bombardement.\nDeals moderate damage to all units.\nEffective vs Space stations.\nIneffective against mobile targets.
+	Valued:
+		Cost: 1250
+	Tooltip:
+		Name: Siege Frigate
+	Aircraft:
+		TurnSpeed: 1
+	Health:
+		HP: 900000
+	RevealsShroud:
+		Range: 7c0
+	Armament:
+		Weapon: AlienArtillery
+		RequiresCondition: !HyperSpaceFadeOut
+	SpawnActorOnDeath:
+		Actor: gfrig2h
+		OwnerType: InternalName
+		InternalOwner: Neutral
+
+GFRIG3:
+	Inherits: ^TurretedFrigate
+	Inherits@2: ^FighterTargetPriority
+	Buildable:
+		Queue: GFrigate
+		BuildPaletteOrder: 1
+		Prerequisites: ~fab
+		Description: Light frigate.\nEffective Against Fighters.
+	Valued:
+		Cost: 1000
+	Tooltip:
+		Name: Acid Frigate
+	Health:
+		HP: 1250000
+	RevealsShroud:
+		Range: 5c0
+	Aircraft:
+		TurnSpeed: 2
+		Speed: 45
+	Armament:
+		Weapon: FrigateGasBullet
+		LocalOffset: 300,0,0
+		RequiresCondition: !HyperSpaceFadeOut
+	ExplodeWeapon@1:
+		Weapon: GKorGasBulletSpawner
+		LocalOffset: 300,0,0
+		RequiresCondition: !HyperSpaceFadeOut
+	SpawnActorOnDeath:
+		Actor: gfrig3h
+		OwnerType: InternalName
+		InternalOwner: Neutral
+
+GFRIG4:
+	Inherits: ^AFrontalFrigate
+	Inherits@2: ^FrigateTargetPriority
+	Buildable:
+		Queue: GFrigate
+		BuildPaletteOrder: 1
+		Prerequisites: ~fab, research.Rending.Claws
+		Description: Melee Frigate, holds the unit it attacks in place.
+	Valued:
+		Cost: 1000
+	Tooltip:
+		Name: Bitter
+	Health:
+		HP: 3500000
+	RevealsShroud:
+		Range: 5c0
+	Aircraft:
+		TurnSpeed: 4
+		Speed: 45
+		CruiseAltitude: 6
+	Armament:
+		Weapon: RendingClaws
+	Armament@1:
+		Weapon: MeleeFrigAnim
+	WithFacingSpriteBody:
+		RequiresCondition: !MeleeAnim
+		Sequence: idle
+	WithFacingSpriteBody@attack:
+		Sequence: shoot
+		RequiresCondition: MeleeAnim
+	ExternalCondition@MeleeAnim:
+		Condition: MeleeAnim
+	SpawnActorOnDeath:
+		Actor: gfrig3h
+		OwnerType: InternalName
+		InternalOwner: Neutral
+
+GFRIG5:
+	Inherits: ^TurretedFrigate
+	Valued:
+		Cost: 1000
+	Tooltip:
+		Name: Acid Frigate
+	Health:
+		HP: 1250000
+	RevealsShroud:
+		Range: 5c0
+	Aircraft:
+		TurnSpeed: 2
+		Speed: 45
+	Armament:
+		Weapon: FrigateGasBullet
+		LocalOffset: 300,0,0
+		RequiresCondition: !HyperSpaceFadeOut
+	ExplodeWeapon@1:
+		Weapon: GKorGasBulletSpawner
+		LocalOffset: 300,0,0
+		RequiresCondition: !HyperSpaceFadeOut
+	SpawnActorOnDeath:
+		Actor: gfrig3h
+		OwnerType: InternalName
+		InternalOwner: Neutral
+
+GCARGOFRIG:
+	Inherits: ^Frigate
+	Valued:
+		Cost: 1500
+	Tooltip:
+		Name: Cargo Frigate
+	RejectsOrders:
+	Health:
+		HP: 900000
+	RevealsShroud:
+		Range: 3c0
+	Armament:
+		Weapon: ChaseMothership
+		TargetStances: Ally
+	MustBeDestroyed:
+	AttackFrontal:
+	SelectionDecorations:
+		VisualBounds: 60,60
+	AutoTarget:
+		ScanRadius: 200
+		InitialStance: AttackAnything
+	TransformOnCondition:
+		RequiresCondition: ChaseMothership
+		IntoActor: freighterbounty
+	ExternalCondition@ChaseMothership:
+		Condition: ChaseMothership
+
+GCORV1:
+	Inherits: ^Corvette
+	Inherits@2: ^CorvetteTargetPriority
+	Buildable:
+		Queue: GCorvette
+		BuildPaletteOrder: 1
+		Prerequisites: ~pc, research.Corvette.Drive
+		Description: Armed with a heavy cannon.\nEffective against Frigates.\nIneffective against Fighters and Corvettes.
+	Valued:
+		Cost: 250
+	Tooltip:
+		Name: Peace Keeper
+	Power:
+		Amount: -2
+	Health:
+		HP: 170000
+	RevealsShroud:
+		Range: 5c0
+	Armament@2:
+		Weapon: BasicAutocannon
+		RequiresCondition: !HyperSpaceFadeOut
+		LocalOffset: 0,-200,0,0,0,0,0,200,0
+	AttackFrontal:
+
+GCORV2:
+	Inherits: ^Corvette
+	Inherits@2: ^FrigateTargetPriority
+	Buildable:
+		Queue: GCorvette
+		BuildPaletteOrder: 1
+		Prerequisites: ~pc, research.Enhanced.Cannons
+		Description: Medium craft armed with torpedo launchers.\nEffective against Corvettes.\nIneffective against Fighters and Capital Ships.
+	Valued:
+		Cost: 275
+	Tooltip:
+		Name: Cannon Corvette
+	Power:
+		Amount: -2
+	Health:
+		HP: 170000
+	RevealsShroud:
+		Range: 5c0
+	Armament@1:
+		Weapon: CorvetteCannon
+		LocalOffset: 200, 200, 0, 200, -200, 0, -200, 200, 0, -200, -200, 0
+		RequiresCondition: !HyperSpaceFadeOut
+	MustBeDestroyed:
+	AttackFrontal:
+
+GCORV3:
+	Inherits: ^Corvette
+	Valued:
+		Cost: 325
+	Tooltip:
+		Name: Adrenaline Buffer
+	Power:
+		Amount: -2
+	Health:
+		HP: 170000
+	RevealsShroud:
+		Range: 5c0
+	Armament:
+		Weapon: AdrenalineShot
+	MustBeDestroyed:
+	AttackFrontal:
+
+GMINER:
+	Inherits: MINER
+
+GLMINER:
+	Inherits: GMINER
+	-WithDockingAnimation:
+	-Harvester:
+	RenderSprites:
+		Image: gminer
+	Mobile:
+		Speed: 50
+	WithIdleOverlay:
+		Sequence: crystal
+		Palette: orecrystal
+		Offset: 25,0,-500
+		RequiresCondition: !TrabajaMierda
+	-Cloak@DustCloud:
+	TransformOnCondition:
+		IntoActor: gminer
+		RequiresCondition: Crystal > 10
+	Explodes:
+		Weapon: CrystalExplosion
+	Targetable@Crystal:
+		TargetTypes: Crystal
+	ExternalCondition@Crystal:
+		Condition: Crystal
+	ExplodeWeapon@CrystalHarvest:
+		Weapon: CrystalBounty
+		RequiresCondition: Crystal > 10
+
+GLBMINER:
+	Inherits: GLMINER
+	WithIdleOverlay:
+		Sequence: box
+		Palette: player
+		Offset: 15,0,-500
+	TransformOnCondition:
+		RequiresCondition: CrateHarvest
+	Explodes:
+		Weapon: CorvetteExplode
+	Targetable@Crystal:
+		TargetTypes: Crate
+	ExternalCondition@Crystal:
+		Condition: CrateHarvest
+	ExplodeWeapon@CrystalHarvest:
+		Weapon: CrateBounty
+		RequiresCondition: CrateHarvest
+	SpawnActorOnDeath:
+		Actor: BOX
+
+GFIGHTERCARRIER:
+	Inherits: SERVICEFRIGATE
+	Inherits@2: ^FighterTargetPriority
+	Buildable:
+		Queue: GCorvette
+		BuildPaletteOrder: 3
+		Prerequisites: ~mothership, research.Fighter.Bays
+		Description: Frigate that holds and services interceptors.\nEffective against fighters.\nIneffective against everything else.\n\nDEBUG: In case fighters freeze, place this unit near them and deploy.\nAllied fighters will be killed.
+
+GBOMBERCARRIER:
+	Inherits: SERVICEFRIGATE
+	Inherits@2: ^FrigateTargetPriority
+	Buildable:
+		Queue: GCorvette
+		BuildPaletteOrder: 4
+		Prerequisites: ~gmothership, research.Plasma.Bombs
+		Description: Frigate that holds and services bombers.\nEffective against Frigates and Capital Ships.\nIneffective against Fighters and Corvettes.\n\nDEBUG: In case fighters freeze, place this unit near them and deploy.\nAllied fighters will be killed.
+	Valued:
+		Cost: 800
+	Tooltip:
+		Name: Bomber service frigate
+	Health:
+		HP: 800000
+	CarrierMaster:
+		Count: 3
+		Actors: gfighter2
+	Armament@PRIMARY:
+		Weapon: PlatformBomberSpawn
+	SpawnActorOnDeath:
+		Actor: gfrig1h
+		OwnerType: InternalName
+		InternalOwner: Neutral
+	-ExplodeWeapon@AntiFighter:
+
+GFIGHTER1:
+	Inherits: SlaveFighter
+
+GFIGHTER2:
+	Inherits: SlaveFighter
+	Tooltip:
+		Name: Bomber
+	Health:
+		HP: 60000
+	Armament:
+		Weapon: BomberAcid
+	Aircraft:
+		Speed: 80
+		TurnSpeed: 8
+		CruiseAltitude: 500
+		Repulsable: False
+		RearmBuildings: carrier
+		LandWhenIdle: True
+		CanHover: False
+
+GFIGHTER3:
+	Inherits: ^Fighter
+	Valued:
+		Cost: 60
+	Tooltip:
+		Name: Piranha
+	Power:
+		Amount: -1
+	Health:
+		HP: 25000
+	Aircraft:
+		Speed: 140
+		CruiseAltitude: 106
+		IdealSeparation: 100
+	Armament:
+		Weapon: PiranhaBite
+		RequiresCondition: !HyperSpaceFadeOut
+	MustBeDestroyed:
+	AttackHeli:
+		AttackTurnDelay: 25
+	SelectionDecorations:
+		VisualBounds: 20,20
+	AutoTarget:
+		ScanRadius: 4
+
+GPROBE:
+	Inherits: PROBE
+
+StationT1Template:
+	Inherits: ^BuildableStation
+	Inherits@2: ^CivilianShipWeaponsGkor
+	CashTrickler:
+		Amount: 100
+		Interval: 500
+	Tooltip:
+		Name: Tier 1 Station
+	Health:
+		HP: 2500000
+	ProvidesPrerequisite@Prerequisite:
+		Prerequisite: gstationmobile
+	ProximityExternalCondition:
+		Condition: DisablePlanetCapture
+		Range: 2c0
+		ValidStances: Ally, Enemy, Neutral
+	Power:
+		Amount: 35
+	AttackOmni:
+	AutoTarget:
+	WithDecoration@Role:
+		Image: rank
+		Sequence: towericon
+		Palette: effect
+		ReferencePoint: Top, Right
+		RequiresCondition: !weonqloweonlawea
+		ZOffset: 256
+	BaseProvider:
+		Range: 3c0
+	ProvidesPrerequisite:
+		Prerequisite: ghabitatship
+	ExplodeWeapon@2:
+		Weapon: FieldRepairLaserSpawnStrong
+		LocalOffset: 1000,300,0
+	ProximityExternalCondition@PowerDisable:
+		Condition: PowerDisable
+		Range: 2c0
+		ValidStances: Ally
+
+GSTATIONT1:
+	Inherits: StationT1Template
+	Pluggable:
+		Conditions:
+			gkor.station.shipyard: gkor.station.shipyard
+			gkor.station.combat: gkor.station.combat
+	TransformOnCondition@1:
+		RequiresCondition: gkor.station.shipyard
+		IntoActor: gshipyard
+	TransformOnCondition@2:
+		RequiresCondition: gkor.station.combat
+		IntoActor: gstationt2
+
+SHIPYARDUMMY:
+	Inherits: StationT1Template
+	Tooltip:
+		Name: Shipyard upgrade
+	Valued:
+		Cost: 2000
+	Buildable:
+		BuildPaletteOrder: 60
+		Prerequisites: ~planetstation
+		Queue: Aircraft
+		Description: Upgrades a station into a shipyard.\nIt allows it to build Civilian ships (first queue).
+	BodyOrientation:
+		QuantizedFacings: 8
+	Plug:
+		Type: gkor.station.shipyard
+
+COMBATSTATIONDUMMY:
+	Inherits: StationT1Template
+	Tooltip:
+		Name: Outpost Upgrade
+	Power:
+		Amount: 50
+	Valued:
+		Cost: 1200
+	Buildable:
+		BuildPaletteOrder: 60
+		Prerequisites: ~planetstation
+		Queue: Aircraft
+		Description: Upgrades an station for combat focus.\n-Arms the station with basic weapons.\n-doubles its income rate.
+	BodyOrientation:
+		QuantizedFacings: 8
+	Plug:
+		Type: gkor.station.combat
+
+GSHIPYARD:
+	Inherits: GSTATIONT1
+	Inherits@4: ^GUtilityShipProduction
+	ProductionQueue@Building:
+		Type: GUtility
+		Factions: gkor
+		Group: Building
+		LowPowerSlowdown: 2
+		BuildDurationModifier: 150
+	Production@Building:
+		Produces: GUtility
+	Exit:
+	RallyPoint:
+	AnnounceOnBuildAS:
+		Voice: ShipyardReady
+		OnlyToOwner: True
+	SpawnActorOnDeath:
+		Actor: gshipyardh
+		OwnerType: InternalName
+		InternalOwner: Neutral
+	ProximityExternalCondition@LogisticShipWanderer:
+		Condition: LogisticShipWanderer
+		Range: 5c0
+		AffectsParent: False
+
+GSTATIONT2:
+	Inherits: StationT1Template
+	ExplodeWeapon:
+		Weapon: FieldDefenceLaserSpawnMothership
+		LocalOffset: 0,0,600
+	ExplodeWeapon@2:
+		Weapon: FieldDefenceLaserSpawnMothership
+		LocalOffset: 0,0,-600
+	Tooltip:
+		Name: Outpost
+	Exit:
+	ProvidesPrerequisite@buildingname2:
+		Prerequisite: planetstation
+	Health:
+		HP: 5000000
+	Power:
+		Amount: 50
+	SelfHealing@CapitalShipAutoRepair:
+		Delay: 75
+	CashTrickler:
+		Amount: 200
+		Interval: 500
+
+GSTATIONT3:
+	Inherits: GSTATIONT2
+	Health:
+		HP: 7500000
+	SelfHealing@CapitalShipAutoRepair:
+		Delay: 75
+	Tooltip:
+		Name: Tier 3 Station
+	Power:
+		Amount: 40
+	Armament@10:
+		Weapon: IonBeamCharge
+	Armament@8:
+		Weapon: IonBeam
+		RequiresCondition: BeamReady
+	Armament@9:
+		Weapon: IonBeam2
+		RequiresCondition: BeamReady
+	Interactable:
+		Bounds 100,100
+	ExternalCondition@BeamReady:
+		Condition: BeamReady
+
+GAIPLATFORM:
+	Inherits: GAPPLATFORM
+	Tooltip:
+		Name: Flak Station
+	Valued:
+		Cost: 400
+	Buildable:
+		BuildPaletteOrder: 60
+		Prerequisites: ~planetstation
+		Queue: Aircraft
+		Description: Anti fighter platform.
+	Armament:
+		Weapon: GPlatformBullet
+	Armament@1:
+		Weapon: GPlatformBullet
+	WithSpriteTurret:
+	WithSpriteBody:
+	Turreted:
+		TurnSpeed: 10
+	ExternalCondition@PowerDisable:
+		Condition: PowerDisable
+	PowerMultiplier@PowerDisable:
+		Modifier: 50
+		RequiresCondition: PowerDisable
+	RenderRangeCircle:
+
+GACPLATFORM:
+	Inherits: ^BuildableStation
+	Tooltip:
+		Name: Needler Platform
+	Buildable:
+		BuildPaletteOrder: 60
+		Prerequisites: ~planetstation, gsurveyfrigate
+		Queue: Aircraft
+		Description: Anti corvette platform.
+	Valued:
+		Cost: 600
+	Sellable:
+	Selectable:
+		Bounds: 24,24
+	SelectionDecorations:
+		VisualBounds: 22,48,0,-12
+	Armament:
+		Weapon: GPlatformNeedle
+		LocalYaw: 255, -255, 255, -255, 255, -255
+		LocalOffset: 175, -250, 5, 175, 250, 5, 0, -250, 5, 0, 250, 5, -175, -250, 5, -175, 250, 5
+	AttackTurreted:
+	Turreted:
+		TurnSpeed: 5
+	-WithSpriteBody:
+	WithSpriteTurret:
+	BodyOrientation:
+		QuantizedFacings: 8
+	AutoTarget:
+	ExternalCondition@PowerDisable:
+		Condition: PowerDisable
+	PowerMultiplier@PowerDisable:
+		Modifier: 50
+		RequiresCondition: PowerDisable
+	RenderRangeCircle:
+
+GAPPLATFORM:
+	Inherits: ^BuildableStation
+	Tooltip:
+		Name: Heavy Weapons Platform
+	Valued:
+		Cost: 1000
+	Buildable:
+		BuildPaletteOrder: 60
+		Prerequisites: ~planetstation, gresearchship
+		Queue: Aircraft
+		Description: Anti frigate platform.
+	Sellable:
+	Selectable:
+		Bounds: 24,24
+	SelectionDecorations:
+		VisualBounds: 22,48,0,-12
+	Armament:
+		Weapon: GPlatformCannon
+	Armament@1:
+		Weapon: GPlatformCannon
+	AttackTurreted:
+	Turreted:
+		TurnSpeed: 2
+	-WithSpriteBody:
+	WithSpriteTurret:
+	BodyOrientation:
+		QuantizedFacings: 8
+	AutoTarget:
+	ExternalCondition@PowerDisable:
+		Condition: PowerDisable
+	PowerMultiplier@PowerDisable:
+		Modifier: 50
+		RequiresCondition: PowerDisable
+	RenderRangeCircle:
+
+GADERRICK:
+	Inherits: ^BuildableStation
+	Tooltip:
+		Name: Trade Station
+	Valued:
+		Cost: 1000
+	Sellable:
+	CashTrickler:
+		Amount: 22
+		Interval: 500
+	Selectable:
+		Bounds: 24,24
+	SelectionDecorations:
+		VisualBounds: 22,48,0,-12
+	RevealsShroud:
+		Range: 8c0
+	BodyOrientation:
+		QuantizedFacings: 8
+	DetectCloaked:
+		Range: 5c0
+	Power:
+		Amount: 30
+
+gasensorplatform:
+	Inherits: ^BuildableStation
+	Tooltip:
+		Name: Sensor Platform
+	Buildable:
+		BuildPaletteOrder: 60
+		Prerequisites: ~planetstation
+		Queue: Aircraft
+		Description: Grants vision of the nearby area and detects cloaked units.
+	Sellable:
+	Selectable:
+		Bounds: 24,24
+	SelectionDecorations:
+		VisualBounds: 22,48,0,-12
+	RevealsShroud:
+		Range: 15c0
+	BodyOrientation:
+		QuantizedFacings: 8
+	DetectCloaked:
+		Range: 10c0
+	Power:
+		Amount: -20
+
+GAREPAIRPLATFORM:
+	Inherits: ^BuildableStation
+	Tooltip:
+		Name: Repair Platform
+	Sellable:
+	Selectable:
+		Bounds: 24,24
+	SelectionDecorations:
+		VisualBounds: 22,48,0,-12
+	RevealsShroud:
+		Range: 8c0
+	Armament@PRIMARY:
+		Weapon: ConstantRepairLaser
+		TargetStances: Ally
+	AttackTurreted:
+	Turreted:
+		TurnSpeed: 7
+	-WithSpriteBody:
+	WithSpriteTurret:
+	BodyOrientation:
+		QuantizedFacings: 8
+	DetectCloaked:
+		Range: 5c0
+	AutoTarget:

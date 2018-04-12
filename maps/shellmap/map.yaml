@@ -1,0 +1,160 @@
+MapFormat: 11
+
+RequiresMod: ng
+
+Title: Parade
+
+Author: Nolt
+
+Tileset: SPACE
+
+SkyboxImage:
+
+MapSize: 130,130
+
+Bounds: 1,1,128,128
+
+Visibility: Shellmap
+
+Categories: Shellmap
+
+Players:
+	PlayerReference@Neutral:
+		Name: Neutral
+		OwnsWorld: True
+		NonCombatant: True
+		Faction: Random
+	PlayerReference@Creeps:
+		Name: Creeps
+		NonCombatant: True
+		Faction: Random
+
+Actors:
+	Actor17: spacebg4
+		Owner: Neutral
+		Location: 58,67
+	Actor18: nasadonex
+		Owner: Neutral
+		Location: 68,62
+	Actor13: gstationt3
+		Owner: Neutral
+		Location: 69,61
+	Actor14: gstationt2
+		Owner: Neutral
+		Location: 69,64
+	Actor15: gstationt1
+		Owner: Neutral
+		Location: 69,66
+	Actor31: gfighter2
+		Owner: Neutral
+		Location: 64,62
+		Facing: 92
+	Actor37: gmothership
+		Owner: Neutral
+		Location: 57,63
+		Facing: 92
+	Actor25: gcorv1
+		Owner: Neutral
+		Location: 59,63
+		Facing: 92
+		TurretFacing: 92
+	Actor38: gcorv2
+		Owner: Neutral
+		Location: 60,63
+		Facing: 92
+		TurretFacing: 92
+	Actor41: gfighter1
+		Owner: Neutral
+		Location: 63,63
+		Facing: 92
+	Actor42: gfighter3
+		Owner: Neutral
+		Location: 64,63
+		Facing: 92
+	Actor26: gfrig1
+		Owner: Neutral
+		Location: 60,62
+		Facing: 92
+	Actor27: gfrig2
+		Owner: Neutral
+		Location: 62,62
+		Facing: 92
+	Actor39: gfrig3
+		Owner: Neutral
+		Location: 64,62
+		Facing: 92
+	Actor44: gresearchship
+		Owner: Neutral
+		Location: 66,62
+		Facing: 92
+	Actor46: gbc1
+		Owner: Neutral
+		Location: 62,61
+		Facing: 92
+	Actor47: gengineer
+		Owner: Neutral
+		Location: 64,61
+		Facing: 92
+	Actor23: terranfrigate
+		Owner: Neutral
+		Location: 58,66
+		Facing: 92
+	Actor24: terranasfrig
+		Owner: Neutral
+		Location: 60,66
+		Facing: 92
+		TurretFacing: 92
+	Actor32: terranrocketfrig
+		Owner: Neutral
+		Location: 62,66
+		Facing: 92
+	Actor33: terranfighter
+		Owner: Neutral
+		Location: 58,68
+		Facing: 92
+	Actor34: terranbomber
+		Owner: Neutral
+		Location: 59,68
+		Facing: 92
+	Actor35: gbc2
+		Owner: Neutral
+		Location: 65,64
+		Facing: 92
+	Actor29: gfighter2
+		Owner: Neutral
+		Location: 63,62
+		Facing: 92
+	Actor30: terrancorvette
+		Owner: Neutral
+		Location: 60,68
+		Facing: 92
+		TurretFacing: 92
+	Actor36: terranrefinery
+		Owner: Neutral
+		Location: 64,66
+		Facing: 92
+	Actor45: terranrailguncorvette
+		Owner: Neutral
+		Location: 61,68
+		Facing: 92
+		TurretFacing: 92
+	Actor48: ghabitatship
+		Owner: Neutral
+		Location: 67,65
+		Facing: 92
+	Actor49: gsurveyfrigate
+		Owner: Neutral
+		Location: 60,61
+		Facing: 92
+	Actor50: gshipyard
+		Owner: Neutral
+		Location: 67,67
+		Facing: 92
+	Actor51: gpatrolcruiser
+		Owner: Neutral
+		Location: 63,64
+		Facing: 92
+	Actor52: gfrigateassemblybay
+		Owner: Neutral
+		Location: 64,68
+		Facing: 92

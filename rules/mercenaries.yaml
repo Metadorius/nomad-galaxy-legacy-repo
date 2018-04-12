@@ -1,0 +1,153 @@
+^Tier1Contract:
+	AlwaysVisible:
+	Buildable:
+		BuildPaletteOrder: 50
+		Prerequisites: ~!T1Contract
+		Queue: MercContract
+		BuildLimit: 1
+		IconPalette: pirateicon
+	ProvidesPrerequisite@upgradename:
+	ProvidesPrerequisite@T1Contract:
+		Prerequisite: T1Contract
+	Valued:
+		Cost: 2500
+	Power:
+		Amount: -15
+
+^Tier2Contract:
+	AlwaysVisible:
+	Buildable:
+		BuildPaletteOrder: 50
+		Prerequisites: ~T1Contract
+		Queue: MercContract
+		BuildLimit: 1
+		IconPalette: pirateicon
+	ProvidesPrerequisite@T2Contract:
+		Prerequisite: T2Contract
+	Valued:
+		Cost: 2500
+	Power:
+		Amount: -15
+
+merc.dummy:
+	AlwaysVisible:
+	Tooltip:
+		Name: Merc Dummy
+	RenderSprites:
+		Image: punit3
+	Mobile:
+		Speed: 1
+		TerrainSpeeds:
+			Clear: 100
+			Ground: 100
+			Tiberium: 100
+			BlueTiberium: 100
+			Junk: 100
+			Gas: 100
+			SpaceGray: 100
+			SpaceGray2: 100
+			SpaceGreen: 100
+			SpaceGreen2: 100
+			SpaceBlue: 100
+			SpaceBlue2: 100
+			SpaceRed: 100
+			SpaceRed2: 100
+		TurnSpeed: 3
+	ProductionQueue:
+		Type: MercContract
+		Factions: gkor, terran
+		Group: Vehicle
+		LowPowerSlowdown: 3
+		QueuedAudio: Building
+		ReadyAudio: ConstructionComplete
+	Production:
+		Produces: MercContract
+	Exit:
+	ProvidesPrerequisite@upgradename:
+	Interactable:
+
+research.pirates:
+	Inherits: ^Tier1Contract
+	Tooltip:
+		Name: Blood Dust clan contact
+	Buildable:
+		Description: Establishes connections with the pirate clans in the sector.\nPirate units focus on boarding actions and hit and run tactics.\n\nUnits unlocked:\n-Boarding Frigate.\n-Corsair.\n-Battle Axe Fighter Bomber.
+	RenderSprites:
+		Image: punit3
+
+research.hyperion:
+	Inherits: ^Tier1Contract
+	Tooltip:
+		Name: Hyperion co Contact
+	Buildable:
+		Description: Establishes connections with the Hyperion weapons company.\nHyperion units focus on denying mobility to th enemy\nand defence.\n\nUnits unlocked:\n-G.O.D. Platform.\n-Minelayer Frigate.\n-Defender.
+	Valued:
+		Cost: 2500
+	RenderSprites:
+		Image: dunit1
+
+research.technomage:
+	Inherits: ^Tier1Contract
+	Tooltip:
+		Name: Technomage Clan Contact
+	Buildable:
+		Description: Establishes connections with the Technomage clans in the sector.\nTechnomage units focus on deceiving enemies and spying.\n\nUnits unlocked:\n-Cloak Generator Frigate.\n-Hologram Projector Frigate.\n-Cloaked Fighter.
+	RenderSprites:
+		Image: iunit1
+
+research.controller:
+	Inherits: ^Tier1Contract
+	Tooltip:
+		Name: League of Science Contract
+	Buildable:
+		Description: Establishes connections with the League of Science.\nLoS units focus on controlling the flow of battle stopping units.\n\nUnits unlocked:\n-Gravity Generator Frigate.\n-Lancer Corvette.\n-Leech.
+	RenderSprites:
+		Image: cunit1
+
+researchT2.pirates:
+	Inherits: ^Tier2Contract
+	Tooltip:
+		Name: Blood Dust clan contact
+	Buildable:
+		Prerequisites: ~T1Contract, ~!T2Contract, ~!research.pirates
+		Description: Establishes connections with the pirate clans in the sector.\nPirate units focus on boarding actions and hit and run tactics.\n\nUnits unlocked:\n-Boarding Frigate.\n-Corsair.\n-Battle Axe Fighter Bomber.
+	RenderSprites:
+		Image: punit3
+	ProvidesPrerequisite@upgradename:
+		Prerequisite: research.pirates
+
+researchT2.hyperion:
+	Inherits: ^Tier2Contract
+	Tooltip:
+		Name: Hyperion co Contact
+	Buildable:
+		Prerequisites: ~T1Contract, ~!T2Contract, ~!research.hyperion
+		Description: Establishes connections with the Hyperion weapons company.\nHyperion units focus on denying mobility to th enemy\nand defence.\n\nUnits unlocked:\n-G.O.D. Platform.\n-Minelayer Frigate.\n-Defender.
+	RenderSprites:
+		Image: dunit1
+	ProvidesPrerequisite@upgradename:
+		Prerequisite: research.hyperion
+
+researchT2.technomage:
+	Inherits: ^Tier2Contract
+	Tooltip:
+		Name: Technomage Clan Contact
+	Buildable:
+		Prerequisites: ~T1Contract, ~!T2Contract, ~!research.technomage
+		Description: Establishes connections with the Technomage clans in the sector.\nTechnomage units focus on deceiving enemies and spying.\n\nUnits unlocked:\n-Cloak Generator Frigate.\n-Hologram Projector Frigate.\n-Cloaked Fighter.
+	RenderSprites:
+		Image: iunit1
+	ProvidesPrerequisite@upgradename:
+		Prerequisite: research.technomage
+
+researchT2.controller:
+	Inherits: ^Tier2Contract
+	Tooltip:
+		Name: League of Science Contract
+	Buildable:
+		Prerequisites: ~T1Contract, ~!T2Contract, ~!research.controller
+		Description: Establishes connections with the League of Science.\nLoS units focus on controlling the flow of battle stopping units.\n\nUnits unlocked:\n-Gravity Generator Frigate.\n-Lancer Corvette.\n-Leech.
+	RenderSprites:
+		Image: cunit1
+	ProvidesPrerequisite@upgradename:
+		Prerequisite: research.controller

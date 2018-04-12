@@ -1,0 +1,313 @@
+GodBeamCharge:
+	Inherits: IonBeamCharge
+	Warhead@GodBeamReady: GrantExternalCondition
+		Condition: GodBeamReady
+
+GodBeam:
+	Inherits: IonBeam
+	Range: 13c0
+	InvalidTargets: Fighter
+	Projectile: LaserZap
+		Inaccuracy: 1c0
+	Warhead@1Dam: SpreadDamage
+		Damage: 3000
+		InvalidTargets: Fighter
+
+MinelaywerSpawner:
+	Inherits: FieldDefenceLaserSpawnMothership
+	ReloadDelay: 25
+	Warhead@op: FireShrapnel
+		Weapon: MineBullet1
+		ValidStances: Ally, Neutral, Enemy
+		AimChance: 10
+		AllowDirectHit: true
+		ThrowWithoutTarget: true
+
+MineBullet1:
+	Inherits: ScoutBullet
+	ReloadDelay: 9
+	Range: 3c0
+	Projectile: Bullet
+		Image: dmine1
+		Speed: 90
+	Warhead@1Dam: SpreadDamage
+		Damage: 1
+	Warhead@5Actor: SpawnActor
+		Actors: dmine
+		FallRate: 5000
+		Range: 3
+		ValidTargets: Ground, Infantry, Air, Vehicle, Building, Wall
+	-Warhead@2Eff: CreateEffect
+
+MineBullet2:
+	Range: 300
+	Projectile: InstantExplode
+	Warhead@1Dam: SpreadDamage
+		Spread: 200
+		Damage: 100000
+		Versus:
+			Fighter: 90
+			Corvette: 75
+			Frigate: 60
+			CapitalShip: 25
+			Mothership: 10
+		InvalidTargets: Mine
+	Warhead@SlowFighter: GrantExternalCondition
+		Range: 16
+		Duration: 0
+		Condition: MineDie
+		ValidTargets: Mine
+		AffectsParent: True
+		ValidStances: Ally
+	Warhead@2Eff: CreateEffect
+		Explosions: jtwlt036, jtwlt036b, jtwlt050
+		ExplosionPalette: gensmkexploj
+
+DefenderLaser:
+	ReloadDelay: 75
+	Range: 6c0
+	Report: rlaser1.wav, rlaser2.wav, rlaser3.wav
+	ValidTargets: CapitalShip, Frigate, Corvette, Fighter, Ground, Air, Airhit
+	Projectile: LaserZap
+		Width: 25
+		BeamDuration: 5
+		Color: 0dc7b8
+	Warhead@1Dam: SpreadDamage
+		Spread: 64
+		Damage: 10000
+		ValidStances: Neutral, Enemy
+		ValidTargets: CapitalShip, Frigate, Corvette, Fighter, Ground, Air, Airhit
+
+LaserFence:
+	ReloadDelay: 90
+	Range: 10c0
+	ValidTargets: LaserFence
+	Projectile: AreaBeam
+		Speed: 0c128
+		Duration: 95
+		DamageInterval: 5
+		Width: 175
+		Shape: Flat
+		ZOffset: 2047
+		BeyondTargetRange: 0c256
+		Blockable: False
+		TrackTarget: True
+		Color: 50F5FF45
+	Warhead@1Dam: SpreadDamage
+		Range: 0, 128
+		Falloff: 100, 100
+		Damage: 45000
+		AffectsParent: false
+		ValidStances: Neutral, Enemy
+		Versus:
+			Fighter: 100
+			Corvette: 50
+			Frigate: 20
+			CapitalShip: 5
+		DamageTypes: Prone50Percent, TriggerProne, SmallExplosionDeath
+	Warhead@2Dam: SpreadDamage
+		Range: 0, 32
+		Falloff: 50, 50
+		Damage: 8
+		ValidTargets: LaserFence
+		AffectsParent: false
+		ValidStances: Ally
+		Versus:
+		DamageTypes: Prone50Percent, TriggerProne, SmallExplosionDeath
+
+BoardingPod:
+	Inherits: ^Torpedo
+	ReloadDelay: 500
+	Range: 6c0
+	MinRange: 3c0
+	ValidTargets: Boardable
+	Projectile: Missile
+		Image: PIRATEPOD
+		Speed: 75
+		HorizontalRateOfTurn: 2
+		RangeLimit: 10c0
+		Palette: chrome
+		Blockable: False
+	Warhead@1Dam: SpreadDamage
+		Damage: 10000
+		ValidTargets: Boardable
+		InvalidTargets: Fighter
+	Warhead@4OwnerChange: ChangeOwner
+		Range: 350
+		Duration: 0
+		ValidTargets: Boardable
+	-Warhead@3Eff: CreateEffect
+
+BoardingPodDebuff:
+	Inherits: BoardingPod
+	Burst: 6
+	BurstDelay: 20
+	ValidTargets: CapitalShip, Frigate Ground, Air, AirHit
+	Warhead@1Dam: SpreadDamage
+		ValidTargets: CapitalShip, Frigate, Ground, Air, AirHit
+	-Warhead@4OwnerChange: ChangeOwner
+	Warhead@Boarded: GrantExternalCondition
+		Range: 350
+		Duration: 500
+		Condition: Boarded
+		ValidTargets: CapitalShip, Frigate, Corvette, Ground, Air, AirHit
+		ValidStances: Enemy, Neutral
+
+CorsairRocket:
+	Inherits: ^Torpedo
+	ReloadDelay: 100
+	Range: 4c0
+	Burst: 6
+	Projectile: Missile
+		HorizontalRateOfTurn: 1
+		RangeLimit 6c0:
+	Warhead@1Dam: SpreadDamage
+		Spread: 128
+		Damage: 3000
+		ValidStances: Neutral, Enemy
+	Warhead@3Eff: CreateEffect
+		ValidStances: Neutral, Enemy
+	Warhead@HyperspaceInhibit: GrantExternalCondition
+		Range: 2c0
+		Duration: 150
+		Condition: HyperspaceInhibit
+		AffectsParent: True
+		ValidStances: Ally, Enemy, Neutral
+
+BattleAxeBullet:
+	Inherits: InterceptorBullet
+	Warhead@1Dam: SpreadDamage
+		Damage: 4000
+		ValidTargets: Fighter, Ground
+
+BattleAxePlasma:
+	Inherits: BomberPlasma
+	Warhead@1Dam: SpreadDamage
+		Damage: 45000
+
+HologramSpawn:
+	Inherits: ScoutBullet
+	ReloadDelay: 50
+	Range: 3c0
+	Projectile: InstantExplode
+	Warhead@1Dam: SpreadDamage
+		Damage: 1
+	Warhead@1: FireShrapnel
+		Weapon: HologramFighter
+		ThrowWithoutTarget: true
+		Amount: 5
+	Warhead@2: FireShrapnel
+		Weapon: HologramBomber
+		ThrowWithoutTarget: true
+		Amount: 3
+	Warhead@3: FireShrapnel
+		Weapon: HologramCorvette
+		ThrowWithoutTarget: true
+		Amount: 2
+	Warhead@4: FireShrapnel
+		Weapon: HologramFrigate1
+		ThrowWithoutTarget: true
+		Amount: 1
+	Warhead@5: FireShrapnel
+		Weapon: HologramFrigate2
+		ThrowWithoutTarget: true
+		Amount: 1
+
+HologramFighter:
+	Range: 3c0
+	Projectile: Bullet
+		Speed: 200
+		Blockable: False
+	Warhead@1Dam: SpreadDamage
+		Damage: 1
+	Warhead@5Actor: SpawnActor
+		Actors: FighterHologram
+		FallRate: 5000
+		Range: 3
+		ValidTargets: Ground, Infantry, Air, Vehicle, Building, Wall
+
+HologramBomber:
+	Inherits: HologramFighter
+	Warhead@5Actor: SpawnActor
+		Actors: BomberHologram
+
+HologramCorvette:
+	Inherits: HologramFighter
+	Warhead@5Actor: SpawnActor
+		Actors: CorvetteHologram
+
+HologramFrigate1:
+	Inherits: HologramFighter
+	Warhead@5Actor: SpawnActor
+		Actors: Frigate1Hologram
+
+HologramFrigate2:
+	Inherits: HologramFighter
+	Warhead@5Actor: SpawnActor
+		Actors: Frigate2Hologram
+
+StealthFighterBeam:
+	Inherits: IonBeam
+	ReloadDelay: 250
+	Range: 7c0
+	Projectile: LaserZap
+	Warhead@1Dam: SpreadDamage
+		Damage: 15000
+
+GravGen:
+	ReloadDelay: 25
+	Range: 1c0
+	Projectile: InstantExplode
+	Warhead@1Dam: SpreadDamage
+		Damage: 1
+	Warhead@2Eff: CreateEffect
+	Warhead@SlowFighter: GrantExternalCondition
+		Range: 6c0
+		Duration: 50
+		Condition: GravGenSlow
+		ValidTargets: Fighter
+		AffectsParent: True
+		ValidStances: Ally, Enemy, Neutral
+
+LancerTesla:
+	Inherits: HeavyCannon
+	ReloadDelay: 150
+	Range: 5c0
+	Projectile: TeslaZap
+		Image: litning
+	Warhead@1Dam: SpreadDamage
+		Damage: 20000
+		ValidStances: Neutral, Enemy
+	Warhead@3Eff: CreateEffect
+		ValidStances: Neutral, Enemy
+	Warhead@SlowFighter: GrantExternalCondition
+		Range: 64
+		Duration: 100
+		Condition: LancerSlow
+	-Warhead@3Eff: CreateEffect
+	Warhead@op: FireShrapnel
+		Weapon: LancerTesla2
+		ValidStances: Neutral, Enemy
+		AimChance: 75
+		AllowDirectHit: true
+		ThrowWithoutTarget: true
+
+LancerTesla2:
+	Inherits: LancerTesla
+	-Warhead@op: FireShrapnel
+
+LeechEat:
+	ReloadDelay: 25
+	Range: 250
+	Projectile: InstantExplode
+	InvalidTargets: Leached
+	Warhead@1Dam: SpreadDamage
+		Damage: 1
+	Warhead@2Eff: CreateEffect
+	Warhead@SlowFighter: GrantExternalCondition
+		Range: 250
+		Duration: 1000
+		Condition: LeechEat
+		InvalidTargets: Leached
+		AffectsParent: True
+		ValidStances: Ally, Enemy, Neutral

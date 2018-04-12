@@ -1,0 +1,467 @@
+ScoutBullet:
+	Inherits: ^FighterBullet
+	ReloadDelay: 45
+	Range: 3c0
+	ValidTargets: Fighter, Ground
+	Warhead@1Dam: SpreadDamage
+		Damage: 1500
+		ValidTargets: Fighter, Ground
+
+InterceptorBullet:
+	Inherits: ^FighterBullet
+	ReloadDelay: 45
+	Range: 3c0
+	ValidTargets: Fighter, Ground
+	InvalidTargets: CapitalShip, Frigate
+	Warhead@1Dam: SpreadDamage
+		Damage: 3500
+		ValidTargets: Fighter, Ground
+
+BomberPlasma:
+	Inherits: ^PlasmaBomb
+	ReloadDelay: 50
+	ValidTargets: CapitalShip, Frigate, Corvette, Ground
+	InvalidTargets: Fighter
+	Projectile: Missile
+		Image: bulletbomber
+	Warhead@1Dam: SpreadDamage
+		Spread: 250
+		Damage: 40000
+		ValidTargets: CapitalShip, Frigate, Corvette, Ground
+		InvalidTargets: Fighter
+
+CorvetteBulletSpawner:
+	Inherits: FieldDefenceLaserSpawnMothership
+	Warhead@op: FireShrapnel
+		Weapon: CorvetteBullet
+
+BasicAutocannon:
+	Inherits: ^AutoCannon
+	Burst: 3
+	BurstDelay: 5
+	ReloadDelay: 50
+	Range: 3c0
+	Warhead@1Dam: SpreadDamage
+		Damage: 10000
+	Warhead@2Eff: CreateEffect
+		Explosions: piff
+
+CapitalShipAutoCannon:
+	Inherits: BasicAutocannon
+	Range: 8c0
+	Warhead@1Dam: SpreadDamage
+		Damage: 13000
+
+CorvetteBullet:
+	Inherits: InterceptorBullet
+	ReloadDelay: 50
+	Range: 5c0
+	ValidStances: Neutral, Enemy
+	Projectile: Missile
+	Warhead@1Dam: SpreadDamage
+		Spread: 164
+		Damage: 10000
+	-Warhead@SlowFighter: GrantExternalCondition
+	Warhead@2Eff: CreateEffect
+		Explosions: piff
+
+CivilianBulletSpawner:
+	Inherits: CorvetteBulletSpawner
+	Warhead@op: FireShrapnel
+		Weapon: CivilianBullet
+
+CivilianBullet:
+	Inherits: CorvetteBullet
+	Warhead@1Dam: SpreadDamage
+		Damage: 5000
+
+CorvetteRocketSpawner:
+	Inherits: FieldDefenceLaserSpawnMothership
+	Warhead@op: FireShrapnel
+		Weapon: CorvetteRocket
+
+FrigateCannonSpawner:
+	Inherits: FieldDefenceLaserSpawnMothership
+	Warhead@op: FireShrapnel
+		Weapon: CorvetteBullet
+
+CorvetteCannon:
+	Inherits: HeavyCannon
+	ReloadDelay: 100
+	Range: 5c0
+	Warhead@1Dam: SpreadDamage
+		Spread: 64
+		Damage: 35000
+	Warhead@3Eff: CreateEffect
+
+FrigateCannon:
+	Inherits: CorvetteCannon
+	Range: 5c0
+	Warhead@1Dam: SpreadDamage
+		Damage: 25000
+		Spread: 150
+
+CorvetteMissile:
+	Inherits: ^Missile
+	Range: 6c0
+	Burst: 3
+	Warhead@1Dam: SpreadDamage
+		Damage: 20000
+
+FrigateMissile:
+	Inherits: ^Missile
+	Range: 6c0
+
+FrigatePlasma:
+	Inherits: BomberPlasma
+	Range: 5c0
+
+FieldDefenceLaserSpawnMothership:
+	ReloadDelay: 50
+	Range: 7c0
+	ValidTargets: CapitalShip, Frigate, Corvette, Fighter, Ground, Air, Airhit
+	Projectile: InstantExplode
+	Warhead@1Dam: SpreadDamage
+		Spread: 1
+		Damage: -1
+		ValidTargets: SeekerTarget
+	Warhead@op: FireShrapnel
+		Weapon: FieldDefenceLaser
+		Amount: 1
+		AimChance: 100
+		AllowDirectHit: true
+		ThrowWithoutTarget: false
+		AimTargetStances: Enemy
+		ValidStances: Enemy
+		ValidTargets: CapitalShip, Frigate, Corvette, Fighter, Ground, Air, Airhit
+
+FieldDefenceLaser:
+	ReloadDelay: 75
+	Report: rlaser1.wav, rlaser2.wav, rlaser3.wav
+	Range: 5c0
+	ValidTargets: CapitalShip, Frigate, Corvette, Fighter, Ground, Air, Airhit
+	Projectile: LaserZap
+		Width: 25
+		BeamDuration: 5
+		Color: 0dc7b8
+	Warhead@1Dam: SpreadDamage
+		Spread: 64
+		Damage: 5000
+		ValidStances: Neutral, Enemy
+		ValidTargets: CapitalShip, Frigate, Corvette, Fighter, Ground, Air, Airhit
+
+DefenceMissileSpawnMothership:
+	ReloadDelay: 50
+	Range: 7c0
+	ValidTargets: CapitalShip, Frigate, Corvette, Fighter, Ground, Air, Airhit
+	Projectile: InstantExplode
+	Warhead@1Dam: SpreadDamage
+		Spread: 1
+		Damage: -1
+		ValidTargets: SeekerTarget
+	Warhead@op: FireShrapnel
+		Weapon: DefenceMissileMothership
+		Amount: 1
+		AimChance: 100
+		AllowDirectHit: true
+		ThrowWithoutTarget: false
+		AimTargetStances: Enemy
+		ValidStances: Enemy
+		ValidTargets: CapitalShip, Frigate, Corvette, Fighter, Ground, Air, Airhit
+
+DefenceMissileMothership:
+	Inherits: HeavyCannon
+	ReloadDelay: 100
+	Range: 7c0
+	Burst: 3
+	BurstDelay: 10
+	Report: bazook1.aud
+	Projectile: Missile
+		Inaccuracy: 0c256
+		LaunchAngle: 90
+		CruiseAltitude: 512
+		LaserShootable: False
+		Speed: 50
+	Warhead@1Dam: SpreadDamage
+		Damage: 10000
+		Versus:
+			Corvette: 75
+			Frigate: 150
+			CapitalShip: 150
+	Warhead@3Eff: CreateEffect
+
+FieldDefenceLaserSpawnAntiFighter:
+	Inherits: FieldDefenceLaserSpawnMothership
+	ReloadDelay: 100
+	Warhead@op: FireShrapnel
+		Weapon: FieldDefenceLaserAntiFighter
+
+FieldDefenceLaserAntiFighter:
+	ReloadDelay: 150
+	Report: rlaser1.wav, rlaser2.wav, rlaser3.wav
+	Range: 4c0
+	ValidTargets: Fighter, Ground
+	Projectile: LaserZap
+		Width: 25
+		BeamDuration: 5
+		Color: 0dc7b8
+	Warhead@1Dam: SpreadDamage
+		Spread: 32
+		Damage: 25000
+		Versus:
+			Fighter: 200
+			Corvette: 25
+			Frigate: 10
+			CapitalShip: 5
+		ValidTargets: Fighter, Ground
+
+FieldDefenceLaserStation:
+	ReloadDelay: 75
+	Range: 7c0
+	ValidTargets: CapitalShip, Frigate, Corvette, Fighter, Ground, Air, Airhit
+	Projectile: LaserZap
+		Width: 25
+		BeamDuration: 5
+		Color: 0dc7b8
+	Warhead@1Dam: SpreadDamage
+		Spread: 64
+		Damage: 10000
+		ValidStances: Neutral, Enemy
+		ValidTargets: CapitalShip, Frigate, Corvette, Fighter, Ground, Air, Airhit
+
+FieldRepairLaserSpawn:
+	Inherits: FieldDefenceLaserSpawnMothership
+	ReloadDelay: 75
+	Warhead@op: FireShrapnel
+		Weapon: FieldRepairLaser
+		Amount: 1
+		AimChance: 100
+		AllowDirectHit: true
+		ThrowWithoutTarget: false
+		AimTargetStances: Ally
+		ValidTargets: CapitalShip, Frigate, Corvette, Fighter, Ground, Air, Airhit
+
+FieldRepairLaser:
+	ReloadDelay: 50
+	Range: 6c0
+	ValidTargets: CapitalShip, Frigate, Corvette, Ground, Air, Airhit
+	Projectile: LaserZap
+		Width: 25
+		BeamDuration: 5
+		Color: 2FE00B
+	Warhead@1Dam: SpreadDamage
+		Spread: 32
+		Damage: -15000
+		ValidStances: Ally
+		ValidTargets: CapitalShip, Frigate, Corvette, Ground, Air, Airhit
+
+FieldRepairLaserSpawnStrong:
+	Inherits: FieldRepairLaserSpawn
+	Warhead@op: FireShrapnel
+		Weapon: FieldRepairLaserStrong
+
+FieldRepairLaserStrong:
+	Inherits: FieldRepairLaser
+	Range: 8c0
+	Warhead@1Dam: SpreadDamage
+		Damage: -35000
+
+ConstantRepairLaser:
+	ReloadDelay: 10
+	Range: 5c0
+	ValidTargets: CapitalShip, Frigate, Corvette, Fighter, Ground, Air, Airhit
+	Projectile: LaserZap
+		Width: 25
+		BeamDuration: 5
+		Color: 2FE00B
+	Warhead@1Dam: SpreadDamage
+		Spread: 32
+		Damage: -7000
+		ValidStances: Ally
+		ValidTargets: CapitalShip, Frigate, Corvette, Fighter	, Ground, Air, Airhit
+
+HabitatShipBoost:
+	ReloadDelay: 50
+	Range: 8c0
+	Projectile: InstantExplode
+	Warhead@1Dam: SpreadDamage
+		Spread: 32
+		Damage: 1
+		ValidStances: Ally
+	Warhead@SlowFighter: GrantExternalCondition
+		Range: 3c0
+		Duration: 350
+		Condition: HabitatShipBoost
+		ValidTargets: Leached
+		InvalidTargets: Vaccined
+		ValidStances: Ally
+
+LeechVaccine:
+	ReloadDelay: 5
+	ValidTargets: Leached
+	InvalidTargets: Vaccined
+	Range: 8c0
+	Projectile: LaserZap
+		Width: 25
+		BeamDuration: 5
+		Color: 2FE00B
+	Warhead@1Dam: SpreadDamage
+		Spread: 32
+		Damage: -1
+		ValidStances: Ally
+		ValidTargets: CapitalShip, Frigate, Corvette, Fighter, Ground, Air, Airhit
+	Warhead@SlowFighter: GrantExternalCondition
+		Range: 64
+		Duration: 25
+		Condition: LeechVaccine
+		ValidTargets: Leached
+		InvalidTargets: Vaccined
+		ValidStances: Ally
+
+IonBeamCharge:
+	ReloadDelay: 150
+	Range: 10c0
+	InvalidTargets: Fighter
+	ValidTargets: CapitalShip, Frigate, Corvette, Ground, Air, Airhit
+	Projectile: InstantExplode
+	Warhead@1Dam: SpreadDamage
+		Spread: 1
+		Damage: 1
+		ValidTargets: CapitalShip, Frigate, Corvette, Ground, Air, Airhit
+		ValidStances: Neutral, Enemy
+		InvalidTargets: Fighter
+	Warhead@SlowFighter: GrantExternalCondition
+		Delay: 125
+		Range: 64
+		Duration: 35
+		Condition: BeamReady
+		ValidTargets: CapitalShip, Frigate, Corvette, Ground, Air, AirHit
+		AffectsParent: True
+		ValidStances: Ally
+
+IonBeam:
+	ReloadDelay: 2
+	Report: lastur1.aud
+	Range: 8c0
+	InvalidTargets: Fighter
+	ValidTargets: CapitalShip, Frigate, Corvette, Ground, Air, Airhit
+	Projectile: LaserZap
+		Width: 10
+		BeamDuration: 1
+		Color: FFFFFF
+		ZOffset: 2050
+		SecondaryBeam: true
+		SecondaryBeamWidth: 75
+		SecondaryBeamZOffset: 200
+		SecondaryBeamColor: 072633
+	Warhead@1Dam: SpreadDamage
+		Spread: 32
+		Damage: 12000
+		ValidStances: Neutral, Enemy
+		InvalidTargets: Fighter
+		ValidTargets: CapitalShip, Frigate, Corvette, Ground, Air, Airhit
+		Versus:
+			Corvette: 30
+	Warhead@2Eff: CreateEffect
+		Explosions: jucflash, jgunfire
+		ImpactSound: expnew12.aud
+		ExplosionPalette: gensmkexplojFBlue
+
+IonBeam2:
+	Inherits: IonBeam
+	Projectile: LaserZap
+		Width: 30
+		Color: 6CB1CC
+		BeamDuration: 4
+		ZOffset 1950:
+		SecondaryBeam: true
+		SecondaryBeamWidth: 100
+		SecondaryBeamZOffset: 1900
+		SecondaryBeamColor: 0C2AB0
+	Warhead@1Dam: SpreadDamage
+		Damage: 1
+
+HyperSpaceGenerator:
+	ReloadDelay: 1
+	Range: 5c0
+	ValidTargets: CapitalShip, Frigate, Corvette, Fighter, Ground, Air, Airhit
+	Projectile: InstantExplode
+	Warhead@1Dam: SpreadDamage
+		Spread: 1
+		Damage: -1
+		ValidTargets: SeekerTarget
+	Warhead@HyperSpace: GrantExternalCondition
+		Range: 3c0
+		Duration: 4
+		Condition: HyperSpace
+		ValidTargets: Frigate, Corvette, Fighter, Ground, Air, AirHit
+		AffectsParent: False
+		ValidStances: Ally
+	Warhead@HyperSpaceFadeOut: GrantExternalCondition
+		Range: 3c0
+		Duration: 103
+		Condition: HyperSpaceFadeOut
+		ValidTargets: Frigate, Corvette, Fighter, Ground, Air, AirHit
+		AffectsParent: False
+		ValidStances: Ally
+	Warhead@HyperSpace2: GrantExternalCondition
+		Range: 3c0
+		Duration: 103
+		Condition: HyperSpace2
+		ValidTargets: Frigate, Corvette, Fighter, Ground, Air, AirHit
+		AffectsParent: False
+		ValidStances: Ally
+
+HyperSpaceFadeOutAnim:
+	ReloadDelay: 120
+	Range: 5c0
+	ValidTargets: CapitalShip, Frigate, Corvette, Fighter, Ground, Air, Airhit
+	Projectile: InstantExplode
+	Warhead@1Dam: SpreadDamage
+		Spread: 1
+		Damage: -1
+		ValidTargets: SeekerTarget
+	Warhead@2Eff: CreateEffect
+		Explosions: subspaceanim3
+		ExplosionPalette: darkbluepal
+
+PlatformFighterSpawn:
+	ReloadDelay: 25
+	Burst: 4
+	BurstDelay: 8
+	Range: 15c0
+	ValidTargets: Fighter, Corvette, Ground
+	InvalidTargets: CapitalShip, Frigate
+	Projectile: InstantExplode
+	Warhead@1Dam: SpreadDamage
+		Spread: 1
+		Damage: 1
+		ValidTargets: Fighter, Corvette, Ground
+		InvalidTargets: CapitalShip, Frigate
+
+PlatformBomberSpawn:
+	Inherits: PlatformFighterSpawn
+	ValidTargets: CapitalShip, Frigate, Corvette, Ground
+	InvalidTargets: Fighter
+	Warhead@1Dam: SpreadDamage
+		ValidTargets: CapitalShip, Frigate, Corvette, Ground
+		InvalidTargets: Fighter
+
+ChaseAIPlatform:
+	Inherits: ChaseWeapon
+	ValidTargets: AIPlatform
+	Warhead@1Dam: SpreadDamage
+		ValidTargets: AIPlatform
+
+FighterCleaner:
+	ReloadDelay: 25
+	Range: 1c0
+	ValidTargets: Fighter, Corvette, Ground
+	InvalidTargets: CapitalShip, Frigate
+	Projectile: InstantExplode
+	Warhead@1Dam: SpreadDamage
+		Spread: 350
+		Damage: 30000
+		ValidTargets: Fighter
+		ValidStances: Ally
+		Falloff: 100, 100, 100, 100, 100, 100

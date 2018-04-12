@@ -1,0 +1,171 @@
+DangerBuoyShrapnel1:
+	Inherits: FieldDefenceLaserSpawnMothership
+	ReloadDelay: 30
+	Warhead@op: FireShrapnel
+		Weapon: DangerBuoyShrapne2
+		Amount: 1
+		AimChance: 0
+		AllowDirectHit: True
+		ThrowWithoutTarget: True
+		ValidStances: Enemy, Neutral, Ally
+		ValidTargets: CapitalShip, Frigate, Corvette, Fighter, Ground, Air, Airhit
+	Warhead@op2: FireShrapnel
+		Weapon: DangerBuoyShrapne3
+		Amount: 1
+		AimChance: 0
+		AllowDirectHit: True
+		ThrowWithoutTarget: True
+		ValidStances: Enemy, Neutral, Ally
+		ValidTargets: CapitalShip, Frigate, Corvette, Fighter, Ground, Air, Airhit
+
+DangerBuoyShrapne2:
+	Inherits: DangerBuoyShrapnel1
+	Range: 5c0
+	MinRange: 3c0
+	Projectile: Bullet
+		Speed: 100c0
+	Warhead@op: FireShrapnel
+		Weapon: DangerBuoyComet1
+		AimChance: 100
+		ThrowWithoutTarget: False
+		ValidTargets: DangerBeacon, Ground
+		AimTargetStances: Ally
+		InvalidTargets: CapitalShip, Frigate, Corvette, Fighter
+	-Warhead@op2:
+
+DangerBuoyShrapne3:
+	Inherits: DangerBuoyShrapne2
+	Warhead@op: FireShrapnel
+		Weapon: DangerBuoyComet2
+
+DangerBuoyComet1:
+	ReloadDelay: 200
+	Range: 50c0
+	ValidTargets: DangerBeacon
+	Projectile: Bullet
+		Image: COMET
+		Speed: 50
+		Blockable: True
+		Inaccuracy: 20c0
+		Palette: apolgrey
+	Warhead@1Dam: SpreadDamage
+		Spread: 256
+		Damage: 15000
+		AffectsParent: True
+		Versus:
+			Fighter: 100
+			Corvette: 150
+			Frigate: 75
+			CapitalShip: 50
+			Mothership: 50
+		ValidTargets: DangerBeacon, CapitalShip, Frigate, Corvette, Fighter, Ground, Air, Airhit
+		DamageTypes: Prone50Percent, TriggerProne, ExplosionDeath
+	Warhead@3Eff: CreateEffect
+		Explosions: small_frag
+		ImpactSounds:
+
+DangerBuoyComet2:
+	Inherits: DangerBuoyComet1
+	Projectile: Bullet
+		Image: COMET2
+		Palette: temperatra
+
+NavBuoyNavigation:
+	Inherits: ChaseWeapon
+	ValidTargets: NavBeacon
+	Warhead@1Dam: SpreadDamage
+		ValidTargets: NavBeacon
+
+ConvoyShipSpawnShrapnel:
+	Inherits: FieldDefenceLaserSpawnMothership
+	ReloadDelay: 1000
+	Warhead@op: FireShrapnel
+		Weapon: ConvoyShipSpawn
+		ThrowWithoutTarget: True
+		ValidStances: Enemy, Neutral, Ally
+		ValidTargets: CapitalShip, Frigate, Corvette, Fighter, Ground, Air, Airhit
+
+ConvoyShipSpawn:
+	ReloadDelay: 1000
+	Range: 5c0
+	MinRange: 2c0
+	Projectile: Bullet
+		Speed: 100c0
+	Warhead@5Actor: SpawnActor
+		Actors: CONVOYSHIP
+		FallRate: 5000
+		Range: 3
+		ValidTargets: Ground, Infantry, Air, Vehicle, Building, Wall
+	Warhead@2Eff: CreateEffect
+		Explosions: subspaceanim3
+		ExplosionPalette: darkbluepal
+
+LaneSpeedShock:
+	Inherits: HeavyCannon
+	ReloadDelay: 10
+	-Report:
+	Range: 6c0
+	Projectile: TeslaZap
+		Image: litning
+	Warhead@1Dam: SpreadDamage
+		Damage: 1
+		ValidStances: Ally, Neutral, Enemy
+		InvalidTargets: LaneSpeedBoosted
+	Warhead@LaneSpeedBost1: GrantExternalCondition
+		Range: 250
+		Duration: 250
+		Condition: LaneSpeedBost1
+		InvalidTargets: LaneSpeedBoosted
+	Warhead@LaneSpeedBost2: GrantExternalCondition
+		Range: 250
+		Duration: 150
+		Condition: LaneSpeedBost2
+		InvalidTargets: LaneSpeedBoosted
+	-Warhead@3Eff: CreateEffect
+
+MinelayerStationMineSpawn:
+	Inherits: FieldDefenceLaserSpawnMothership
+	ReloadDelay: 200
+	Burst: 5
+	Warhead@op: FireShrapnel
+		Weapon: MinelayerStationMineBullet
+		ValidStances: Ally, Neutral, Enemy
+		AimChance: 0
+		AllowDirectHit: true
+		ThrowWithoutTarget: true
+
+MinelayerStationMineBullet:
+	Inherits: ScoutBullet
+	ReloadDelay: 9
+	Range: 7c0
+	Projectile: Bullet
+		Image: dmine1
+		Speed: 90
+	Warhead@1Dam: SpreadDamage
+		Damage: 1
+	Warhead@5Actor: SpawnActor
+		Actors: minelayerstationmine
+		FallRate: 5000
+		Range: 3
+		ValidTargets: Ground, Infantry, Air, Vehicle, Building, Wall
+	-Warhead@2Eff: CreateEffect
+
+StarbaseLaserSpawn:
+	Inherits: FieldDefenceLaserSpawnMothership
+	ReloadDelay: 25
+	Warhead@op: FireShrapnel
+		Weapon: StarbaseLaser
+		AimTargetStances: Enemy, Neutral
+
+StarbaseLaser:
+	Inherits: FieldDefenceLaser
+	ReloadDelay: 25
+	Projectile: LaserZap
+		Width: 25
+		BeamDuration: 5
+		Color: 0dc7b8
+	Warhead@1Dam: SpreadDamage
+		Spread: 64
+		Damage: 32500
+		ValidStances: Neutral, Enemy
+		ValidTargets: CapitalShip, Frigate, Corvette, Fighter, Ground, Air, Airhit

@@ -1,0 +1,1074 @@
+^ExistsInWorld:
+	AppearsOnRadar:
+	CombatDebugOverlay:
+	GivesExperience:
+		PlayerExperienceModifier: 1
+	ScriptTriggers:
+	ConditionManager:
+	RenderDebugState:
+
+^SpriteActor:
+	Inherits: ^1x1Shape
+	BodyOrientation:
+	QuantizeFacingsFromSequence:
+	RenderSprites:
+
+^1x1Shape:
+	HitShape:
+		UseTargetableCellsOffsets: true
+		Type: Rectangle
+			TopLeft: -512, -512
+			BottomRight: 512, 512
+
+^2x1Shape:
+	HitShape:
+		UseTargetableCellsOffsets: true
+		Type: Rectangle
+			TopLeft: -1024, -512
+			BottomRight: 1024, 512
+
+^2x2Shape:
+	HitShape:
+		UseTargetableCellsOffsets: true
+		Type: Rectangle
+			TopLeft: -1024, -1024
+			BottomRight: 1024, 1024
+
+^3x2Shape:
+	HitShape:
+		UseTargetableCellsOffsets: true
+		Type: Rectangle
+			TopLeft: -1536, -1024
+			BottomRight: 1536, 1024
+
+^AutoTargetAll:
+	AutoTarget:
+		AttackAnythingCondition: stance-attackanything
+	AutoTargetPriority@DEFAULT:
+		RequiresCondition: !stance-attackanything
+		ValidTargets: CapitalShip, Frigate, Corvette, Fighter, Station
+		InvalidTargets: NoAutoTarget
+		Priority: 2
+	AutoTargetPriority@ATTACKANYTHING:
+		RequiresCondition: stance-attackanything
+		ValidTargets: CapitalShip, Frigate, Corvette, Fighter, Station
+		InvalidTargets: NoAutoTarget
+		Priority: 2
+
+^FrigateTargetPriority:
+	AutoTarget:
+		AttackAnythingCondition: stance-attackanything
+	AutoTargetPriority@1:
+		RequiresCondition: !stance-attackanything
+		ValidTargets: CapitalShip, Frigate, Station
+		InvalidTargets: NoAutoTarget
+		Priority: 1
+
+^CorvetteTargetPriority:
+	AutoTarget:
+		AttackAnythingCondition: stance-attackanything
+	AutoTargetPriority@1:
+		RequiresCondition: !stance-attackanything
+		ValidTargets: Corvette
+		InvalidTargets: NoAutoTarget
+		Priority: 1
+
+^FighterTargetPriority:
+	AutoTarget:
+		AttackAnythingCondition: stance-attackanything
+	AutoTargetPriority@1:
+		RequiresCondition: !stance-attackanything
+		ValidTargets: Fighter
+		InvalidTargets: NoAutoTarget
+		Priority: 1
+
+^HabitatShipBoost:
+	DamageMultiplier@HabitatShipBoost:
+		RequiresCondition: HabitatShipBoost
+		Modifier: 90
+	ReloadDelayMultiplier@HabitatShipBoost:
+		RequiresCondition: HabitatShipBoost
+		Modifier: 120
+	ExternalCondition@HabitatShipBoost:
+		Condition: HabitatShipBoost
+
+^LaneSpeedBoost:
+	Targetable@LaneSpeedBoost:
+		TargetTypes: LaneSpeedBoosted
+		RequiresCondition: LaneSpeedBost1
+	SpeedMultiplier@LaneSpeedBost1:
+		RequiresCondition: LaneSpeedBost1
+		Modifier: 200
+	SpeedMultiplier@LaneSpeedBost2:
+		RequiresCondition: LaneSpeedBost2
+		Modifier: 250
+	ExternalCondition@LaneSpeedBost1:
+		Condition: LaneSpeedBost1
+	ExternalCondition@LaneSpeedBost2:
+		Condition: LaneSpeedBost2
+
+^EmpDisable:
+	WithColoredOverlay@EMPDISABLE:
+		RequiresCondition: empdisable
+		Palette: disabled
+	TimedConditionBar@EMPDISABLE:
+		Condition: empdisable
+		Color: FFFFFF
+	ExternalCondition@empdisable:
+		Condition: empdisable
+	SpeedMultiplier@empdisable:
+		RequiresCondition: empdisable
+		Modifier: 1
+	ReloadDelayMultiplier@empdisable:
+		RequiresCondition: empdisable
+		Modifier: 2000
+	RangeMultiplier@empdisable:
+		RequiresCondition: empdisable
+		Modifier: 1
+
+^Leachable:
+	ExternalCondition@LeechEat:
+		Condition: LeechEat, LeechVaccine
+	SelfHealing@LeechEat:
+		RequiresCondition: LeechEat && !LeechVaccine
+		Step: 0
+		PercentageStep: -2
+		DamageCooldown: 0
+		Delay: 25
+		HealIfBelow: 105
+	Targetable@LeechEat:
+		TargetTypes: Leached
+		RequiresCondition: LeechEat || LeechVaccine
+	Targetable@Vaccined:
+		TargetTypes: Vaccined
+		RequiresCondition: LeechVaccine
+
+^Boardable:
+	TemporaryOwnerManager:
+	ExternalCondition@Boarded:
+		Condition: Boarded
+	Targetable@Boardable:
+		TargetTypes: Boardable
+		RequiresCondition: Boarded > 7
+
+^Cloakable:
+	Cloak@DustCloud:
+		CloakTypes: DustCloudCloak
+		InitialDelay: 100
+		CloakDelay: 100
+		RequiresCondition: DustCloudCloak || ArtificialCloak
+		IsPlayerPalette: True
+	DetectCloaked:
+		CloakTypes: DustCloudCloak
+		Range: 3c0
+		RequiresCondition: DustCloudCloak || ArtificialCloak
+	ExternalCondition@DustCloudCloak:
+		Condition: DustCloudCloak
+	ExternalCondition@ArtificialCloak:
+		Condition: ArtificialCloak
+
+^AdrenalineBuff:
+	ReloadDelayMultiplier@AdrenalineBuff:
+		RequiresCondition: AdrenalineBuff
+		Modifier: 50
+	SelfHealing@AdrenalineBuff:
+		PercentageStep: -1
+		Delay: 50
+		HealIfBelow: 101
+		DamageCooldown: 200
+		RequiresCondition: AdrenalineBuff
+	ExternalCondition@AdrenalineBuff:
+		Condition: AdrenalineBuff
+
+^GenericBuffs:
+	Inherits: ^EmpDisable
+	Inherits@1: ^LaneSpeedBoost
+	Inherits@4: ^Boardable
+	Inherits@5: ^Cloakable
+	Inherits@6: ^Leachable
+	Inherits@7: ^AdrenalineBuff
+	BlocksProjectiles:
+	SelfHealing@HabitatCrap:
+		PercentageStep: 1
+		Delay: 50
+		HealIfBelow: 101
+		DamageCooldown: 200
+		RequiresCondition: GkorHabitatShip || TerranHabitatShip || EllarianHabitatShip
+	ExternalCondition@GenericBuffs:
+		Condition: GkorHabitatShip
+	SpeedMultiplier@RendingClaws:
+		RequiresCondition: RendingClaws
+		Modifier: 1
+	ExternalCondition@RendingClaws:
+		Condition: RendingClaws
+
+^HyperSpaceAble:
+	SpeedMultiplier@HyperSpace:
+		Modifier: 200000
+		RequiresCondition: HyperSpace
+	ExternalCondition@HyperSpace:
+		Condition: HyperSpace
+		TotalCap: 1
+		SourceCap: 1
+	ExternalCondition@HyperSpaceFadeOut:
+		Condition: HyperSpaceFadeOut
+		TotalCap: 1
+		SourceCap: 1
+	ExternalCondition@HyperSpace2:
+		Condition: HyperSpace2:
+		TotalCap: 1
+		SourceCap: 1
+	WithIdleOverlay@subspaceanim:
+		Sequence: subspaceanim
+		RequiresCondition: HyperSpace
+		Palette: darkbluepal
+	DamageMultiplier@HyperSpace:
+		Modifier: 350
+		RequiresCondition: HyperSpace || HyperSpaceFadeOut
+	ExternalCondition@WORKPIECEOFSHIT:
+		Condition: WORKPIECEOFSHIT
+		TotalCap: 1
+		SourceCap: 1
+	SelfHealing@WORKPIECEOFSHIT:
+		Step: 0
+		PercentageStep: -1
+		Delay: 16
+		HealIfBelow: 101
+		RequiresCondition: HyperSpaceFadeOut && WORKPIECEOFSHIT
+	DamageMultiplier@WORKPIECEOFSHIT:
+		Modifier: 200
+		RequiresCondition: HyperSpaceFadeOut && WORKPIECEOFSHIT
+	RevealsShroud:
+		Range: 2c0
+		Type: CenterPosition
+		RequiresCondition: !HyperSpaceFadeOut
+	SpeedMultiplier@HyperSpaceFadeOut:
+		Modifier: 0
+		RequiresCondition: !HyperSpace && HyperSpaceFadeOut
+	SpeedMultiplier@HyperspaceInhibit:
+		Modifier: 0
+		RequiresCondition: HyperspaceInhibit && HyperSpace
+	ExternalCondition@HyperspaceInhibit:
+		Condition: HyperspaceInhibit
+		TotalCap: 1
+		SourceCap: 1
+	ExplodeWeapon@HyperSpaceFadeOutAnim:
+		Weapon: HyperSpaceFadeOutAnim
+		RequiresCondition: !HyperSpace && HyperSpaceFadeOut
+
+^Upgrades:
+	FirepowerMultiplier@UpgradeT1:
+		RequiresCondition: WeaponT1
+		Modifier: 105
+	DamageMultiplier@UpgradeT1:
+		RequiresCondition: DamageT1
+		Modifier: 95
+	SpeedMultiplier@UpgradeT1:
+		RequiresCondition: SpeedT1
+		Modifier: 105
+	ReloadDelayMultiplier@UpgradeT1:
+		RequiresCondition: ReloadSpeedT1
+		Modifier: 95
+	RangeMultiplier@UpgradeT1:
+		RequiresCondition: RangeT1
+		Modifier: 105
+	GrantConditionOnPrerequisite@WeaponT1:
+		Prerequisites: research.WeaponT1
+		Condition: WeaponT1
+	GrantConditionOnPrerequisite@DamageT1:
+		Prerequisites: research.DamageT1
+		Condition: DamageT1
+	GrantConditionOnPrerequisite@RangeT1:
+		Prerequisites: research.RangeT1
+		Condition: RangeT1
+	GrantConditionOnPrerequisite@ReloadSpeedT1:
+		Prerequisites: research.ReloadSpeedT1
+		Condition: ReloadSpeedT1
+	GrantConditionOnPrerequisite@SpeedT1:
+		Prerequisites: research.SpeedT1
+		Condition: SpeedT1
+	ExternalCondition@WeaponT1:
+		Condition: WeaponT1
+	ExternalCondition@UpgradeT1:
+		Condition: DamageT1
+	ExternalCondition@SpeedT1:
+		Condition: SpeedT1
+	ExternalCondition@ReloadSpeedT1:
+		Condition: ReloadSpeedT1
+	ExternalCondition@UpgradeT1:
+		Condition: RangeT1
+
+^NebulaEffects:
+	SpeedMultiplier@SpeedBuoy:
+		RequiresCondition: SpeedBuoy
+		Modifier: 150
+	ExternalCondition@SpeedBuoy:
+		Condition: SpeedBuoy
+	SpeedMultiplier@GreenNebula:
+		RequiresCondition: GreenNebula
+		Modifier: 35
+	ExternalCondition@GreenNebula:
+		Condition: GreenNebula
+	ExternalCondition@RedNebula:
+		Condition: RedNebula
+	SelfHealing@RedNebula:
+		Step: 100
+		PercentageStep: -1
+		Delay 50:
+		HealIfBelow: 101
+		RequiresCondition: RedNebula
+	DamageMultiplier@RedNebula:
+		RequiresCondition: RedNebula
+		Modifier: 110
+	WithDecoration@Nebulas:
+		Image: rank
+		Sequence: rank
+		Palette: effect
+		ReferencePoint: Bottom, Right
+		RequiresCondition: BlueNebula || RedNebula || GreenNebula || ArtificialCloak
+		ZOffset: 256
+
+^GainsExperience:
+	Inherits: ^GenericBuffs
+	Inherits@2: ^Upgrades
+	Inherits@3: ^NebulaEffects
+	GainsExperience:
+		Conditions:
+			200: firepower, damage, speed, reload, inaccuracy, rank
+			400: firepower, damage, speed, reload, inaccuracy, rank
+			800: firepower, damage, speed, reload, inaccuracy, rank
+			1600: firepower, damage, speed, reload, inaccuracy, rank, eliteweapon, selfheal
+	FirepowerMultiplier@EXPERIENCE:
+		RequiresCondition: firepower
+		Modifier: 105
+	DamageMultiplier@EXPERIENCE:
+		RequiresCondition: damage
+		Modifier: 95
+	SpeedMultiplier@EXPERIENCE:
+		RequiresCondition: speed
+		Modifier: 105
+	ReloadDelayMultiplier@EXPERIENCE:
+		RequiresCondition: reload
+		Modifier: 95
+	InaccuracyMultiplier@EXPERIENCE:
+		RequiresCondition: inaccuracy
+		Modifier: 90
+	SelfHealing@ELITE:
+		PercentageStep: 1
+		Delay: 100
+		HealIfBelow: 100
+		DamageCooldown: 125
+		RequiresCondition: selfheal
+	WithDecoration:
+		Image: rank
+		Sequence: rank
+		Palette: effect
+		ReferencePoint: Bottom, Right
+		RequiresCondition: rank
+		ZOffset: 256
+	Targetable@Ground:
+		TargetTypes: Ground
+	ExternalCondition@firepower:
+		Condition: firepower
+	ExternalCondition@damage:
+		Condition: damage
+	ExternalCondition@speed:
+		Condition: speed
+	ExternalCondition@reload:
+		Condition: reload
+	ExternalCondition@inaccuracy:
+		Condition: inaccuracy
+
+^CapitalShip:
+	Inherits@1: ^ExistsInWorld
+	Inherits@2: ^GainsExperience
+	Inherits@3: ^SpriteActor
+	HitShape:
+		UseTargetableCellsOffsets: true
+		Type: Rectangle
+			TopLeft: -550, -750
+			BottomRight: 550, 750
+	Huntable:
+	SelectionDecorations:
+	WithSpriteControlGroupDecoration:
+	Health:
+	WithFacingSpriteBody:
+	Armor:
+		Type: CapitalShip
+	RevealsShroud:
+		Range: 9c0
+		Type: CenterPosition
+	Aircraft:
+		IdealSeparation: 2c0
+		MoveIntoShroud: true
+		CruiseAltitude: 3
+		RepulsionSpeed: 7
+		Speed: 15
+		TurnSpeed: 1
+		CanHover: True
+		LandWhenIdle: False
+	Targetable:
+		TargetTypes: CapitalShip
+	ProvidesPrerequisite:
+	Hovers:
+		OffsetModifier: -10
+	Repairable:
+	Guard:
+	Guardable:
+	Tooltip:
+		GenericName: Vehicle
+	ActorLostNotification:
+	HiddenUnderFog:
+		Type: GroundPosition
+	AttackMove:
+	DrawLineToTarget:
+	WithDamageOverlay:
+	BodyOrientation:
+		UseClassicFacingFudge: True
+	SelfHealing@CombatCapitalShipAutoRepair:
+		Step: 0
+		PercentageStep: 1
+		DamageCooldown: 100
+		Delay: 200
+		HealIfBelow: 105
+	Voiced:
+		VoiceSet: GenericVoice
+	Selectable:
+		Bounds: 60,60
+	MustBeDestroyed:
+	Explodes:
+		Weapon: CapShipExplode
+		EmptyWeapon: CapShipExplode
+	EditorTilesetFilter:
+		Categories: Capital Ships
+
+^CombatCapitalShip:
+	Inherits@1: ^CapitalShip
+	Inherits@Autotarget: ^AutoTargetAll
+	SpeedMultiplier@LancerSlow:
+		RequiresCondition: LancerSlow
+		Modifier: 30
+	ReloadDelayMultiplier@LancerSlow:
+		RequiresCondition: LancerSlow
+		Modifier: 200
+	ExternalCondition@LancerSlow:
+		Condition: LancerSlow
+
+^Frigate:
+	Inherits@1: ^CapitalShip
+	Inherits@2: ^HyperSpaceAble
+	HitShape:
+		UseTargetableCellsOffsets: true
+		Type: Rectangle
+			TopLeft: -480, -480
+			BottomRight: 480, 480
+	Armor:
+		Type: Frigate
+	Aircraft:
+		IdealSeparation: 900
+		MoveIntoShroud: true
+		RepulsionSpeed: 20
+		CruiseAltitude: 2
+		Speed: 30
+		TurnSpeed: 6
+		LandWhenIdle: False
+		CanHover: True
+	RevealsShroud:
+		Range: 7c0
+		Type: CenterPosition
+	Power:
+		Amount: -7
+	WithFacingSpriteBody:
+		RequiresCondition: !HyperSpaceFadeOut
+	Health:
+	Selectable:
+		Bounds: 60,60
+	SelectionDecorations:
+		VisualBounds: 60,60
+	Hovers:
+	Targetable:
+		TargetTypes: Frigate
+	QuantizeFacingsFromSequence:
+		Sequence: stand
+	DetectCloaked:
+		Range: 2c0
+	Voiced:
+		VoiceSet: GenericVoice
+	AppearsOnRadar:
+		UseLocation: yes
+	HiddenUnderFog:
+		Type: CenterPosition
+		AlwaysVisibleStances: None
+	Explodes:
+		Weapon: FrigateExplode
+		EmptyWeapon: FrigateExplode
+	AnnounceOnBuildAS:
+		Voice: FrigateReady
+		OnlyToOwner: True
+	EditorTilesetFilter:
+		Categories: Frigates
+	Voiced:
+		VoiceSet: GenericVoice
+
+^AFrontalFrigate:
+	Inherits: ^Frigate
+	Inherits@Autotarget: ^AutoTargetAll
+	AttackFrontal:
+
+^TurretedFrigate:
+	Inherits: ^Frigate
+	Inherits@Autotarget: ^AutoTargetAll
+	Turreted:
+	AttackTurreted:
+
+^Fighter:
+	Inherits@1: ^ExistsInWorld
+	Inherits@2: ^SpriteActor
+	Inherits@3: ^GainsExperience
+	Inherits@4: ^HyperSpaceAble
+	Inherits@Autotarget: ^AutoTargetAll
+	HitShape:
+		UseTargetableCellsOffsets: true
+		Type: Rectangle
+			TopLeft: -96, -96
+			BottomRight: 96, 96
+	Huntable:
+	AppearsOnRadar:
+		UseLocation: yes
+	WithTextControlGroupDecoration:
+	Health:
+	Selectable:
+		Bounds: 15,15
+	SelectionDecorations:
+		VisualBounds: 15,15
+	WithFacingSpriteBody:
+		RequiresCondition: !HyperSpaceFadeOut
+	Armor:
+		Type: Fighter
+	RevealsShroud:
+		Range: 4c0
+		Type: CenterPosition
+	DrawLineToTarget:
+	HiddenUnderFog:
+		Type: CenterPosition
+		AlwaysVisibleStances: None
+	ActorLostNotification:
+	Targetable:
+		TargetTypes: Fighter
+	AttackMove:
+	WithFacingSpriteBody:
+	-SpeedMultiplier@GreenNebula:
+	Hovers:
+	Voiced:
+		VoiceSet: GenericVoice
+	AttackPlane:
+		AttackTurnDelay: 10
+		FacingTolerance: 90
+	Aircraft:
+		CruiseAltitude: 5
+		IdealSeparation: 200
+		MoveIntoShroud: true
+		RepulsionSpeed: 60
+		Speed: 85
+		TurnSpeed: 14
+		CanHover: True
+		LandWhenIdle: False
+	Passenger:
+		CargoType: Fighter
+	Hovers:
+	AmmoPool:
+		Ammo: 9999
+		PipCount: 0
+		ReloadCount: 1
+		ReloadDelay: 1
+		PipType: Ammo
+		PipTypeEmpty: AmmoEmpty
+		SelfReloads: True
+		SelfReloadDelay: 1
+	Explodes:
+		Weapon: FighterExplode
+		EmptyWeapon: FighterExplode
+	SmokeTrailWhenDamaged:
+		Interval: 1
+		Sequence: fighterflametrails
+		Palette: gensmkexploj
+		MinDamage: Critical
+	SpeedMultiplier@BUFFS:
+		RequiresCondition: SlowdownFighter
+		Modifier: 200
+	GrantConditionOnDamageState@fighterflametrails:
+		Condition: fighterflametrails
+		ValidDamageStates: Critical
+	SelfHealing@fighterflametrails:
+		Step: 0
+		PercentageStep: -2
+		Delay: 10
+		HealIfBelow: 25
+	ExternalCondition@SlowdownFighter:
+		Condition: SlowdownFighter
+	SpeedMultiplier@GravGenSlow:
+		RequiresCondition: GravGenSlow
+		Modifier: 0
+	ExternalCondition@GravGenSlow:
+		Condition: GravGenSlow
+	Voiced:
+		VoiceSet: GFighterVoice
+	MustBeDestroyed:
+
+^ShootableMissile:
+	Inherits@1: ^ExistsInWorld
+	Inherits@4: ^SpriteActor
+	Targetable:
+		TargetTypes: Fighter
+	HiddenUnderFog:
+		Type: GroundPosition
+	Tooltip:
+		GenericName: Missile
+	WithShadow:
+		Offset: 43, 128, 0
+		ZOffset: -129
+	WithFacingSpriteBody:
+	HitShape:
+
+^Corvette:
+	Inherits@1: ^Fighter
+	Inherits@2: ^Boardable
+	Inherits@5: ^Cloakable
+	Guard:
+	HitShape:
+		UseTargetableCellsOffsets: true
+		Type: Rectangle
+			TopLeft: -200, -200
+			BottomRight: 200, 200
+	Aircraft:
+		IdealSeparation: 500
+		MoveIntoShroud: true
+		CruiseAltitude: 4
+		RepulsionSpeed: 20
+		Speed: 65
+		TurnSpeed: 10
+		LandWhenIdle: False
+	-SmokeTrailWhenDamaged:
+	-SpeedMultiplier@BUFFS:
+	-GrantConditionOnDamageState@fighterflametrails:
+	-SelfHealing@fighterflametrails:
+	-ExternalCondition@SlowdownFighter:
+	Targetable:
+		TargetTypes: Corvette
+	RevealsShroud:
+		Range: 5c0
+		Type: CenterPosition
+	Armor:
+		Type: Corvette
+	Health:
+	Explodes:
+		Weapon: CorvetteExplode
+		EmptyWeapon: CorvetteExplode
+	SpeedMultiplier@LancerSlow:
+		RequiresCondition: LancerSlow
+		Modifier: 50
+	Selectable:
+		Bounds: 30,30
+	SelectionDecorations:
+		VisualBounds: 30,30
+	AnnounceOnBuildAS:
+		Voice: CorvetteReady
+		OnlyToOwner: True
+	EditorTilesetFilter:
+		Categories: Corvette
+	Voiced:
+		VoiceSet: GenericVoice
+	MustBeDestroyed:
+
+^Building:
+	Inherits@1: ^ExistsInWorld
+	Inherits@2: ^SpriteActor
+	Huntable:
+	SelectionDecorations:
+	WithSpriteControlGroupDecoration:
+	Selectable:
+		Priority: 3
+	Targetable:
+		TargetTypes: CapitalShip, DeployedShip
+	Armor:
+		Type: CapitalShip
+	Building:
+		Dimensions: 3,3
+		Footprint: ___ _x_ ___
+		TerrainTypes: Clear, Ground
+		Adjacent: 5
+	WithSpriteBody:
+	ActorLostNotification:
+		Notification: BuildingLost
+	Guardable:
+		Range: 3c0
+	Tooltip:
+		GenericName: Structure
+	FrozenUnderFog:
+	SelfHealing@CombatCapitalShipAutoRepair:
+		Step: 0
+		PercentageStep: 1
+		DamageCooldown: 100
+		Delay: 100
+		HealIfBelow: 105
+
+^BuildableStation:
+	Inherits: ^Building
+	Building:
+		Dimensions: 1,1
+		Footprint: x
+		TerrainTypes: Clear
+	Health:
+		HP: 1250000
+	Armor:
+		Type: CapitalShip
+	Armor@1:
+		Type: Station
+	Targetable:
+		TargetTypes: Station
+	Power:
+		Amount: -10
+	Valued:
+		Cost: 1000
+	RevealsShroud:
+		Range: 7c0
+		Type: CenterPosition
+	SelfHealing@CombatCapitalShipAutoRepair:
+		Step: 0
+		PercentageStep: 1
+		DamageCooldown: 100
+		Delay: 100
+		HealIfBelow: 105
+	RevealsShroud:
+		Range: 6c0
+	Selectable:
+		Priority: 2
+	Explodes:
+		Weapon: FrigateExplode
+		EmptyWeapon: FrigateExplode
+	ProximityExternalCondition:
+		Condition: DisablePlanetCapture
+		Range: 2c0
+		ValidStances: Ally, Enemy, Neutral
+	WithColoredOverlay:
+		Palette: disabled
+		RequiresCondition: empdisable
+
+^BaseBuilding:
+	Inherits@4: ^Boardable
+	Inherits@5: ^Cloakable
+	Inherits@6: ^Leachable
+	Inherits: ^Building
+	Building:
+		Adjacent: 4
+		RequiresBaseProvider: true
+		BuildSounds: constru2.aud, hvydoor1.aud
+		TerrainTypes: Clear,Road
+	MustBeDestroyed:
+		RequiredForShortGame: true
+	ProvidesPrerequisite:
+
+^CivBuilding:
+	Inherits: ^Building
+	-ConditionManager:
+	Health:
+		HP: 400
+	Tooltip:
+		GenericName: Civilian Building
+		GenericStancePrefix: false
+		ShowOwnerRow: false
+	FrozenUnderFog:
+
+^CivBuildingHusk:
+	Inherits@1: ^SpriteActor
+	AppearsOnRadar:
+	Building:
+		Dimensions: 1,1
+		Footprint: x
+	WithSpriteBody:
+	Tooltip:
+		GenericName: Civilian Building (Destroyed)
+		GenericStancePrefix: false
+		ShowOwnerRow: false
+	FrozenUnderFog:
+	ScriptTriggers:
+
+^TechBuilding:
+	Inherits: ^CivBuilding
+	Capturable:
+	CaptureNotification:
+		Notification: CivilianBuildingCaptured
+	RepairableBuilding:
+		RepairPercent: 40
+		RepairStep: 14
+		PlayerExperience: 15
+	EngineerRepairable:
+	RevealsShroud:
+		Range: 3c0
+	Tooltip:
+		ShowOwnerRow: True
+
+^CivField:
+	Inherits: ^CivBuilding
+	-Selectable:
+	-SelectionDecorations:
+	Tooltip:
+		GenericName: Field
+	-Targetable:
+	RenderSprites:
+		Palette: terrain
+
+^CivFieldHusk:
+	Inherits@1: ^SpriteActor
+	AppearsOnRadar:
+	Building:
+		Dimensions: 1,1
+		Footprint: _
+	Tooltip:
+		Name: Field (Destroyed)
+		GenericVisibility: None
+		ShowOwnerRow: false
+	RenderSprites:
+		Palette: terrain
+	WithSpriteBody:
+	FrozenUnderFog:
+	ScriptTriggers:
+
+^Wall:
+	Inherits@1: ^SpriteActor
+	CombatDebugOverlay:
+	AppearsOnRadar:
+	Building:
+		Dimensions: 1,1
+		Footprint: x
+		BuildSounds: hvydoor1.aud
+		Adjacent: 7
+		TerrainTypes: Clear,Road
+	Targetable:
+		TargetTypes: Ground, Wall, NoAutoTarget
+	Crushable:
+		CrushClasses: wall
+		CrushSound: sandbag2.aud
+	LineBuild:
+		Range: 8
+		NodeTypes: wall
+	LineBuildNode:
+		Types: wall
+	RenderSprites:
+		Palette: staticterrain
+	WithWallSpriteBody:
+	GivesExperience:
+	Sellable:
+		SellSounds: cashturn.aud
+	Guardable:
+	FrozenUnderFog:
+	ScriptTriggers:
+	Health:
+		HP: 100
+
+^Tree:
+	Inherits@1: ^SpriteActor
+	Tooltip:
+		Name: Tree
+		ShowOwnerRow: false
+	RenderSprites:
+		Palette: staticterrain
+	WithSpriteBody:
+	Building:
+		Footprint: __ x_
+		Dimensions: 2,2
+	AppearsOnRadar:
+	RadarColorFromTerrain:
+		Terrain: Tree
+	Health:
+		HP: 500
+	Armor:
+		Type: Wood
+	Targetable:
+		TargetTypes: Trees, NoAutoTarget
+	WithDamageOverlay@SmallBurn:
+		DamageType: Incendiary
+		Image: burn-s
+		MinimumDamageState: Light
+		MaximumDamageState: Medium
+	WithDamageOverlay@MediumBurn:
+		DamageType: Incendiary
+		Image: burn-m
+		MinimumDamageState: Medium
+		MaximumDamageState: Heavy
+	WithDamageOverlay@LargeBurn:
+		DamageType: Incendiary
+		Image: burn-l
+		MinimumDamageState: Heavy
+		MaximumDamageState: Dead
+	HiddenUnderShroud:
+	ScriptTriggers:
+
+^TreeHusk:
+	Inherits@1: ^SpriteActor
+	AppearsOnRadar:
+	Building:
+		Footprint: __ x_
+		Dimensions: 2,2
+	WithSpriteBody:
+	Tooltip:
+		Name: Tree (Burnt)
+		ShowOwnerRow: false
+	FrozenUnderFog:
+	ScriptTriggers:
+
+^TibTree:
+	Inherits@1: ^SpriteActor
+	Tooltip:
+		Name: Asteroid Field
+		ShowOwnerRow: false
+	RenderSprites:
+		Palette: chrome
+	Targetable@Asteroid:
+		TargetTypes: CometMagnet
+	Health:
+		HP: 1000000
+	WithSpriteBody:
+	Building:
+		Footprint: x
+		Dimensions: 1,1
+	AppearsOnRadar:
+	RadarColorFromTerrain:
+		Terrain: Tiberium
+	Interactable:
+		Bounds 600,600
+	HiddenUnderShroud:
+	WithMakeAnimation:
+	EditorTilesetFilter:
+		Categories: Resources
+
+^Station:
+	Inherits@1: ^ExistsInWorld
+	Inherits@2: ^SpriteActor
+	Immobile:
+		OccupiesSpace: false
+	Huntable:
+	SelectionDecorations:
+	WithSpriteControlGroupDecoration:
+	WithSpriteBody:
+	Selectable:
+		Priority: 3
+	Targetable:
+		TargetTypes: CapitalShip
+	RevealsShroud:
+		Range: 10c0
+		Type: CenterPosition
+	Armor:
+		Type: Mothership
+	SoundOnDamageTransition:
+		DamagedSounds: xplos.aud
+		DestroyedSounds: crumble.aud
+	WithMakeAnimation:
+	CaptureNotification:
+		Notification: BuildingCaptured
+		NewOwnerVoice: no
+	ActorLostNotification:
+		Notification: BuildingLost
+	ShakeOnDeath:
+	Guardable:
+		Range: 3c0
+	Tooltip:
+		GenericName: Structure
+	HiddenUnderFog:
+	ProximityExternalCondition:
+		Condition: DisablePlanetCapture
+		Range: 2c0
+		ValidStances: Ally, Enemy, Neutral
+	EditorTilesetFilter:
+		Categories: Stations
+
+^Nebula:
+	Inherits@1: ^SpriteActor
+	RenderSprites:
+		Palette: staticterrain
+	AppearsOnRadar:
+		UseLocation: True
+	RadarColorFromTerrain:
+		Terrain: BlueTiberium
+	WithSpriteBody:
+	Immobile:
+		OccupiesSpace: false
+	AppearsOnRadar:
+	RadarColorFromTerrain:
+		Terrain: Tree
+	HiddenUnderShroud:
+		AlwaysVisibleStances: Enemy, Neutral, Ally
+	ScriptTriggers:
+	Interactable:
+		Bounds 1920,1440
+
+^NeutralObject:
+	Inherits: ^Nebula
+	ConditionManager:
+	Selectable:
+		Bounds: 150,150
+		Priority: 1
+	Interactable:
+		Bounds 150,150
+	Health:
+		HP: 99999
+	RenderSprites:
+		-Palette: player
+		PlayerPalette: player
+	EditorTilesetFilter:
+		Categories: Space Objects
+
+^Planet:
+	Inherits: ^Nebula
+	RenderSprites:
+		Palette: planetearth
+	Health:
+		HP: 99999999
+	ConditionManager:
+	ExternalCapturable:
+		Type: Planet
+	Targetable:
+		TargetTypes: Planet
+		RequiresCondition: !DisablePlanetCapture
+	ExternalCondition@DisablePlanetCapture:
+		Condition: DisablePlanetCapture
+	-Interactable:
+	EditorTilesetFilter:
+		Categories: Planets
+
+^Rock:
+	Inherits@1: ^SpriteActor
+	Tooltip:
+		Name: Rock
+		ShowOwnerRow: false
+	RenderSprites:
+		Palette: staticterrain
+	WithSpriteBody:
+	Building:
+		Footprint: __ x_
+		Dimensions: 2,2
+	AppearsOnRadar:
+	RadarColorFromTerrain:
+		Terrain: Tree
+	HiddenUnderShroud:
+	ScriptTriggers:
+	EditorTilesetFilter:
+		RequireTilesets: DESERT
+
+^Crate:
+	HiddenUnderFog:
+	Tooltip:
+		Name: Crate
+		GenericName: Crate
+		ShowOwnerRow: false
+	Crate:
+		TerrainTypes: Clear, Rough, Road, Tiberium, BlueTiberium, Beach
+	RenderSprites:
+
+^Defense:
+	Inherits: ^BaseBuilding
+	AutoTarget:
+	RenderRangeCircle:
+	RenderDetectionCircle:
+	MustBeDestroyed:
+		RequiredForShortGame: false

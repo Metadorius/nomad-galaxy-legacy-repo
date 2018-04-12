@@ -1,0 +1,35 @@
+gfrig1h:
+	Inherits: ^shipdefault
+
+gfrig2h:
+	Inherits: ^shipdefault
+
+gfrig3h:
+	Inherits: ^shipdefault
+
+gsurveyfrigateh:
+	Inherits: ^shipdefault
+
+gbc1h:
+	Inherits: ^shipdefault
+
+gpatrolcruiserh:
+	Inherits: ^shipdefault
+
+ghabitatshiph:
+	Inherits: ^shipdefault
+
+gfrigateassemblybayh:
+	Inherits: ^shipdefault
+
+gcarrier4h:
+	Inherits: ^shipdefault
+
+gengineerh:
+	Inherits: ^shipdefault
+
+gresearchshiph:
+	Inherits: ^shipdefault
+
+grefineryh:
+	Inherits: ^shipdefault

@@ -1,0 +1,633 @@
+CometSummon:
+	Inherits: FieldDefenceLaserSpawnMothership
+	ReloadDelay: 250
+	Warhead@op: FireShrapnel
+		Weapon: CommetDummyBullet
+		Amount: 1
+		AimChance: 10
+		AllowDirectHit: True
+		AffectsParent: True
+		ThrowWithoutTarget: True
+		ValidStances: Enemy, Neutral, Ally
+		ValidTargets: CapitalShip, Frigate, Corvette, Fighter, Ground, Air, Airhit
+
+CometSummon2:
+	Inherits: CometSummon
+	ReloadDelay: 75
+	Warhead@op: FireShrapnel
+		Weapon: CommetDummyBullet2
+
+CometSummon3:
+	Inherits: CometSummon
+	ReloadDelay: 90
+	Warhead@op: FireShrapnel
+		AimChance: 0
+		Weapon: CometProjectile3
+
+CommetDummyBullet:
+	Inherits: ^Flak
+	ReloadDelay: 90
+	MinRange: 3c0
+	Range: 8c0
+	Projectile: Bullet
+		-Image:
+	Warhead@1Dam: SpreadDamage
+		Damage: 1
+	-Warhead@SlowFighter: GrantExternalCondition
+	-Warhead@2Eff: CreateEffect
+	Warhead@op: FireShrapnel
+		Weapon: CometProjectile
+		Amount: 1
+		ValidTargets: CometMagnet, CapitalShip, Frigate, Corvette, Fighter, Ground, Air, Airhit
+
+CommetDummyBullet2:
+	Inherits: CommetDummyBullet
+	Warhead@op: FireShrapnel
+		Weapon: CometProjectile2
+		Amount: 2
+
+CometProjectile:
+	ReloadDelay: 200
+	Range: 7c0
+	Projectile: Missile
+		Image: COMET
+		Speed: 35
+		Blockable: True
+		Palette: apolcybl
+	Warhead@1Dam: SpreadDamage
+		Spread: 512
+		Damage: 15000
+		AffectsParent: True
+		InvalidTargets: Mine
+		Versus:
+			Fighter: 100
+			Corvette: 150
+			Frigate: 75
+			CapitalShip: 50
+			Mothership: 50
+		ValidTargets: CometMagnet, CapitalShip, Frigate, Corvette, Fighter, Ground, Air, Airhit
+		DamageTypes: Prone50Percent, TriggerProne, ExplosionDeath
+	Warhead@3Eff: CreateEffect
+		Explosions: meteorexplo
+		ExplosionPalette: apolcybl
+	Warhead@4Ore: CreateResource
+		AddsResourceType: Tiberium
+		Size: 0,0
+		ValidTargets: Ground
+		InvalidTargets: DeployedShip, CapitalShip, Frigate, Corvette, Fighter
+		Delay: 10
+
+CometProjectile2:
+	Inherits: CometProjectile
+	Range: 60c0
+	MinRange: 20c0
+	Projectile: Missile
+		Image: COMET2
+		Palette: temperatra
+	-Warhead@4Ore: CreateResource
+	Warhead@3Eff: CreateEffect
+		Explosions: meteorexplo
+		ExplosionPalette: apolgrey
+
+CometProjectile3:
+	Inherits: CometProjectile2
+	ValidTargets: Ground
+	Minrange: 30c0
+	Range: 90c0
+	Projectile: Missile
+		Image: COMET
+		Speed: 20
+		Palette: apolgrey
+
+AFCommetSummon:
+	Inherits: CometSummon
+	ReloadDelay: 150
+	Warhead@op: FireShrapnel
+		Weapon: AFCommetDummy
+
+AFCommetDummy:
+	Inherits: CommetDummyBullet
+	ReloadDelay: 90
+	MinRange: 1c0
+	Range: 3c0
+	Warhead@op: FireShrapnel
+		Weapon: AFProjectile
+		InvalidTargets: Corvette, Frigate, Fighter
+
+AFProjectile:
+	Inherits: CometProjectile2
+	ReloadDelay: 200
+	-MinRange: 1c0
+	Range: 6c0
+	Projectile: Missile
+		Speed: 15
+		Blockable: True
+	Warhead@1Dam: SpreadDamage
+		Spread: 100
+		Damage: 80000
+			Fighter: 200
+			Corvette: 100
+			Frigate: 75
+			CapitalShip: 50
+			Mothership: 50
+
+AsteroidOreSpawn:
+	Inherits: CometProjectile
+	Projectile: InstantExplode
+	Warhead@4Ore: CreateResource
+		AddsResourceType: Tiberium
+		Size: 1,0
+
+DebrisHuge:
+	Inherits: CometProjectile
+	Range: 6c0
+	Minrange: 1c0
+	Projectile: Bullet
+		Blockable: False
+		Image: debrishuge
+		Speed: 15
+		Palette: temperatra
+	-Warhead@4Ore: CreateResource
+	Warhead@1Dam: SpreadDamage
+		Damage: 200000
+		Spread: 256
+	-Warhead@3Eff: CreateEffect
+	Warhead@2Eff: CreateEffect
+		Explosions: jtwlt050b, jtwlt050, jstumu42b, jstumu30b, jsbang48, jexplomed
+		ExplosionPalette: gensmkexploj
+
+DebrisBig:
+	Inherits: DebrisHuge
+	Projectile: Bullet
+		Image: debrisbig
+		Speed: 30
+	Warhead@1Dam: SpreadDamage
+		Damage: 100000
+		Spread: 128
+
+DebrisMedium1:
+	Inherits: DebrisHuge
+	Range: 4c0
+	Projectile: Bullet
+		Image: debrismedium1
+		Speed: 50
+	Warhead@1Dam: SpreadDamage
+		Damage: 50000
+		Spread: 64
+	Warhead@2Eff: CreateEffect
+		Explosions: jsbang24b, jsbrnl20, jsbrnl30b, jsbang16, jexplosml
+		ExplosionPalette: gensmkexploj
+
+DebrisMedium2:
+	Inherits: DebrisMedium1
+	Range: 4c0
+	Projectile: Bullet
+		Image: debrismedium2
+	Warhead@1Dam: SpreadDamage
+		Damage: 50000
+
+DebrisSmall1:
+	Inherits: DebrisHuge
+	Range: 3c0
+	Projectile: Bullet
+		Image: debrissmall1
+		Speed: 70
+	Warhead@1Dam: SpreadDamage
+		Damage: 20000
+		Spread: 32
+	Warhead@2Eff: CreateEffect
+		Explosions: poof
+		ImpactSounds: xplobig6.wav
+
+DebrisSmall2:
+	Inherits: DebrisSmall1
+	Projectile: Bullet
+		Image: debrissmall2
+
+DebrisSmall3:
+	Inherits: DebrisSmall1
+	Projectile: Bullet
+		Image: debrissmall3
+
+FlashProjSummon:
+	Inherits: FieldDefenceLaserSpawnMothership
+	ReloadDelay: 150
+	Warhead@op: FireShrapnel
+		Weapon: FlashProjDummyBullet
+		Amount: 1
+		AimChance: 10
+		AllowDirectHit: True
+		AffectsParent: True
+		ThrowWithoutTarget: True
+		ValidStances: Enemy, Neutral, Ally
+		ValidTargets: CapitalShip, Frigate, Corvette, Fighter, Ground, Air, Airhit
+
+FlashProjDummyBullet:
+	Inherits: ^Flak
+	ReloadDelay: 20
+	MinRange: 75c0
+	Range: 100c0
+	Projectile: Bullet
+		-Image:
+		Speed: 200
+		ContrailLength: 25
+		ContrailColor: 000080
+		ContrailDelay: 15
+		ContrailWidth: 15
+	Warhead@1Dam: SpreadDamage
+		Damage: 1
+	-Warhead@SlowFighter: GrantExternalCondition
+	-Warhead@2Eff: CreateEffect
+
+PlanetCaptureAlien:
+	ReloadDelay: 2000
+	Range: 2c0
+	Projectile: Bullet
+		Speed: 999
+		Blockable: False
+		Palette: temperatra
+	ValidTargets: Planet
+	Warhead@1Dam: SpreadDamage
+		Damage: 1
+		ValidTargets: Planet
+	Warhead@5Actor: SpawnActor
+		Actors: ALIENSTATIONSPAWNERDUMMY
+		FallRate: 5000
+		Range: 3
+		ValidTargets: Planet
+
+LogisticShipKiller:
+	Inherits: PlanetCaptureAlien
+	ReloadDelay: 2000
+	Range: 2c0
+	Projectile: InstantExplode
+	ValidTargets: Planet
+	Warhead@1Dam: SpreadDamage
+		Damage: 1
+		ValidTargets: Planet, Ground, Air, Airhit
+	-Warhead@5Actor: SpawnActor
+	Warhead@asdf: GrantExternalCondition
+		Range: 200
+		Duration: 100
+		Condition: LogisticShipKill
+		ValidStances: Ally
+		ValidTargets: LogisticShip, Ground, Air, Airhit
+		AffectsParent: True
+
+SpawnCrystal:
+	Inherits: PlanetCaptureAlien
+	Projectile: InstantExplode
+	Warhead@1Dam: SpreadDamage
+		Damage: 1
+		ValidTargets: Planet
+	Warhead@5Actor: SpawnActor
+		Actors: CRYSTALSPAWNDUMMY
+		FallRate: 5000
+		Range: 3
+		ValidTargets: Ground, Infantry, Air, Vehicle, Building, Wall, Planet
+
+SpawnCargoFreighter:
+	Inherits: PlanetCaptureAlien
+	Projectile: InstantExplode
+	Warhead@1Dam: SpreadDamage
+		Damage: 1
+		ValidTargets: Planet
+	Warhead@5Actor: SpawnActor
+		Actors: GCARGOFRIG
+		FallRate: 5000
+		Range: 3
+		ValidTargets: Ground, Infantry, Air, Vehicle, Building, Wall, Planet
+	Warhead@2Eff: CreateEffect
+		Explosions: subspaceanim3
+		ExplosionPalette: darkbluepal
+
+SolarWaveSpawner:
+	ReloadDelay: 600
+	Range: 7c0
+	ValidTargets: CapitalShip, Frigate, Corvette, Fighter, Ground, Air, Airhit
+	Projectile: InstantExplode
+	Warhead@1Dam: SpreadDamage
+		Spread: 1
+		Damage: -1
+	Warhead@op: FireShrapnel
+		Weapon: SolarWave
+		Amount: 300
+		AllowDirectHit: true
+		ValidTargets: CapitalShip, Frigate, Corvette, Fighter, Ground, Air, Airhit
+
+SolarWave:
+	ValidTargets: Ground, Trees
+	ReloadDelay: 55
+	Range: 10c0
+	InvalidTargets: Wall
+	Projectile: Bullet
+		Speed: 400
+		Image: solarwave
+		Blockable: True
+		Palette: temperatra
+	Warhead@1Dam: SpreadDamage
+		Spread: 341
+		Damage: 100
+		Versus:
+		DamageTypes: Prone50Percent, TriggerProne, FireDeath, Incendiary
+	Warhead@EMP: GrantExternalCondition
+		Range: 450
+		Duration: 100
+		Condition: empdisable
+		ValidStances: Ally, Enemy, Neutral
+		ValidTargets: CapitalShip, Frigate, Corvette, Fighter, Ground, Air, Airhit
+		AffectsParent: True
+
+CrystalHarvest:
+	ReloadDelay: 50
+	Range: 4c0
+	ValidTargets: Crystal
+	Projectile: LaserZap
+		Color: 990099
+	Warhead@1Dam: SpreadDamage
+		Damage: 50000
+		ValidTargets: Crystal
+		DamageTypes: CrystalHarvest
+
+CrystalBounty:
+	Inherits: ^Torpedo
+	ReloadDelay: 100
+	Range: 4c0
+	ValidTargets: Crystal
+	Projectile: InstantExplode
+	Warhead@1Dam: SpreadDamage
+		Damage: 1
+		ValidTargets: Crystal
+	Warhead@5Actor: SpawnActor
+		Actors: CRYSTALBOUNTY
+		FallRate: 5000
+		Range: 3
+		ValidTargets: Ground, Infantry, Air, Vehicle, Building, Wall, Planet
+
+SpawnCrate:
+	Inherits: PlanetCaptureAlien
+	Projectile: InstantExplode
+	Warhead@1Dam: SpreadDamage
+		Damage: 1
+		ValidTargets: Planet
+	Warhead@5Actor: SpawnActor
+		Actors: CRATESPAWNDUMMY
+		FallRate: 5000
+		Range: 3
+		ValidTargets: Ground, Infantry, Air, Vehicle, Building, Wall, Planet
+
+CrateHarvest:
+	ReloadDelay: 50
+	Range: 4c0
+	ValidTargets: Crate
+	Projectile: LaserZap
+		Color: 990099
+	Warhead@1Dam: SpreadDamage
+		Damage: 1
+		ValidTargets: Crate
+	Warhead@CrystalHarvest: GrantExternalCondition
+		Range: 350
+		Duration: 350
+		Condition: CrateHarvest
+		ValidTargets: Crate
+		AffectsParent: False
+		ValidStances: Ally
+
+CrateBounty:
+	Inherits: ^Torpedo
+	ReloadDelay: 100
+	Range: 4c0
+	ValidTargets: Crate
+	Projectile: InstantExplode
+	Warhead@1Dam: SpreadDamage
+		Damage: 1
+		ValidTargets: Crate
+	Warhead@5Actor: SpawnActor
+		Actors: CRATEBOUNTY
+		FallRate: 5000
+		Range: 3
+		ValidTargets: Ground, Infantry, Air, Vehicle, Building, Wall, Planet
+
+Nothing:
+	ValidTargets: Ground
+
+GreenNebulaExploSpawner:
+	Inherits: FieldDefenceLaserSpawnMothership
+	ReloadDelay: 20
+	Warhead@op: FireShrapnel
+		Weapon: GreenNebulaExplo
+		ValidStances: Ally, Neutral, Enemy
+		ValidTargets: Ground
+		AimChance: 5
+		AllowDirectHit: true
+		ThrowWithoutTarget: true
+
+GreenNebulaExplo:
+	Inherits: FrigateGasBullet
+	ValidTargets: Ground
+	Projectile: InstantHit
+	Warhead@1Dam: SpreadDamage
+		Damage: 1000
+		ValidStances: Neutral, Enemy
+		ValidTargets: Ground
+
+BlueNebulaTeslaSpawner:
+	Inherits: FieldDefenceLaserSpawnMothership
+	ReloadDelay: 60
+	Warhead@op: FireShrapnel
+		Weapon: BlueNebulaTesla
+		ValidStances: Neutral, Enemy
+		AimChance: 10
+		AllowDirectHit: true
+		ThrowWithoutTarget: true
+	Warhead@1Dam: SpreadDamage
+		Damage: 40000
+		ValidStances: Neutral, Enemy
+	Warhead@EMP: GrantExternalCondition
+		Range: 400
+		Duration: 25
+		Condition: empdisable
+		ValidStances: Ally, Enemy, Neutral
+		ValidTargets: CapitalShip, Frigate, Corvette, Fighter, Ground, Air, Airhit
+		AffectsParent: True
+
+BlueNebulaTesla:
+	Inherits: LancerTesla
+	-Report:
+	ReloadDelay: 30
+	Range: 3c0
+	Projectile: TeslaZap
+		Image: litning
+		Duration: 5
+	Warhead@1Dam: SpreadDamage
+		Damage: 40000
+		ValidStances: Neutral, Enemy
+	Warhead@EMP: GrantExternalCondition
+		Range: 400
+		Duration: 25
+		Condition: empdisable
+		ValidStances: Ally, Enemy, Neutral
+		ValidTargets: CapitalShip, Frigate, Corvette, Fighter, Ground, Air, Airhit
+		AffectsParent: True
+	-Warhead@SlowFighter: GrantExternalCondition
+	-Warhead@op: FireShrapnel
+
+Flamethrower:
+	ValidTargets: Ground, Trees
+	ReloadDelay: 55
+	Range: 2c512
+	InvalidTargets: Wall
+	Report: flamer2.aud
+	Projectile: Bullet
+		Speed: 1c682
+	Warhead@1Dam: SpreadDamage
+		Spread: 341
+		Damage: 40
+		ValidTargets: Ground, Trees
+		InvalidTargets: Wall
+		Versus:
+			None: 100
+			Wood: 100
+			Light: 100
+			Heavy: 20
+		DamageTypes: Prone50Percent, TriggerProne, FireDeath, Incendiary
+	Warhead@2Smu: LeaveSmudge
+		SmudgeType: Scorch
+		InvalidTargets: Vehicle, Structure, Wall
+	Warhead@3Eff: CreateEffect
+		Explosions: small_napalm
+		ImpactSounds: flamer2.aud
+
+BigFlamer:
+	ValidTargets: Ground, Trees
+	ReloadDelay: 50
+	Range: 3c512
+	InvalidTargets: Wall
+	Report: flamer2.aud
+	Projectile: Bullet
+		Speed: 341
+	Burst: 2
+	BurstDelay: 25
+	Warhead@1Dam: SpreadDamage
+		Spread: 400
+		Damage: 75
+		InvalidTargets: Wall
+		ValidTargets: Ground, Trees
+		Versus:
+			None: 100
+			Wood: 100
+			Light: 100
+			Heavy: 25
+		DamageTypes: Prone50Percent, TriggerProne, FireDeath, Incendiary
+	Warhead@2Smu: LeaveSmudge
+		SmudgeType: Scorch
+		InvalidTargets: Vehicle, Structure, Wall
+	Warhead@3Eff: CreateEffect
+		Explosions: med_napalm
+		ImpactSounds: flamer2.aud
+
+Chemspray:
+	ReloadDelay: 65
+	Range: 3c0
+	Report: flamer2.aud
+	Projectile: Bullet
+		Speed: 1c682
+	Warhead@1Dam: SpreadDamage
+		Spread: 256
+		Damage: 80
+		Versus:
+			None: 100
+			Wood: 35
+			Light: 75
+			Heavy: 50
+		DamageTypes: Prone50Percent, TriggerProne, TiberiumDeath
+	Warhead@2Smu: LeaveSmudge
+		SmudgeType: Scorch
+		InvalidTargets: Vehicle, Structure, Wall, Husk, Trees, Creep
+	Warhead@3Eff: CreateEffect
+		Explosions: chemball
+		ImpactSounds: xplos.aud
+
+Grenade:
+	ReloadDelay: 50
+	Range: 4c0
+	Report: toss1.aud
+	Projectile: Bullet
+		Speed: 140
+		Blockable: false
+		Angle: 62
+		Inaccuracy: 213
+		Image: BOMB
+	Warhead@1Dam: SpreadDamage
+		Spread: 341
+		Damage: 50
+		Versus:
+			None: 100
+			Wood: 50
+			Light: 80
+			Heavy: 35
+		DamageTypes: Prone50Percent, TriggerProne, SmallExplosionDeath
+	Warhead@2Smu: LeaveSmudge
+		SmudgeType: Crater
+		InvalidTargets: Vehicle, Structure, Wall, Husk, Trees, Creep
+	Warhead@3Eff: CreateEffect
+		Explosions: small_poof
+		ImpactSounds: xplos.aud
+
+Napalm:
+	ValidTargets: Ground, Water, Trees
+	ReloadDelay: 4
+	Range: 2c0
+	Burst: 2
+	BurstDelay: 2
+	Projectile: GravityBomb
+		Image: BOMBLET
+	Warhead@1Dam: SpreadDamage
+		Spread: 341
+		Damage: 30
+		Falloff: 1000, 368, 135, 50, 18, 7, 0
+		ValidTargets: Ground, Water, Trees
+		Versus:
+			None: 100
+			Wood: 100
+			Light: 100
+			Heavy: 80
+		DamageTypes: Prone50Percent, TriggerProne, FireDeath, Incendiary
+	Warhead@2Smu: LeaveSmudge
+		SmudgeType: Scorch
+		InvalidTargets: Vehicle, Structure, Wall
+	Warhead@3Eff: CreateEffect
+		Explosions: med_napalm
+		ImpactSounds: flamer2.aud
+
+Laser:
+	ReloadDelay: 1
+	Range: 7c512
+	Report: obelray1.aud
+	Projectile: LaserZap
+		Width: 85
+		HitAnim: laserfire
+		ZOffset: 2047
+	Warhead@1Dam: SpreadDamage
+		Spread: 42
+		Damage: 360
+		Versus:
+			Wood: 50
+		DamageTypes: Prone50Percent, TriggerProne, FireDeath
+	Warhead@2Smu: LeaveSmudge
+		SmudgeType: Scorch
+		InvalidTargets: Vehicle, Structure, Wall, Husk, Trees, Creep
+
+PDLaser:
+	ReloadDelay: 75
+	Range: 6c0
+	Report: vpalwe2d.aud
+	Projectile: LaserZap
+		Width: 20
+		ZOffset: 2047
+		Color: FFFFFF
+	Warhead@1Dam: SpreadDamage
+		Spread: 10
+		Damage: 1
+		Versus:
+		DamageTypes: Prone50Percent, TriggerProne, FireDeath

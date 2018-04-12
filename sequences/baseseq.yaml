@@ -1,0 +1,138 @@
+mothership:
+	defaults:
+		Offset: 0,15
+		ZOffset: -400
+	stand
+		Length: 31
+		Facings: 1
+	idle:
+		Length: 31
+		Facings: 1
+	run:
+		Length: 31
+		Facings: 1
+
+mothershipmini:
+	Inherits: mothership
+
+dreadnaught:
+	Inherits: ^shipdefault
+	icon: dreadnaughticon
+
+battlecruiser:
+	Inherits: ^shipdefault
+	icon: battlecruisericon
+
+carrier:
+	Inherits: ^shipdefault
+	icon: carriericon
+
+shipyard:
+	Inherits: ^shipdefault
+	icon: carriericon
+
+ammunitionship:
+	Inherits: ^shipdefault
+	icon: carriericon
+
+carrier3:
+	Inherits: ^shipdefault
+	icon: carriericon
+
+carrier4:
+	Inherits: ^shipdefault
+	icon: carriericon
+
+stationt1:
+	defaults:
+		Offset: 0,15
+	idle:
+		Tick: 75
+		Length: *
+	make: stationmorph
+		Length: *
+
+stationt2:
+	Inherits: stationt1
+
+stationt3:
+	Inherits: stationt1	
+	idle:
+		Length: 64
+
+assaultfrigate:
+	Inherits: ^shipdefault
+	icon: assaultfrigateicon
+
+sensorarrayship:
+	Inherits: ^shipdefault
+	icon: assaultfrigateicon
+
+ionfrigate:
+	Inherits: ^shipdefault
+	icon: ionfrigateicon
+
+repairfrigate:
+	Inherits: ^shipdefault
+	icon: repairfrigateicon
+
+researchfrigate:
+	Inherits: ^shipdefault
+	icon: researchfrigateicon
+
+corvette:
+	Inherits: ^shipdefault
+	icon: corvetteicon
+	turret-top: tentacletorpedotop
+		Facings: 16
+		Stride: 18
+	turret-top-aim: tentacletorpedotop
+		Facings: 16
+		Length: 18
+	turret-left: tentacletorpedoleft
+		Facings: 16
+		Stride: 18
+	turret-left-aim: tentacletorpedoleft
+		Facings: 16
+		Length: 18
+	turret-right: tentacletorpedoright
+		Facings: 16
+		Stride: 18
+	turret-right-aim: tentacletorpedoright
+		Facings: 16
+		Length: 18
+	turret-bot: tentacletorpedobot
+		Facings: 16
+		Stride: 18
+		ZOffset: -256
+	turret-bot-aim: tentacletorpedobot
+		Facings: 16
+		Length: 18
+		ZOffset: -256
+
+corvette2:
+	Inherits: ^shipdefault
+	icon: corvette2icon
+
+miner:
+	Inherits: ^shipdefault
+	icon: minericon
+
+bomber:
+	Inherits: ^shipdefault
+	Inherits@2: ^fighterdefault
+	icon: bombericon
+
+piranha:
+	Inherits: ^shipdefault
+	Inherits@2: ^fighterdefault
+	icon: piranhaicon
+
+fighter:
+	Inherits: ^shipdefault
+	Inherits@2: ^fighterdefault
+	icon: fightericon
+
+stationfighter:
+	Inherits: ^shipdefault
+	Inherits@2: ^fighterdefault

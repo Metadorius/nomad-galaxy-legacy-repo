@@ -1,0 +1,175 @@
+AlienFrigateCannon:
+	Inherits: HeavyCannon
+	ReloadDelay: 50
+	Range: 5c0
+	Projectile: Bullet
+		Image: SPINEPROJECTILE
+	Warhead@1Dam: SpreadDamage
+		Damage: 25000
+	Warhead@3Eff: CreateEffect
+
+BomberAcid:
+	Inherits: BomberPlasma
+	ReloadDelay: 100
+	Projectile: Missile
+		Image: babaproj
+		Palette: tsanim
+	Warhead@2Eff: CreateEffect
+		Explosions: babaexplo1, babaexplo2, babaexplo3, babaexplo4
+		ImpactSound: expnew12.aud
+		ExplosionPalette: tsanim
+
+PiranhaBite:
+	Inherits: BomberPlasma
+	ReloadDelay: 30
+	Range: 500
+	Burst: 1
+	Warhead@1Dam: SpreadDamage
+		Damage: 5000
+		ValidTargets: CapitalShip, Frigate, Corvette, Ground
+	-Warhead@2Eff: CreateEffect
+	ValidTargets: CapitalShip, Frigate, Corvette, Ground
+
+CorvetteNeedle:
+	Inherits: ^Torpedo
+	ReloadDelay: 40
+	Range: 4c0
+	Report: projectile1.wav, projectile2.wav, projectile3.wav
+	Projectile: Missile
+		Inaccuracy: 0c256
+		Image: spineprojectile2
+		-TrailImage:
+		Palette: chrome
+		RangeLimit: 7c204
+	Warhead@1Dam: SpreadDamage
+		Damage: 14000
+	-Warhead@3Eff: CreateEffect
+
+AdrenalineShot:
+	ReloadDelay: 150
+	Range: 6c0
+	Projectile: InstantExplode
+	Warhead@1Dam: SpreadDamage
+		Damage: 1
+	Warhead@AdrenalineBuff: GrantExternalCondition
+		Range: 300
+		Duration: 300
+		Condition: AdrenalineBuff
+		AffectsParent: True
+		ValidStances: Ally
+	Warhead@2Eff: CreateEffect
+		Explosions: gadrenbuff
+		ExplosionPalette: terrain
+
+GPlatformBullet:
+	Inherits: CorvetteBullet
+	Range: 5c0
+
+GPlatformNeedle:
+	Inherits: CorvetteNeedle
+	Burst: 6
+	Range: 5c0
+	Projectile: Missile
+		HorizontalRateOfTurn: 5
+	Warhead@1Dam: SpreadDamage
+		Damage: 5000
+
+GPlatformCannon:
+	Inherits: CorvetteCannon
+	Range: 5c0
+
+FrigateGasBullet:
+	Inherits: ^Flak
+	ReloadDelay: 35
+	Range: 4c0
+	Projectile: Bullet
+		Speed: 700
+		Image: gacid
+		Palette: apolgren
+		TrailInterval: 3
+	ValidTargets: Fighter, Ground
+	InvalidTargets: Corvette, Frigate
+	Warhead@1Dam: SpreadDamage
+		Spread: 600
+		Damage: 4500
+		Versus:
+			Corvette: 25
+		ValidTargets: Fighter, Ground
+		InvalidTargets: Corvette, Frigate
+		ValidStances: Neutral, Enemy
+	Warhead@2Eff: CreateEffect
+		Explosions: ggas, ggas2
+		ImpactSound: expnew12.aud
+		ExplosionPalette: apolgrenalpha
+	-Warhead@SlowFighter: GrantExternalCondition
+
+FrigateGasBullet2:
+	Inherits: FrigateGasBullet
+	ValidTargets: Fighter
+	Warhead@1Dam: SpreadDamage
+		ValidTargets: Fighter
+
+GKorGasBulletSpawner:
+	Inherits: FieldDefenceLaserSpawnMothership
+	ReloadDelay: 35
+	Warhead@op: FireShrapnel
+		Weapon: FrigateGasBullet2
+
+RendingClaws:
+	Inherits: HeavyCannon
+	-Report:
+	ReloadDelay: 25
+	Range: 600
+	Projectile: InstantHit
+	Warhead@1Dam: SpreadDamage
+		Damage: 14000
+		ValidStances: Enemy
+	-Warhead@3Eff: CreateEffect
+	Warhead@RendingClaws: GrantExternalCondition
+		Range: 300
+		Duration: 40
+		Condition: RendingClaws
+		ValidStances: Enemy
+
+MeleeFrigAnim:
+	Inherits: RendingClaws
+	ReloadDelay: 25
+	Range: 300
+	Projectile: InstantExplode
+	Warhead@1Dam: SpreadDamage
+		Damage: 1
+	Warhead@Animation: GrantExternalCondition
+		Range: 60
+		Duration: 30
+		Condition: MeleeAnim
+		AffectsParent: True
+		ValidStances: Ally
+
+AlienArtillery:
+	Inherits: HeavyCannon
+	ReloadDelay: 200
+	Range: 10c0
+	MinRange: 4c0
+	ValidTargets: CapitalShip, Frigate, Corvette, Ground, Air, Airhit
+	Projectile: Bullet
+		Image: SPINESPHERE
+		Speed: 125
+	Warhead@1Dam: SpreadDamage
+		Damage: 70000
+		Spread: 200
+		Versus:
+			Station: 150
+
+GkorArtyNeedle:
+	Inherits: CorvetteNeedle
+	Range: 6c0
+	Projectile: Missile
+		-Inaccuracy: 0c512
+		Damage: 7000
+		Blockable: True
+
+ChaseMothership:
+	Inherits: ChaseWeapon
+	ValidTargets: CargoFreighterMagnet
+	Warhead@1Dam: SpreadDamage
+		ValidTargets: CargoFreighterMagnet

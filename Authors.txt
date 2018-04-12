@@ -1,0 +1,10 @@
+Nolt		: Terrain, units, the mod itself and cameos.
+xanax		: UI recolor.
+Graion Dilach	: All the custom code necessary to get this project started.
+Apollo		: Explosions sets, custom palettes and nebula backgrounds.
+Hiskus		: As far as I know he is the creator of a texture I use on almost all the G'kor ships.
+HG_SCIPCION	: G'kor siege frigate concept, which was later iterated to create most of the G'kor frigates.
+4XS		: Concepts. http://4-x-s.deviantart.com/
+Comrade Crimson	: Gkor Advisor voice.
+AoAGeneral	: Tester.
+boolbada	: Aircraft Carrier & Slave Miner code code.

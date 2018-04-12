@@ -1,0 +1,127 @@
+RailgunCorvetteRail:
+	Inherits: HeavyCannon
+	ReloadDelay: 125
+	Range: 6c0
+	InvalidTargets: Fighter
+	Projectile: Railgun
+		BeamWidth: 30
+	Warhead@1Dam: SpreadDamage
+		Damage: 25000
+
+TCorvFlak:
+	Inherits: ^Flak
+	ReloadDelay: 35
+	Range: 4c0
+	Projectile: Bullet
+		Speed: 2000
+		Image: gacid
+		Palette: apolgreyalpha
+		TrailInterval: 3
+	ValidTargets: Fighter, Ground, Corvette
+	InvalidTargets: Frigate
+	Warhead@1Dam: SpreadDamage
+		Spread: 300
+		Damage: 45000
+		Versus:
+			Corvette: 35
+		ValidTargets: Fighter, Corvette, Ground
+		InvalidTargets: Frigate
+		ValidStances: Neutral, Enemy
+	Warhead@2Eff: CreateEffect
+		Explosions: tgas, tgas2
+		ImpactSound: expnew12.aud
+		ExplosionPalette: apolgreyalpha
+	-Warhead@SlowFighter: GrantExternalCondition
+
+CorvetteRocket:
+	Inherits: ^Torpedo
+	ReloadDelay: 50
+	Range: 4c0
+	Burst: 1
+	BurstDelay: 10
+	Report: bazook1.aud
+	Projectile: Missile
+		Inaccuracy: 0c256
+		LaunchAngle: 90
+		CruiseAltitude: 512
+	Warhead@1Dam: SpreadDamage
+		Damage: 4500
+	Warhead@3Eff: CreateEffect
+
+TLancerLaser:
+	Inherits: ^Torpedo
+	ReloadDelay: 75
+	Report: rlaser1.wav, rlaser2.wav, rlaser3.wav
+	Range: 4c0
+	ValidTargets: CapitalShip, Frigate, Corvette, Ground
+	Projectile: LaserZap
+		Width: 25
+		BeamDuration: 2
+		Color: 0dc7b8
+	Warhead@1Dam: SpreadDamage
+		Spread: 32
+		Damage: 10000
+		ValidTargets: CapitalShip, Frigate, Corvette, Ground
+		ValidStances: Enemy, Neutral
+	-Warhead@3Eff: CreateEffect
+
+TFrigAutoCannon:
+	Inherits: BasicAutocannon
+	Burst: 2
+	BurstDelay: 6
+	ReloadDelay: 50
+	Range: 6c0
+	Warhead@1Dam: SpreadDamage
+		Damage: 10000
+	Warhead@2Eff: CreateEffect
+		Explosions: piff
+
+TFrigCannon:
+	Inherits: HeavyCannon
+	ReloadDelay: 50
+	Burst: 3
+	BurstDelay: 6
+	Range: 6c0
+	Projectile: Bullet
+		Image: SHELLMINI
+		Inaccuracy: 0c256
+	Warhead@1Dam: SpreadDamage
+		Damage: 6000
+	Warhead@3Eff: CreateEffect
+
+TFrigCannonLong:
+	Inherits: TFrigCannon
+	Range: 8c0
+
+NuclearBattleryRocket:
+	Inherits: CorvetteRocket
+	Burst: 5
+	Range: 6c0
+	Projectile: Missile
+		HorizontalRateOfTurn: 5
+		Inaccuracy: 0c512
+	Warhead@1Dam: SpreadDamage
+		Damage: 25000
+
+TorpedoExplode:
+	Warhead@1Dam: SpreadDamage
+		Spread: 512
+		Damage: 200000
+	Warhead@5: FireShrapnel
+		Weapon: DebrisMedium2
+		Amount: 4
+		AimChance: 0
+		AllowDirectHit: False
+		ThrowWithoutTarget: True
+		ValidTargets: CapitalShip, Frigate, Corvette, Ground, Air, Airhit
+	Warhead@2Eff: CreateEffect
+		Explosions: jtwlt100, jtwlt100b, jtwlt070, jtwlt070b, jsclsn58, jexplolrg
+		ExplosionPalette: gensmkexploj
+		ValidTargets: CapitalShip, Frigate, Corvette, Ground, Air, Airhit
+	Warhead@SlowFighter: GrantExternalCondition
+		Range: 450
+		Duration: 250
+		Condition: EmpDisable
+		ValidTargets: CapitalShip, Frigate, Corvette, Ground, Air, Airhit
+		AffectsParent: True
+		ValidStances: Ally, Enemy, Neutral

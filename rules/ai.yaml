@@ -1,0 +1,79 @@
+Player:
+	HackyAI@Beast:
+		Name: Beast
+		Type: Beast
+		MinimumExcessPower: 60
+		BuildingCommonNames:
+			ConstructionYard: gmothership
+			Refinery: gmothership
+			Power: gmothership
+			Barracks: gmothership
+			VehiclesFactory: gmothership, research.dummy, merc.dummy
+			Production: gmothership, research.dummy, merc.dummy
+			Silo: silo
+		UnitsCommonNames:
+			ExcludeFromSquads: gmothership, grefinery, gminer, ghabitatship, tmothership, tref, tminer, thab
+		BuildingQueues: Aircraft, Vehicle, MercContract, Research
+		UnitQueues: TCorvette, GCorvette, TFrigate, GFrigate, TUtility, GUtility, Infantry, Building, Vehicle, MercContract
+		CheckCaptureTargetsForVisibility: false
+		MaximumCaptureTargetOptions: 15
+		BuildingLimits:
+		BuildingFractions:
+			research.corvette.drive: 1%
+			research.frigate.drive: 1%
+			research.enhanced.cannons: 1%
+			research.rending.claws: 1%
+			research.Improved.detection.systems: 1%
+			research.long.range.targeting.systems: 1%
+			research.logistic.systems: 1%
+			research.fighter.bays: 1%
+			research.plasma.bombs: 1%
+			research.platform.construction: 1%
+		UnitsToBuild:
+			gcorv1: 10%
+			gcorv2: 5%
+			gfrig1: 20%
+			gfrig2: 20%
+			gfrig3: 5%
+			gsurveyfrigate: 20%
+			gfightercarrier: 2%
+			gbombercarrier: 10%
+			grefinery: 100%
+			gpatrolcruiser: 5%
+			ghabitatship: 20%
+			gfrigateassemblybay: 5%
+			gshipyard: 5%
+			gengineer: 5%
+			gstationmobile: 20%
+			tcorv1: 10%
+			tcorv2: 5%
+			tfrig1: 20%
+			tfrig2: 20%
+			tfrig3: 5%
+			tsf: 20%
+			tisf: 2%
+			tbsf: 10%
+			tref: 100%
+			tpatrolcruiser: 5%
+			thab: 20%
+			tfab: 5%
+			teng: 5%
+		UnitLimits:
+			gfightercarrier: 3
+			gbombercarrier: 5
+			gpatrolcruiser: 2
+			grefinery: 5
+			ghabitatship: 5
+			gfrigateassemblybay: 1
+			gsurveyfrigate: 2
+			gengineer: 1
+			tisf: 3
+			tbsf: 5
+			tpatrolcruiser: 2
+			tref: 5
+			thaf: 5
+			tfab: 1
+			tsf: 2
+			gshipyard: 1
+			teng: 1
+		SquadSize: 15

@@ -1,0 +1,361 @@
+^Palettes:
+	PaletteFromFile@terrain-snow:
+		Name: terrain
+		Tileset: SPACE
+		Filename: snow.pal
+		ShadowIndex: 4
+	PaletteFromFile@staticterrain-snow:
+		Name: staticterrain
+		Tileset: SPACE
+		Filename: snow.pal
+		ShadowIndex: 4
+	PaletteFromFile@chrome:
+		Name: chrome
+		Filename: temperatra.pal
+		ShadowIndex: 3
+		AllowModifiers: false
+	PaletteFromFile@temperatra:
+		Name: temperatra
+		Filename: temperatra.pal
+		ShadowIndex: 3
+		AllowModifiers: false
+	PaletteFromFile@pirateicon:
+		Name: pirateicon
+		Filename: pirateicon.pal
+		AllowModifiers: false
+	PaletteFromFile@terranicon:
+		Name: terranicon
+		Filename: terranicon.pal
+		AllowModifiers: false
+	PaletteFromFile@beaconposter:
+		Name: beaconposter
+		Filename: temperat.pal
+		ShadowIndex: 3
+	PaletteFromFile@effect:
+		Name: effect
+		Filename: temperat.pal
+		ShadowIndex: 4
+	PaletteFromFile@colorpicker:
+		Name: colorpicker
+		Filename: temperat.pal
+		ShadowIndex: 4
+		AllowModifiers: false
+	PaletteFromRGBA@shadow:
+		Name: shadow
+		R: 0
+		G: 0
+		B: 0
+		A: 140
+	PaletteFromRGBA@highlight:
+		Name: highlight
+		R: 255
+		G: 255
+		B: 255
+		A: 128
+	PaletteFromRGBA@moveflash:
+		Name: moveflash
+		R: 255
+		G: 255
+		B: 255
+		A: 64
+	PaletteFromRGBA@disabled:
+		Name: disabled
+		R: 0
+		G: 0
+		B: 0
+		A: 180
+	ShroudPalette@shroud:
+		Name: shroud
+		Type: Shroud
+	ShroudPalette@fog:
+		Name: fog
+		Fog: true
+	FixedColorPalette@BlueTiberium:
+		Base: terrain
+		Name: bluetiberium
+		Color: 89BAFF
+		RemapIndex: 176, 178, 180, 182, 184, 186, 189, 191, 177, 179, 181, 183, 185, 187, 188, 190
+	PaletteFromFile@player:
+		Name: player
+		Filename: temperatra.pal
+		ShadowIndex: 1
+	PlayerColorPalette:
+		BasePalette: player
+		BaseName: player
+		Tileset: SPACE
+		RemapIndex: 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95
+		ShadowIndex: 1
+	PaletteFromPlayerPaletteWithAlpha@fuckingcloak:
+		BaseName: cloak
+		BasePalette: player
+		Alpha: 0.4
+		AllowModifiers: false
+	PlayerHighlightPalette:
+	MenuPaletteEffect:
+		MenuEffect: Desaturated
+	PaletteFromFile@orecrystal:
+		Name: orecrystal
+		Filename: orecrystal.pal
+	PaletteFromFile@apolcybl:
+		Name: apolcybl
+		Filename: apolcybl.pal
+	PaletteFromFile@apolgrey:
+		Name: apolgrey
+		Filename: apolgrey.pal
+	PaletteFromPaletteWithAlpha@apolgreyalpha:
+		Name: apolgreyalpha
+		BasePalette: apolgrey
+		Alpha: 0.3
+	PaletteFromFile@apolgren:
+		Name: apolgren
+		Filename: apolgren.pal
+	PaletteFromPaletteWithAlpha@apolgrenalpha:
+		Name: apolgrenalpha
+		BasePalette: apolgren
+		Alpha: 0.6
+	PaletteFromJasc32File@apolgreyjasc:
+		Name: apolgreyjasc
+		Filename: cloud-nq8.pal
+		Premultiply: false
+		AllowModifiers: false
+	PaletteFromJasc32File@standardjasc:
+		Name: gensmkexploj
+		Filename: gensmkexploj.pal
+		Premultiply: false
+		AllowModifiers: false
+	PaletteFromFile@redspace:
+		Name: redspace
+		Filename: redspace.pal
+		AllowModifiers: false
+	PaletteFromPaletteWithAlpha@calidaaaaaad:
+		Name: redspacealpha
+		BasePalette: redspace
+		Alpha: 0.3
+	PaletteFromFile@tsanim:
+		Name: tsanim
+		Filename: anim.pal
+		AllowModifiers: false
+	PaletteFromJasc32File@sptile:
+		Name: sptile
+		Filename: sptile.pal
+		Premultiply: false
+		AllowModifiers: false
+	PaletteFromJasc32File@spacebg1:
+		Name: spacebg1
+		Filename: spacebg1.pal
+		Premultiply: false
+		AllowModifiers: false
+	PaletteFromJasc32File@spacebg2:
+		Name: spacebg2
+		Filename: spacebg2.pal
+		Premultiply: false
+		AllowModifiers: false
+	PaletteFromJasc32File@spacebg3:
+		Name: spacebg3
+		Filename: spacebg3.pal
+		Premultiply: false
+		AllowModifiers: false
+	PaletteFromJasc32File@spacebg4:
+		Name: spacebg4
+		Filename: spacebg4.pal
+		Premultiply: false
+		AllowModifiers: false
+	PaletteFromJasc32File@spacebg06:
+		Name: spacebg06
+		Filename: spacebg06.pal
+		Premultiply: false
+		AllowModifiers: false
+	PaletteFromJasc32File@spacebg07:
+		Name: spacebg07
+		Filename: spacebg07.pal
+		Premultiply: false
+		AllowModifiers: false
+	PaletteFromJasc32File@spacebg08:
+		Name: spacebg08
+		Filename: spacebg08.pal
+		Premultiply: false
+		AllowModifiers: false
+	PaletteFromJasc32File@spacebg09:
+		Name: spacebg09
+		Filename: spacebg09.pal
+		Premultiply: false
+		AllowModifiers: false
+	PaletteFromJasc32File@spacebg10:
+		Name: spacebg10
+		Filename: spacebg10.pal
+		Premultiply: false
+		AllowModifiers: false
+	PaletteFromJasc32File@spacebg11:
+		Name: spacebg11
+		Filename: spacebg11.pal
+		Premultiply: false
+		AllowModifiers: false
+	PaletteFromJasc32File@spacebg12:
+		Name: spacebg12
+		Filename: spacebg12.pal
+		Premultiply: false
+		AllowModifiers: false
+	PaletteFromJasc32File@spacebg13:
+		Name: spacebg13
+		Filename: spacebg13.pal
+		Premultiply: false
+		AllowModifiers: false
+	PaletteFromJasc32File@spacebg14:
+		Name: spacebg14
+		Filename: spacebg14.pal
+		Premultiply: false
+		AllowModifiers: false
+	PaletteFromJasc32File@spacebg15:
+		Name: spacebg15
+		Filename: spacebg15.pal
+		Premultiply: false
+		AllowModifiers: false
+	PaletteFromJasc32File@spacebg16:
+		Name: spacebg16
+		Filename: spacebg16.pal
+		Premultiply: false
+		AllowModifiers: false
+	PaletteFromJasc32File@spacebg17:
+		Name: spacebg17
+		Filename: spacebg17.pal
+		Premultiply: false
+		AllowModifiers: false
+	PaletteFromJasc32File@spacebg18:
+		Name: spacebg18
+		Filename: spacebg18.pal
+		Premultiply: false
+		AllowModifiers: false
+	PaletteFromJasc32File@spacebg19:
+		Name: spacebg19
+		Filename: spacebg19.pal
+		Premultiply: false
+		AllowModifiers: false
+	PaletteFromJasc32File@spacebg20:
+		Name: spacebg20
+		Filename: spacebg20.pal
+		Premultiply: false
+		AllowModifiers: false
+	PaletteFromJasc32File@spacebg21:
+		Name: spacebg21
+		Filename: spacebg21.pal
+		Premultiply: false
+		AllowModifiers: false
+	PaletteFromJasc32File@spacebg22:
+		Name: spacebg22
+		Filename: spacebg22.pal
+		Premultiply: false
+		AllowModifiers: false
+	PaletteFromJasc32File@spacebg23:
+		Name: spacebg23
+		Filename: spacebg23.pal
+		Premultiply: false
+		AllowModifiers: false
+	PaletteFromJasc32File@nasadonex:
+		Name: nasadonex
+		Filename: nasadonex.pal
+		Premultiply: false
+		AllowModifiers: false
+	PaletteFromJasc32File@standardjascblue:
+		Name: gensmkexplojFBlue
+		Filename: gensmkexplojFBlue.pal
+		Premultiply: false
+		AllowModifiers: false
+	PaletteFromJasc32File@standardjascred:
+		Name: gensmkexplojFred
+		Filename: gensmkexplojFred.pal
+		Premultiply: false
+		AllowModifiers: false
+	PaletteFromJasc32File@grayjasc32normalalpha:
+		Name: grayjasc32normalalpha
+		Filename: grayjasc32normalalpha.pal
+		Premultiply: true
+		AllowModifiers: false
+	PaletteFromJasc32File@sun:
+		Name: sun
+		Filename: sun.pal
+		Premultiply: true
+		AllowModifiers: false
+	PaletteFromJasc32File@yellowpal:
+		Name: yellowpal
+		Filename: yellowpal.pal
+		Premultiply: True
+		AllowModifiers: false
+	PaletteFromJasc32File@cyanpal:
+		Name: cyanpal
+		Filename: cyanpal.pal
+		Premultiply: True
+		AllowModifiers: false
+	PaletteFromJasc32File@graypal:
+		Name: graypal
+		Filename: graypal.pal
+		Premultiply: True
+		AllowModifiers: false
+	PaletteFromJasc32File@darkbluepal:
+		Name: darkbluepal
+		Filename: darkbluepal.pal
+		Premultiply: True
+		AllowModifiers: false
+	PaletteFromJasc32File@greenpal:
+		Name: greenpal
+		Filename: greenpal.pal
+		Premultiply: True
+		AllowModifiers: false
+	PaletteFromJasc32File@lightbluepal:
+		Name: lightbluepal
+		Filename: lightbluepal.pal
+		Premultiply: True
+		AllowModifiers: false
+	PaletteFromJasc32File@redpal:
+		Name: redpal
+		Filename: redpal.pal
+		Premultiply: True
+		AllowModifiers: false
+	PaletteFromJasc32File@planet1:
+		Name: planet1
+		Filename: planet1.pal
+		AllowModifiers: false
+	PaletteFromJasc32File@planet2:
+		Name: planet2
+		Filename: planet2.pal
+		AllowModifiers: false
+	PaletteFromJasc32File@planet3:
+		Name: planet3
+		Filename: planet3.pal
+		AllowModifiers: false
+	PaletteFromJasc32File@planet4:
+		Name: planet4
+		Filename: planet4.pal
+		AllowModifiers: false
+	PaletteFromJasc32File@planet5:
+		Name: planet5
+		Filename: planet5.pal
+		AllowModifiers: false
+	PaletteFromJasc32File@planet6:
+		Name: planet6
+		Filename: planet6.pal
+		AllowModifiers: false
+	PaletteFromJasc32File@planet7:
+		Name: planet7
+		Filename: planet7.pal
+		AllowModifiers: false
+	PaletteFromJasc32File@planet8:
+		Name: planet8
+		Filename: planet8.pal
+		AllowModifiers: false
+	PaletteFromJasc32File@planet9:
+		Name: planet9
+		Filename: planet9.pal
+		AllowModifiers: false
+	PaletteFromJasc32File@planet10:
+		Name: planet10
+		Filename: planet10.pal
+		AllowModifiers: false
+	PaletteFromFile@planetearth:
+		Name: planetearth
+		Filename: planet0000.pal
+		AllowModifiers: false
+	PaletteFromPaletteWithAlpha@planetearthalpha:
+		Name: planetearthalpha
+		BasePalette: planetearth
+		AllowModifiers: false
+		Alpha: 0.3

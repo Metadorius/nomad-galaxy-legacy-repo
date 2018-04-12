@@ -1,0 +1,435 @@
+^SpaceObject:
+	Inherits: ^Nebula
+	EditorTilesetFilter:
+		Categories: Space Object
+
+^Backgrounds:
+	Inherits: ^Nebula
+	EditorTilesetFilter:
+		Categories: Backgrounds
+
+CRYSTALTIBTREE:
+	Inherits: ^TibTree
+	Health:
+		HP: 200000
+	RenderSprites:
+		Palette: terrain
+	SeedsResource:
+		ResourceType: Gas
+		MaxRange: 2
+		Interval: 30
+
+CRYSTALTIBTREE2:
+	Inherits: CRYSTALTIBTREE
+
+CRYSTALTIBTREE3:
+	Inherits: CRYSTALTIBTREE
+
+CRYSTALTIBTREE4:
+	Inherits: CRYSTALTIBTREE
+
+^GasCloud:
+	Inherits: ^Nebula
+	EditorTilesetFilter:
+		Categories: Gas Clouds
+	Interactable:
+		Bounds 600,600
+
+DUSTCLOUD1:
+	Inherits: ^GasCloud
+	RenderSprites:
+		Palette: graypal
+	WithIdleOverlay@Asteroid:
+		Sequence: asteroidfield1
+		Palette: terrain
+	SeedsResource:
+		ResourceType: Minerals
+		MaxRange: 6
+		Interval: 55
+	ExplodeWeapon:
+		Weapon: AFCommetSummon
+
+DUSTCLOUD2:
+	Inherits: DUSTCLOUD1
+	WithIdleOverlay@Asteroid:
+		Sequence: asteroidfield2
+
+DUSTCLOUD3:
+	Inherits: DUSTCLOUD1
+	WithIdleOverlay@Asteroid:
+		Sequence: asteroidfield3
+
+DUSTCLOUD4:
+	Inherits: DUSTCLOUD1
+	WithIdleOverlay@Asteroid:
+		Sequence: asteroidfield4
+
+DUSTCLOUD5:
+	Inherits: DUSTCLOUD1
+	WithIdleOverlay@Asteroid:
+		Sequence: asteroidfield5
+
+DUSTCLOUD6:
+	Inherits: DUSTCLOUD1
+	WithIdleOverlay@Asteroid:
+		Sequence: asteroidfield6
+
+DUSTCLOUD7:
+	Inherits: DUSTCLOUD1
+	WithIdleOverlay@Asteroid:
+		Sequence: asteroidfield7
+
+DUSTCLOUD8:
+	Inherits: DUSTCLOUD1
+	WithIdleOverlay@Asteroid:
+		Sequence: asteroidfield8
+
+REDCLOUD1:
+	Inherits: ^GasCloud
+	RenderSprites:
+		Image: dustcloud1
+		Palette: redpal
+	ProximityExternalCondition:
+		Condition: DustCloudCloak
+		ValidStances: Enemy, Ally, Neutral
+		Range: 5c0
+	ProximityExternalCondition@RedNebula:
+		Condition: RedNebula
+		ValidStances: Enemy, Ally, Neutral
+		Range: 5c0
+
+REDCLOUD2:
+	Inherits: REDCLOUD1
+	RenderSprites:
+		Image: dustcloud2
+
+REDCLOUD3:
+	Inherits: REDCLOUD1
+	RenderSprites:
+		Image: dustcloud3
+
+REDCLOUD4:
+	Inherits: REDCLOUD1
+	RenderSprites:
+		Image: dustcloud4
+
+REDCLOUD5:
+	Inherits: REDCLOUD1
+	RenderSprites:
+		Image: dustcloud5
+
+REDCLOUD6:
+	Inherits: REDCLOUD1
+	RenderSprites:
+		Image: dustcloud6
+
+REDCLOUD7:
+	Inherits: REDCLOUD1
+	RenderSprites:
+		Image: dustcloud7
+
+REDCLOUD8:
+	Inherits: REDCLOUD1
+	RenderSprites:
+		Image: dustcloud8
+
+BLUECLOUD1:
+	Inherits: ^GasCloud
+	RenderSprites:
+		Image: dustcloud1
+		Palette: darkbluepal
+	ProximityExternalCondition@DustCloudCloak:
+		Condition: DustCloudCloak
+		ValidStances: Enemy, Ally, Neutral
+		Range: 5c0
+	ExplodeWeapon:
+		Weapon: BlueNebulaTeslaSpawner
+
+BLUECLOUD2:
+	Inherits: BLUECLOUD1
+	RenderSprites:
+		Image: dustcloud2
+
+BLUECLOUD3:
+	Inherits: BLUECLOUD1
+	RenderSprites:
+		Image: dustcloud3
+
+BLUECLOUD4:
+	Inherits: BLUECLOUD1
+	RenderSprites:
+		Image: dustcloud4
+
+BLUECLOUD5:
+	Inherits: BLUECLOUD1
+	RenderSprites:
+		Image: dustcloud5
+
+BLUECLOUD6:
+	Inherits: BLUECLOUD1
+	RenderSprites:
+		Image: dustcloud6
+
+BLUECLOUD7:
+	Inherits: BLUECLOUD1
+	RenderSprites:
+		Image: dustcloud7
+
+BLUECLOUD8:
+	Inherits: BLUECLOUD1
+	RenderSprites:
+		Image: dustcloud8
+
+GREENCLOUD1:
+	Inherits: ^GasCloud
+	RenderSprites:
+		Image: dustcloud1
+		Palette: greenpal
+	ProximityExternalCondition@GreenNebula:
+		Condition: GreenNebula
+		ValidStances: Enemy, Ally, Neutral
+		Range: 5c0
+	ProximityExternalCondition@DustCloudCloak:
+		Condition: DustCloudCloak
+		ValidStances: Enemy, Ally, Neutral
+		Range: 5c0
+	ExplodeWeapon:
+		Weapon: GreenNebulaExploSpawner
+
+GREENCLOUD2:
+	Inherits: GREENCLOUD1
+	RenderSprites:
+		Image: dustcloud2
+
+GREENCLOUD3:
+	Inherits: GREENCLOUD1
+	RenderSprites:
+		Image: dustcloud3
+
+GREENCLOUD4:
+	Inherits: GREENCLOUD1
+	RenderSprites:
+		Image: dustcloud4
+
+GREENCLOUD5:
+	Inherits: GREENCLOUD1
+	RenderSprites:
+		Image: dustcloud5
+
+GREENCLOUD6:
+	Inherits: GREENCLOUD1
+	RenderSprites:
+		Image: dustcloud6
+
+GREENCLOUD7:
+	Inherits: GREENCLOUD1
+	RenderSprites:
+		Image: dustcloud7
+
+GREENCLOUD8:
+	Inherits: GREENCLOUD1
+	RenderSprites:
+		Image: dustcloud8
+
+SUN:
+	Inherits: ^GasCloud
+	RenderSprites:
+		Palette: sun
+	Interactable:
+		Bounds 700,422
+	ExplodeWeapon@SolarWave:
+		Weapon: SolarWaveSpawner
+
+BLACKHOLE:
+	Inherits: ^GasCloud
+	RenderSprites:
+		Palette: grayjasc32normalalpha
+	Interactable:
+		Bounds 400,400
+
+WHITEHOLE:
+	Inherits: ^GasCloud
+	RenderSprites:
+		Palette: grayjasc32normalalpha
+	ExplodeWeapon:
+		Weapon: CommetDummyBullet
+	EditorTilesetFilter:
+		Categories: Resources
+
+SPACEBG1:
+	Inherits: ^Backgrounds
+	RenderSprites:
+		Palette: spacebg1
+	Interactable:
+		Bounds 1460,913
+
+SPACEBG2:
+	Inherits: ^Backgrounds
+	RenderSprites:
+		Palette: spacebg2
+	Interactable:
+		Bounds 1920,1080
+
+SPACEBG3:
+	Inherits: ^Backgrounds
+	RenderSprites:
+		Palette: spacebg3
+	Interactable:
+		Bounds 624,351
+
+SPACEBG4:
+	Inherits: ^Backgrounds
+	RenderSprites:
+		Palette: spacebg4
+	Interactable:
+		Bounds 1920,1080
+
+SPACEBG06:
+	Inherits: ^Backgrounds
+	RenderSprites:
+		Palette: spacebg06
+
+SPACEBG07:
+	Inherits: ^Backgrounds
+	RenderSprites:
+		Palette: spacebg07
+
+SPACEBG08:
+	Inherits: ^Backgrounds
+	RenderSprites:
+		Palette: spacebg08
+
+SPACEBG09:
+	Inherits: ^Backgrounds
+	RenderSprites:
+		Palette: spacebg09
+
+SPACEBG10:
+	Inherits: ^Backgrounds
+	RenderSprites:
+		Palette: spacebg10
+
+SPACEBG11:
+	Inherits: ^Backgrounds
+	RenderSprites:
+		Palette: spacebg11
+
+SPACEBG12:
+	Inherits: ^Backgrounds
+	RenderSprites:
+		Palette: spacebg12
+
+SPACEBG13:
+	Inherits: ^Backgrounds
+	RenderSprites:
+		Palette: spacebg13
+
+SPACEBG14:
+	Inherits: ^Backgrounds
+	RenderSprites:
+		Palette: spacebg14
+
+SPACEBG15:
+	Inherits: ^Backgrounds
+	RenderSprites:
+		Palette: spacebg15
+
+SPACEBG16:
+	Inherits: ^Backgrounds
+	RenderSprites:
+		Palette: spacebg16
+
+SPACEBG17:
+	Inherits: ^Backgrounds
+	RenderSprites:
+		Palette: spacebg17
+
+SPACEBG18:
+	Inherits: ^Backgrounds
+	RenderSprites:
+		Palette: spacebg18
+
+SPACEBG19:
+	Inherits: ^Backgrounds
+	RenderSprites:
+		Palette: spacebg19
+
+SPACEBG20:
+	Inherits: ^Backgrounds
+	RenderSprites:
+		Palette: spacebg20
+
+SPACEBG21:
+	Inherits: ^Backgrounds
+	RenderSprites:
+		Palette: spacebg21
+
+SPACEBG22:
+	Inherits: ^Backgrounds
+	RenderSprites:
+		Palette: spacebg22
+
+SPACEBG23:
+	Inherits: ^Backgrounds
+	RenderSprites:
+		Palette: spacebg23
+
+NASADONEX:
+	Inherits: ^Backgrounds
+	RenderSprites:
+		Palette: nasadonex
+	Interactable:
+		Bounds 960,540
+
+PLANETEARTH:
+	Inherits: ^Planet
+
+PLANET1:
+	Inherits: ^Planet
+	RenderSprites:
+		Palette: planet1
+
+PLANET2:
+	Inherits: ^Planet
+	RenderSprites:
+		Palette: planet2
+
+PLANET3:
+	Inherits: ^Planet
+	RenderSprites:
+		Palette: planet3
+
+PLANET4:
+	Inherits: ^Planet
+	RenderSprites:
+		Palette: planet4
+
+PLANET5:
+	Inherits: ^Planet
+	RenderSprites:
+		Palette: planet5
+
+PLANET6:
+	Inherits: ^Planet
+	RenderSprites:
+		Palette: planet6
+
+PLANET7:
+	Inherits: ^Planet
+	RenderSprites:
+		Palette: planet7
+
+PLANET8:
+	Inherits: ^Planet
+	RenderSprites:
+		Palette: planet8
+
+PLANET9:
+	Inherits: ^Planet
+	RenderSprites:
+		Palette: planet9
+
+PLANET10:
+	Inherits: ^Planet
+	RenderSprites:
+		Palette: planet10

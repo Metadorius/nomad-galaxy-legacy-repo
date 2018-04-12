@@ -1,0 +1,233 @@
+tmothership:
+	Inherits: ^shipdefault
+	idle:
+		ZOffset: -5000
+		Facings: -128
+		UseClassicFacingFudge: False
+	stand:
+		ZOffset: -5000
+		Facings: -128
+		UseClassicFacingFudge: False
+
+tbc1:
+	Inherits: ^shipdefault
+	icon: tbc1icon
+
+ttorpedo:
+	idle:
+		Facings: -32
+	Inherits: ^shipdefault
+
+tbc2:
+	Inherits: ^shipdefault
+	icon: gbc2icon
+
+tpatrolcruiser:
+	Inherits: ^shipdefault
+	deployed:
+		Start: 13
+	icon: carrier1icon
+
+thab:
+	Inherits: ^shipdefault
+	icon: thabicon
+
+tsf:
+	Inherits: ^shipdefault
+	icon: tsficon
+
+tref:
+	Inherits: ^shipdefault
+	icon: treficon
+
+trs:
+	Inherits: ^shipdefault
+	icon: trsicon
+
+teng:
+	Inherits: ^shipdefault
+	icon: tengicon
+
+tfab:
+	Inherits: ^shipdefault
+	deployed:
+		Start: 13
+	icon: tfabicon
+
+tfrig1:
+	Inherits: ^shipdefault
+	icon: tfrig1icon
+	turret: rtfrigtur
+		Facings: -32
+	turret2: rtfrigcan
+		Facings: -32
+
+tfrig2:
+	Inherits: ^shipdefault
+	icon: tfrig2icon
+	turret: rnormtur
+		Facings: -32
+	turret: rtfrigtur
+		Facings: -32
+	turret2: rtfrigcan
+		Facings: -32
+
+tfrig3:
+	Inherits: ^shipdefault
+	icon: tfrig3icon
+	turret: rtfrigtur
+		Facings: -32
+	turret2: rtfrigcan
+		Facings: -32
+
+tisf:
+	Inherits: ^shipdefault
+	icon: tisficon
+
+tbsf:
+	Inherits: ^shipdefault
+	icon: tbsficon
+
+tlsf:
+	Inherits: ^shipdefault
+	icon: tlsficon
+
+tminer:
+	Inherits: ^shipdefault
+	icon: grefineryicon
+	harvest: harvestanim
+
+tcorv1:
+	Inherits: ^shipdefault
+	icon: tcorv1icon
+	turret: rtcorvtur
+		Facings: -32
+
+tcorv2:
+	Inherits: ^shipdefault
+	icon: tcorv2icon
+	turret: railtur
+		Facings: -32
+	turret2: railtur
+		Start: 32
+		Facings: -32
+		ZOffset: -200
+
+tcorv3:
+	Inherits: ^shipdefault
+	icon: tcorv3icon
+	turret: rtcorvtur
+		Facings: -32	
+
+tfighter1:
+	Inherits: ^shipdefault
+	icon: minericon
+	harvest: harvestanim
+
+tfighter2:
+	Inherits: ^shipdefault
+	icon: grefineryicon
+
+tfighter3:
+	Inherits: ^shipdefault
+	icon: grefineryicon
+
+terranfrigate:
+	Inherits: ^shipdefault
+	idle:
+		Facings: -32
+		Length: 16
+		Tick: 150
+		UseClassicFacingFudge: True
+	stand:
+		Facings: -32
+		Length: 16
+		Tick: 150
+		UseClassicFacingFudge: True	
+	icon: assaultfrigateicon
+
+terranasfrig:
+	Inherits: ^shipdefault
+	idle:
+		Facings: -32
+		Length: 16
+		Tick: 150
+		UseClassicFacingFudge: True
+	stand:
+		Facings: -32
+		Length: 16
+		Tick: 150
+		UseClassicFacingFudge: True
+	turret: terranturret
+		Facings: -32
+	icon: assaultfrigateicon
+
+terranrocketfrig:
+	Inherits: ^shipdefault
+	idle:
+		Facings: -32
+		Length: 16
+		Tick: 150
+		UseClassicFacingFudge: True
+	stand:
+		Facings: -32
+		Length: 16
+		Tick: 150
+		UseClassicFacingFudge: True
+	turret: terranturret
+		Facings: -32
+	icon: assaultfrigateicon
+
+terranrefinery:
+	Inherits: ^shipdefault
+	idle:
+		Facings: -32
+		Length: 16
+		Tick: 150
+		UseClassicFacingFudge: True
+	stand:
+		Facings: -32
+		Length: 16
+		Tick: 150
+		UseClassicFacingFudge: True
+	turret: terranturret
+		Facings: -32
+	icon: assaultfrigateicon
+
+terrancorvette:
+	Inherits: ^shipdefault
+	idle:
+		Facings: -32
+		UseClassicFacingFudge: True
+	stand:
+		Facings: -32
+		UseClassicFacingFudge: True
+	turret: terranminiturret
+		Facings: -32
+	icon: assaultfrigateicon
+
+terranrailguncorvette:
+	Inherits: ^shipdefault
+	idle:
+		Facings: -32
+		UseClassicFacingFudge: True
+	stand:
+		Facings: -32
+		UseClassicFacingFudge: True
+	turret: terranrailgunturret
+		Facings: -32
+	turret2: terranrailgunturret
+		Start: 32
+		Facings: -32
+		ZOffset: -512
+	icon: assaultfrigateicon
+
+terranbomber:
+	Inherits: ^shipdefault
+	Inherits@2: ^fighterdefault
+	icon: bombericon
+
+terranfighter:
+	Inherits: ^shipdefault
+	Inherits@2: ^fighterdefault
+	icon: fightericon

@@ -1,0 +1,71 @@
+DGPATROLCRUISER:
+	Inherits: ^BaseBuilding
+	Inherits@2: PATROLCRUISERGENERIC
+	ProvidesPrerequisite@buildingname:
+	ProvidesPrerequisite@T1Carrier:
+		Prerequisite: T1Carrier
+	ProvidesPrerequisite@gpatrolcruiser:
+		Prerequisite: gpatrolcruiser
+	RenderSprites:
+		Image: gpatrolcruiser
+	Transforms:
+		IntoActor: gpatrolcruiser
+		Facing: 180
+		Offset: 1,1
+	RallyPoint:
+	WithSpriteBody:
+		Sequence: deployed
+	Explodes:
+		Weapon: CapShipExplode
+		EmptyWeapon: CapShipExplode
+	ProductionQueue@Infantry:
+		Factions: gkor
+
+DGFRIGATEASSEMBLYBAY:
+	Inherits@1: ^BaseBuilding
+	Inherits@3: ^GCapitalShipProduction
+	Inherits@4: ^CivilianShipWeaponsGkor
+	ProvidesPrerequisite@T1Carrier:
+		Prerequisite: T1Carrier
+	ProvidesPrerequisite@gfrigateassemblybay:
+		Prerequisite: gfrigateassemblybay
+	Valued:
+		Cost: 2000
+	Tooltip:
+		Name: Frigate Assembly Bay
+	BaseBuilding:
+	Health:
+		HP: 4500000
+	RevealsShroud:
+		Range: 5c0
+	MustBeDestroyed:
+	Selectable:
+		Priority: 5
+		Bounds: 80,80
+	SelectionDecorations:
+		VisualBounds: 80,80
+	Exit:
+		ExitCell: 1,1
+	Exit@1:
+		ExitCell: 1,-1
+	Exit@2:
+		ExitCell: -1,1
+	Exit@3:
+		ExitCell: -1,-1
+	RenderSprites:
+		Image: GFRIGATEASSEMBLYBAY
+	Transforms:
+		IntoActor: gfrigateassemblybay
+		Offset: 1,1
+	RallyPoint:
+	WithSpriteBody:
+		Sequence: deployed
+	ExplodeWeapon@AntiFighter2:
+		Weapon: FieldDefenceLaserSpawnAntiFighter
+	SpawnActorOnDeath:
+		Actor: gfrigateassemblybayh
+		OwnerType: InternalName
+		InternalOwner: Neutral
+	Explodes:
+		Weapon: CapShipExplode
+		EmptyWeapon: CapShipExplode

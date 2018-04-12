@@ -1,0 +1,18 @@
+mothership:
+	defaults:
+		Offset: 0,15
+	stand
+		Length: 31
+		Facings: 1
+	idle:
+		Length: 31
+		Facings: 1
+	run:
+		Length: 31
+		Facings: 1
+
+upgradeicon:
+	icon:
+
+crystalicon:
+	icon:

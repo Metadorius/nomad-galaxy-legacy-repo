@@ -1,0 +1,75 @@
+^Dummy:
+	Inherits: ^NeutralObject
+	Selectable:
+		Bounds: 1,1
+	Aircraft:
+	HiddenUnderShroud:
+	-Immobile:
+	-RenderSprites:
+	-WithSpriteBody:
+	-QuantizeFacingsFromSequence:
+	BodyOrientation:
+		QuantizedFacings: 1
+	-Interactable:
+	Health:
+		HP: 50000
+
+ALIENSTATIONSPAWNERDUMMY:
+	Inherits: ^Dummy
+	SelfHealing:
+		HealIfBelow: 200
+		PercentageStep: -100
+		DamageTypes: StationSpawn
+		Delay: 1
+	SpawnActorOnDeath:
+		Actor: GSTATIONT1
+		DeathType: StationSpawn
+		SkipMakeAnimations: False
+
+CRYSTALSPAWNDUMMY:
+	Inherits: ^Dummy
+	SelfHealing:
+		HealIfBelow: 200
+		PercentageStep: -100
+		Delay: 1
+	SpawnActorOnDeath:
+		Actor: ORECRYSTAL
+		SkipMakeAnimations: False
+		OwnerType: InternalName
+		InternalOwner: Neutral
+
+CRYSTALBOUNTY:
+	Inherits: ^Dummy
+	SelfHealing:
+		HealIfBelow: 200
+		PercentageStep: -100
+		Delay: 1
+	CashTrickler:
+		Amount: 2500
+		Interval: 300
+
+GREENNEBULADUMMY:
+	Inherits: ^Dummy
+	SelfHealing:
+		HealIfBelow: 200
+		PercentageStep: -105
+		Delay: 1
+	Explodes:
+		Weapon: GreenNebulaExplo
+		EmptyWeapon: Nothing
+		Chance: 1
+
+CRATESPAWNDUMMY:
+	Inherits: CRYSTALSPAWNDUMMY
+	SpawnActorOnDeath:
+		Actor: BOX
+
+CRATEBOUNTY:
+	Inherits: CRYSTALBOUNTY
+	CashTrickler:
+		Amount: 750
+
+FREIGHTERBOUNTY:
+	Inherits: CRYSTALBOUNTY
+	CashTrickler:
+		Amount: 1000
