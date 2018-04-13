@@ -398,15 +398,24 @@
 	RevealsShroud:
 		Range: 9c0
 		Type: CenterPosition
-	Aircraft:
-		IdealSeparation: 2c0
-		MoveIntoShroud: true
-		CruiseAltitude: 3
-		RepulsionSpeed: 7
+	Mobile:
 		Speed: 15
-		TurnSpeed: 1
-		CanHover: True
-		LandWhenIdle: False
+		TurnSpeed: 5
+		TerrainSpeeds:
+			Clear: 100
+			Ground: 100
+			Tiberium: 100
+			BlueTiberium: 100
+			Junk: 100
+			Gas: 100
+			SpaceGray: 100
+			SpaceGray2: 100
+			SpaceGreen: 100
+			SpaceGreen2: 100
+			SpaceBlue: 100
+			SpaceBlue2: 100
+			SpaceRed: 100
+			SpaceRed2: 100
 	Targetable:
 		TargetTypes: CapitalShip
 	ProvidesPrerequisite:
@@ -434,13 +443,19 @@
 	Voiced:
 		VoiceSet: GenericVoice
 	Selectable:
-		Bounds: 60,60
+		Priority: 7
 	MustBeDestroyed:
 	Explodes:
 		Weapon: CapShipExplode
 		EmptyWeapon: CapShipExplode
 	EditorTilesetFilter:
 		Categories: Capital Ships
+	WithTextDecoration@deployed:
+		Text: DEPLOYED
+		ReferencePoint: Bottom
+		Color: E0D048
+		ZOffset: 9999
+		RequiresCondition: deployed
 
 ^CombatCapitalShip:
 	Inherits@1: ^CapitalShip
@@ -464,15 +479,9 @@
 			BottomRight: 480, 480
 	Armor:
 		Type: Frigate
-	Aircraft:
-		IdealSeparation: 900
-		MoveIntoShroud: true
-		RepulsionSpeed: 20
-		CruiseAltitude: 2
+	Mobile:
 		Speed: 30
 		TurnSpeed: 6
-		LandWhenIdle: False
-		CanHover: True
 	RevealsShroud:
 		Range: 7c0
 		Type: CenterPosition
@@ -640,19 +649,33 @@
 		Type: Rectangle
 			TopLeft: -200, -200
 			BottomRight: 200, 200
-	Aircraft:
-		IdealSeparation: 500
-		MoveIntoShroud: true
-		CruiseAltitude: 4
-		RepulsionSpeed: 20
+	Mobile:
 		Speed: 65
-		TurnSpeed: 10
-		LandWhenIdle: False
+		TurnSpeed: 30
+		SharesCell: True
+		TerrainSpeeds:
+			Clear: 100
+			Ground: 100
+			Tiberium: 70
+			BlueTiberium: 70
+			Gas: 70
+			Junk: 70
+			SpaceGray: 100
+			SpaceGray2: 100
+			SpaceGreen: 100
+			SpaceGreen2: 100
+			SpaceBlue: 100
+			SpaceBlue2: 100
+			SpaceRed: 100
+			SpaceRed2: 100
+	-AttackPlane:
+	-Aircraft:
 	-SmokeTrailWhenDamaged:
 	-SpeedMultiplier@BUFFS:
 	-GrantConditionOnDamageState@fighterflametrails:
 	-SelfHealing@fighterflametrails:
 	-ExternalCondition@SlowdownFighter:
+	AttackFrontal:
 	Targetable:
 		TargetTypes: Corvette
 	RevealsShroud:
@@ -767,6 +790,8 @@
 	MustBeDestroyed:
 		RequiredForShortGame: true
 	ProvidesPrerequisite:
+	RevealsShroud:
+		Range: 5c0
 
 ^CivBuilding:
 	Inherits: ^Building
@@ -1064,6 +1089,7 @@
 	Crate:
 		TerrainTypes: Clear, Rough, Road, Tiberium, BlueTiberium, Beach
 	RenderSprites:
+	Interactable:
 
 ^Defense:
 	Inherits: ^BaseBuilding

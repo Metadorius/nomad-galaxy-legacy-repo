@@ -15,15 +15,19 @@
 		LowPowerSlowdown: 2
 		QueuedAudio: Building
 		ReadyAudio: ConstructionComplete
+	Production:
+		Produces: Defence
 
 ^InfantryQueue:
 	ProductionQueue@Infantry:
 		Type: Infantry
-		Factions: nod, gdi
+		Factions: gkor, terran
 		Group: Infantry
-		LowPowerSlowdown: 3
-		QueuedAudio: Building
+		LowPowerSlowdown: 50
+		BuildDurationModifier: 100
 		ReadyAudio: ConstructionComplete
+	Production:
+		Produces: Infantry
 
 ^VehicleQueue:
 	ProductionQueue@Vehicle:
@@ -33,16 +37,20 @@
 		LowPowerSlowdown: 3
 		QueuedAudio: Building
 		ReadyAudio: ConstructionComplete
+	Production:
+		Produces: Vehicle
 
 ^AircraftQueue:
 	ProductionQueue@Aircraft:
 		Type: Aircraft
-		Factions: nod, gdi
+		Factions: gkor, terran
 		Group: Aircraft
 		LowPowerSlowdown: 3
 		QueuedAudio: Building
 		BuildDurationModifier: 100
 		ReadyAudio: ConstructionComplete
+	Production:
+		Produces: Aircraft
 
 ^GUtilityShipProduction:
 	Inherits: ^BuildingQueue
@@ -64,40 +72,35 @@
 		Produces: Defence
 
 MOTHERSHIP:
-	Inherits: ^CapitalShip
+	Inherits: ^Building
 	Inherits@3: ^GUtilityShipProduction
 	Valued:
 		Cost: 10000
 	Tooltip:
 		Name: Mothership
 	ProvidesPrerequisite@buildingname:
+	CashTrickler:
+	CashTricklerBar:
 	Health:
 		HP: 15000000
-	Selectable:
-		Priority: 5
-		Bounds: 100,100
+	Interactable:
+		Bounds: 60,60
 	StoresResources:
 		PipCount: 10
 		Capacity: 1000
 	Power:
-		Amount: 10
-	Aircraft:
-		IdealSeparation: 6c0
-		CruiseAltitude: 1
-		Speed: 5
-		TurnSpeed: 99
+		Amount: 30
 	RevealsShroud:
 		Range: 9c0
 	MustBeDestroyed:
 		RequiredForShortGame: true
 	SelectionDecorations:
-		VisualBounds: 200,200
+		VisualBounds: 60,60
 	RenderSprites:
 	SelfHealing@CapitalShipAutoRepair:
 		Step: 0
 		PercentageStep: 1
 		Delay: 50
-	Hovers:
 	Exit:
 		ExitCell: 1,1
 		SpawnOffset: 0,0,0
@@ -132,8 +135,6 @@ MOTHERSHIP:
 	ProximityExternalCondition@ChaseMothership:
 		Condition: ChaseMothership
 		Range: 3c0
-	-Targetable@Boardable:
-	-ExternalCondition@Boarded:
 	ProductionQueue@Building:
 		Factions: gkor, terran
 		LowPowerSlowdown: 1
@@ -141,122 +142,28 @@ MOTHERSHIP:
 	ProvidesPrerequisite@mothership:
 		Prerequisite: mothership
 	ProvidesPrerequisite@buildingname:
-	ProducibleWithLevel:
-		Prerequisites: vehicles.upgraded
-
-SURVEYFRIGATE:
-	Inherits: ^CapitalShip
-	Valued:
-		Cost: 750
-	Tooltip:
-		Name: Survey Frigate
-	Power:
-		Amount: 10
-	Health:
-		HP: 1250000
-	RevealsShroud:
-		Range: 15c0
-		RequiresCondition: !lawea
-	Aircraft:
-		Speed: 35
-	MustBeDestroyed:
-	Selectable:
-		Priority: 5
-		Bounds: 80,80
-	SelectionDecorations:
-		VisualBounds: 60,60
-	RenderSprites:
-	ProducibleWithLevel:
-		Prerequisites: vehicles.upgraded
-	DetectCloaked:
-		Range: 10c0
-		RequiresCondition: !weonqloweonlawea
-	RenderDetectionCircle:
-	WithDecoration@Role:
-		Image: rank
-		Sequence: dishicon
-		Palette: effect
-		ReferencePoint: Top, Right
-		RequiresCondition: !weonqloweonlawea
-		ZOffset: 256
-	ProvidesPrerequisite@buildingname:
-
-PATROLCRUISERGENERIC:
-	Inherits: ^InfantryQueue
-	ProvidesPrerequisite@buildingname:
-	ProvidesPrerequisite@habitatship:
-		Prerequisite: T1Carrier
-	Valued:
-		Cost: 1500
-	Tooltip:
-		Name: Patrol Cruiser
-	Health:
-		HP: 3000000
-	RevealsShroud:
-		Range: 5c0
-	MustBeDestroyed:
-	Power:
-		Amount: 10
-	Selectable:
-		Priority: 5
-		Bounds: 80,80
-	SelectionDecorations:
-		VisualBounds: 80,80
-	RenderSprites:
-	WithDecoration@Role:
-		Image: rank
-		Sequence: factoryicon
-		Palette: effect
-		ReferencePoint: Top, Right
-		RequiresCondition: !weonqloweonlawea
-		ZOffset: 256
-	StoresResources:
-		Capacity: 1000
-		PipCount: 0
-	Exit:
-		ExitCell: 1,1
-	Exit@1:
-		ExitCell: 1,-1
-	Exit@2:
-		ExitCell: -1,1
-	Exit@3:
-		ExitCell: -1,-1
-	HitShape:
-		UseTargetableCellsOffsets: true
-		Type: Rectangle
-			TopLeft: -550, -1250
-			BottomRight: 550, 1250
-	ProductionQueue@Infantry:
-		Type: Infantry
-		Factions: gkor, terran
-		Group: Infantry
-		LowPowerSlowdown: 50
-		BuildDurationModifier: 100
-		ReadyAudio: ConstructionComplete
-	Production:
-		Produces: Infantry
-	SpawnActorOnDeath:
-		Actor: gpatrolcruiserh
-		OwnerType: InternalName
-		InternalOwner: Neutral
-	ProvidesPrerequisite@pc:
-		Prerequisite: pc
-
-PATROLCRUISER:
-	Inherits: PATROLCRUISERGENERIC
-	Inherits@1: ^CapitalShip
-	Inherits@2: ^AutoTargetAll
-	Aircraft:
-		Speed: 20
 
 HABITATSHIP:
 	Inherits: ^CapitalShip
 	Valued:
 		Cost: 900
 	Power:
-		Amount: 25
+		Amount: 20
+	Power@2:
+		Amount: 40
+		RequiresCondition: deployed
 	Tooltip:
-		Name: Colony Ship
+		Name: Supply Ship
+	Mobile:
+		RequiresCondition: !deployed
+	GrantConditionOnDeploy:
+		DeployedCondition: deployed
+	Power:
+		Amount: 60
+		RequiresCondition: deployed
+	Targetable:
+		TargetTypes: DeployedShip
+		RequiresCondition: deployed
 	Health:
 		HP: 2000000
 	RevealsShroud:
@@ -286,24 +193,24 @@ HABITATSHIP:
 		ValidStances: Ally
 	Targetable@LogisticShip:
 		TargetTypes: LogisticShip
-	Armament@Capture:
-		Weapon: PlanetCaptureAlien
-		TargetStances: Enemy, Ally, Neutral
-		RequiresCondition: !HyperSpaceFadeOut
-	Armament@Capture2:
-		Weapon: LogisticShipKiller
-		TargetStances: Enemy, Ally, Neutral
-		RequiresCondition: !HyperSpaceFadeOut
-	AttackFrontal:
-	KillsSelf:
-		RequiresCondition: LogisticShipKill
-		RemoveInstead: True
-	ExternalCondition@LogisticShipKill:
-		Condition: LogisticShipKill
-	AttackWander@LogisticShipWanderer:
-		RequiresCondition: LogisticShipWanderer
-		WanderMoveRadius: 3
-		ReduceMoveRadiusDelay: 75
+	# Armament@Capture:
+		# Weapon: PlanetCaptureAlien
+		# TargetStances: Enemy, Ally, Neutral
+		# RequiresCondition: !HyperSpaceFadeOut
+	# Armament@Capture2:
+		# Weapon: LogisticShipKiller
+		# TargetStances: Enemy, Ally, Neutral
+		# RequiresCondition: !HyperSpaceFadeOut
+	# AttackFrontal:
+	# KillsSelf:
+		# RequiresCondition: LogisticShipKill
+		# RemoveInstead: True
+	# ExternalCondition@LogisticShipKill:
+		# Condition: LogisticShipKill
+	# AttackWander@LogisticShipWanderer:
+		# RequiresCondition: LogisticShipWanderer
+		# WanderMoveRadius: 3
+		# ReduceMoveRadiusDelay: 75
 	ExternalCondition@LogisticShipWanderer:
 		Condition: LogisticShipWanderer
 	SpawnActorOnDeath:
@@ -314,34 +221,19 @@ HABITATSHIP:
 REFINERY:
 	Inherits: ^CapitalShip
 	Valued:
-		Cost: 1100
+		Cost: 800
 	Tooltip:
 		Name: Refinery
-	-Aircraft:
 	Selectable:
 		Priority: 5
 	Mobile:
 		Speed: 30
 		TerrainSpeeds:
-			Clear: 100
-			Ground: 100
-			Tiberium: 100
-			BlueTiberium: 100
-			Junk: 100
-			Gas: 100
-			SpaceGray: 100
-			SpaceGray2: 100
-			SpaceGreen: 100
-			SpaceGreen2: 100
-			SpaceBlue: 100
-			SpaceBlue2: 100
-			SpaceRed: 100
-			SpaceRed2: 100
 		TurnSpeed: 3
+	Power:
+		Amount: -10
 	Health:
 		HP: 2000000
-	Power:
-		Amount: 5
 	MustBeDestroyed:
 	RenderSprites:
 	MustBeDestroyed:
@@ -357,6 +249,69 @@ REFINERY:
 		Capacity: 1000
 	Refinery:
 
+PATROLCRUISERGENERIC:
+	Inherits: ^InfantryQueue
+	Inherits@1: ^CapitalShip
+	Inherits@2: ^AutoTargetAll
+	ProvidesPrerequisite@buildingname:
+	ProvidesPrerequisite@habitatship:
+		Prerequisite: T1Carrier
+	Valued:
+		Cost: 1500
+	Tooltip:
+		Name: Patrol Cruiser
+	Health:
+		HP: 3000000
+	RevealsShroud:
+		Range: 5c0
+	MustBeDestroyed:
+	GrantConditionOnDeploy:
+		DeployedCondition: deployed
+	# Production:
+		# RequiresCondition: deployed
+	Power:
+		Amount: -10
+	Mobile:
+		Speed: 20
+		RequiresCondition: !deployed
+	Targetable:
+		TargetTypes: DeployedShip
+		RequiresCondition: deployed
+	Selectable:
+		Priority: 5
+	Interactable:
+		Bounds: 80,80
+	RenderSprites:
+	WithDecoration@Role:
+		Image: rank
+		Sequence: factoryicon
+		Palette: effect
+		ReferencePoint: Top, Right
+		RequiresCondition: !weonqloweonlawea
+		ZOffset: 256
+	StoresResources:
+		Capacity: 1000
+		PipCount: 0
+	Exit:
+		ExitCell: 1,1
+	Exit@1:
+		ExitCell: 1,-1
+	Exit@2:
+		ExitCell: -1,1
+	Exit@3:
+		ExitCell: -1,-1
+	HitShape:
+		UseTargetableCellsOffsets: true
+		Type: Rectangle
+			TopLeft: -550, -1250
+			BottomRight: 550, 1250
+	SpawnActorOnDeath:
+		Actor: gpatrolcruiserh
+		OwnerType: InternalName
+		InternalOwner: Neutral
+	ProvidesPrerequisite@pc:
+		Prerequisite: pc
+
 FRIGATEASSEMBLYBAY:
 	Inherits: ^CapitalShip
 	Inherits@1: ^AutoTargetAll
@@ -371,7 +326,7 @@ FRIGATEASSEMBLYBAY:
 	Health:
 		HP: 6000000
 	Power:
-		Amount: 15
+		Amount: -10
 	RenderSprites:
 	WithDecoration@Role:
 		Image: rank
@@ -392,6 +347,14 @@ FRIGATEASSEMBLYBAY:
 		TargetStances: Ally
 		LocalOffset: 400,0,0
 		ForceTargetStances: Ally
+	GrantConditionOnDeploy:
+		DeployedCondition: deployed
+	Mobile:
+		Speed: 20
+		RequiresCondition: !deployed
+	Targetable:
+		TargetTypes: DeployedShip
+		RequiresCondition: deployed
 	RevealsShroud:
 		Range: 5c0
 	MustBeDestroyed:
@@ -422,43 +385,48 @@ FRIGATEASSEMBLYBAY:
 		BuildDurationModifier: 100
 		ReadyAudio: frigateready
 		Type: Defence
+	# Production:
+		# RequiresCondition: deployed
 	ProvidesPrerequisite@fab:
 		Prerequisite: fab
 
-CARRIER4:
+SURVEYFRIGATE:
 	Inherits: ^CapitalShip
-	ProvidesPrerequisite@buildingname:
 	Valued:
-		Cost: 5000
-	Health:
-		HP: 6000000
-	RevealsShroud:
-		Range: 5c0
+		Cost: 750
 	Tooltip:
-		Name: Shipyard
+		Name: Survey Frigate
+	Health:
+		HP: 1250000
+	RevealsShroud:
+		Range: 15c0
+		RequiresCondition: !lawea
+	Mobile:
+		Speed: 35
+	Power:
+		Amount: -20
+	MustBeDestroyed:
 	Selectable:
 		Priority: 5
 		Bounds: 80,80
-	Selectable:
-		Bounds: 100,100
-	BaseBuilding:
-	ProximityExternalCondition@ChaseMothership:
-		Condition: ChaseMothership
-		Range: 3c0
-	Targetable@CargoFreighterMagnet:
-		TargetTypes: CargoFreighterMagnet
+	SelectionDecorations:
+		VisualBounds: 60,60
+	ProvidesRadar:
+	RenderSprites:
+	ProducibleWithLevel:
+		Prerequisites: vehicles.upgraded
+	DetectCloaked:
+		Range: 10c0
+		RequiresCondition: !weonqloweonlawea
+	RenderDetectionCircle:
 	WithDecoration@Role:
 		Image: rank
-		Sequence: factoryicon
+		Sequence: dishicon
 		Palette: effect
 		ReferencePoint: Top, Right
 		RequiresCondition: !weonqloweonlawea
 		ZOffset: 256
-	SelectionDecorations:
-		VisualBounds: 200,200
-	RenderSprites:
-	Exit:
-		ExitCell: -1,-1
+	ProvidesPrerequisite@buildingname:
 
 ENGINEER:
 	Inherits: ^CapitalShip
@@ -469,14 +437,14 @@ ENGINEER:
 	Selectable:
 		Priority: 5
 		Bounds: 80,80
-	Power:
-		Amount: 10
 	Health:
 		HP: 1300000
 	RevealsShroud:
 		Range: 5c0
 	AutoTarget:
 	AttackFrontal:
+	Power:
+		Amount: -20
 	ExternalCaptures:
 		CaptureTypes: CarrierCaptor
 	WithDecoration@Role:
@@ -516,10 +484,10 @@ RESEARCHSHIP:
 	Valued:
 		Cost: 3000
 	Power:
-		Amount: -10
+		Amount: -30
 	Tooltip:
 		Name: Research Ship
-	Aircraft:
+	Mobile:
 		Speed: 15
 	Selectable:
 		Priority: 5
@@ -546,6 +514,41 @@ RESEARCHSHIP:
 		OwnerType: InternalName
 		InternalOwner: Neutral
 
+CARRIER4:
+	Inherits: ^CapitalShip
+	ProvidesPrerequisite@buildingname:
+	Valued:
+		Cost: 5000
+	Health:
+		HP: 6000000
+	RevealsShroud:
+		Range: 5c0
+	Tooltip:
+		Name: Shipyard
+	Selectable:
+		Priority: 5
+		Bounds: 80,80
+	Selectable:
+		Bounds: 100,100
+	BaseBuilding:
+	ProximityExternalCondition@ChaseMothership:
+		Condition: ChaseMothership
+		Range: 3c0
+	Targetable@CargoFreighterMagnet:
+		TargetTypes: CargoFreighterMagnet
+	WithDecoration@Role:
+		Image: rank
+		Sequence: factoryicon
+		Palette: effect
+		ReferencePoint: Top, Right
+		RequiresCondition: !weonqloweonlawea
+		ZOffset: 256
+	SelectionDecorations:
+		VisualBounds: 200,200
+	RenderSprites:
+	Exit:
+		ExitCell: -1,-1
+
 SERVICEFRIGATE:
 	Inherits: ^TurretedFrigate
 	Valued:
@@ -554,7 +557,7 @@ SERVICEFRIGATE:
 		Name: Interceptor service frigate
 	Power:
 		Amount: -7
-	Aircraft:
+	Mobile:
 		TurnSpeed: 7
 	Health:
 		HP: 600000
@@ -569,8 +572,7 @@ SERVICEFRIGATE:
 	SelectionDecorations:
 		VisualBounds: 60,60
 	CarrierMaster:
-		Count: 3
-		Actors: gfighter1
+		Actors: gfighter1, gfighter1, gfighter1
 		RespawnTicks: 700
 		ReamTicks: 10
 		InstaRepair: true
@@ -584,7 +586,7 @@ SERVICEFRIGATE:
 		Weapon: FieldDefenceLaserSpawnAntiFighter
 
 MINER:
-	Inherits: ^Frigate
+	Inherits: ^Corvette
 	HitShape:
 		UseTargetableCellsOffsets: true
 		Type: Rectangle
@@ -595,18 +597,18 @@ MINER:
 	Tooltip:
 		Name: Miner
 	Selectable:
-		Priority: 4
+		Priority: 6
 		Class: Miner
+	Power:
+		Amount: -3
 	Armor:
 		Type: Corvette
 	Health:
-		HP: 60000
-	-Aircraft:
+		HP: 200000
 	WithHarvestOverlay:
 		Palette: terrain
 	Explodes:
 		Weapon: CorvetteExplode
-	-Power:
 	Mobile:
 		Speed: 40
 		SharesCell: True
@@ -630,11 +632,11 @@ MINER:
 		Range: 5c0
 	MustBeDestroyed:
 	Harvester:
-		DeliveryBuildings: grefinery, tref
+		DeliveryBuildings: dgrefinery, tref
 		Resources: CyanOre, BlueOre, Gas, Junk, Minerals
-		BaleLoadDelay: 60
-		BaleUnloadDelay: 5
-		Capacity: 6
+		BaleLoadDelay: 50
+		BaleUnloadDelay: 75
+		Capacity: 12
 		SearchForDeliveryBuildingDelay: 150
 		MaxIdleDuration: 20
 		WaitDuration: 20
@@ -646,8 +648,10 @@ MINER:
 	WithDockingAnimation:
 		DockSequence: idle
 		DockLoopSequence: idle
-	SelectionDecorations:
-		VisualBounds: 35,35
+	Selectable:
+		Bounds: 30,30
+	Interactable:
+		Bounds: 35,35
 	Voiced:
 		VoiceSet: GenericVoice
 	KillsSelf:

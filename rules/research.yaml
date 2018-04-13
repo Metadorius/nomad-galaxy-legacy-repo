@@ -57,6 +57,7 @@ research.dummy:
 		Image: upgradeicon
 	Power:
 		Amount: -5
+	Interactable:
 
 research.Crystal.Harvest:
 	Inherits: ^Research

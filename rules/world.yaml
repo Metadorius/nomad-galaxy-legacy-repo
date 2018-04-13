@@ -3,6 +3,11 @@
 	Inherits: ^Palettes
 	ScreenMap:
 	ActorMap:
+	DebugVisualizations:
+	ExitsDebugOverlayManager:
+	ChatCommands:
+	HelpCommand:
+	DebugVisualizationCommands:
 	MusicPlaylist:
 		VictoryMusic: win1
 		DefeatMusic: nod_map1
@@ -16,29 +21,29 @@
 		Name: G'kor
 		InternalName: gkor
 		Description A race of nomads that use organic ships.:
-	Faction@terran:
-		Name: Terran
-		InternalName: terran
-		Description: A race of mammals that enjoy solving problems with explosive weaponry.
+	# Faction@terran:
+		# Name: Terran
+		# InternalName: terran
+		# Description: A race of mammals that enjoy solving problems with explosive weaponry.
 	Faction@Random:
 		Name: Random
 		InternalName: Random
-		RandomFactionMembers: gkor, terran
+		RandomFactionMembers: gkor
 		Description: Selection is a lie
 	ResourceType@green-tib:
-		Name: Minerals ($18)
+		Name: Minerals ($45)
 		PipColor: Green
 		ResourceType: 1
 		Palette: apolcybl
 		Type: BlueOre
 		TerrainType: Tiberium
 		Sequences: astore1, astore2, astore3, astore4, astore5, astore6, astore7, astore8, astore9, astore10, astore11, astore12, astore13
-		MaxDensity: 4
-		ValuePerUnit: 18
+		MaxDensity: 8
+		ValuePerUnit: 45
 		AllowedTerrainTypes: Clear, SpaceGray, SpaceGreen, SpaceBlue, SpaceRed, SpaceGray2, SpaceGreen2, SpaceBlue2, SpaceRed2, Notifier
 		AllowUnderActors: true
 	ResourceType@blue-tib:
-		Name: High density minerals ($10)
+		Name: High density minerals ($40)
 		PipColor: Blue
 		ResourceType: 2
 		Palette: chrome
@@ -46,11 +51,11 @@
 		TerrainType: BlueTiberium
 		Sequences: astorecyan1, astorecyan2, astorecyan3, astorecyan4, astorecyan5, astorecyan6, astorecyan7, astorecyan8, astorecyan9, astorecyan10, astorecyan11, astorecyan12, astorecyan13
 		MaxDensity: 1300
-		ValuePerUnit: 10
+		ValuePerUnit: 40
 		AllowedTerrainTypes: Clear, SpaceGray, SpaceGreen, SpaceBlue, SpaceRed, SpaceGray2, SpaceGreen2, SpaceBlue2, SpaceRed2, Notifier
 		AllowUnderActors: true
 	ResourceType@junk:
-		Name: Junk ($15)
+		Name: Junk ($30)
 		PipColor: Red
 		ResourceType: 3
 		Palette: apolgrey
@@ -58,11 +63,11 @@
 		TerrainType: Junk
 		Sequences: junk1, junk2, junk3, junk4, junk5, junk6, junk7, junk8, junk9, junk10, junk11
 		MaxDensity: 12
-		ValuePerUnit: 15
+		ValuePerUnit: 60
 		AllowedTerrainTypes: Clear, SpaceGray, SpaceGreen, SpaceBlue, SpaceRed, SpaceGray2, SpaceGreen2, SpaceBlue2, SpaceRed2, Notifier
 		AllowUnderActors: true
 	ResourceType@gray-tib:
-		Name: Minerals ($13)
+		Name: Minerals ($52)
 		PipColor: Gray
 		ResourceType: 4
 		Palette: apolgrey
@@ -70,11 +75,11 @@
 		TerrainType: BlueTiberium
 		Sequences: astore1, astore2, astore3, astore4, astore5, astore6, astore7, astore8, astore9, astore10, astore11, astore12, astore13
 		MaxDensity: 25
-		ValuePerUnit: 13
+		ValuePerUnit: 52
 		AllowedTerrainTypes: Clear, SpaceGray, SpaceGreen, SpaceBlue, SpaceRed, SpaceGray2, SpaceGreen2, SpaceBlue2, SpaceRed2, Notifier
 		AllowUnderActors: true
 	ResourceType@gas:
-		Name: Gas ($9)
+		Name: Gas ($36)
 		PipColor: Blue
 		ResourceType: 8
 		Palette: yellowpal
@@ -82,7 +87,7 @@
 		TerrainType: Gas
 		Sequences: gas1, gas2, gas3, gas4, gas5, gas6, gas7, gas8, gas9, gas10, gas11, gas12
 		MaxDensity: 12
-		ValuePerUnit: 9
+		ValuePerUnit: 36
 		AllowedTerrainTypes: Clear, SpaceGray, SpaceGreen, SpaceBlue, SpaceRed, SpaceGray2, SpaceGreen2, SpaceBlue2, SpaceRed2, Notifier
 		AllowUnderActors: true
 
@@ -110,6 +115,7 @@ World:
 	ResourceClaimLayer:
 	WarheadDebugOverlay:
 	CustomTerrainDebugOverlay:
+	DebugPauseState:
 	MapCreeps:
 	SpawnMapActors:
 	MapBuildRadius:
@@ -123,18 +129,13 @@ World:
 		ClassName: MCV Only
 		Factions: gkor
 		BaseActor: gmothership
-		SupportActors: grefinery, research.dummy, merc.dummy
-	MPStartUnits@terranmcv:
-		Class: none
-		ClassName: MCV Only
-		Factions: terran
-		BaseActor: tmothership
-		SupportActors: tref, research.dummy, merc.dummy
-	MPStartUnits@mcvonly:
-		Class: none
-		ClassName: MCV Only
-		Factions: gdi, nod
-		BaseActor: gmothership
+		SupportActors: research.dummy, merc.dummy, #grefinery
+	# MPStartUnits@terranmcv:
+		# Class: none
+		# ClassName: MCV Only
+		# Factions: terran
+		# BaseActor: tmothership
+		# SupportActors: tref, research.dummy, merc.dummy
 	CrateSpawner:
 		Minimum: 10
 		Maximum: 30
@@ -143,7 +144,6 @@ World:
 		InitialSpawnDelay: 2000
 	PathFinder:
 	ValidateOrder:
-	DebugPauseState:
 	ObjectivesPanel:
 		PanelName: SKIRMISH_STATS
 	RadarPings:

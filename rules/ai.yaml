@@ -12,9 +12,10 @@ Player:
 			Production: gmothership, research.dummy, merc.dummy
 			Silo: silo
 		UnitsCommonNames:
+			Mcv: grefinery, gpatrolcruiser, ghabitatship
 			ExcludeFromSquads: gmothership, grefinery, gminer, ghabitatship, tmothership, tref, tminer, thab
 		BuildingQueues: Aircraft, Vehicle, MercContract, Research
-		UnitQueues: TCorvette, GCorvette, TFrigate, GFrigate, TUtility, GUtility, Infantry, Building, Vehicle, MercContract
+		UnitQueues: TCorvette, GCorvette, TFrigate, GFrigate, TUtility, GUtility, Infantry, Building, Vehicle, MercContract, Miner
 		CheckCaptureTargetsForVisibility: false
 		MaximumCaptureTargetOptions: 15
 		BuildingLimits:

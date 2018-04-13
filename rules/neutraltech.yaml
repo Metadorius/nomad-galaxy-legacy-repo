@@ -250,6 +250,7 @@ ORECRYSTAL:
 		Actor: crystalbounty
 		OwnerType: Killer
 		DeathType: CrystalHarvest
+	Interactable:
 
 BOX:
 	Inherits: ^Planet

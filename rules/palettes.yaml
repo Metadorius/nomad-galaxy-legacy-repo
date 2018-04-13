@@ -2,12 +2,12 @@
 	PaletteFromFile@terrain-snow:
 		Name: terrain
 		Tileset: SPACE
-		Filename: snow.pal
+		Filename: temperatra.pal
 		ShadowIndex: 4
 	PaletteFromFile@staticterrain-snow:
 		Name: staticterrain
 		Tileset: SPACE
-		Filename: snow.pal
+		Filename: temperatra.pal
 		ShadowIndex: 4
 	PaletteFromFile@chrome:
 		Name: chrome

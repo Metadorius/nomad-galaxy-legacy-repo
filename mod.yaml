@@ -71,7 +71,6 @@ Rules:
 	ng|rules/mercrules.yaml
 	ng|rules/husks.yaml
 	ng|rules/spaceobjects.yaml
-	ng|rules/deadstuff.yaml
 
 Sequences:
 	ng|sequences/defaultseq.yaml
@@ -169,6 +168,15 @@ Music:
 
 Translations:
 	cnc|languages/english.yaml
+
+Hotkeys:
+	common|hotkeys/game.yaml
+	common|hotkeys/observer.yaml
+	common|hotkeys/production-common.yaml
+	common|hotkeys/production-peractor.yaml
+	common|hotkeys/supportpowers.yaml
+	common|hotkeys/viewport.yaml
+	cnc|hotkeys.yaml
 
 LoadScreen: CncLoadScreen
 	Image: ng|uibits/chrome.png

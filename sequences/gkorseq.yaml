@@ -23,6 +23,8 @@ ghabitatship:
 
 grefinery:
 	Inherits: ^shipdefault
+	idle:
+		ZOffset: -1000
 	icon: grefineryicon
 
 gfrigateassemblybay:

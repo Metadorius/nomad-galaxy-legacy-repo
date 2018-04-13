@@ -6,8 +6,6 @@ TMOTHERSHIP:
 		Condition: LogisticShipWanderer
 		Range: 5c0
 		AffectsParent: False
-	Aircraft:
-		TurnSpeed: 1
 	ProductionQueue@Building:
 		Type: TUtility
 		Group: Building
@@ -48,7 +46,7 @@ TREF:
 		DeployedCondition: deployed
 
 TPATROLCRUISER:
-	Inherits@1: PATROLCRUISER
+	Inherits@1: PATROLCRUISERGENERIC
 	Inherits@2: ^CivilianShipWeaponsGkor
 	Buildable:
 		Queue: TUtility
@@ -143,7 +141,7 @@ TBC1:
 		Name: Nuclear Battery
 	Power:
 		Amount: -20
-	Aircraft:
+	Mobile:
 		Speed: 22
 		TurnSpeed: 5
 	Health:
@@ -159,7 +157,7 @@ TBC1:
 		SpawnIsMissile: true
 		RespawnTicks: 120
 	MustBeDestroyed:
-	AttackHeli:
+	AttackFrontal:
 	SelectionDecorations:
 		VisualBounds: 90,90
 	Voiced:
@@ -185,7 +183,7 @@ TFRIG1:
 		Cost: 1100
 	Tooltip:
 		Name: Light Frigate
-	Aircraft:
+	Mobile:
 		TurnSpeed: 7
 		Speed: 45
 	Health:
@@ -236,7 +234,7 @@ TFRIG3:
 		HP: 1250000
 	RevealsShroud:
 		Range: 5c0
-	Aircraft:
+	Mobile:
 		TurnSpeed: 2
 		Speed: 37
 	Armament:
@@ -269,7 +267,7 @@ TFRIG2:
 		Cost: 1250
 	Tooltip:
 		Name: Heavy Frigate
-	Aircraft:
+	Mobile:
 		TurnSpeed: 1
 	Health:
 		HP: 900000
@@ -720,7 +718,7 @@ TERRANCORVETTE:
 		Turret: Dos
 		TurnSpeed: 12
 	AttackTurreted:
-	-AttackPlane:
+	-AttackFrontal:
 	SelectionDecorations:
 		VisualBounds: 28,28
 	Contrail:
@@ -762,7 +760,7 @@ TERRANRAILGUNCORVETTE:
 		Turret: Dos
 		TurnSpeed: 12
 	AttackTurreted:
-	-AttackPlane:
+	-AttackFrontal:
 	SelectionDecorations:
 		VisualBounds: 28,28
 	Contrail:
@@ -788,7 +786,6 @@ TERRANFIGHTER:
 		LocalOffset: 100,-200,0, 100,200,0
 	MustBeDestroyed:
 	AttackPlane:
-		AttackTurnDelay: 25
 	SelectionDecorations:
 		VisualBounds: 20,20
 	AutoTarget:

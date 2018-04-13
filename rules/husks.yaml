@@ -6,8 +6,6 @@ GFRIG1H:
 		Name: Husk
 	-SelectionDecorations:
 	-BlocksProjectiles:
-	Aircraft:
-		TurnSpeed: 7
 	Health:
 		HP: 1000000
 	-RevealsShroud:

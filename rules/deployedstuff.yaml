@@ -1,49 +1,13 @@
-DGPATROLCRUISER:
-	Inherits: ^BaseBuilding
-	Inherits@2: PATROLCRUISERGENERIC
-	ProvidesPrerequisite@buildingname:
-	ProvidesPrerequisite@T1Carrier:
-		Prerequisite: T1Carrier
-	ProvidesPrerequisite@gpatrolcruiser:
-		Prerequisite: gpatrolcruiser
-	RenderSprites:
-		Image: gpatrolcruiser
-	Transforms:
-		IntoActor: gpatrolcruiser
-		Facing: 180
-		Offset: 1,1
-	RallyPoint:
-	WithSpriteBody:
-		Sequence: deployed
-	Explodes:
-		Weapon: CapShipExplode
-		EmptyWeapon: CapShipExplode
-	ProductionQueue@Infantry:
-		Factions: gkor
-
-DGFRIGATEASSEMBLYBAY:
+DGREFINERY:
 	Inherits@1: ^BaseBuilding
-	Inherits@3: ^GCapitalShipProduction
-	Inherits@4: ^CivilianShipWeaponsGkor
-	ProvidesPrerequisite@T1Carrier:
-		Prerequisite: T1Carrier
-	ProvidesPrerequisite@gfrigateassemblybay:
-		Prerequisite: gfrigateassemblybay
-	Valued:
-		Cost: 2000
-	Tooltip:
-		Name: Frigate Assembly Bay
-	BaseBuilding:
-	Health:
-		HP: 4500000
-	RevealsShroud:
-		Range: 5c0
-	MustBeDestroyed:
-	Selectable:
-		Priority: 5
-		Bounds: 80,80
-	SelectionDecorations:
-		VisualBounds: 80,80
+	Inherits: ^AircraftQueue
+	Building:
+		Dimensions: 1,1
+		Footprint: _
+	SpawnActorOnDeath:
+		Actor: grefineryh
+		OwnerType: InternalName
+		InternalOwner: Neutral
 	Exit:
 		ExitCell: 1,1
 	Exit@1:
@@ -53,19 +17,47 @@ DGFRIGATEASSEMBLYBAY:
 	Exit@3:
 		ExitCell: -1,-1
 	RenderSprites:
-		Image: GFRIGATEASSEMBLYBAY
+		Image: GREFINERY
 	Transforms:
-		IntoActor: gfrigateassemblybay
-		Offset: 1,1
-	RallyPoint:
-	WithSpriteBody:
-		Sequence: deployed
-	ExplodeWeapon@AntiFighter2:
-		Weapon: FieldDefenceLaserSpawnAntiFighter
-	SpawnActorOnDeath:
-		Actor: gfrigateassemblybayh
-		OwnerType: InternalName
-		InternalOwner: Neutral
-	Explodes:
-		Weapon: CapShipExplode
-		EmptyWeapon: CapShipExplode
+		IntoActor: grefinery
+		Offset: 0,0
+	ProvidesPrerequisite@lactm:
+		Prerequisite: grefinery
+	ProvidesPrerequisite:
+	Targetable:
+		TargetTypes: DeployedShip
+	Valued:
+		Cost: 1100
+	Tooltip:
+		Name: Refinery
+	Selectable:
+		Priority: 5
+	Health:
+		HP: 2000000
+	MustBeDestroyed:
+	RenderSprites:
+	MustBeDestroyed:
+	WithDecoration@Role:
+		Image: rank
+		Sequence: houseicon
+		Palette: effect
+		ReferencePoint: Top, Right
+		RequiresCondition: !weonqloweonlawea
+		ZOffset: 256
+	StoresResources:
+		PipCount: 10
+		Capacity: 1000
+	Interactable:
+		Bounds 50,50
+	WithTextDecoration@deployed:
+		Text: DEPLOYED
+		ReferencePoint: Bottom
+		Color: E0D048
+		ZOffset: 9999
+	Refinery:
+		DockOffset: 0,0
+	ProductionQueue@Aircraft:
+		Type: Miner
+		Group: Aircraft
+	Production:
+		Produces: Miner

@@ -105,12 +105,13 @@ LaneSpeedShock:
 	ReloadDelay: 10
 	-Report:
 	Range: 6c0
+	InvalidTargets: DeployedShip
 	Projectile: TeslaZap
 		Image: litning
 	Warhead@1Dam: SpreadDamage
 		Damage: 1
 		ValidStances: Ally, Neutral, Enemy
-		InvalidTargets: LaneSpeedBoosted
+		InvalidTargets: LaneSpeedBoosted, DeployedShip
 	Warhead@LaneSpeedBost1: GrantExternalCondition
 		Range: 250
 		Duration: 250

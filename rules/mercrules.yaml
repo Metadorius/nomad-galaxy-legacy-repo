@@ -1,5 +1,5 @@
 PCARRIER:
-	Inherits: PATROLCRUISER
+	Inherits: PATROLCRUISERGENERIC
 	Valued:
 		Cost: 1500
 	Tooltip:
@@ -505,7 +505,7 @@ CUNIT2:
 	Armament:
 		Weapon: LancerTesla
 	MustBeDestroyed:
-	AttackHeli:
+	AttackFrontal:
 	SelectionDecorations:
 		VisualBounds: 28,28
 	AutoTarget:

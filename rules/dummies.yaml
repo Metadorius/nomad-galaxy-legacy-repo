@@ -10,7 +10,7 @@
 	-QuantizeFacingsFromSequence:
 	BodyOrientation:
 		QuantizedFacings: 1
-	-Interactable:
+	Interactable:
 	Health:
 		HP: 50000
 

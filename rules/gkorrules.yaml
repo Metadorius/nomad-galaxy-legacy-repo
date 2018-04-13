@@ -27,12 +27,89 @@ GMOTHERSHIP:
 	Production:
 		Produces: GUtility
 
+GHABITATSHIP:
+	Inherits: HABITATSHIP
+	Buildable:
+		Queue: GUtility
+		BuildPaletteOrder: 1
+		Prerequisites: ~mothership
+		Description: Civilian Ship, increases fleep capacity.\nCan be used to construct Space stations on planets.\nDefence platforms 2 cells near this ship or the station\nhave their power consumption reduced to half.
+	AnnounceOnBuildAS:
+		Voice: LogisticShipReady
+		OnlyToOwner: True
+
+GREFINERY:
+	Inherits: REFINERY
+	Buildable:
+		Queue: GUtility
+		BuildPaletteOrder: 2
+		Prerequisites: ~mothership, ghabitatship
+		Description: Resource gatherer, builds miners slowly.\nSupports up to 5 miners.
+	SpawnActorOnDeath:
+		Actor: grefineryh
+		OwnerType: InternalName
+		InternalOwner: Neutral
+	Transforms:
+		IntoActor: dgrefinery
+		Offset: 0,0
+	Interactable:
+		Bounds 50,50
+
+GPATROLCRUISER:
+	Inherits@1: PATROLCRUISERGENERIC
+	Inherits@2: ^CivilianShipWeaponsGkor
+	Buildable:
+		Queue: GUtility
+		BuildPaletteOrder: 3
+		Prerequisites: ~mothership, grefinery
+		Description: Small carrier outfitted with small craft production machines.\nWhen deployed, it becomes static but supports rally points.
+	ProductionQueue@Infantry:
+		Type: GCorvette
+		Group: Infantry
+	Production:
+		Produces: GCorvette
+	AnnounceOnBuildAS:
+		Voice: PatrolCruiserReady
+		OnlyToOwner: True
+	ProvidesPrerequisite:
+		Prerequisite:  Patrol Cruiser or Shipyard
+
+GFRIGATEASSEMBLYBAY:
+	Inherits: FRIGATEASSEMBLYBAY
+	Inherits@3: ^CivilianShipWeaponsGkor
+	Buildable:
+		Queue: GUtility
+		BuildPaletteOrder: 4
+		Prerequisites: ~mothership, grefinery
+		Description: Heavy armored carrier that supports frigate production.\nCan be deployed to become static to and use rallypoints.
+	AnnounceOnBuildAS:
+		Voice: FrigateAssemblyBayReady
+		OnlyToOwner: True
+	ProductionQueue@Defence:
+		Type: GFrigate
+		Group: Defence
+	Production:
+		Produces: GFrigate
+	ProvidesPrerequisite:
+		Prerequisite:  Patrol Cruiser or Shipyard
+
+GENGINEER:
+	Inherits: ENGINEER
+	Buildable:
+		Queue: GUtility
+		BuildPaletteOrder: 6
+		Prerequisites: ~mothership, gfrigateassemblybay
+		Description: Captures neutral objects and Repairs nearby ships.\ncan repair while moving.
+	AnnounceOnBuildAS:
+		Voice: EngineerCrewReady
+		OnlyToOwner: True
+
 GSURVEYFRIGATE:
 	Inherits: SURVEYFRIGATE
 	Buildable:
 		Queue: GUtility
 		BuildPaletteOrder: 4
-		Prerequisites: ~mothership, research.Improved.Detection.Systems
+		Prerequisites: ~mothership, Patrol Cruiser or Shipyard
 		Description: Exploration vessel equipped with long range scanners.\nEnables the radar upon construction.\nDetects cloaked units.
 	Tooltip:
 		Name: Survey Frigate
@@ -44,90 +121,17 @@ GSURVEYFRIGATE:
 		OwnerType: InternalName
 		InternalOwner: Neutral
 
-GREFINERY:
-	Inherits: REFINERY
-	Buildable:
-		Queue: GUtility
-		BuildPaletteOrder: 2
-		Prerequisites: ~mothership
-		Description: Resource gatherer, builds miners slowly.\nSupports up to 5 miners.
-	SpawnActorOnDeath:
-		Actor: grefineryh
-		OwnerType: InternalName
-		InternalOwner: Neutral
-	GrantConditionOnDeploy:
-		DeployedCondition: deployed
-
-GPATROLCRUISER:
-	Inherits@1: PATROLCRUISER
-	Inherits@2: ^CivilianShipWeaponsGkor
-	Buildable:
-		Queue: GUtility
-		BuildPaletteOrder: 3
-		Prerequisites: ~mothership, grefinery
-		Description: Small carrier outfitted with small craft production machines.\nWhen deployed, it becomes static but supports rally points.
-	Transforms:
-		IntoActor: dgpatrolcruiser
-		Facing: 180
-		Offset: -1,-1
-	ProductionQueue@Infantry:
-		Type: GCorvette
-		Group: Infantry
-	Production:
-		Produces: GCorvette
-	AnnounceOnBuildAS:
-		Voice: PatrolCruiserReady
-		OnlyToOwner: True
-
-GHABITATSHIP:
-	Inherits: HABITATSHIP
-	Buildable:
-		Queue: GUtility
-		BuildPaletteOrder: 1
-		Prerequisites: ~mothership, research.Logistic.Systems
-		Description: Civilian Ship, increases fleep capacity.\nCan be used to construct Space stations on planets.\nDefence platforms 2 cells near this ship or the station\nhave their power consumption reduced to half.
-	AnnounceOnBuildAS:
-		Voice: LogisticShipReady
-		OnlyToOwner: True
-
-GFRIGATEASSEMBLYBAY:
-	Inherits: FRIGATEASSEMBLYBAY
-	Inherits@3: ^CivilianShipWeaponsGkor
-	Buildable:
-		Queue: GUtility
-		BuildPaletteOrder: 4
-		Prerequisites: ~mothership, research.Frigate.Drive
-		Description: Heavy armored carrier that supports frigate production.\nCan be deployed to become static to and use rallypoints.
-	Transforms:
-		IntoActor: dgfrigateassemblybay
-		Facing: 180
-		Offset: -1,-1
-	AnnounceOnBuildAS:
-		Voice: FrigateAssemblyBayReady
-		OnlyToOwner: True
-	ProductionQueue@Defence:
-		Type: GFrigate
-		Group: Defence
-	Production:
-		Produces: GFrigate
-
 GRESEARCHSHIP:
 	Inherits: RESEARCHSHIP
 	AnnounceOnBuildAS:
 		Voice: ResearchShipReady
 		OnlyToOwner: True
-	-AttackMove:
-
-GENGINEER:
-	Inherits: ENGINEER
 	Buildable:
 		Queue: GUtility
-		BuildPaletteOrder: 6
-		Prerequisites: ~mothership, research.Platform.Construction
-		Description: Captures neutral objects and Repairs nearby ships.\ncan repair while moving.
-	AnnounceOnBuildAS:
-		Voice: EngineerCrewReady
-		OnlyToOwner: True
+		BuildPaletteOrder: 4
+		Prerequisites: ~mothership, gsurveyfrigate
+		Description: Heavy armored carrier that supports frigate production.\nCan be deployed to become static to and use rallypoints.
+	-AttackMove:
 
 GSUBSPESS:
 	Inherits: RESEARCHSHIP
@@ -137,7 +141,7 @@ GSUBSPESS:
 		Name: Subspace Field Generator
 	Power:
 		Amount: -50
-	Aircraft:
+	Mobile:
 		Speed: 15
 	Health:
 		HP: 3500000
@@ -181,7 +185,7 @@ GBC1:
 		Name: Light Cruiser
 	Power:
 		Amount: -20
-	Aircraft:
+	Mobile:
 		Speed: 27
 	Health:
 		HP: 3000000
@@ -209,7 +213,7 @@ GBC1:
 		Weapon: FieldDefenceLaserSpawnMothership
 		LocalOffset: -900,0,0
 	MustBeDestroyed:
-	AttackHeli:
+	AttackFrontal:
 	SelectionDecorations:
 		VisualBounds: 90,90
 	Voiced:
@@ -238,7 +242,7 @@ GBC2:
 		Name: Dreadnaught
 	Power:
 		Amount: -30
-	Aircraft:
+	Mobile:
 		Speed: 20
 	Health:
 		HP: 4500000
@@ -289,13 +293,13 @@ GFRIG1:
 	Buildable:
 		Queue: GFrigate
 		BuildPaletteOrder: 2
-		Prerequisites: ~fab, research.Enhanced.Cannons
+		Prerequisites: ~fab
 		Description: Combat craft armed with three Heavy Cannon.\nEffective against Frigates, Capital Ships.\nModerate against Corvettes.\nIneffective against Fighters.
 	Valued:
 		Cost: 1100
 	Tooltip:
 		Name: Assault Frigate
-	Aircraft:
+	Mobile:
 		TurnSpeed: 7
 	Health:
 		HP: 1500000
@@ -325,13 +329,13 @@ GFRIG2:
 	Buildable:
 		Queue: GFrigate
 		BuildPaletteOrder: 3
-		Prerequisites: ~fab, research.Long.Range.Targeting.Systems
+		Prerequisites: ~fab, gresearchship
 		Description: Frigate designed for long range bombardement.\nDeals moderate damage to all units.\nEffective vs Space stations.\nIneffective against mobile targets.
 	Valued:
 		Cost: 1250
 	Tooltip:
 		Name: Siege Frigate
-	Aircraft:
+	Mobile:
 		TurnSpeed: 1
 	Health:
 		HP: 900000
@@ -351,7 +355,7 @@ GFRIG3:
 	Buildable:
 		Queue: GFrigate
 		BuildPaletteOrder: 1
-		Prerequisites: ~fab
+		Prerequisites: ~fab, gsurveyfrigate
 		Description: Light frigate.\nEffective Against Fighters.
 	Valued:
 		Cost: 1000
@@ -361,7 +365,7 @@ GFRIG3:
 		HP: 1250000
 	RevealsShroud:
 		Range: 5c0
-	Aircraft:
+	Mobile:
 		TurnSpeed: 2
 		Speed: 45
 	Armament:
@@ -383,7 +387,7 @@ GFRIG4:
 	Buildable:
 		Queue: GFrigate
 		BuildPaletteOrder: 1
-		Prerequisites: ~fab, research.Rending.Claws
+		Prerequisites: ~fab, gengineer
 		Description: Melee Frigate, holds the unit it attacks in place.
 	Valued:
 		Cost: 1000
@@ -393,7 +397,7 @@ GFRIG4:
 		HP: 3500000
 	RevealsShroud:
 		Range: 5c0
-	Aircraft:
+	Mobile:
 		TurnSpeed: 4
 		Speed: 45
 		CruiseAltitude: 6
@@ -409,32 +413,6 @@ GFRIG4:
 		RequiresCondition: MeleeAnim
 	ExternalCondition@MeleeAnim:
 		Condition: MeleeAnim
-	SpawnActorOnDeath:
-		Actor: gfrig3h
-		OwnerType: InternalName
-		InternalOwner: Neutral
-
-GFRIG5:
-	Inherits: ^TurretedFrigate
-	Valued:
-		Cost: 1000
-	Tooltip:
-		Name: Acid Frigate
-	Health:
-		HP: 1250000
-	RevealsShroud:
-		Range: 5c0
-	Aircraft:
-		TurnSpeed: 2
-		Speed: 45
-	Armament:
-		Weapon: FrigateGasBullet
-		LocalOffset: 300,0,0
-		RequiresCondition: !HyperSpaceFadeOut
-	ExplodeWeapon@1:
-		Weapon: GKorGasBulletSpawner
-		LocalOffset: 300,0,0
-		RequiresCondition: !HyperSpaceFadeOut
 	SpawnActorOnDeath:
 		Actor: gfrig3h
 		OwnerType: InternalName
@@ -473,7 +451,7 @@ GCORV1:
 	Buildable:
 		Queue: GCorvette
 		BuildPaletteOrder: 1
-		Prerequisites: ~pc, research.Corvette.Drive
+		Prerequisites: ~pc
 		Description: Armed with a heavy cannon.\nEffective against Frigates.\nIneffective against Fighters and Corvettes.
 	Valued:
 		Cost: 250
@@ -497,7 +475,7 @@ GCORV2:
 	Buildable:
 		Queue: GCorvette
 		BuildPaletteOrder: 1
-		Prerequisites: ~pc, research.Enhanced.Cannons
+		Prerequisites: ~pc, gsurveyfrigate
 		Description: Medium craft armed with torpedo launchers.\nEffective against Corvettes.\nIneffective against Fighters and Capital Ships.
 	Valued:
 		Cost: 275
@@ -535,11 +513,16 @@ GCORV3:
 
 GMINER:
 	Inherits: MINER
+	Buildable:
+		Queue: Miner
+		BuildPaletteOrder: 1
+		Description: Utility Ship
 
 GLMINER:
 	Inherits: GMINER
 	-WithDockingAnimation:
 	-Harvester:
+	-Buildable:
 	RenderSprites:
 		Image: gminer
 	Mobile:
@@ -589,7 +572,7 @@ GFIGHTERCARRIER:
 	Buildable:
 		Queue: GCorvette
 		BuildPaletteOrder: 3
-		Prerequisites: ~mothership, research.Fighter.Bays
+		Prerequisites: ~mothership, gsurveyfrigate
 		Description: Frigate that holds and services interceptors.\nEffective against fighters.\nIneffective against everything else.\n\nDEBUG: In case fighters freeze, place this unit near them and deploy.\nAllied fighters will be killed.
 
 GBOMBERCARRIER:
@@ -598,7 +581,7 @@ GBOMBERCARRIER:
 	Buildable:
 		Queue: GCorvette
 		BuildPaletteOrder: 4
-		Prerequisites: ~gmothership, research.Plasma.Bombs
+		Prerequisites: ~gmothership, gresearchship
 		Description: Frigate that holds and services bombers.\nEffective against Frigates and Capital Ships.\nIneffective against Fighters and Corvettes.\n\nDEBUG: In case fighters freeze, place this unit near them and deploy.\nAllied fighters will be killed.
 	Valued:
 		Cost: 800
@@ -607,8 +590,7 @@ GBOMBERCARRIER:
 	Health:
 		HP: 800000
 	CarrierMaster:
-		Count: 3
-		Actors: gfighter2
+		Actors: gfighter2, gfighter2, gfighter2
 	Armament@PRIMARY:
 		Weapon: PlatformBomberSpawn
 	SpawnActorOnDeath:
