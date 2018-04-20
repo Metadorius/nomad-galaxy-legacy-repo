@@ -31,7 +31,7 @@
 		RandomFactionMembers: gkor
 		Description: Selection is a lie
 	ResourceType@green-tib:
-		Name: Minerals ($45)
+		Name: Minerals ($30)
 		PipColor: Green
 		ResourceType: 1
 		Palette: apolcybl
@@ -39,11 +39,11 @@
 		TerrainType: Tiberium
 		Sequences: astore1, astore2, astore3, astore4, astore5, astore6, astore7, astore8, astore9, astore10, astore11, astore12, astore13
 		MaxDensity: 8
-		ValuePerUnit: 45
+		ValuePerUnit: 30
 		AllowedTerrainTypes: Clear, SpaceGray, SpaceGreen, SpaceBlue, SpaceRed, SpaceGray2, SpaceGreen2, SpaceBlue2, SpaceRed2, Notifier
 		AllowUnderActors: true
 	ResourceType@blue-tib:
-		Name: High density minerals ($40)
+		Name: High density minerals ($30)
 		PipColor: Blue
 		ResourceType: 2
 		Palette: chrome
@@ -51,7 +51,7 @@
 		TerrainType: BlueTiberium
 		Sequences: astorecyan1, astorecyan2, astorecyan3, astorecyan4, astorecyan5, astorecyan6, astorecyan7, astorecyan8, astorecyan9, astorecyan10, astorecyan11, astorecyan12, astorecyan13
 		MaxDensity: 1300
-		ValuePerUnit: 40
+		ValuePerUnit: 30
 		AllowedTerrainTypes: Clear, SpaceGray, SpaceGreen, SpaceBlue, SpaceRed, SpaceGray2, SpaceGreen2, SpaceBlue2, SpaceRed2, Notifier
 		AllowUnderActors: true
 	ResourceType@junk:
@@ -63,11 +63,11 @@
 		TerrainType: Junk
 		Sequences: junk1, junk2, junk3, junk4, junk5, junk6, junk7, junk8, junk9, junk10, junk11
 		MaxDensity: 12
-		ValuePerUnit: 60
+		ValuePerUnit: 30
 		AllowedTerrainTypes: Clear, SpaceGray, SpaceGreen, SpaceBlue, SpaceRed, SpaceGray2, SpaceGreen2, SpaceBlue2, SpaceRed2, Notifier
 		AllowUnderActors: true
 	ResourceType@gray-tib:
-		Name: Minerals ($52)
+		Name: Minerals ($15)
 		PipColor: Gray
 		ResourceType: 4
 		Palette: apolgrey
@@ -75,11 +75,11 @@
 		TerrainType: BlueTiberium
 		Sequences: astore1, astore2, astore3, astore4, astore5, astore6, astore7, astore8, astore9, astore10, astore11, astore12, astore13
 		MaxDensity: 25
-		ValuePerUnit: 52
+		ValuePerUnit: 15
 		AllowedTerrainTypes: Clear, SpaceGray, SpaceGreen, SpaceBlue, SpaceRed, SpaceGray2, SpaceGreen2, SpaceBlue2, SpaceRed2, Notifier
 		AllowUnderActors: true
 	ResourceType@gas:
-		Name: Gas ($36)
+		Name: Gas ($45)
 		PipColor: Blue
 		ResourceType: 8
 		Palette: yellowpal
@@ -87,7 +87,7 @@
 		TerrainType: Gas
 		Sequences: gas1, gas2, gas3, gas4, gas5, gas6, gas7, gas8, gas9, gas10, gas11, gas12
 		MaxDensity: 12
-		ValuePerUnit: 36
+		ValuePerUnit: 45
 		AllowedTerrainTypes: Clear, SpaceGray, SpaceGreen, SpaceBlue, SpaceRed, SpaceGray2, SpaceGreen2, SpaceBlue2, SpaceRed2, Notifier
 		AllowUnderActors: true
 
@@ -129,7 +129,7 @@ World:
 		ClassName: MCV Only
 		Factions: gkor
 		BaseActor: gmothership
-		SupportActors: research.dummy, merc.dummy, #grefinery
+		SupportActors: merc.dummy, #grefinery research.dummy,
 	# MPStartUnits@terranmcv:
 		# Class: none
 		# ClassName: MCV Only

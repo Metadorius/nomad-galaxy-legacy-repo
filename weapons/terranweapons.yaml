@@ -1,12 +1,12 @@
 RailgunCorvetteRail:
 	Inherits: HeavyCannon
 	ReloadDelay: 125
-	Range: 6c0
+	Range: 9c0
 	InvalidTargets: Fighter
 	Projectile: Railgun
 		BeamWidth: 30
 	Warhead@1Dam: SpreadDamage
-		Damage: 25000
+		Damage: 65000
 
 TCorvFlak:
 	Inherits: ^Flak
@@ -79,14 +79,27 @@ TFrigAutoCannon:
 TFrigCannon:
 	Inherits: HeavyCannon
 	ReloadDelay: 50
-	Burst: 3
-	BurstDelay: 6
 	Range: 6c0
 	Projectile: Bullet
 		Image: SHELLMINI
 		Inaccuracy: 0c256
 	Warhead@1Dam: SpreadDamage
-		Damage: 6000
+		Damage: 36000
+	Warhead@3Eff: CreateEffect
+
+TFrigRocket:
+	Inherits: ^Torpedo
+	ReloadDelay: 50
+	Range: 4c0
+	Burst: 1
+	BurstDelay: 10
+	Report: bazook1.aud
+	Projectile: Missile
+		Inaccuracy: 0c256
+		LaunchAngle: 90
+		CruiseAltitude: 512
+	Warhead@1Dam: SpreadDamage
+		Damage: 45000
 	Warhead@3Eff: CreateEffect
 
 TFrigCannonLong:
@@ -96,12 +109,12 @@ TFrigCannonLong:
 NuclearBattleryRocket:
 	Inherits: CorvetteRocket
 	Burst: 5
-	Range: 6c0
+	Range: 5c0
 	Projectile: Missile
 		HorizontalRateOfTurn: 5
 		Inaccuracy: 0c512
 	Warhead@1Dam: SpreadDamage
-		Damage: 25000
+		Damage: 45000
 
 TorpedoExplode:
 	Warhead@1Dam: SpreadDamage
@@ -122,6 +135,29 @@ TorpedoExplode:
 		Range: 450
 		Duration: 250
 		Condition: EmpDisable
+		ValidTargets: CapitalShip, Frigate, Corvette, Ground, Air, Airhit
+		AffectsParent: True
+		ValidStances: Ally, Enemy, Neutral
+
+SuicideExplode:
+	Warhead@1Dam: SpreadDamage
+		Spread: 512
+		Damage: 3000000
+	Warhead@5: FireShrapnel
+		Weapon: DebrisMedium2
+		Amount: 4
+		AimChance: 0
+		AllowDirectHit: False
+		ThrowWithoutTarget: True
+		ValidTargets: CapitalShip, Frigate, Corvette, Ground, Air, Airhit
+	Warhead@2Eff: CreateEffect
+		Explosions: jtwlt100, jtwlt100b, jtwlt070, jtwlt070b, jsclsn58, jexplolrg
+		ExplosionPalette: gensmkexploj
+		ValidTargets: CapitalShip, Frigate, Corvette, Ground, Air, Airhit
+	Warhead@SlowFighter: GrantExternalCondition
+		Range: 1400
+		Duration: 75
+		Condition: empdisable
 		ValidTargets: CapitalShip, Frigate, Corvette, Ground, Air, Airhit
 		AffectsParent: True
 		ValidStances: Ally, Enemy, Neutral

@@ -21,6 +21,31 @@
 		Length: 1
 	idle:
 
+split2:
+	Defaults: asteroidtibtree
+		UseTilesetExtension: False
+	make:
+	asteroidfield: asteroidfieldcyan
+		Start: 6
+		ZOffset: -99999
+	idle:
+		Length: 11
+		Tick: 500
+
+split3:
+	Inherits: split2
+	idle:
+		Start: 12
+	asteroidfield: asteroidfieldcyan
+		Start: 8
+
+splitblue:
+	Inherits: split2
+	idle:
+		Start: 24
+	asteroidfield: asteroidfieldcyan
+		Start: 6
+
 dustcloud1:
 	Inherits: ^SpaceObject
 	idle:

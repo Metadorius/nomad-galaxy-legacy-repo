@@ -160,7 +160,6 @@ HeavyCannon:
 	Warhead@1Dam: SpreadDamage
 		Spread: 250
 		Damage: 3500
-		ValidStances: Neutral, Enemy
 		ValidTargets: CapitalShip, Frigate, Corvette, Ground
 		Versus:
 			Fighter: 1

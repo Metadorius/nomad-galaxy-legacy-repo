@@ -1,47 +1,47 @@
-research.dummy:
-	AlwaysVisible:
-	Tooltip:
-		Name: Research Dummy
-	RenderSprites:
-		Image: punit3
-	Mobile:
-		Speed: 1
-		TerrainSpeeds:
-			Clear: 100
-			Ground: 100
-			Tiberium: 100
-			BlueTiberium: 100
-			Junk: 100
-			Gas: 100
-			SpaceGray: 100
-			SpaceGray2: 100
-			SpaceGreen: 100
-			SpaceGreen2: 100
-			SpaceBlue: 100
-			SpaceBlue2: 100
-			SpaceRed: 100
-			SpaceRed2: 100
-		TurnSpeed: 3
-	ProductionQueue@Research:
-		Type: Research
-		Factions: gkor, terran
-		Group: Vehicle
-		LowPowerSlowdown: 3
-		QueuedAudio: Building
-		ReadyAudio: ConstructionComplete
-	Production:
-		Produces: Research
-	Exit:
-	ProvidesPrerequisite@upgradename:
-	GrantConditionOnPrerequisite@RadarUnlock:
-		Prerequisites: research.Improved.Detection.Systems
-		Condition: RadarUnlock
-	ExternalCondition@RadarUnlock:
-		Condition: RadarUnlock
-	ProvidesRadar:
-		RequiresCondition: RadarUnlock
-	ConditionManager:
-	Interactable:
+# research.dummy:
+	# AlwaysVisible:
+	# Tooltip:
+		# Name: Research Dummy
+	# RenderSprites:
+		# Image: punit3
+	# Mobile:
+		# Speed: 1
+		# TerrainSpeeds:
+			# Clear: 100
+			# Ground: 100
+			# Tiberium: 100
+			# BlueTiberium: 100
+			# Junk: 100
+			# Gas: 100
+			# SpaceGray: 100
+			# SpaceGray2: 100
+			# SpaceGreen: 100
+			# SpaceGreen2: 100
+			# SpaceBlue: 100
+			# SpaceBlue2: 100
+			# SpaceRed: 100
+			# SpaceRed2: 100
+		# TurnSpeed: 3
+	# ProductionQueue@Research:
+		# Type: Research
+		# Factions: gkor, terran
+		# Group: Vehicle
+		# LowPowerSlowdown: 3
+		# QueuedAudio: Building
+		# ReadyAudio: ConstructionComplete
+	# Production:
+		# Produces: Research
+	# Exit:
+	# ProvidesPrerequisite@upgradename:
+	# GrantConditionOnPrerequisite@RadarUnlock:
+		# Prerequisites: research.Improved.Detection.Systems
+		# Condition: RadarUnlock
+	# ExternalCondition@RadarUnlock:
+		# Condition: RadarUnlock
+	# ProvidesRadar:
+		# RequiresCondition: RadarUnlock
+	# ConditionManager:
+	# Interactable:
 
 ^Research:
 	AlwaysVisible:
@@ -71,134 +71,72 @@ research.Crystal.Harvest:
 	RenderSprites:
 		Image: crystalicon
 
-research.Corvette.Drive:
-	Inherits: ^Research
-	Tooltip:
-		Name: Corvette Drive
-	Valued:
-		Cost: 600
+^default.upgrade:
+	Interactable:
+	AlwaysVisible:
 	Buildable:
-		Prerequisites: ~!research.Corvette.Drive
-		Description: Unlocks Basic Corvettes
-	ProvidesPrerequisite:
-		Prerequisite: research.Corvette.Drive
+		Queue: Vehicle
+		BuildDurationModifier: 100
+		BuildLimit: 1
+		IconPalette: pirateicon
+	RenderSprites:
+		Image: upgradeicon
+	Mobile:
+		Speed: 15
+		TurnSpeed: 5
+		TerrainSpeeds:
+			Clear: 100
+			Ground: 100
+			Tiberium: 100
+			BlueTiberium: 100
+			Junk: 100
+			Gas: 100
+			SpaceGray: 100
+			SpaceGray2: 100
+			SpaceGreen: 100
+			SpaceGreen2: 100
+			SpaceBlue: 100
+			SpaceBlue2: 100
+			SpaceRed: 100
+			SpaceRed2: 100
+	Doctrine:
+	ProvidesPrerequisite@upgradename:
+	KillsSelf:
+		RemoveInstead: true
+		Delay: 1
+	ProductionQueue:
+		Type: DummyQueue
+		Group: DummyQueues
 
-research.Frigate.Drive:
-	Inherits: ^Research
+upgrade.corvettequeue:
+	Inherits: ^default.upgrade
 	Tooltip:
-		Name: Frigate Drive
-	Valued:
-		Cost: 2000
+		Name: Corvette bay
 	Buildable:
-		Prerequisites: ~!research.Frigate.Drive
-		Description: Unlocks Basic Frigates
-	ProvidesPrerequisite:
-		Prerequisite: research.Frigate.Drive
-
-research.Enhanced.Cannons:
-	Inherits: ^Research
-	Tooltip:
-		Name: Enhanced Cannons
-	Valued:
-		Cost: 1000
-	Buildable:
-		Prerequisites: ~research.Corvette.Drive, ~!research.Enhanced.Cannons
-		Description: Unlocks Advanced Corvettes and Frigates
-	ProvidesPrerequisite:
-		Prerequisite: research.Enhanced.Cannons
-
-research.Rending.Claws:
-	Inherits: ^Research
-	Tooltip:
-		Name: Rending Claws
+		Queue: AssemblyBayUpgrade
+		Description: Allows corvette production.
+		BuildLimit: 0
 	Valued:
 		Cost: 500
-	Buildable:
-		Prerequisites: ~gmothership, ~research.Frigate.Drive, ~research.Enhanced.Cannons, ~!research.Rending.Claws
-		Description: Adapts the frigate bioform to allow it to hold other units.
-	ProvidesPrerequisite:
-		Prerequisite: research.Rending.Claws
 
-research.Improved.Detection.Systems:
-	Inherits: ^Research
+upgrade.frigatequeue:
+	Inherits: ^default.upgrade
 	Tooltip:
-		Name: Improved Detection Systems
-	Valued:
-		Cost: 750
+		Name: Frigate assembly bay
 	Buildable:
-		Prerequisites: ~research.Corvette.Drive, ~!research.Improved.Detection.Systems
-		Description: Activates long range sensors and unlocks survey frigates.
-	ProvidesPrerequisite:
-		Prerequisite: research.Improved.Detection.Systems
-
-research.Long.Range.Targeting.Systems:
-	Inherits: ^Research
-	Tooltip:
-		Name: Long range targeting systems
-	Valued:
-		Cost: 750
-	Buildable:
-		Prerequisites: ~research.Improved.Detection.Systems, ~!research.Long.Range.Targeting.Systems
-		Description: Unlocks artillery type units.
-	ProvidesPrerequisite:
-		Prerequisite: research.Long.Range.Targeting.Systems
-
-research.Logistic.Systems:
-	Inherits: ^Research
-	Tooltip:
-		Name: Logistic Systems
-	Valued:
-		Cost: 2000
-	Buildable:
-		Prerequisites: ~!research.Logistic.Systems
-		Description: Unlocks colony ships.
-	ProvidesPrerequisite:
-		Prerequisite: research.Logistic.Systems
-
-research.Destroyer.Drive:
-	Inherits: ^Research
-	Tooltip:
-		Name: Destroyer Drive
-	Valued:
-		Cost: 2000
-	Buildable:
-		Prerequisites: ~research.Long.Range.Targeting.Systems, ~research.Platform.Construction, ~!research.Destroyer.Drive
-		Description: Adapts current ships designs to construct combat ready capital ships.
-	ProvidesPrerequisite:
-		Prerequisite: research.Destroyer.Drive
-
-research.Fighter.Bays:
-	Inherits: ^Research
-	Tooltip:
-		Name: Fighter Bays
+		Queue: AssemblyBayUpgrade
+		Description: Allows frigate production.
+		BuildLimit: 0
 	Valued:
 		Cost: 500
-	Buildable:
-		Prerequisites: ~!research.Fighter.Bays
-		Description: Unlocks basic interceptors.
-	ProvidesPrerequisite:
-		Prerequisite: research.Fighter.Bays
 
-research.Plasma.Bombs:
-	Inherits: ^Research
+upgrade.baseshipqueue:
+	Inherits: ^default.upgrade
 	Tooltip:
-		Name: Plasma Bombs
-	Valued:
-		Cost: 1000
+		Name: Shipyard
 	Buildable:
-		Prerequisites: ~research.Fighter.Bays, ~!research.Plasma.Bombs
-		Description: Unlocks Bombers.
-	ProvidesPrerequisite:
-		Prerequisite: research.Plasma.Bombs
-
-research.Platform.Construction:
-	Inherits: ^Research
-	Tooltip:
-		Name: Platform Construction
+		Queue: AssemblyBayUpgrade
+		Description: Allows base ship production.
+		BuildLimit: 0
 	Valued:
-		Cost: 1500
-	Buildable:
-		Prerequisites: ~research.Logistic.Systems, ~!research.Platform.Construction
-		Description: Enables platform construction.
-	ProvidesPrerequisite:
-		Prerequisite: research.Platform.Construction
+		Cost: 500

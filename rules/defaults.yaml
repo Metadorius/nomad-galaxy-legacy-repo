@@ -304,11 +304,6 @@
 		Modifier: 150
 	ExternalCondition@SpeedBuoy:
 		Condition: SpeedBuoy
-	SpeedMultiplier@GreenNebula:
-		RequiresCondition: GreenNebula
-		Modifier: 35
-	ExternalCondition@GreenNebula:
-		Condition: GreenNebula
 	ExternalCondition@RedNebula:
 		Condition: RedNebula
 	SelfHealing@RedNebula:
@@ -410,8 +405,6 @@
 			Gas: 100
 			SpaceGray: 100
 			SpaceGray2: 100
-			SpaceGreen: 100
-			SpaceGreen2: 100
 			SpaceBlue: 100
 			SpaceBlue2: 100
 			SpaceRed: 100
@@ -482,6 +475,8 @@
 	Mobile:
 		Speed: 30
 		TurnSpeed: 6
+	Selectable:
+		Priority: 10
 	RevealsShroud:
 		Range: 7c0
 		Type: CenterPosition
@@ -566,7 +561,6 @@
 		TargetTypes: Fighter
 	AttackMove:
 	WithFacingSpriteBody:
-	-SpeedMultiplier@GreenNebula:
 	Hovers:
 	Voiced:
 		VoiceSet: GenericVoice
@@ -662,8 +656,8 @@
 			Junk: 70
 			SpaceGray: 100
 			SpaceGray2: 100
-			SpaceGreen: 100
-			SpaceGreen2: 100
+			SpaceGreen: 50
+			SpaceGreen2: 50
 			SpaceBlue: 100
 			SpaceBlue2: 100
 			SpaceRed: 100
@@ -948,9 +942,7 @@
 		Name: Asteroid Field
 		ShowOwnerRow: false
 	RenderSprites:
-		Palette: chrome
-	Targetable@Asteroid:
-		TargetTypes: CometMagnet
+		Palette: apolcybl
 	Health:
 		HP: 1000000
 	WithSpriteBody:

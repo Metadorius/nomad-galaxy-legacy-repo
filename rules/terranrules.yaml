@@ -175,14 +175,13 @@ TFRIG1:
 	Inherits@2: ^FrigateTargetPriority
 	Buildable:
 		IconPalette: terranicon
-		Queue: TFrigate
+		Queue: FrigateQueue
 		BuildPaletteOrder: 1
-		Prerequisites: ~tmothership, research.Frigate.Drive
 		Description: Combat craft armed with three Heavy Cannon.\nEffective against Frigates, Capital Ships.\nModerate against Corvettes.\nIneffective against Fighters.
 	Valued:
 		Cost: 1100
 	Tooltip:
-		Name: Light Frigate
+		Name: Raider Frigate
 	Mobile:
 		TurnSpeed: 7
 		Speed: 45
@@ -202,6 +201,12 @@ TFRIG1:
 		Weapon: TFrigCannon
 		RequiresCondition: !HyperSpaceFadeOut
 		Turret: Dos
+	Armament@2:
+		Weapon: TFrigRocket
+		RequiresCondition: !HyperSpaceFadeOut
+		Turret: Dos
+		Name: Missile
+		PauseOnCondition: !NoMissile
 	WithSpriteTurret:
 		Turret: Uno
 		Sequence: turret2
@@ -216,27 +221,37 @@ TFRIG1:
 		Offset: 400, 0, 50
 		Turret: Dos
 		TurnSpeed: 6
+	ReloadAmmoPool
+		AmmoPool: Missile
+	AmmoPool:
+		Name: Missile
+		AmmoCondition: NoMissile
+	AttackTurreted:
+		Turrets: Uno, Dos
 
 TFRIG3:
 	Inherits: ^AFrontalFrigate
 	Inherits@2: ^CorvetteTargetPriority
 	Buildable:
 		IconPalette: terranicon
-		Queue: TFrigate
+		Queue: FrigateQueue
 		BuildPaletteOrder: 3
-		Prerequisites: ~fab, research.Enhanced.Cannons
-		Description: Light frigate.\nEffective Against Fighters.
+		Prerequisites: gresearchship
+		Description: Light frigate, can saturate an area with rockets.\n- Cloaks when not attacking.
 	Valued:
-		Cost: 1000
+		Cost: 1300
 	Tooltip:
-		Name: Rocket Frigate
+		Name: Nuclear Battery
 	Health:
 		HP: 1250000
 	RevealsShroud:
 		Range: 5c0
 	Mobile:
-		TurnSpeed: 2
-		Speed: 37
+		TurnSpeed: 5
+		Speed: 60
+	Cloak:
+		IsPlayerPalette: True
+		CloakDelay: 100
 	Armament:
 		Weapon: NuclearBattleryRocket
 		RequiresCondition: !HyperSpaceFadeOut
@@ -379,57 +394,46 @@ TCORV1:
 	Inherits@2: ^FighterTargetPriority
 	Buildable:
 		IconPalette: terranicon
-		Queue: TCorvette
-		BuildPaletteOrder: 1
-		Prerequisites: ~pc, research.Corvette.Drive
-		Description: Armed with a flak cannons.\nEffective against Frigates.\nIneffective against Fighters and Corvettes.
+		Queue: CorvetteQueue
+		BuildPaletteOrder: 4
+		Prerequisites: gresearchship
+		Description: Cloaked when static
 	Valued:
-		Cost: 250
+		Cost: 750
 	Tooltip:
-		Name: Raider Corvette
+		Name: Suicide Corvette
 	Power:
 		Amount: -2
 	Health:
 		HP: 170000
 	RevealsShroud:
 		Range: 5c0
-	Armament@1:
-		Weapon: BasicAutocannon
-		RequiresCondition: !HyperSpaceFadeOut
-		Turret: Uno
-	Armament:
-		Weapon: BasicAutocannon
-		RequiresCondition: !HyperSpaceFadeOut
-		Turret: Dos
-	WithSpriteTurret:
-		Turret: Uno
-	WithSpriteTurret@1:
-		Turret: Dos
-	Turreted:
-		Offset: -250, 0, 100
-		TurnSpeed: 6
-		Turret: Uno
-	Turreted@1:
-		Offset: 250, 0, 100
-		Turret: Dos
-		TurnSpeed: 6
-	AttackTurreted:
+	Cloak:
+		IsPlayerPalette: True
+		CloakDelay: 100
+		UncloakOn: Attack, Unload, Infiltrate, Demolish, Dock, Damage, Move
+	Explodes:
+		Weapon: SuicideExplode
+		EmptyWeapon: SuicideExplode
+	AttackSuicides:
 
 TCORV2:
 	Inherits: ^Corvette
 	Inherits@2: ^CorvetteTargetPriority
 	Buildable:
 		IconPalette: terranicon
-		Queue: TCorvette
-		BuildPaletteOrder: 2
-		Prerequisites: ~pc, research.Enhanced.Cannons
-		Description: Medium craft armed with torpedo launchers.\nEffective against Corvettes.\nIneffective against Fighters and Capital Ships.
+		Queue: CorvetteQueue
+		BuildPaletteOrder: 3
+		Prerequisites: gsurveyfrigate
+		Description: Sniper Corvette, effective vs armor
 	Valued:
-		Cost: 275
+		Cost: 500
 	Tooltip:
 		Name: Railgun Corvette
 	Power:
 		Amount: -2
+	Mobile:
+		Speed: 55
 	Health:
 		HP: 170000
 	RevealsShroud:
@@ -458,6 +462,7 @@ TCORV2:
 		TurnSpeed: 6
 		Offset: -150,0,0
 	AttackTurreted:
+		Turrets: Uno, Dos
 
 TCORV3:
 	Inherits: ^Corvette

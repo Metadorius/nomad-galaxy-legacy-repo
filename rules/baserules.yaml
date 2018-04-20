@@ -1,7 +1,7 @@
 ^BuildingQueue:
 	ProductionQueue@Building:
 		Type: Building
-		Factions: nod, gdi
+		Factions: gkor, terran
 		Group: Building
 		LowPowerSlowdown: 2
 		QueuedAudio: Building
@@ -10,7 +10,7 @@
 ^DefenceQueue:
 	ProductionQueue@Defence:
 		Type: Defence
-		Factions: nod, gdi
+		Factions: gkor, terran
 		Group: Defence
 		LowPowerSlowdown: 2
 		QueuedAudio: Building
@@ -32,7 +32,7 @@
 ^VehicleQueue:
 	ProductionQueue@Vehicle:
 		Type: Vehicle
-		Factions: nod, gdi
+		Factions: gkor, terran
 		Group: Vehicle
 		LowPowerSlowdown: 3
 		QueuedAudio: Building
@@ -55,7 +55,7 @@
 ^GUtilityShipProduction:
 	Inherits: ^BuildingQueue
 	ProductionQueue@Building:
-		Factions: gkor
+		Factions: gkor, terran
 		LowPowerSlowdown: 1
 		BuildDurationModifier: 100
 	Production@Building:
@@ -70,6 +70,23 @@
 		ReadyAudio: frigateready
 	Production@Defence:
 		Produces: Defence
+
+^AIWander:
+	ProvidesAIPrerequisite@LogisticShipWanderer:
+		Prerequisite: LogisticShipWanderer
+	GrantConditionOnPrerequisite@LogisticShipWanderer:
+		Condition: LogisticShipWanderer
+		Prerequisites: AImoney
+	AttackWander@LogisticShipWanderer:
+		RequiresCondition: LogisticShipWanderer
+		WanderMoveRadius: 1
+		ReduceMoveRadiusDelay: 6000
+	AttackFrontal:
+		RequiresCondition: LogisticShipWanderer
+	Armament@Capture2:
+		Weapon: LogisticShipKiller
+		TargetStances: Enemy, Ally, Neutral
+		RequiresCondition: LogisticShipWanderer
 
 MOTHERSHIP:
 	Inherits: ^Building
@@ -142,9 +159,29 @@ MOTHERSHIP:
 	ProvidesPrerequisite@mothership:
 		Prerequisite: mothership
 	ProvidesPrerequisite@buildingname:
+	Production@CorvetteQueue:
+		Produces: CorvetteQueue
+	ProductionQueue@CorvetteQueue:
+		Type: CorvetteQueue
+		Group: Defence
+		LowPowerSlowdown: 3
+	ProvidesAIPrerequisite@AImoney:
+		Prerequisite: AImoney
+	GrantConditionOnPrerequisite@AImoney:
+		Condition: money
+		Prerequisites: AImoney
+	CashTrickler@AImoney:
+		Interval: 1000
+		Amount: 250
+		ShowTicks: False
+		RequiresCondition: money
+	Power@AI:
+		Amount: 999
+		RequiresCondition: money
 
 HABITATSHIP:
 	Inherits: ^CapitalShip
+	Inherits@1: ^AIWander
 	Valued:
 		Cost: 900
 	Power:
@@ -152,6 +189,9 @@ HABITATSHIP:
 	Power@2:
 		Amount: 40
 		RequiresCondition: deployed
+	Power@AI:
+		Amount: 999
+		RequiresCondition: LogisticShipWanderer
 	Tooltip:
 		Name: Supply Ship
 	Mobile:
@@ -207,12 +247,6 @@ HABITATSHIP:
 		# RemoveInstead: True
 	# ExternalCondition@LogisticShipKill:
 		# Condition: LogisticShipKill
-	# AttackWander@LogisticShipWanderer:
-		# RequiresCondition: LogisticShipWanderer
-		# WanderMoveRadius: 3
-		# ReduceMoveRadiusDelay: 75
-	ExternalCondition@LogisticShipWanderer:
-		Condition: LogisticShipWanderer
 	SpawnActorOnDeath:
 		Actor: ghabitatshiph
 		OwnerType: InternalName
@@ -220,6 +254,7 @@ HABITATSHIP:
 
 REFINERY:
 	Inherits: ^CapitalShip
+	Inherits@1: ^AIWander
 	Valued:
 		Cost: 800
 	Tooltip:
@@ -247,19 +282,137 @@ REFINERY:
 	StoresResources:
 		PipCount: 10
 		Capacity: 1000
-	Refinery:
 
+FRIGATEASSEMBLYBAY:
+	Inherits: ^CapitalShip
+	Inherits@1: ^AIWander
+	Inherits@2: ^AutoTargetAll
+	ProvidesPrerequisite@T1Carrier:
+	Valued:
+		Cost: 750
+	Tooltip:
+		Name: Production Ship
+	BaseBuilding:
+	Health:
+		HP: 4000000
+	Power:
+		Amount: -10
+	RenderSprites:
+	WithDecoration@Role:
+		Image: rank
+		Sequence: factoryicon
+		Palette: effect
+		ReferencePoint: Top, Right
+		RequiresCondition: !weonqloweonlawea
+		ZOffset: 256
+	AutoTarget:
+	# AttackFrontal:
+	# Armament@1:
+		# Weapon: CrystalHarvest
+		# TargetStances: Ally
+		# LocalOffset: 400,0,0
+		# ForceTargetStances: Ally
+	# Armament@2:
+		# Weapon: CrateHarvest
+		# TargetStances: Ally
+		# LocalOffset: 400,0,0
+		# ForceTargetStances: Ally
+	GrantConditionOnDeploy:
+		DeployedCondition: deployed
+	Mobile:
+		Speed: 40
+		RequiresCondition: !deployed
+	Targetable@asd:
+		TargetTypes: DeployedShip
+		RequiresCondition: deployed
+	RevealsShroud:
+		Range: 5c0
+	MustBeDestroyed:
+	Selectable:
+		Priority: 5
+		Bounds: 80,80
+	SelectionDecorations:
+		VisualBounds: 80,80
+	RenderSprites:
+	Exit:
+		ExitCell: 1,1
+	Exit@1:
+		ExitCell: 1,-1
+	Exit@2:
+		ExitCell: -1,1
+	Exit@3:
+		ExitCell: -1,-1
+	SpawnActorOnDeath:
+		Actor: gfrigateassemblybayh
+		OwnerType: InternalName
+		InternalOwner: Neutral
+	SpeedMultiplier@Upgrade:
+		Modifier: 50
+		RequiresCondition: CorvetteQueue || FrigateQueue || BaseShipQueue
+#######################################
+# PRODUCTION
+#######################################
+	ProductionQueue@AssemblyBayUpgrade:
+		Type: AssemblyBayUpgrade
+		Group: Vehicle
+		LowPowerSlowdown: 3
+	ProductionQueue@CorvetteQueue:
+		Type: CorvetteQueue
+		Group: Defence
+		LowPowerSlowdown: 3
+		BuildDurationModifier: 140
+	ProductionQueue@FrigateQueue:
+		Type: FrigateQueue
+		Group: Infantry
+		LowPowerSlowdown: 3
+		BuildDurationModifier: 140
+	ProductionQueue@BaseShipQueue:
+		Type: BaseShipQueue
+		Group: Building
+		LowPowerSlowdown: 3
+		BuildDurationModifier: 140
+	Production@CorvetteQueue:
+		Produces: CorvetteQueue
+		RequiresCondition: CorvetteQueue
+	Production@FrigateQueue:
+		Produces: FrigateQueue
+		RequiresCondition: FrigateQueue
+	Production@BaseShipQueue:
+		Produces: BaseShipQueue
+		RequiresCondition: BaseShipQueue
+	Production@AssemblyBayUpgrade:
+		Produces: AssemblyBayUpgrade
+		RequiresCondition: !CorvetteQueue && !FrigateQueue && !BaseShipQueue
+	GrantConditionOnProduction@CorvetteQueue:
+		Condition: CorvetteQueue
+		Actors: upgrade.corvettequeue
+	GrantConditionOnProduction@FrigateQueue:
+		Condition: FrigateQueue
+		Actors: upgrade.frigatequeue
+	GrantConditionOnProduction@BaseShipQueue:
+		Condition: BaseShipQueue
+		Actors: upgrade.baseshipqueue
+################################################################################3
+# prereqs
+################################################################################
+	ProvidesPrerequisite@Corvette:
+		Prerequisite: CorvetteQueue
+		RequiresCondition: CorvetteQueue
+	ProvidesPrerequisite@FrigateQueue:
+		Prerequisite: FrigateQueue
+		RequiresCondition: FrigateQueue
+	ProvidesPrerequisite@BaseShipQueue:
+		Prerequisite: BaseShipQueue
+		RequiresCondition: BaseShipQueue
+        
 PATROLCRUISERGENERIC:
-	Inherits: ^InfantryQueue
 	Inherits@1: ^CapitalShip
 	Inherits@2: ^AutoTargetAll
 	ProvidesPrerequisite@buildingname:
-	ProvidesPrerequisite@habitatship:
-		Prerequisite: T1Carrier
 	Valued:
-		Cost: 1500
+		Cost: 2500
 	Tooltip:
-		Name: Patrol Cruiser
+		Name: Support Cruiser
 	Health:
 		HP: 3000000
 	RevealsShroud:
@@ -270,9 +423,9 @@ PATROLCRUISERGENERIC:
 	# Production:
 		# RequiresCondition: deployed
 	Power:
-		Amount: -10
+		Amount: -20
 	Mobile:
-		Speed: 20
+		Speed: 30
 		RequiresCondition: !deployed
 	Targetable:
 		TargetTypes: DeployedShip
@@ -309,89 +462,13 @@ PATROLCRUISERGENERIC:
 		Actor: gpatrolcruiserh
 		OwnerType: InternalName
 		InternalOwner: Neutral
-	ProvidesPrerequisite@pc:
-		Prerequisite: pc
-
-FRIGATEASSEMBLYBAY:
-	Inherits: ^CapitalShip
-	Inherits@1: ^AutoTargetAll
-	Inherits@2: ^GCapitalShipProduction
-	ProvidesPrerequisite@T1Carrier:
-		Prerequisite: T1Carrier
-	Valued:
-		Cost: 2500
-	Tooltip:
-		Name: Frigate Aseembly Bay
-	BaseBuilding:
-	Health:
-		HP: 6000000
-	Power:
-		Amount: -10
-	RenderSprites:
-	WithDecoration@Role:
-		Image: rank
-		Sequence: factoryicon
-		Palette: effect
-		ReferencePoint: Top, Right
-		RequiresCondition: !weonqloweonlawea
-		ZOffset: 256
-	AutoTarget:
-	AttackFrontal:
-	Armament@1:
-		Weapon: CrystalHarvest
-		TargetStances: Ally
-		LocalOffset: 400,0,0
-		ForceTargetStances: Ally
-	Armament@2:
-		Weapon: CrateHarvest
-		TargetStances: Ally
-		LocalOffset: 400,0,0
-		ForceTargetStances: Ally
-	GrantConditionOnDeploy:
-		DeployedCondition: deployed
-	Mobile:
-		Speed: 20
-		RequiresCondition: !deployed
-	Targetable:
-		TargetTypes: DeployedShip
-		RequiresCondition: deployed
-	RevealsShroud:
-		Range: 5c0
-	MustBeDestroyed:
-	Selectable:
-		Priority: 5
-		Bounds: 80,80
-	SelectionDecorations:
-		VisualBounds: 80,80
-	RenderSprites:
-	Exit:
-		ExitCell: 1,1
-	Exit@1:
-		ExitCell: 1,-1
-	Exit@2:
-		ExitCell: -1,1
-	Exit@3:
-		ExitCell: -1,-1
-	SpawnActorOnDeath:
-		Actor: gfrigateassemblybayh
-		OwnerType: InternalName
-		InternalOwner: Neutral
-	Armament@10:
-		Weapon: FrigateCannon
-		LocalOffset: -800,400,0
-	ProductionQueue@Defence:
-		Factions: gkor, terran
-		LowPowerSlowdown: 50
-		BuildDurationModifier: 100
-		ReadyAudio: frigateready
-		Type: Defence
-	# Production:
-		# RequiresCondition: deployed
-	ProvidesPrerequisite@fab:
-		Prerequisite: fab
+#########################################################
+# Upgrades
+#########################################################
 
 SURVEYFRIGATE:
 	Inherits: ^CapitalShip
+	Inherits@1: ^AIWander
 	Valued:
 		Cost: 750
 	Tooltip:
@@ -458,9 +535,18 @@ ENGINEER:
 	SelectionDecorations:
 		VisualBounds: 80,80
 	RenderSprites:
+	Mobile:
+		RequiresCondition: !deployed
+	GrantConditionOnDeploy:
+		DeployedCondition: deployed
 	ExplodeWeapon@1:
 		Weapon: FieldRepairLaserSpawnStrong
 		LocalOffset: 0,0,0
+		DeployedCondition: deployed
+	ExplodeWeapon@2:
+		Weapon: FieldRepairLaserSpawnStrong
+		LocalOffset: 0,0,0
+		DeployedCondition: deployed
 	SpawnActorOnDeath:
 		Actor: gengineerh
 		OwnerType: InternalName
@@ -469,15 +555,15 @@ ENGINEER:
 		Range: 3c0
 	ProvidesPrerequisite@buildingname2:
 		Prerequisite: planetstation
-	ProductionQueue@Aircraft:
-		Type: Aircraft
-		Factions: gkor, terran
-		Group: Aircraft
-		LowPowerSlowdown: 1
-		QueuedAudio: Building
-		BuildDurationModifier: 150
-	Production:
-		Produces: Aircraft
+	# ProductionQueue@Aircraft:
+		# Type: Aircraft
+		# Factions: gkor, terran
+		# Group: Aircraft
+		# LowPowerSlowdown: 1
+		# QueuedAudio: Building
+		# BuildDurationModifier: 150
+	# Production:
+		# Produces: Aircraft
 
 RESEARCHSHIP:
 	Inherits: ^CapitalShip
@@ -572,7 +658,7 @@ SERVICEFRIGATE:
 	SelectionDecorations:
 		VisualBounds: 60,60
 	CarrierMaster:
-		Actors: gfighter1, gfighter1, gfighter1
+		Actors: gfighter1, gfighter1, gfighter1, gfighter1
 		RespawnTicks: 700
 		ReamTicks: 10
 		InstaRepair: true
@@ -593,7 +679,7 @@ MINER:
 			TopLeft: -256, -256
 			BottomRight: 256, 256
 	Valued:
-		Cost: 350
+		Cost: 150
 	Tooltip:
 		Name: Miner
 	Selectable:
@@ -634,8 +720,8 @@ MINER:
 	Harvester:
 		DeliveryBuildings: dgrefinery, tref
 		Resources: CyanOre, BlueOre, Gas, Junk, Minerals
-		BaleLoadDelay: 50
-		BaleUnloadDelay: 75
+		BaleLoadDelay: 60
+		BaleUnloadDelay: 35
 		Capacity: 12
 		SearchForDeliveryBuildingDelay: 150
 		MaxIdleDuration: 20

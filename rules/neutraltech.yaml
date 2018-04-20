@@ -133,17 +133,21 @@ DANGERBEACONEND:
 		TargetTypes: CapitalShip
 	-ExplodeWeapon:
 
-WARPGATE:
-	Inherits: ^NeutralObject
-	Tooltip:
-		Name: Warp Gate
-	ExternalCapturable:
-		Type: CarrierCaptor
-		CaptureCompleteTime: 60
-	Selectable:
-		Bounds: 200,200
+^CapturableObject:
 	Targetable:
 		TargetTypes: CarrierCaptor
+ 	ExternalCapturableBar:   
+	ExternalCapturable:
+		Types: CarrierCaptor
+		CaptureCompleteTime: 60
+        
+WARPGATE:
+	Inherits: ^NeutralObject
+	Inherits@1: ^CapturableObject
+	Tooltip:
+		Name: Warp Gate
+	Selectable:
+		Bounds: 200,200
 	ExplodeWeapon@1:
 		Weapon: SpawnCargoFreighter
 		LocalOffset: 0,100,0
@@ -156,7 +160,6 @@ WARPGATE:
 		Condition: GSpawnFreighters
 	TransformOnCapture:
 		IntoActor: warpgate
-	ExternalCapturableBar:
 	ProximityExternalCondition:
 		Condition: ShipOut
 		Range: 3c0
@@ -169,13 +172,9 @@ STARBASE:
 		Name: Starbase
 	DamageMultiplier@Beacom:
 		Modifier: 0
-	RenderSprites:
-		Palette: player
-		PlayerPalette: player
+	Inherits@1: ^CapturableObject
 	-Interactable:
-	ExplodeWeapon@1:
-		Weapon: StarbaseLaserSpawn
-		LocalOffset: 0,100,0
+	CashTrickler:
 
 CONVOYSHIP:
 	Inherits: ^CapitalShip
@@ -210,47 +209,6 @@ CONVOYSHIP:
 	GrantConditionOnDamageState:
 		ValidDamageStates: Undamaged
 		Condition: ConvoyAdvance
-
-SPLIT2:
-	Inherits: ^TibTree
-	Health:
-		HP: 200000
-	Armor:
-		Type: Frigate
-	Targetable:
-		TargetTypes: CapitalShip, DeployedShip
-	Explodes:
-		Weapon: AsteroidOreSpawn
-
-SPLIT3:
-	Inherits: SPLIT2
-
-SPLITBLUE:
-	Inherits: SPLIT2
-
-ORECRYSTAL:
-	Inherits: ^Planet
-	Health:
-		HP: 500000
-	Tooltip:
-		Name: Brandarium Crystal
-	Targetable:
-		TargetTypes: CapitalShip, DeployedShip
-	RenderSprites:
-		Palette: orecrystal
-	TransformOnCapture:
-		IntoActor: glminer
-	Armor:
-		Type: Frigate
-	Targetable:
-		TargetTypes: Crystal
-	Explodes:
-		Weapon: CrystalExplosion
-	SpawnActorOnDeath:
-		Actor: crystalbounty
-		OwnerType: Killer
-		DeathType: CrystalHarvest
-	Interactable:
 
 BOX:
 	Inherits: ^Planet

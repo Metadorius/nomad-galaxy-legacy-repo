@@ -28,6 +28,50 @@ CRYSTALTIBTREE3:
 CRYSTALTIBTREE4:
 	Inherits: CRYSTALTIBTREE
 
+SPLIT2:
+	Inherits: ^TibTree
+	Health:
+		HP: 200000
+	Armor:
+		Type: Frigate
+	Targetable:
+		TargetTypes: CapitalShip, DeployedShip
+	Explodes:
+		Weapon: AsteroidOreSpawn
+	WithIdleOverlay@Asteroid:
+		Sequence: asteroidfield
+		Palette: apolcybl
+
+SPLIT3:
+	Inherits: SPLIT2
+
+SPLITBLUE:
+	Inherits: SPLIT2
+
+ORECRYSTAL:
+	Inherits: ^Planet
+	Health:
+		HP: 500000
+	Tooltip:
+		Name: Brandarium Crystal
+	Targetable:
+		TargetTypes: CapitalShip, DeployedShip
+	RenderSprites:
+		Palette: orecrystal
+	TransformOnCapture:
+		IntoActor: glminer
+	Armor:
+		Type: Frigate
+	Targetable:
+		TargetTypes: Crystal
+	Explodes:
+		Weapon: CrystalExplosion
+	SpawnActorOnDeath:
+		Actor: crystalbounty
+		OwnerType: Killer
+		DeathType: CrystalHarvest
+	Interactable:
+
 ^GasCloud:
 	Inherits: ^Nebula
 	EditorTilesetFilter:
@@ -44,10 +88,12 @@ DUSTCLOUD1:
 		Palette: terrain
 	SeedsResource:
 		ResourceType: Minerals
-		MaxRange: 6
-		Interval: 55
+		MaxRange: 1
+		Interval: 2
 	ExplodeWeapon:
 		Weapon: AFCommetSummon
+	ExplodeWeapon@1:
+		Weapon: SpawnResourceOnSpot
 
 DUSTCLOUD2:
 	Inherits: DUSTCLOUD1
@@ -185,10 +231,6 @@ GREENCLOUD1:
 	RenderSprites:
 		Image: dustcloud1
 		Palette: greenpal
-	ProximityExternalCondition@GreenNebula:
-		Condition: GreenNebula
-		ValidStances: Enemy, Ally, Neutral
-		Range: 5c0
 	ProximityExternalCondition@DustCloudCloak:
 		Condition: DustCloudCloak
 		ValidStances: Enemy, Ally, Neutral

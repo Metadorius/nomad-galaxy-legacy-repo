@@ -8,8 +8,6 @@ Author: Nolt
 
 Tileset: SPACE
 
-SkyboxImage:
-
 MapSize: 130,130
 
 Bounds: 1,1,128,128
@@ -158,3 +156,6 @@ Actors:
 		Owner: Neutral
 		Location: 64,68
 		Facing: 92
+	Actor40: dustcloud1
+		Owner: Neutral
+		Location: 72,69

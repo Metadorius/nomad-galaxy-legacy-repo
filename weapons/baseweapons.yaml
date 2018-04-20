@@ -98,7 +98,7 @@ FrigateCannon:
 	Inherits: CorvetteCannon
 	Range: 5c0
 	Warhead@1Dam: SpreadDamage
-		Damage: 25000
+		Damage: 55000
 		Spread: 150
 
 CorvetteMissile:
@@ -342,7 +342,7 @@ IonBeamCharge:
 IonBeam:
 	ReloadDelay: 2
 	Report: lastur1.aud
-	Range: 8c0
+	Range: 10c0
 	InvalidTargets: Fighter
 	ValidTargets: CapitalShip, Frigate, Corvette, Ground, Air, Airhit
 	Projectile: LaserZap
@@ -356,8 +356,7 @@ IonBeam:
 		SecondaryBeamColor: 072633
 	Warhead@1Dam: SpreadDamage
 		Spread: 32
-		Damage: 12000
-		ValidStances: Neutral, Enemy
+		Damage: 30000
 		InvalidTargets: Fighter
 		ValidTargets: CapitalShip, Frigate, Corvette, Ground, Air, Airhit
 		Versus:
@@ -427,8 +426,8 @@ HyperSpaceFadeOutAnim:
 
 PlatformFighterSpawn:
 	ReloadDelay: 25
-	Burst: 4
-	BurstDelay: 8
+	# Burst: 6
+	# BurstDelay: 
 	Range: 15c0
 	ValidTargets: Fighter, Corvette, Ground
 	InvalidTargets: CapitalShip, Frigate

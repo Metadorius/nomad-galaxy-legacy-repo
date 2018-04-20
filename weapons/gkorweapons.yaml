@@ -42,7 +42,7 @@ CorvetteNeedle:
 		Palette: chrome
 		RangeLimit: 7c204
 	Warhead@1Dam: SpreadDamage
-		Damage: 14000
+		Damage: 20000
 	-Warhead@3Eff: CreateEffect
 
 AdrenalineShot:
@@ -155,10 +155,27 @@ AlienArtillery:
 		Image: SPINESPHERE
 		Speed: 125
 	Warhead@1Dam: SpreadDamage
-		Damage: 70000
+		Damage: 140000
 		Spread: 200
 		Versus:
 			Station: 150
+
+PatrolCruiserEmp:
+	Inherits: HeavyCannon
+	ReloadDelay: 125
+	Range: 7c0
+	InvalidTargets: Fighter
+	Projectile: Railgun
+		BeamWidth: 30
+	Warhead@1Dam: SpreadDamage
+		Damage: 5000
+	Warhead@Weaqla: GrantExternalCondition
+		Range: 450
+		Duration: 125
+		Condition: empdisable
+		# ValidTargets: CapitalShip, Frigate, Corvette, Ground, Air, Airhit
+		AffectsParent: True
+		# ValidStances: Ally, Enemy, Neutral
 
 GkorArtyNeedle:
 	Inherits: CorvetteNeedle

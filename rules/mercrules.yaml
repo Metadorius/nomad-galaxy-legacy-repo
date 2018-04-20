@@ -11,50 +11,95 @@ PCARRIER:
 	Health:
 		HP: 4500000
 
-DUNIT1:
-	Inherits: ^BuildableStation
-	Buildable:
-		BuildPaletteOrder: 1
-		Prerequisites: ~planetstation, ~research.hyperion
-		Queue: Aircraft
-		Description: GCorvette, TCorvette platform armed with a G.O.D. beam.\nEffective vs Capital Ships and Frigates.
-		IconPalette: pirateicon
+IUNIT3MASTER:
+	Inherits@1: ^ExistsInWorld
+	Inherits@4: ^SpriteActor
+	HiddenUnderShroud:
 	Valued:
-		Cost: 1500
-	Tooltip:
-		Name: G.O.D. Platform
-	Power:
-		Amount: -10
+		Cost: 300
+	RenderSprites:
+		Image: iunit3
+	MobSpawnerMaster:
+		Actors: iunit3, iunit3, iunit3, iunit3
+	Buildable:
+		Queue: CorvetteQueue
+		BuildPaletteOrder: 3
+		Prerequisites: ~research.technomage
+		IconPalette: pirateicon
+		Description: Light fighter equiped with stealth technology. Can be\ndetected by survey frigates and will uncloack when firing.\nModerately effective against fighters and frigates.
+	AttackFrontal:
+	Armament@PRIMARY:
+		Weapon: PlatformFighterSpawn
 	Health:
-		HP: 1500000
-	Armament@6:
-		Weapon: GodBeam
-		LocalOffset: 900,0,0
-	Sellable:
+		HP: 30000
+	# Aircraft:
+		# Speed: 90
+	Mobile:
+		Speed: 18
+		Crushes: mine, crate
+		SharesCell: true
+		OccupySpace: false
+		Voice: Move
+		TerrainSpeeds:
+			Clear: 100
+			Ground: 100
+			Tiberium: 100
+			BlueTiberium: 100
+			Junk: 100
+			Gas: 100
+			SpaceGray: 100
+			SpaceGray2: 100
+			SpaceGreen: 100
+			SpaceGreen2: 100
+			SpaceBlue: 100
+			SpaceBlue2: 100
+			SpaceRed: 100
+			SpaceRed2: 100
+	SpeedMultiplier@Generic:
+		Modifier: 200
+	DamageMultiplier@INVINCIBLE:
+		Modifier: 0
 	Selectable:
-		Bounds: 24,24
-	SelectionDecorations:
-		VisualBounds: 22,48,0,-12
-	RevealsShroud:
-		Range: 8c0
-	AttackTurreted:
+
+IUNIT3:
+	Inherits: ^Fighter
+	Valued:
+		Cost: 300
+	Tooltip:
+		Name: Cloaked Fighter
+	Power:
+		Amount: -1
+	Health:
+		HP: 30000
+	Aircraft:
+		Speed: 90
+	Armament@1:
+		Weapon: StealthFighterBeam
+	MobSpawnerSlave:
+	MustBeDestroyed:
+	# AttackHeli:
 	Turreted:
-		TurnSpeed: 2
-	-WithSpriteBody:
-	WithSpriteTurret:
-		Sequence: idle
-	BodyOrientation:
-		QuantizedFacings: 8
-	DetectCloaked:
-		Range: 5c0
+	AttackTurreted:
+	# AttackPlane:
+	SelectionDecorations:
+		VisualBounds: 20,20
 	AutoTarget:
+	RenderSprites:
+	Cloak:
+		InitialDelay: 100
+		CloakDelay: 100
+		IsPlayerPalette: True
+		-RequiresCondition: !lawea
+	RangeMultiplier@cloak:
+		Modifier: 100
+		RequiresCondition: Cloaked
 	Voiced:
 		VoiceSet: GenericVoice
 
 DUNIT2:
 	Inherits: ^AFrontalFrigate
 	Buildable:
-		Queue: TFrigate, GFrigate
+		Queue: FrigateQueue
 		BuildPaletteOrder: 1
 		Prerequisites: ~research.hyperion
 		Description: Light frigate, launches mines around itself when deployed.\nThe mines as well as its main gun are armor piercing.\nEffective vs Capital Ships and Frigates.
@@ -98,7 +143,7 @@ DMINE:
 DUNIT3:
 	Inherits: ^CapitalShip
 	Buildable:
-		Queue: GCorvette, TCorvette
+		Queue: CorvetteQueue
 		BuildPaletteOrder: 1
 		Prerequisites: ~research.hyperion
 		Description: Heavy corvette armed with laser cannons.\nWhen deployed it can link up with other deployed defenders\nto create energy walls, hostile units that pass throught them take damage.
@@ -175,7 +220,7 @@ DUNIT3:
 PUNIT1:
 	Inherits: ^AFrontalFrigate
 	Buildable:
-		Queue: TFrigate, GFrigate
+		Queue: FrigateQueue
 		BuildPaletteOrder: 1
 		Prerequisites: ~research.pirates
 		Description: Frigate armed with boarding pods\nallows you to capture hostile ships.
@@ -201,7 +246,7 @@ PUNIT1:
 PUNIT2:
 	Inherits: ^Corvette
 	Buildable:
-		Queue: GCorvette, TCorvette
+		Queue: CorvetteQueue
 		BuildPaletteOrder: 2
 		Prerequisites: ~research.pirates
 		IconPalette: pirateicon
@@ -250,7 +295,7 @@ PUNIT3:
 		Range: 5c0
 		RequiresCondition: !HyperSpace
 	Buildable:
-		Queue: GCorvette, TCorvette
+		Queue: CorvetteQueue
 		BuildPaletteOrder: 3
 		Prerequisites: ~research.pirates
 		IconPalette: pirateicon
@@ -325,7 +370,7 @@ IUNIT3:
 IUNIT1:
 	Inherits: ^Frigate
 	Buildable:
-		Queue: TFrigate, GFrigate
+		Queue: FrigateQueue
 		BuildPaletteOrder: 1
 		Prerequisites: ~research.technomage
 		Description: Utility frigate that cloaks nearby vessels.\nUnnarmed.
@@ -359,7 +404,7 @@ IUNIT1:
 IUNIT2:
 	Inherits: ^TurretedFrigate
 	Buildable:
-		Queue: TFrigate, GFrigate
+		Queue: FrigateQueue
 		BuildPaletteOrder: 1
 		Prerequisites: ~research.technomage
 		Description: Frigate that creates fake units when ordered to deploy it's charge.\nUnnarmed.
@@ -433,7 +478,7 @@ FrigateHologram:
 CUNIT1:
 	Inherits: ^Frigate
 	Buildable:
-		Queue: TFrigate, GFrigate
+		Queue: FrigateQueue
 		BuildPaletteOrder: 1
 		Prerequisites: ~research.controller
 		Description: Support frigate, can be toggled on to stop\nall fighters and slow nearby corvettes.\nThe frigate will tear itself appart when active.
@@ -487,7 +532,7 @@ CUNIT1:
 CUNIT2:
 	Inherits: ^Corvette
 	Buildable:
-		Queue: GCorvette, TCorvette
+		Queue: CorvetteQueue
 		BuildPaletteOrder: 2
 		Prerequisites: ~research.controller
 		IconPalette: pirateicon
@@ -522,7 +567,7 @@ CUNIT3:
 	Power:
 		Amount: -1
 	Buildable:
-		Queue: GCorvette, TCorvette
+		Queue: CorvetteQueue
 		BuildPaletteOrder: 3
 		Prerequisites: ~research.controller
 		IconPalette: pirateicon

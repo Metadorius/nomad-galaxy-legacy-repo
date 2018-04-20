@@ -1,29 +1,3 @@
-split2:
-	Defaults: asteroidtibtree
-		UseTilesetExtension: False
-	make:
-	asteroidfield: asteroidfield
-		Length: *
-		Tick: 500
-		ZOffset: -99999
-	asteroidfield2: asteroidfield2
-		Length: *
-		Tick: 500
-		ZOffset: -99999
-	idle:
-		Length: 11
-		Tick: 500
-
-split3:
-	Inherits: split2
-	idle:
-		Start: 12
-
-splitblue:
-	Inherits: split2
-	idle:
-		Start: 24
-
 rock1:
 	idle: rock1.des
 		AddExtension: false

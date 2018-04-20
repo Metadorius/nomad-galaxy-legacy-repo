@@ -1,3 +1,14 @@
+SpawnResourceOnSpot:
+	ReloadDelay: 20
+	Projectile: InstantExplode
+	Warhead@1Dam: SpreadDamage
+		Spread: 1
+		Damage: 1
+	Warhead@4Ore: CreateResource
+		AddsResourceType: Minerals
+		Size: 1,0
+		ValidTargets: CapitalShip, Frigate, Corvette, Fighter, Ground, Air, Airhit
+
 CometSummon:
 	Inherits: FieldDefenceLaserSpawnMothership
 	ReloadDelay: 250
@@ -52,21 +63,21 @@ CometProjectile:
 	Projectile: Missile
 		Image: COMET
 		Speed: 35
-		Blockable: True
+		Blockable: False
 		Palette: apolcybl
-	Warhead@1Dam: SpreadDamage
-		Spread: 512
-		Damage: 15000
-		AffectsParent: True
-		InvalidTargets: Mine
-		Versus:
-			Fighter: 100
-			Corvette: 150
-			Frigate: 75
-			CapitalShip: 50
-			Mothership: 50
-		ValidTargets: CometMagnet, CapitalShip, Frigate, Corvette, Fighter, Ground, Air, Airhit
-		DamageTypes: Prone50Percent, TriggerProne, ExplosionDeath
+	# Warhead@1Dam: SpreadDamage
+		# Spread: 512
+		# Damage: 15000
+		# AffectsParent: True
+		# InvalidTargets: Mine
+		# Versus:
+			# Fighter: 100
+			# Corvette: 150
+			# Frigate: 75
+			# CapitalShip: 50
+			# Mothership: 50
+		# ValidTargets: CometMagnet, CapitalShip, Frigate, Corvette, Fighter, Ground, Air, Airhit
+		# DamageTypes: Prone50Percent, TriggerProne, ExplosionDeath
 	Warhead@3Eff: CreateEffect
 		Explosions: meteorexplo
 		ExplosionPalette: apolcybl
