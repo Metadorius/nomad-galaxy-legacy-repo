@@ -31,7 +31,7 @@
 		RandomFactionMembers: gkor
 		Description: Selection is a lie
 	ResourceType@green-tib:
-		Name: Minerals ($30)
+		Name: Minerals ($20)
 		PipColor: Green
 		ResourceType: 1
 		Palette: apolcybl
@@ -39,11 +39,11 @@
 		TerrainType: Tiberium
 		Sequences: astore1, astore2, astore3, astore4, astore5, astore6, astore7, astore8, astore9, astore10, astore11, astore12, astore13
 		MaxDensity: 8
-		ValuePerUnit: 30
+		ValuePerUnit: 20
 		AllowedTerrainTypes: Clear, SpaceGray, SpaceGreen, SpaceBlue, SpaceRed, SpaceGray2, SpaceGreen2, SpaceBlue2, SpaceRed2, Notifier
 		AllowUnderActors: true
 	ResourceType@blue-tib:
-		Name: High density minerals ($30)
+		Name: High density minerals ($20)
 		PipColor: Blue
 		ResourceType: 2
 		Palette: chrome
@@ -51,11 +51,11 @@
 		TerrainType: BlueTiberium
 		Sequences: astorecyan1, astorecyan2, astorecyan3, astorecyan4, astorecyan5, astorecyan6, astorecyan7, astorecyan8, astorecyan9, astorecyan10, astorecyan11, astorecyan12, astorecyan13
 		MaxDensity: 1300
-		ValuePerUnit: 30
+		ValuePerUnit: 20
 		AllowedTerrainTypes: Clear, SpaceGray, SpaceGreen, SpaceBlue, SpaceRed, SpaceGray2, SpaceGreen2, SpaceBlue2, SpaceRed2, Notifier
 		AllowUnderActors: true
 	ResourceType@junk:
-		Name: Junk ($30)
+		Name: Junk ($8)
 		PipColor: Red
 		ResourceType: 3
 		Palette: apolgrey
@@ -63,7 +63,7 @@
 		TerrainType: Junk
 		Sequences: junk1, junk2, junk3, junk4, junk5, junk6, junk7, junk8, junk9, junk10, junk11
 		MaxDensity: 12
-		ValuePerUnit: 30
+		ValuePerUnit: 8
 		AllowedTerrainTypes: Clear, SpaceGray, SpaceGreen, SpaceBlue, SpaceRed, SpaceGray2, SpaceGreen2, SpaceBlue2, SpaceRed2, Notifier
 		AllowUnderActors: true
 	ResourceType@gray-tib:
@@ -79,7 +79,7 @@
 		AllowedTerrainTypes: Clear, SpaceGray, SpaceGreen, SpaceBlue, SpaceRed, SpaceGray2, SpaceGreen2, SpaceBlue2, SpaceRed2, Notifier
 		AllowUnderActors: true
 	ResourceType@gas:
-		Name: Gas ($45)
+		Name: Gas ($15)
 		PipColor: Blue
 		ResourceType: 8
 		Palette: yellowpal
@@ -87,7 +87,7 @@
 		TerrainType: Gas
 		Sequences: gas1, gas2, gas3, gas4, gas5, gas6, gas7, gas8, gas9, gas10, gas11, gas12
 		MaxDensity: 12
-		ValuePerUnit: 45
+		ValuePerUnit: 15
 		AllowedTerrainTypes: Clear, SpaceGray, SpaceGreen, SpaceBlue, SpaceRed, SpaceGray2, SpaceGreen2, SpaceBlue2, SpaceRed2, Notifier
 		AllowUnderActors: true
 

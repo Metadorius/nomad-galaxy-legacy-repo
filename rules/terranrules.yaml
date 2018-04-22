@@ -138,7 +138,7 @@ TBC1:
 	Valued:
 		Cost: 2000
 	Tooltip:
-		Name: Nuclear Battery
+		Name: Nuclear Battery big lel
 	Power:
 		Amount: -20
 	Mobile:
@@ -243,7 +243,7 @@ TFRIG3:
 	Tooltip:
 		Name: Nuclear Battery
 	Health:
-		HP: 1250000
+		HP: 950000
 	RevealsShroud:
 		Range: 5c0
 	Mobile:
@@ -267,7 +267,7 @@ TFRIG3:
 		OwnerType: InternalName
 		InternalOwner: Neutral
 	AttackFrontal:
-		FacingTolerance: 64
+		FacingTolerance: 128
 
 TFRIG2:
 	Inherits: ^TurretedFrigate

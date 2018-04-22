@@ -394,7 +394,7 @@
 		Range: 9c0
 		Type: CenterPosition
 	Mobile:
-		Speed: 15
+		Speed: 25
 		TurnSpeed: 5
 		TerrainSpeeds:
 			Clear: 100
@@ -407,8 +407,8 @@
 			SpaceGray2: 100
 			SpaceBlue: 100
 			SpaceBlue2: 100
-			SpaceRed: 100
-			SpaceRed2: 100
+			SpaceRed: 130
+			SpaceRed2: 130
 	Targetable:
 		TargetTypes: CapitalShip
 	ProvidesPrerequisite:
@@ -473,7 +473,7 @@
 	Armor:
 		Type: Frigate
 	Mobile:
-		Speed: 30
+		Speed: 40
 		TurnSpeed: 6
 	Selectable:
 		Priority: 10
@@ -656,12 +656,10 @@
 			Junk: 70
 			SpaceGray: 100
 			SpaceGray2: 100
-			SpaceGreen: 50
-			SpaceGreen2: 50
 			SpaceBlue: 100
 			SpaceBlue2: 100
-			SpaceRed: 100
-			SpaceRed2: 100
+			SpaceRed: 130
+			SpaceRed2: 130
 	-AttackPlane:
 	-Aircraft:
 	-SmokeTrailWhenDamaged:

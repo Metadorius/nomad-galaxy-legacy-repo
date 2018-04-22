@@ -128,7 +128,7 @@ upgrade.frigatequeue:
 		Description: Allows frigate production.
 		BuildLimit: 0
 	Valued:
-		Cost: 500
+		Cost: 1000
 
 upgrade.baseshipqueue:
 	Inherits: ^default.upgrade
@@ -139,4 +139,4 @@ upgrade.baseshipqueue:
 		Description: Allows base ship production.
 		BuildLimit: 0
 	Valued:
-		Cost: 500
+		Cost: 2000

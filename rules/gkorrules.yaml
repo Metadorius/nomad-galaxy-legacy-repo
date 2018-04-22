@@ -589,6 +589,7 @@ GBOMBERCARRIER:
 		HP: 800000
 	CarrierMaster:
 		Actors: gfighter2, gfighter2, gfighter2, gfighter2
+		RearmTicks: 250
 	Armament@PRIMARY:
 		Weapon: PlatformBomberSpawn
 	SpawnActorOnDeath:
@@ -608,6 +609,7 @@ GFIGHTER2:
 		HP: 60000
 	Armament:
 		Weapon: BomberAcid
+		PauseOnCondition: !Ammo
 	Aircraft:
 		Speed: 80
 		TurnSpeed: 8
@@ -616,6 +618,12 @@ GFIGHTER2:
 		RearmBuildings: carrier
 		LandWhenIdle: True
 		CanHover: False
+	AmmoPool:
+		Ammo: 3
+		PipCount: 0
+		ReloadCount: 1
+		ReloadDelay: 1
+		AmmoCondition: Ammo
 
 GFIGHTER3:
 	Inherits: ^Fighter

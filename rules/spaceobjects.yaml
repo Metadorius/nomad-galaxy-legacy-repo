@@ -16,8 +16,8 @@ CRYSTALTIBTREE:
 		Palette: terrain
 	SeedsResource:
 		ResourceType: Gas
-		MaxRange: 2
-		Interval: 30
+		MaxRange: 1
+		Interval: 20
 
 CRYSTALTIBTREE2:
 	Inherits: CRYSTALTIBTREE
@@ -135,14 +135,6 @@ REDCLOUD1:
 	RenderSprites:
 		Image: dustcloud1
 		Palette: redpal
-	ProximityExternalCondition:
-		Condition: DustCloudCloak
-		ValidStances: Enemy, Ally, Neutral
-		Range: 5c0
-	ProximityExternalCondition@RedNebula:
-		Condition: RedNebula
-		ValidStances: Enemy, Ally, Neutral
-		Range: 5c0
 
 REDCLOUD2:
 	Inherits: REDCLOUD1
@@ -231,10 +223,6 @@ GREENCLOUD1:
 	RenderSprites:
 		Image: dustcloud1
 		Palette: greenpal
-	ProximityExternalCondition@DustCloudCloak:
-		Condition: DustCloudCloak
-		ValidStances: Enemy, Ally, Neutral
-		Range: 5c0
 	ExplodeWeapon:
 		Weapon: GreenNebulaExploSpawner
 

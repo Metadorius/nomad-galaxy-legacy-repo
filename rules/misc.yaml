@@ -45,7 +45,7 @@ waypoint:
 	EditorTilesetFilter:
 		Categories: Misc
 
-^fact.colorpicker:
+fact.colorpicker:
 	Inherits: GMOTHERSHIP
 	RenderSprites:
 		Image: mothershipmini

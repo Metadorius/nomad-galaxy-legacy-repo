@@ -8,6 +8,9 @@ DGREFINERY:
 		Actor: grefineryh
 		OwnerType: InternalName
 		InternalOwner: Neutral
+	RevealsShroud:
+		Range: 5c0
+		Type: CenterPosition
 	Exit:
 		ExitCell: 1,1
 	Exit@1:
@@ -24,7 +27,7 @@ DGREFINERY:
 	ProvidesPrerequisite@lactm:
 		Prerequisite: grefinery
 	ProvidesPrerequisite:
-	Targetable:
+	Targetable@asd:
 		TargetTypes: DeployedShip
 	Valued:
 		Cost: 1100

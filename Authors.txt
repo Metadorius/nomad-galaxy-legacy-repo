@@ -8,3 +8,4 @@ HG_SCIPCION	: G'kor siege frigate concept, which was later iterated to create mo
 Comrade Crimson	: Gkor Advisor voice.
 AoAGeneral	: Tester.
 boolbada	: Aircraft Carrier & Slave Miner code code.
+Kerbiter	: Gkor Logo
