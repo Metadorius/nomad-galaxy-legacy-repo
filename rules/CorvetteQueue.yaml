@@ -61,6 +61,7 @@ GFRIG3:
 	Buildable:
 		Queue: CorvetteQueue
 		BuildPaletteOrder: 3
+		Prerequisites: gresearchship
 		Description: Dedicated anti fighter frigate.\nEffective Against Fighters.
 	Valued:
 		Cost: 1000
@@ -89,7 +90,7 @@ GFRIG3:
 GPATROLCRUISER:
 	Inherits@1: PATROLCRUISERGENERIC
 	Buildable:
-		Queue: FrigateQueue
+		Queue: CorvetteQueue
 		BuildPaletteOrder: 4
 		Prerequisites: gresearchship
 		Description: Capital ship capable of sending squadrons of bombers.

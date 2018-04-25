@@ -120,7 +120,7 @@ GFRIG4:
 	Tooltip:
 		Name: Bitter
 	Health:
-		HP: 3500000
+		HP: 350000
 	RevealsShroud:
 		Range: 5c0
 	Mobile:
@@ -153,7 +153,7 @@ GCARGOFRIG:
 		Name: Cargo Frigate
 	RejectsOrders:
 	Health:
-		HP: 900000
+		HP: 90000
 	RevealsShroud:
 		Range: 3c0
 	Armament:
@@ -208,11 +208,11 @@ GFIGHTERCARRIER:
 GBOMBERCARRIER:
 	Inherits: SERVICEFRIGATE
 	Inherits@2: ^FrigateTargetPriority
-	Buildable:
-		Queue: CorvetteQueue
-		BuildPaletteOrder: 4
-		Prerequisites: gresearchship
-		Description: Frigate that holds and services bombers.\nEffective against Frigates and Capital Ships.\nIneffective against Fighters and Corvettes.\n\nDEBUG: In case fighters freeze, place this unit near them and deploy.\nAllied fighters will be killed.
+	# Buildable:
+		# Queue: CorvetteQueue
+		# BuildPaletteOrder: 4
+		# Prerequisites: gresearchship
+		# Description: Frigate that holds and services bombers.\nEffective against Frigates and Capital Ships.\nIneffective against Fighters and Corvettes.\n\nDEBUG: In case fighters freeze, place this unit near them and deploy.\nAllied fighters will be killed.
 	Valued:
 		Cost: 500
 	Tooltip:
@@ -760,11 +760,11 @@ TBC1:
 TFRIG1:
 	Inherits: ^TurretedFrigate
 	Inherits@2: ^FrigateTargetPriority
-	Buildable:
-		IconPalette: terranicon
-		Queue: FrigateQueue
-		BuildPaletteOrder: 1
-		Description: Combat craft armed with three Heavy Cannon.\nEffective against Frigates, Capital Ships.\nModerate against Corvettes.\nIneffective against Fighters.
+	# Buildable:
+		# IconPalette: terranicon
+		# Queue: FrigateQueue
+		# BuildPaletteOrder: 1
+		# Description: Combat craft armed with three Heavy Cannon.\nEffective against Frigates, Capital Ships.\nModerate against Corvettes.\nIneffective against Fighters.
 	Valued:
 		Cost: 1100
 	Tooltip:
@@ -819,12 +819,12 @@ TFRIG1:
 TFRIG3:
 	Inherits: ^AFrontalFrigate
 	Inherits@2: ^CorvetteTargetPriority
-	Buildable:
-		IconPalette: terranicon
-		Queue: FrigateQueue
-		BuildPaletteOrder: 3
-		Prerequisites: gresearchship
-		Description: Light frigate, can saturate an area with rockets.\n- Cloaks when not attacking.
+	# Buildable:
+		# IconPalette: terranicon
+		# Queue: FrigateQueue
+		# BuildPaletteOrder: 3
+		# Prerequisites: gresearchship
+		# Description: Light frigate, can saturate an area with rockets.\n- Cloaks when not attacking.
 	Valued:
 		Cost: 1300
 	Tooltip:
@@ -979,12 +979,12 @@ TLSF:
 TCORV1:
 	Inherits: ^Corvette
 	Inherits@2: ^FighterTargetPriority
-	Buildable:
-		IconPalette: terranicon
-		Queue: CorvetteQueue
-		BuildPaletteOrder: 4
-		Prerequisites: gresearchship
-		Description: Cloaked when static
+	# Buildable:
+		# IconPalette: terranicon
+		# Queue: CorvetteQueue
+		# BuildPaletteOrder: 4
+		# Prerequisites: gresearchship
+		# Description: Cloaked when static
 	Valued:
 		Cost: 750
 	Tooltip:
@@ -1007,12 +1007,12 @@ TCORV1:
 TCORV2:
 	Inherits: ^Corvette
 	Inherits@2: ^CorvetteTargetPriority
-	Buildable:
-		IconPalette: terranicon
-		Queue: CorvetteQueue
-		BuildPaletteOrder: 3
-		Prerequisites: gsurveyfrigate
-		Description: Sniper Corvette, effective vs armor
+	# Buildable:
+		# IconPalette: terranicon
+		# Queue: CorvetteQueue
+		# BuildPaletteOrder: 3
+		# Prerequisites: gsurveyfrigate
+		# Description: Sniper Corvette, effective vs armor
 	Valued:
 		Cost: 500
 	Tooltip:

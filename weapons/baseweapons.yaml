@@ -26,7 +26,7 @@ BomberPlasma:
 		Image: bulletbomber
 	Warhead@1Dam: SpreadDamage
 		Spread: 250
-		Damage: 150000
+		Damage: 1500
 		ValidTargets: CapitalShip, Frigate, Corvette, Ground
 		InvalidTargets: Fighter
 
@@ -42,7 +42,7 @@ BasicAutocannon:
 	ReloadDelay: 50
 	Range: 3c0
 	Warhead@1Dam: SpreadDamage
-		Damage: 10000
+		Damage: 3000
 	Warhead@2Eff: CreateEffect
 		Explosions: piff
 
@@ -50,7 +50,7 @@ CapitalShipAutoCannon:
 	Inherits: BasicAutocannon
 	Range: 8c0
 	Warhead@1Dam: SpreadDamage
-		Damage: 13000
+		Damage: 4000
 
 CorvetteBullet:
 	Inherits: InterceptorBullet
@@ -60,7 +60,7 @@ CorvetteBullet:
 	Projectile: Missile
 	Warhead@1Dam: SpreadDamage
 		Spread: 164
-		Damage: 10000
+		Damage: 5000
 	-Warhead@SlowFighter: GrantExternalCondition
 	Warhead@2Eff: CreateEffect
 		Explosions: piff
@@ -69,11 +69,6 @@ CivilianBulletSpawner:
 	Inherits: CorvetteBulletSpawner
 	Warhead@op: FireShrapnel
 		Weapon: CivilianBullet
-
-CivilianBullet:
-	Inherits: CorvetteBullet
-	Warhead@1Dam: SpreadDamage
-		Damage: 5000
 
 CorvetteRocketSpawner:
 	Inherits: FieldDefenceLaserSpawnMothership
@@ -91,7 +86,7 @@ CorvetteCannon:
 	Range: 5c0
 	Warhead@1Dam: SpreadDamage
 		Spread: 64
-		Damage: 35000
+		Damage: 7000
 	Warhead@3Eff: CreateEffect
 
 FrigateCannon:
@@ -106,7 +101,7 @@ CorvetteMissile:
 	Range: 6c0
 	Burst: 3
 	Warhead@1Dam: SpreadDamage
-		Damage: 20000
+		Damage: 5000
 
 FrigateMissile:
 	Inherits: ^Missile
@@ -168,27 +163,6 @@ DefenceMissileSpawnMothership:
 		AimTargetStances: Enemy
 		ValidStances: Enemy
 		ValidTargets: CapitalShip, Frigate, Corvette, Fighter, Ground, Air, Airhit
-
-DefenceMissileMothership:
-	Inherits: HeavyCannon
-	ReloadDelay: 100
-	Range: 7c0
-	Burst: 3
-	BurstDelay: 10
-	Report: bazook1.aud
-	Projectile: Missile
-		Inaccuracy: 0c256
-		LaunchAngle: 90
-		CruiseAltitude: 512
-		LaserShootable: False
-		Speed: 50
-	Warhead@1Dam: SpreadDamage
-		Damage: 10000
-		Versus:
-			Corvette: 75
-			Frigate: 150
-			CapitalShip: 150
-	Warhead@3Eff: CreateEffect
 
 FieldDefenceLaserSpawnAntiFighter:
 	Inherits: FieldDefenceLaserSpawnMothership

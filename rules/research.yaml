@@ -140,6 +140,7 @@ upgrade.baseshipqueue:
 		Name: Shipyard
 	Buildable:
 		Queue: AssemblyBayUpgrade
+		Prerequisites: gsurveyfrigate
 		Description: Allows base ship production.
 		BuildLimit: 0
 	Valued:
@@ -157,11 +158,12 @@ upgrade.baseshipqueue:
 		Queue: MercContract
 		BuildLimit: 1
 		IconPalette: pirateicon
+		BuildDurationModifier: 240
 	ProvidesPrerequisite@upgradename:
 	ProvidesPrerequisite@T1Contract:
 		Prerequisite: T1Contract
 	Valued:
-		Cost: 2500
+		Cost: 750
 	Power:
 		Amount: -15
 	Interactable:
@@ -174,10 +176,11 @@ upgrade.baseshipqueue:
 		Queue: MercContract
 		BuildLimit: 1
 		IconPalette: pirateicon
+		BuildDurationModifier: 240
 	ProvidesPrerequisite@T2Contract:
 		Prerequisite: T2Contract
 	Valued:
-		Cost: 2500
+		Cost: 750
 	Power:
 		Amount: -15
 	Interactable:
@@ -234,8 +237,6 @@ research.hyperion:
 		Name: Hyperion co Contact
 	Buildable:
 		Description: Establishes connections with the Hyperion weapons company.\nHyperion units focus on denying mobility to th enemy\nand defence.\n\nUnits unlocked:\n-G.O.D. Platform.\n-Minelayer Frigate.\n-Defender.
-	Valued:
-		Cost: 2500
 	RenderSprites:
 		Image: dunit1
 

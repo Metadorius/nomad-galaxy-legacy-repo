@@ -79,6 +79,8 @@ gstationt3:
 gfrig1:
 	Inherits: ^shipdefault
 	icon: gfrig1icon
+	turret: gkorturr
+		Facings: -32
 
 gfrig2:
 	Inherits: ^shipdefault

@@ -1190,7 +1190,7 @@ MOTHERSHIP:
 	CashTrickler:
 	CashTricklerBar:
 	Health:
-		HP: 15000000
+		HP: 1500000
 	Interactable:
 		Bounds: 60,60
 	StoresResources:
@@ -1230,8 +1230,6 @@ MOTHERSHIP:
 	ExplodeWeapon@3:
 		Weapon: FieldRepairLaserSpawnStrong
 		LocalOffset: 0,0,0
-	ExplodeWeapon@4:
-		Weapon: DefenceMissileSpawnMothership
 	Explodes:
 		Weapon: MotherShipExplode
 		EmptyWeapon: MotherShipExplode
@@ -1296,7 +1294,7 @@ HABITATSHIP:
 		TargetTypes: DeployedShip
 		RequiresCondition: deployed
 	Health:
-		HP: 2000000
+		HP: 200000
 	RevealsShroud:
 		Range: 5c0
 	MustBeDestroyed:
@@ -1359,7 +1357,7 @@ REFINERY:
 	Power:
 		Amount: -10
 	Health:
-		HP: 2000000
+		HP: 200000
 	MustBeDestroyed:
 	RenderSprites:
 	MustBeDestroyed:
@@ -1385,7 +1383,7 @@ FRIGATEASSEMBLYBAY:
 		Name: Production Ship
 	BaseBuilding:
 	Health:
-		HP: 4000000
+		HP: 400000
 	Power:
 		Amount: -10
 	RenderSprites:
@@ -1505,7 +1503,7 @@ PATROLCRUISERGENERIC:
 	Tooltip:
 		Name: Carrier
 	Health:
-		HP: 3000000
+		HP: 300000
 	RevealsShroud:
 		Range: 5c0
 	MustBeDestroyed:
@@ -1562,7 +1560,7 @@ SURVEYFRIGATE:
 	Tooltip:
 		Name: Survey Frigate
 	Health:
-		HP: 1250000
+		HP: 125000
 	RevealsShroud:
 		Range: 15c0
 		RequiresCondition: !lawea
@@ -1603,7 +1601,7 @@ ENGINEER:
 		Priority: 5
 		Bounds: 80,80
 	Health:
-		HP: 1300000
+		HP: 130000
 	RevealsShroud:
 		Range: 5c0
 	AutoTarget:
@@ -1676,7 +1674,7 @@ RESEARCHSHIP:
 		RequiresCondition: !weonqloweonlawea
 		ZOffset: 256
 	Health:
-		HP: 3000000
+		HP: 300000
 	RevealsShroud:
 		Range: 5c0
 	MustBeDestroyed:
@@ -1694,7 +1692,7 @@ CARRIER4:
 	Valued:
 		Cost: 5000
 	Health:
-		HP: 6000000
+		HP: 600000
 	RevealsShroud:
 		Range: 5c0
 	Tooltip:
@@ -1734,7 +1732,7 @@ SERVICEFRIGATE:
 	Mobile:
 		TurnSpeed: 7
 	Health:
-		HP: 600000
+		HP: 60000
 	Exit:
 	RevealsShroud:
 		Range: 7c0

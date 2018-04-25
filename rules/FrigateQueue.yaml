@@ -3,7 +3,7 @@
 #################################################################################
 
 GFRIG1:
-	Inherits: ^AFrontalFrigate
+	Inherits: ^TurretedFrigate
 	Inherits@2: ^FrigateTargetPriority
 	Buildable:
 		Queue: FrigateQueue
@@ -22,21 +22,29 @@ GFRIG1:
 	Armament:
 		Weapon: FrigateCannon
 		RequiresCondition: !HyperSpaceFadeOut
-		LocalOffset: 250,0,0
+		Turret: Primary
 	Armament@1:
 		Weapon: FrigateCannon
 		RequiresCondition: !HyperSpaceFadeOut
-		LocalOffset: 250,200,0
-		FireDelay: 5
-	Armament@2:
-		Weapon: FrigateCannon
-		RequiresCondition: !HyperSpaceFadeOut
-		LocalOffset: 250,-200,0
-		FireDelay: 10
+		Turret: Secondary
+	Turreted:
+		Turret: Primary
+		Offset: -300, -400, 50
+		TurnSpeed: 6
+	Turreted@1:
+		Turret: Secondary
+		Offset: -300, 400, 50
+		TurnSpeed: 6
+	WithSpriteTurret:
+		Turret: Primary
+	WithSpriteTurret@1:
+		Turret: Secondary
 	SpawnActorOnDeath:
 		Actor: gfrig1h
 		OwnerType: InternalName
 		InternalOwner: Neutral
+	AttackTurreted:
+		Turrets: Primary, Secondary
 
 GCORV2:
 	Inherits: ^Corvette
