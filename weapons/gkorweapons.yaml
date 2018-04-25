@@ -171,11 +171,9 @@ PatrolCruiserEmp:
 		Damage: 5000
 	Warhead@Weaqla: GrantExternalCondition
 		Range: 450
-		Duration: 125
+		Duration: 50
 		Condition: empdisable
-		# ValidTargets: CapitalShip, Frigate, Corvette, Ground, Air, Airhit
 		AffectsParent: True
-		# ValidStances: Ally, Enemy, Neutral
 
 GkorArtyNeedle:
 	Inherits: CorvetteNeedle

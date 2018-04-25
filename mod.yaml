@@ -61,14 +61,13 @@ Rules:
 	ng|rules/dummies.yaml
 	ng|rules/palettes.yaml
 	ng|rules/defaults.yaml
-	ng|rules/mercenaries.yaml
 	ng|rules/research.yaml
-	ng|rules/neutraltech.yaml
-	ng|rules/baserules.yaml
-	ng|rules/gkorrules.yaml
+	ng|rules/tech.yaml
+	ng|rules/CorvetteQueue.yaml
+	ng|rules/FrigateQueue.yaml
+	ng|rules/BaseShipQueue.yaml
 	ng|rules/deployedstuff.yaml
-	ng|rules/terranrules.yaml
-	ng|rules/mercrules.yaml
+	ng|rules/mercenaries.yaml
 	ng|rules/husks.yaml
 	ng|rules/spaceobjects.yaml
 

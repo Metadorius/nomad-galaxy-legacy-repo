@@ -2,8 +2,44 @@
 	ValidTargets: CapitalShip, Frigate, Corvette, Fighter, Ground
 	MinRange: 20
 
-^Flak:
+^NormalWeaponWarhead:
 	Inherits: ^GeneralDebuffs
+	ValidTargets: CapitalShip, Frigate, Corvette, Fighter, Ground
+	Warhead@1Dam: SpreadDamage
+		Spread: 1
+		Damage: 1
+		Versus:
+			Small: 100
+			medium: 100
+			Heavy: 100
+		ValidStances: Neutral, Enemy
+
+^LightWeaponsWarhead:
+	Inherits: ^GeneralDebuffs
+	ValidTargets: CapitalShip, Frigate, Corvette, Fighter, Ground
+	Warhead@1Dam: SpreadDamage
+		Spread: 1
+		Damage: 1
+		Versus:
+			Small: 100
+			medium: 75
+			Heavy: 50
+		ValidStances: Neutral, Enemy
+
+^HeavyWeaponsWarhead:
+	Inherits: ^GeneralDebuffs
+	ValidTargets: CapitalShip, Frigate, Corvette, Fighter, Ground
+	Warhead@1Dam: SpreadDamage
+		Spread: 1
+		Damage: 1
+		Versus:
+			Small: 50
+			medium: 75
+			Heavy: 100
+		ValidStances: Neutral, Enemy
+
+^Flak:
+	Inherits: ^LightWeaponsWarhead
 	ValidTargets: CapitalShip, Frigate, Corvette, Fighter, Ground
 	Range: 4c0
 	Projectile: Missile
@@ -18,11 +54,6 @@
 	Warhead@1Dam: SpreadDamage
 		Spread: 96
 		Damage: 15
-		Versus:
-			Fighter: 200
-			Corvette: 30
-			Frigate: 20
-			CapitalShip: 10
 		ValidStances: Neutral, Enemy
 		ValidTargets: CapitalShip, Frigate, Corvette, Fighter, Ground
 	Warhead@2Eff: CreateEffect
@@ -46,7 +77,7 @@
 		ValidStances: Neutral, Enemy
 
 ^AutoCannon:
-	Inherits: ^GeneralDebuffs
+	Inherits: ^NormalWeaponWarhead
 	ValidTargets: CapitalShip, Frigate, Corvette, Ground
 	InvalidTargets: Fighter
 	Range: 4c0
@@ -58,20 +89,12 @@
 		Palette: chrome
 		Inaccuracy: 200
 	Warhead@1Dam: SpreadDamage
-		Spread: 96
-		Damage: 15
-		Versus:
-			Fighter: 25
-			Corvette: 100
-			Frigate: 25
-			CapitalShip: 13
-			Station: 13
 		ValidTargets: CapitalShip, Frigate, Corvette, Ground
 	Warhead@2Eff: CreateEffect
 		Explosions: piff
 
 ^PlasmaBomb:
-	Inherits: ^GeneralDebuffs
+	Inherits: ^HeavyWeaponsWarhead
 	ValidTargets: CapitalShip, Frigate, Corvette, Fighter, Ground
 	Range: 3c0
 	MinRange: 1c0
@@ -87,14 +110,6 @@
 		RangeLimit: 6c0
 		LaserShootable: False
 	Warhead@1Dam: SpreadDamage
-		Spread: 90
-		Damage: 15
-		Versus:
-			Fighter: 1
-			Corvette: 10
-			Frigate: 120
-			CapitalShip: 100
-			Station: 150
 		ValidStances: Ally, Neutral, Enemy
 		ValidTargets: CapitalShip, Frigate, Corvette, Ground
 	Warhead@2Eff: CreateEffect
@@ -110,7 +125,7 @@
 		ValidStances: Neutral, Enemy
 
 HeavyCannon:
-	Inherits: ^GeneralDebuffs
+	Inherits: ^HeavyWeaponsWarhead
 	ReloadDelay: 75
 	Range: 4c768
 	Report: cannon1.wav, cannon2.wav
@@ -123,13 +138,6 @@ HeavyCannon:
 		Inaccuracy: 300
 		Blockable: False
 	Warhead@1Dam: SpreadDamage
-		Spread: 64
-		Damage: 30
-		Versus:
-			Fighter: 1
-			Corvette: 40
-			Frigate: 150
-			CapitalShip: 100
 		InvalidTargets: Fighter
 		ValidTargets: CapitalShip, Frigate, Corvette, Ground
 		DamageTypes: Prone50Percent, TriggerProne, ExplosionDeath
@@ -139,7 +147,7 @@ HeavyCannon:
 		ValidTargets: CapitalShip, Frigate, Corvette, Ground
 
 ^Missile:
-	Inherits: ^GeneralDebuffs
+	Inherits: ^NormalWeaponWarhead
 	ReloadDelay: 50
 	Range: 6c0
 	MinRange: 0c512
@@ -172,7 +180,7 @@ HeavyCannon:
 		ImpactSounds: xplos.aud
 
 ^Torpedo:
-	Inherits: ^GeneralDebuffs
+	Inherits: ^NormalWeaponWarhead
 	ReloadDelay: 50
 	Range: 6c0
 	MinRange: 0c512

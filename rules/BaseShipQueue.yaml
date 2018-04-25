@@ -1,0 +1,220 @@
+#################################################################################
+# G KOR
+#################################################################################
+
+^CivilianShipWeaponsGkor:
+	ExplodeWeapon@Repairs:
+		Weapon: FieldRepairLaserSpawn
+	Armament@AntiCorvette:
+		Weapon: CapitalShipAutoCannon
+	Armament@PDLASER:
+		Weapon: PDLaser
+		LocalOffset: 0,213,-85
+		Name: pdlaser
+	AttackTurreted:
+	ExplodeWeapon@1:
+		Weapon: FieldDefenceLaserSpawnAntiFighter
+	Turreted:
+	AutoTarget:
+
+GMOTHERSHIP:
+	Inherits: MOTHERSHIP
+	Tooltip:
+		Name: G'kor Mothership
+	ProximityExternalCondition@LogisticShipWanderer:
+		Condition: LogisticShipWanderer
+		Range: 5c0
+		AffectsParent: False
+	ProductionQueue@Building:
+		Type: BaseShipQueue
+		Group: Building
+	Production:
+		Produces: BaseShipQueue
+
+GHABITATSHIP:
+	Inherits: HABITATSHIP
+	Buildable:
+		Queue: BaseShipQueue
+		BuildPaletteOrder: 1
+		Prerequisites: ~mothership
+		Description: Civilian Ship, increases fleep capacity.\nCan be used to construct Space stations on planets.\nDefence platforms 2 cells near this ship or the station\nhave their power consumption reduced to half.
+	AnnounceOnBuildAS:
+		Voice: LogisticShipReady
+		OnlyToOwner: True
+
+GREFINERY:
+	Inherits: REFINERY
+	Buildable:
+		Queue: BaseShipQueue
+		BuildPaletteOrder: 2
+		Prerequisites: ghabitatship
+		Description: Resource gatherer, builds miners slowly.\nSupports up to 5 miners.
+	SpawnActorOnDeath:
+		Actor: grefineryh
+		OwnerType: InternalName
+		InternalOwner: Neutral
+	Transforms:
+		IntoActor: dgrefinery
+		Offset: 0,0
+	Interactable:
+		Bounds 50,50
+
+GFRIGATEASSEMBLYBAY:
+	Inherits: FRIGATEASSEMBLYBAY
+	Buildable:
+		Queue: BaseShipQueue
+		BuildPaletteOrder: 3
+		Prerequisites: grefinery
+		Description: Customizable production unit.
+	AnnounceOnBuildAS:
+		Voice: FrigateAssemblyBayReady
+		OnlyToOwner: True
+	ProvidesPrerequisite:
+		Prerequisite:  Patrol Cruiser or Shipyard
+
+GENGINEER:
+	Inherits: ENGINEER
+	Buildable:
+		Queue: BaseShipQueue
+		BuildPaletteOrder: 4
+		Prerequisites: gfrigateassemblybay
+		Description: Captures neutral objects and Repairs nearby ships.\ncan repair while moving.
+	AnnounceOnBuildAS:
+		Voice: EngineerCrewReady
+		OnlyToOwner: True
+
+GSURVEYFRIGATE:
+	Inherits: SURVEYFRIGATE
+	Buildable:
+		Queue: BaseShipQueue
+		BuildPaletteOrder: 5
+		Prerequisites: gfrigateassemblybay
+		Description: Exploration vessel equipped with long range scanners.\nEnables the radar upon construction.\nDetects cloaked units.
+	Tooltip:
+		Name: Survey Frigate
+	AnnounceOnBuildAS:
+		Voice: SurveyFrigateReady
+		OnlyToOwner: True
+	SpawnActorOnDeath:
+		Actor: gsurveyfrigateh
+		OwnerType: InternalName
+		InternalOwner: Neutral
+
+GSUBSPESS:
+	Inherits: RESEARCHSHIP
+	Valued:
+		Cost: 3000
+	Tooltip:
+		Name: Support Cruiser
+	Buildable:
+		Queue: BaseShipQueue
+		BuildPaletteOrder: 5
+		Prerequisites: gfrigateassemblybay
+		Description: Exploration vessel equipped with long range scanners.\nEnables the radar upon construction.\nDetects cloaked units.
+	Power:
+		Amount: -25
+	Mobile:
+		Speed: 15
+	Health:
+		HP: 3500000
+	WithDecoration@Role:
+		Image: rank
+		Sequence: vialicon
+		Palette: effect
+		ReferencePoint: Top, Right
+		RequiresCondition: !weonqloweonlawea
+		ZOffset: 256
+	WithIdleOverlay@HyperSpaceGenerator:
+		Sequence: subpessanimship
+		Palette: darkbluepal
+		Offset: 25,0,-500
+		RequiresCondition: HyperSpaceGenerator && !HyperSpaceFadeOut
+	GrantTimedConditionOnDeploy:
+		DeployedCondition: HyperSpaceGenerator
+		CooldownTicks: 1500
+		DeployedTicks: 350
+		StartsFullyCharged: True
+	ExplodeWeapon@HyperSpace:
+		Weapon: HyperSpaceGenerator
+		RequiresCondition: HyperSpaceGenerator && !HyperSpaceFadeOut
+	ExternalCondition@HyperSpaceGenerator:
+		Condition: HyperSpaceGenerator
+	AnnounceOnBuildAS:
+		Voice: SubspaceGeneratorReady
+		OnlyToOwner: True
+	AttackTurreted:
+	Armament@1:
+		Weapon: PatrolCruiserEmp
+	Turreted:
+	AutoTarget:
+
+GRESEARCHSHIP:
+	Inherits: RESEARCHSHIP
+	AnnounceOnBuildAS:
+		Voice: ResearchShipReady
+		OnlyToOwner: True
+	Buildable:
+		Queue: BaseShipQueue
+		BuildPaletteOrder: 7
+		Prerequisites: ~mothership, gsurveyfrigate
+		Description: Heavy armored carrier that supports frigate production.\nCan be deployed to become static to and use rallypoints.
+	-AttackMove:
+
+GBC2:
+	Inherits: ^CapitalShip
+	Inherits@2: ^FrigateTargetPriority
+	Buildable:
+		Queue: BaseShipQueue
+		BuildPaletteOrder: 9
+		Prerequisites: ~gmothership, research.Destroyer.Drive
+		Description: Heavy capital ship, armed with heavy cannons, and ion cannons. It's\nheavy armor allows it to Take great amounts of punshiment.
+	Valued:
+		Cost: 3500
+	Tooltip:
+		Name: Dreadnaught
+	Power:
+		Amount: -30
+	Mobile:
+		Speed: 20
+	Health:
+		HP: 4500000
+	RevealsShroud:
+		Range: 5c0
+	MustBeDestroyed:
+	SelectionDecorations:
+		VisualBounds: 120,120
+	AttackFrontal:
+	Armament:
+		Weapon: IonBeamCharge
+	PortableChrono:
+		ChargeDelay: 1500
+		TargetCursor: deploy
+		MaxDistance: 6
+		TargetBlockedCursor: deploy-blocked
+	Armament@1:
+		Weapon: IonBeam
+		LocalOffset: 1000,800,0
+		RequiresCondition: BeamReady
+	Armament@2:
+		Weapon: IonBeam2
+		LocalOffset: 1000,800,0
+		RequiresCondition: BeamReady
+	Armament@3:
+		Weapon: IonBeam
+		LocalOffset: 1000,-800,0
+		RequiresCondition: BeamReady
+	Armament@4:
+		Weapon: IonBeam2
+		LocalOffset: 1000,-800,0
+		RequiresCondition: BeamReady
+	ExplodeWeapon@4:
+		Weapon: FieldDefenceLaserSpawnMothership
+		LocalOffset: 250,-250,0
+	ExplodeWeapon@5:
+		Weapon: FieldDefenceLaserSpawnMothership
+		LocalOffset: 250,250,0
+	ExternalCondition@BeamReady:
+		Condition: BeamReady
+	AnnounceOnBuildAS:
+		Voice: CapitalShipReady
+		OnlyToOwner: True

@@ -1,0 +1,145 @@
+#################################################################################
+# G KOR
+#################################################################################
+
+GFRIG1:
+	Inherits: ^AFrontalFrigate
+	Inherits@2: ^FrigateTargetPriority
+	Buildable:
+		Queue: FrigateQueue
+		BuildPaletteOrder: 1
+		Description: Combat craft armed with three Heavy Cannon.\nEffective against Frigates, Capital Ships.\nModerate against Corvettes.\nIneffective against Fighters.
+	Valued:
+		Cost: 1100
+	Tooltip:
+		Name: Assault Frigate
+	Mobile:
+		TurnSpeed: 7
+	Health:
+		HP: 1500000
+	RevealsShroud:
+		Range: 5c0
+	Armament:
+		Weapon: FrigateCannon
+		RequiresCondition: !HyperSpaceFadeOut
+		LocalOffset: 250,0,0
+	Armament@1:
+		Weapon: FrigateCannon
+		RequiresCondition: !HyperSpaceFadeOut
+		LocalOffset: 250,200,0
+		FireDelay: 5
+	Armament@2:
+		Weapon: FrigateCannon
+		RequiresCondition: !HyperSpaceFadeOut
+		LocalOffset: 250,-200,0
+		FireDelay: 10
+	SpawnActorOnDeath:
+		Actor: gfrig1h
+		OwnerType: InternalName
+		InternalOwner: Neutral
+
+GCORV2:
+	Inherits: ^Corvette
+	Inherits@2: ^FrigateTargetPriority
+	Buildable:
+		Queue: FrigateQueue
+		BuildPaletteOrder: 2
+		Prerequisites: gsurveyfrigate
+		Description: Medium craft armed with torpedo launchers.\nEffective against Corvettes.\nIneffective against Fighters and Capital Ships.
+	Valued:
+		Cost: 175
+	Tooltip:
+		Name: Cannon Corvette
+	Power:
+		Amount: -2
+	Health:
+		HP: 170000
+	RevealsShroud:
+		Range: 5c0
+	Armament@1:
+		Weapon: CorvetteCannon
+		LocalOffset: 200, 200, 0, 200, -200, 0, -200, 200, 0, -200, -200, 0
+		RequiresCondition: !HyperSpaceFadeOut
+	MustBeDestroyed:
+	AttackFrontal:
+
+GFRIG2:
+	Inherits: ^AFrontalFrigate
+	Buildable:
+		Queue: FrigateQueue
+		BuildPaletteOrder: 3
+		Prerequisites: gresearchship
+		Description: Frigate designed for long range bombardement.\nDeals moderate damage to all units.\nEffective vs Space stations.\nIneffective against mobile targets.
+	Valued:
+		Cost: 1250
+	Tooltip:
+		Name: Siege Frigate
+	Mobile:
+		TurnSpeed: 1
+	Health:
+		HP: 900000
+	RevealsShroud:
+		Range: 7c0
+	Armament:
+		Weapon: AlienArtillery
+		RequiresCondition: !HyperSpaceFadeOut
+	SpawnActorOnDeath:
+		Actor: gfrig2h
+		OwnerType: InternalName
+		InternalOwner: Neutral
+
+GBC1:
+	Inherits: ^Frigate
+	Inherits@2: ^CorvetteTargetPriority
+	Buildable:
+		Queue: FrigateQueue
+		BuildPaletteOrder: 4
+		Prerequisites: gresearchship
+		Description: Basic capital ship armed with heavy cannons and point defence lasers.\nEffective against Frigates and Capital Ships.
+	Valued:
+		Cost: 2000
+	Tooltip:
+		Name: Destroyer
+	Power:
+		Amount: -20
+	Mobile:
+		Speed: 27
+	Health:
+		HP: 3000000
+	RevealsShroud:
+		Range: 5c0
+	Armament:
+		Weapon: CapitalShipAutoCannon
+	Armament@1:
+		Weapon: CapitalShipAutoCannon
+	Armament@2:
+		Weapon: IonBeamCharge
+	Armament@3:
+		Weapon: IonBeam
+		LocalOffset: 1000,0,0
+		RequiresCondition: BeamReady
+	Armament@4:
+		Weapon: IonBeam2
+		LocalOffset: 1000,0,0
+		RequiresCondition: BeamReady
+	ExplodeWeapon@2:
+		Weapon: FieldDefenceLaserSpawnMothership
+		LocalOffset: -600,350,0
+	ExplodeWeapon@3:
+		Weapon: FieldDefenceLaserSpawnMothership
+		LocalOffset: -900,0,0
+	MustBeDestroyed:
+	AttackFrontal:
+	SelectionDecorations:
+		VisualBounds: 90,90
+	Voiced:
+		VoiceSet: GenericVoice
+	ExternalCondition@BeamReady:
+		Condition: BeamReady
+	AnnounceOnBuildAS:
+		Voice: CapitalShipReady
+		OnlyToOwner: True
+	SpawnActorOnDeath:
+		Actor: gbc1h
+		OwnerType: InternalName
+		InternalOwner: Neutral

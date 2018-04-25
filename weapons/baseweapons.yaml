@@ -26,7 +26,7 @@ BomberPlasma:
 		Image: bulletbomber
 	Warhead@1Dam: SpreadDamage
 		Spread: 250
-		Damage: 100000
+		Damage: 150000
 		ValidTargets: CapitalShip, Frigate, Corvette, Ground
 		InvalidTargets: Fighter
 
