@@ -1,5 +1,5 @@
 DGREFINERY:
-	Inherits@1: ^BaseBuilding
+	Inherits@1: ^Building
 	Inherits: ^AircraftQueue
 	Building:
 		Dimensions: 1,1

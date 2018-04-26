@@ -67,6 +67,7 @@ MINELAYERSTATIONMINE:
 	MustBeDestroyed:
 	AttackHeli:
 	SelectionDecorations:
+	Interactable:
 	-Selectable:
 	ExternalCondition@MineDie:
 		Condition: MineDie

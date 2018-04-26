@@ -757,71 +757,6 @@
 		Palette: disabled
 		RequiresCondition: empdisable
 
-^BaseBuilding:
-	Inherits@4: ^Boardable
-	Inherits@5: ^Cloakable
-	Inherits@6: ^Leachable
-	Inherits: ^Building
-	Building:
-		Adjacent: 4
-		RequiresBaseProvider: true
-		BuildSounds: constru2.aud, hvydoor1.aud
-		TerrainTypes: Clear,Road
-	MustBeDestroyed:
-		RequiredForShortGame: true
-	ProvidesPrerequisite:
-	RevealsShroud:
-		Range: 5c0
-
-^CivBuilding:
-	Inherits: ^Building
-	-ConditionManager:
-	Health:
-		HP: 400
-	Tooltip:
-		GenericName: Civilian Building
-		GenericStancePrefix: false
-		ShowOwnerRow: false
-	FrozenUnderFog:
-
-^CivBuildingHusk:
-	Inherits@1: ^SpriteActor
-	AppearsOnRadar:
-	Building:
-		Dimensions: 1,1
-		Footprint: x
-	WithSpriteBody:
-	Tooltip:
-		GenericName: Civilian Building (Destroyed)
-		GenericStancePrefix: false
-		ShowOwnerRow: false
-	FrozenUnderFog:
-	ScriptTriggers:
-
-^TechBuilding:
-	Inherits: ^CivBuilding
-	Capturable:
-	CaptureNotification:
-		Notification: CivilianBuildingCaptured
-	RepairableBuilding:
-		RepairPercent: 40
-		RepairStep: 14
-		PlayerExperience: 15
-	EngineerRepairable:
-	RevealsShroud:
-		Range: 3c0
-	Tooltip:
-		ShowOwnerRow: True
-
-^CivField:
-	Inherits: ^CivBuilding
-	-Selectable:
-	-SelectionDecorations:
-	Tooltip:
-		GenericName: Field
-	-Targetable:
-	RenderSprites:
-		Palette: terrain
 
 ^CivFieldHusk:
 	Inherits@1: ^SpriteActor
@@ -836,89 +771,6 @@
 	RenderSprites:
 		Palette: terrain
 	WithSpriteBody:
-	FrozenUnderFog:
-	ScriptTriggers:
-
-^Wall:
-	Inherits@1: ^SpriteActor
-	CombatDebugOverlay:
-	AppearsOnRadar:
-	Building:
-		Dimensions: 1,1
-		Footprint: x
-		BuildSounds: hvydoor1.aud
-		Adjacent: 7
-		TerrainTypes: Clear,Road
-	Targetable:
-		TargetTypes: Ground, Wall, NoAutoTarget
-	Crushable:
-		CrushClasses: wall
-		CrushSound: sandbag2.aud
-	LineBuild:
-		Range: 8
-		NodeTypes: wall
-	LineBuildNode:
-		Types: wall
-	RenderSprites:
-		Palette: staticterrain
-	WithWallSpriteBody:
-	GivesExperience:
-	Sellable:
-		SellSounds: cashturn.aud
-	Guardable:
-	FrozenUnderFog:
-	ScriptTriggers:
-	Health:
-		HP: 100
-
-^Tree:
-	Inherits@1: ^SpriteActor
-	Tooltip:
-		Name: Tree
-		ShowOwnerRow: false
-	RenderSprites:
-		Palette: staticterrain
-	WithSpriteBody:
-	Building:
-		Footprint: __ x_
-		Dimensions: 2,2
-	AppearsOnRadar:
-	RadarColorFromTerrain:
-		Terrain: Tree
-	Health:
-		HP: 500
-	Armor:
-		Type: Heavy
-	Targetable:
-		TargetTypes: Trees, NoAutoTarget
-	WithDamageOverlay@SmallBurn:
-		DamageType: Incendiary
-		Image: burn-s
-		MinimumDamageState: Light
-		MaximumDamageState: Medium
-	WithDamageOverlay@MediumBurn:
-		DamageType: Incendiary
-		Image: burn-m
-		MinimumDamageState: Medium
-		MaximumDamageState: Heavy
-	WithDamageOverlay@LargeBurn:
-		DamageType: Incendiary
-		Image: burn-l
-		MinimumDamageState: Heavy
-		MaximumDamageState: Dead
-	HiddenUnderShroud:
-	ScriptTriggers:
-
-^TreeHusk:
-	Inherits@1: ^SpriteActor
-	AppearsOnRadar:
-	Building:
-		Footprint: __ x_
-		Dimensions: 2,2
-	WithSpriteBody:
-	Tooltip:
-		Name: Tree (Burnt)
-		ShowOwnerRow: false
 	FrozenUnderFog:
 	ScriptTriggers:
 
@@ -1068,14 +920,6 @@
 		TerrainTypes: Clear, Rough, Road, Tiberium, BlueTiberium, Beach
 	RenderSprites:
 	Interactable:
-
-^Defense:
-	Inherits: ^BaseBuilding
-	AutoTarget:
-	RenderRangeCircle:
-	RenderDetectionCircle:
-	MustBeDestroyed:
-		RequiredForShortGame: false
 
 #########################################################################
 # Base Rules Starts here
