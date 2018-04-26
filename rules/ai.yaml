@@ -13,7 +13,7 @@ Player:
 			Silo: silo
 		UnitsCommonNames:
 			Mcv: gpatrolcruiser, ghabitatship
-			ExcludeFromSquads: gmothership, grefinery, gminer, ghabitatship, gfrig4
+			ExcludeFromSquads: gmothership, grefinery, gminer, ghabitatship, gfrig4, gfrigateassemblybay, gresearchship, gsurveyfrigate
 		BuildingQueues: Aircraft, Vehicle, MercContract, Research
 		UnitQueues: BaseShipQueue, CorvetteQueue, FrigateQueue, BaseShipQueue
 		CheckCaptureTargetsForVisibility: false

@@ -72,7 +72,7 @@ research.Crystal.Harvest:
 		Image: crystalicon
 
 ###############################################################
-# PRODUCTION SHIP UPGRADES
+# Individual Upgrades Start Here
 ###############################################################
 
 ^default.upgrade:
@@ -112,6 +112,10 @@ research.Crystal.Harvest:
 		Type: DummyQueue
 		Group: DummyQueues
 
+###############################################################
+# PRODUCTION SHIP UPGRADES
+###############################################################
+
 upgrade.corvettequeue:
 	Inherits: ^default.upgrade
 	Tooltip:
@@ -120,8 +124,11 @@ upgrade.corvettequeue:
 		Queue: AssemblyBayUpgrade
 		Description: Allows corvette production.
 		BuildLimit: 0
+		IconPalette: terrain
 	Valued:
 		Cost: 500
+	RenderSprites:
+		Image: gpatrolcruiser
 
 upgrade.frigatequeue:
 	Inherits: ^default.upgrade
@@ -131,8 +138,11 @@ upgrade.frigatequeue:
 		Queue: AssemblyBayUpgrade
 		Description: Allows frigate production.
 		BuildLimit: 0
+		IconPalette: terrain
 	Valued:
 		Cost: 1000
+	RenderSprites:
+		Image: gfrigateassemblybay
 
 upgrade.baseshipqueue:
 	Inherits: ^default.upgrade
@@ -143,8 +153,11 @@ upgrade.baseshipqueue:
 		Prerequisites: gsurveyfrigate
 		Description: Allows base ship production.
 		BuildLimit: 0
+		IconPalette: terrain
 	Valued:
 		Cost: 2000
+	RenderSprites:
+		Image: gshipyard
 
 ###############################################################
 # DEFENCE STATION UPGRADES
@@ -171,6 +184,69 @@ upgrade.anticorvettestation:
 		BuildLimit: 0
 	Valued:
 		Cost: 250
+
+###############################################################
+# CIVILIAN SHIP UPGRADES
+###############################################################
+
+upgrade.supplyship:
+	Inherits: ^default.upgrade
+	Tooltip:
+		Name: Supply Ship
+	Buildable:
+		Queue: CivilianShipUpgrade
+		Description: Provides supply when deployed
+		BuildLimit: 0
+		IconPalette: terrain
+	Valued:
+		Cost: 500
+	RenderSprites:
+		Image: ghabitatship
+
+upgrade.surveyfrigate:
+	Inherits: ^default.upgrade
+	Tooltip:
+		Name: Survey Frigate
+	Buildable:
+		Queue: CivilianShipUpgrade
+		Description: High vision ship that provides radar,\nstealth detection, and technology when deployed.
+		Prerequisites: gproductionship
+		BuildLimit: 0
+		IconPalette: terrain
+	Valued:
+		Cost: 1000
+	RenderSprites:
+		Image: gsurveyfrigate
+
+upgrade.engineeringcrew:
+	Inherits: ^default.upgrade
+	Tooltip:
+		Name: Engineering Crew
+	Buildable:
+		Queue: CivilianShipUpgrade
+		Description: Cruiser that High vision ship that provides radar,\nstealth detection, and technology when deployed.
+		Prerequisites: gproductionship
+		BuildLimit: 0
+		IconPalette: terrain
+	Valued:
+		Cost: 600
+	RenderSprites:
+		Image: gengineer
+
+upgrade.researchship:
+	Inherits: ^default.upgrade
+	Tooltip:
+		Name: Research Ship
+	Buildable:
+		Queue: CivilianShipUpgrade
+		Description: High vision ship that provides radar,\nstealth detection, and technology when deployed.\
+		Prerequisites: gsurveyfrigate
+		BuildLimit: 0
+		IconPalette: terrain
+	Valued:
+		Cost: 1500
+	RenderSprites:
+		Image: gresearchship
 
 ###############################################################
 # MERCENARY RESERACH

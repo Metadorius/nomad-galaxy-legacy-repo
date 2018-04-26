@@ -615,7 +615,7 @@ TPATROLCRUISER:
 	-Transforms:
 
 THAB:
-	Inherits: HABITATSHIP
+	Inherits: CIVILIANCORESHIP
 	Buildable:
 		Queue: TUtility
 		BuildPaletteOrder: 1
@@ -626,28 +626,28 @@ THAB:
 		Voice: LogisticShipReady
 		OnlyToOwner: True
 
-TFAB:
-	Inherits: FRIGATEASSEMBLYBAY
-	Inherits@3: ^CivilianShipWeaponsGkor
-	Buildable:
-		IconPalette: terranicon
-		Queue: TUtility
-		BuildPaletteOrder: 4
-		Prerequisites: ~mothership, research.Frigate.Drive
-		Description: Heavy armored carrier that supports frigate production.\nCan be deployed to become static to and use rallypoints.
-	Transforms:
-		IntoActor: dgfrigateassemblybay
-		Facing: 180
-		Offset: -1,-1
-	AnnounceOnBuildAS:
-		Voice: FrigateAssemblyBayReady
-		OnlyToOwner: True
-	ProductionQueue@Defence:
-		Type: TFrigate
-		Group: Defence
-	Production:
-		Produces: TFrigate
-	-Transforms:
+# TFAB:
+	# Inherits: FRIGATEASSEMBLYBAY
+	# Inherits@3: ^CivilianShipWeaponsGkor
+	# Buildable:
+		# IconPalette: terranicon
+		# Queue: TUtility
+		# BuildPaletteOrder: 4
+		# Prerequisites: ~mothership, research.Frigate.Drive
+		# Description: Heavy armored carrier that supports frigate production.\nCan be deployed to become static to and use rallypoints.
+	# Transforms:
+		# IntoActor: dgfrigateassemblybay
+		# Facing: 180
+		# Offset: -1,-1
+	# AnnounceOnBuildAS:
+		# Voice: FrigateAssemblyBayReady
+		# OnlyToOwner: True
+	# ProductionQueue@Defence:
+		# Type: TFrigate
+		# Group: Defence
+	# Production:
+		# Produces: TFrigate
+	# -Transforms:
 
 TRS:
 	Inherits: RESEARCHSHIP

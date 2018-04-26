@@ -158,7 +158,7 @@ AlienArtillery:
 		Image: SPINESPHERE
 		Speed: 125
 	Warhead@1Dam: SpreadDamage
-		Damage: 140000
+		Damage: 70000
 		Spread: 200
 		Versus:
 			Station: 150

@@ -16,16 +16,26 @@ GMOTHERSHIP:
 	Production:
 		Produces: BaseShipQueue
 
-GHABITATSHIP:
-	Inherits: HABITATSHIP
+GCIVSHIP:
+	Inherits: CIVILIANCORESHIP
 	Buildable:
 		Queue: BaseShipQueue
 		BuildPaletteOrder: 1
 		Prerequisites: ~mothership
-		Description: Civilian Ship, increases fleep capacity.\nCan be used to construct Space stations on planets.\nDefence platforms 2 cells near this ship or the station\nhave their power consumption reduced to half.
+		Description: Upgradable ship, it can assume different utility roles depending on the upgrade.\n\nCurrent roles are the following.\n- Fleet capacity provider (Supply ship).\n- Radar provider & Mercenary Contractor (Survey Frigate).\n-Replairs and static defence builder (Engineering Crew)\n- Tech Center and upgrader (Research Ship).
 	AnnounceOnBuildAS:
 		Voice: LogisticShipReady
 		OnlyToOwner: True
+
+GHABITATSHIP:
+	Inherits: ^CapitalShip
+	Valued:
+		Cost: 900
+	AnnounceOnBuildAS:
+		Voice: LogisticShipReady
+		OnlyToOwner: True
+	RenderSprites:
+		Image: ghabitatship
 
 GREFINERY:
 	Inherits: REFINERY
@@ -44,26 +54,35 @@ GREFINERY:
 	Interactable:
 		Bounds 50,50
 
-GFRIGATEASSEMBLYBAY:
-	Inherits: FRIGATEASSEMBLYBAY
+GPRODUCTIONSHIP:
+	Inherits: PRODUCTIONSHIP
 	Buildable:
 		Queue: BaseShipQueue
 		BuildPaletteOrder: 3
 		Prerequisites: grefinery
-		Description: Customizable production unit.\n- Has basic anti fighter coverage.
+		Description: Upgradable Ship, it can assume different utility roles depending on the upgrade.\n\nCurrent queues are the following.\n- Fighter and Corvette production\n- Frigate production.\n- Core ship production.
+	AnnounceOnBuildAS:
+		Voice: FrigateAssemblyBayReady
+		OnlyToOwner: True
+
+GFRIGATEASSEMBLYBAY:
+	Inherits: PRODUCTIONSHIP
 	AnnounceOnBuildAS:
 		Voice: FrigateAssemblyBayReady
 		OnlyToOwner: True
 	ProvidesPrerequisite:
 		Prerequisite:  Patrol Cruiser or Shipyard
+	-WithFacingSpriteBody@Corvette:
+	-WithFacingSpriteBody@FrigateQueue:
+	-WithFacingSpriteBody@BaseShipQueue:
 
 GENGINEER:
 	Inherits: ENGINEER
-	Buildable:
-		Queue: BaseShipQueue
-		BuildPaletteOrder: 4
-		Prerequisites: gfrigateassemblybay
-		Description: Captures neutral objects and Repairs nearby ships.\ncan repair while moving.
+	# Buildable:
+		# Queue: BaseShipQueue
+		# BuildPaletteOrder: 4
+		# Prerequisites: gfrigateassemblybay
+		# Description: Captures neutral objects and Repairs nearby ships.\ncan repair while moving.
 	AnnounceOnBuildAS:
 		Voice: EngineerCrewReady
 		OnlyToOwner: True
@@ -110,11 +129,11 @@ GADERRICK:
 
 GSURVEYFRIGATE:
 	Inherits: SURVEYFRIGATE
-	Buildable:
-		Queue: BaseShipQueue
-		BuildPaletteOrder: 6
-		Prerequisites: gfrigateassemblybay
-		Description: Exploration vessel equipped with long range scanners.\nEnables the radar upon construction.\nDetects cloaked units.
+	# Buildable:
+		# Queue: BaseShipQueue
+		# BuildPaletteOrder: 6
+		# Prerequisites: gfrigateassemblybay
+		# Description: Exploration vessel equipped with long range scanners.\nEnables the radar upon construction.\nDetects cloaked units.
 	Tooltip:
 		Name: Survey Frigate
 	AnnounceOnBuildAS:
@@ -134,7 +153,7 @@ GSUBSPESS:
 	Buildable:
 		Queue: BaseShipQueue
 		BuildPaletteOrder: 7
-		Prerequisites: gfrigateassemblybay
+		Prerequisites: gproductionship
 		Description: Exploration vessel equipped with long range scanners.\nEnables the radar upon construction.\nDetects cloaked units.
 	Power:
 		Amount: -25
@@ -178,11 +197,11 @@ GRESEARCHSHIP:
 	AnnounceOnBuildAS:
 		Voice: ResearchShipReady
 		OnlyToOwner: True
-	Buildable:
-		Queue: BaseShipQueue
-		BuildPaletteOrder: 8
-		Prerequisites: ~mothership, gsurveyfrigate
-		Description: Heavy armored carrier that supports frigate production.\nCan be deployed to become static to and use rallypoints.
+	# Buildable:
+		# Queue: BaseShipQueue
+		# BuildPaletteOrder: 8
+		# Prerequisites: ~mothership, gsurveyfrigate
+		# Description: Heavy armored carrier that supports frigate production.\nCan be deployed to become static to and use rallypoints.
 	-AttackMove:
 
 GBC2:

@@ -64,6 +64,10 @@ GFRIG3:
 	Mobile:
 		TurnSpeed: 2
 		Speed: 45
+	Armament@AntiCorvette:
+		Weapon: GPlatformNeedle
+		LocalYaw: 255, -255, 255, -255, 255, -255
+		LocalOffset: 175, -250, 5, 175, 250, 5, 0, -250, 5, 0, 250, 5, -175, -250, 5, -175, 250, 5
 	Armament:
 		Weapon: FrigateGasBullet
 		LocalOffset: 300,0,0

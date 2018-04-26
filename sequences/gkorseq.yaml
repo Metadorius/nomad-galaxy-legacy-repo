@@ -17,6 +17,37 @@ gpatrolcruiser:
 		Start: 13
 	icon: gpatrolcruisericon
 
+gproductionship:
+	Inherits: ^shipdefault
+	CorvetteQueue: gpatrolcruiser
+		Facings: -32
+		UseClassicFacingFudge: True
+	FrigateQueue: gfrigateassemblybay
+		Facings: -32
+		UseClassicFacingFudge: True
+	BaseShipQueue: gshipyard
+		Facings: -32
+		UseClassicFacingFudge: True
+	deployed:
+		Start: 13
+	icon: gfrigateassemblybayicon
+
+gcivship:
+	Inherits: ^shipdefault
+	supplyship: ghabitatship
+		Facings: -32
+		UseClassicFacingFudge: True
+	engineeringcrew: gengineer
+		Facings: -32
+		UseClassicFacingFudge: True
+	surveyfrigate: gsurveyfrigate
+		Facings: -32
+		UseClassicFacingFudge: True
+	researchship: gresearchship
+		Facings: -32
+		UseClassicFacingFudge: True
+	icon: gcivshipicon
+
 ghabitatship:
 	Inherits: ^shipdefault
 	icon: ghabitatshipicon

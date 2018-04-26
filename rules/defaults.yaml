@@ -82,16 +82,6 @@
 		InvalidTargets: NoAutoTarget
 		Priority: 1
 
-^HabitatShipBoost:
-	DamageMultiplier@HabitatShipBoost:
-		RequiresCondition: HabitatShipBoost
-		Modifier: 90
-	ReloadDelayMultiplier@HabitatShipBoost:
-		RequiresCondition: HabitatShipBoost
-		Modifier: 120
-	ExternalCondition@HabitatShipBoost:
-		Condition: HabitatShipBoost
-
 ^LaneSpeedBoost:
 	Targetable@LaneSpeedBoost:
 		TargetTypes: LaneSpeedBoosted
@@ -1178,7 +1168,7 @@
 	CashTrickler@AIWanderer:
 		Interval: 1000
 		Amount: 50
-		ShowTicks: False
+		# ShowTicks: False
 		RequiresCondition: AIWanderer
 	Power@AIWanderer:
 		Amount: 20
@@ -1227,7 +1217,7 @@ MOTHERSHIP:
 		ExitCell: -1,-1
 		SpawnOffset: 0,0,0
 	BaseProvider:
-		Range: 2c0
+		Range: 6c0
 	ExplodeWeapon:
 		Weapon: FieldDefenceLaserSpawnMothership
 		LocalOffset: 0,-500,1150
@@ -1262,31 +1252,13 @@ MOTHERSHIP:
 		Group: Defence
 		LowPowerSlowdown: 3
 
-HABITATSHIP:
+CIVILIANCORESHIP:
 	Inherits: ^CapitalShip
 	Inherits@1: ^AIWander
 	Valued:
-		Cost: 900
-	Power:
-		Amount: 20
-	Power@2:
-		Amount: 40
-		RequiresCondition: deployed
-	Power@AI:
-		Amount: 999
-		RequiresCondition: LogisticShipWanderer
+		Cost: 300
 	Tooltip:
-		Name: Supply Ship
-	Mobile:
-		RequiresCondition: !deployed
-	GrantConditionOnDeploy:
-		DeployedCondition: deployed
-	Power:
-		Amount: 60
-		RequiresCondition: deployed
-	Targetable:
-		TargetTypes: DeployedShip
-		RequiresCondition: deployed
+		Name: Core Ship
 	Health:
 		HP: 200000
 	RevealsShroud:
@@ -1304,22 +1276,122 @@ HABITATSHIP:
 		Sequence: houseicon
 		Palette: effect
 		ReferencePoint: Top, Right
-		RequiresCondition: !weonqloweonlawea
 		ZOffset: 256
-	ProximityExternalCondition@MaquinaConchaDeTuMadre:
-		Condition: WORKPIECEOFSHIT
-		Range: 3c0
-		ValidStances: Enemy, Neutral
-	ProximityExternalCondition@PowerDisable:
-		Condition: PowerDisable
-		Range: 2c0
-		ValidStances: Ally
-	Targetable@LogisticShip:
-		TargetTypes: LogisticShip
 	SpawnActorOnDeath:
 		Actor: ghabitatshiph
 		OwnerType: InternalName
 		InternalOwner: Neutral
+#######################################
+# PRODUCTION STUFF
+#######################################
+	Exit:
+	ProvidesPrerequisite@unitname:
+	ProductionBar:
+#######################################
+# Deployment related traits
+#######################################
+	Mobile:
+		RequiresCondition: !deployed
+	GrantConditionOnDeploy:
+		DeployedCondition: deployed
+	Power:
+		Amount: 60
+		RequiresCondition: deployed
+	Targetable:
+		TargetTypes: DeployedShip
+		RequiresCondition: deployed
+	WithFacingSpriteBody:
+		RequiresCondition: !supplyship && !surveyfrigate && !engineeringcrew && !researchship
+#######################################
+# SELF UPGRADE
+#######################################
+	ProductionQueue@CivilianShipUpgrade:
+		Type: CivilianShipUpgrade
+		Group: Vehicle
+		LowPowerSlowdown: 3
+	Production@CivilianShipUpgrade:
+		Produces: CivilianShipUpgrade
+		RequiresCondition: !supplyship && !surveyfrigate && !engineeringcrew && !researchship
+	GrantConditionOnProduction@supplyship:
+		Condition: supplyship
+		Actors: upgrade.supplyship
+	GrantConditionOnProduction@surveyfrigate:
+		Condition: surveyfrigate
+		Actors: upgrade.surveyfrigate
+	GrantConditionOnProduction@engineeringcrew:
+		Condition: engineeringcrew
+		Actors: upgrade.engineeringcrew
+	GrantConditionOnProduction@researchship:
+		Condition: researchship
+		Actors: upgrade.researchship
+	Power:
+		Amount: 20
+		RequiresCondition: !surveyfrigate || !engineeringcrew || !researchship
+#######################################
+# Supply Ship Bonus
+#######################################
+	Power@2:
+		Amount: 40
+		RequiresCondition: deployed && surveyfrigate
+	WithFacingSpriteBody@supplyship:
+		RequiresCondition: supplyship
+		Sequence: supplyship
+	ProvidesPrerequisite@supplyship:
+		Prerequisite: ghabitatship
+		RequiresCondition: supplyship
+#######################################
+# Engineering Crew Bonus
+#######################################
+	WithFacingSpriteBody@engineeringcrew:
+		RequiresCondition: engineeringcrew
+		Sequence: engineeringcrew
+	WithDecoration@engineeringcrew:
+		Image: rank
+		Sequence: wrenchicon
+		Palette: effect
+		ReferencePoint: Top, Right
+		RequiresCondition: engineeringcrew
+		ZOffset: 256
+	ProvidesPrerequisite@engineeringcrew:
+		Prerequisite: gengineer
+		RequiresCondition: engineeringcrew
+#######################################
+# Survey Frigate Bonus
+#######################################
+	WithFacingSpriteBody@surveyfrigate:
+		RequiresCondition: surveyfrigate
+		Sequence: surveyfrigate
+	ProvidesRadar:
+		RequiresCondition: surveyfrigate && deployed
+	RevealsShroud@surveyfrigate:
+		Range: 15c0
+		RequiresCondition: surveyfrigate
+	WithDecoration@surveyfrigate:
+		Image: rank
+		Sequence: dishicon
+		Palette: effect
+		ReferencePoint: Top, Right
+		RequiresCondition: surveyfrigate
+		ZOffset: 256
+	ProvidesPrerequisite@surveyfrigate:
+		Prerequisite: gsurveyfrigate
+		RequiresCondition: surveyfrigate
+#######################################
+# Research Ship Bonus
+#######################################
+	WithFacingSpriteBody@researchship:
+		RequiresCondition: researchship
+		Sequence: researchship
+	WithDecoration@researchship:
+		Image: rank
+		Sequence: vialicon
+		Palette: effect
+		ReferencePoint: Top, Right
+		RequiresCondition: researchship
+		ZOffset: 256
+	ProvidesPrerequisite@researchship:
+		Prerequisite: gresearchship
+		RequiresCondition: researchship
 
 REFINERY:
 	Inherits: ^CapitalShip
@@ -1352,7 +1424,7 @@ REFINERY:
 		PipCount: 10
 		Capacity: 1000
 
-FRIGATEASSEMBLYBAY:
+PRODUCTIONSHIP:
 	Inherits: ^CapitalShip
 	Inherits@1: ^AIWander
 	Inherits@2: ^CivilianShipWeaponsGkor
@@ -1360,7 +1432,7 @@ FRIGATEASSEMBLYBAY:
 	Valued:
 		Cost: 750
 	Tooltip:
-		Name: Production Ship
+		Name: Core Production Ship
 	BaseBuilding:
 	Health:
 		HP: 400000
@@ -1406,6 +1478,8 @@ FRIGATEASSEMBLYBAY:
 	SpeedMultiplier@Upgrade:
 		Modifier: 50
 		RequiresCondition: CorvetteQueue || FrigateQueue || BaseShipQueue
+	WithFacingSpriteBody:
+		RequiresCondition: !CorvetteQueue && !FrigateQueue && !BaseShipQueue
 	BaseProvider:
 		Range: 2c0
 	GivesBuildableArea:
@@ -1454,19 +1528,34 @@ FRIGATEASSEMBLYBAY:
 	GrantConditionOnProduction@BaseShipQueue:
 		Condition: BaseShipQueue
 		Actors: upgrade.baseshipqueue
-################################################################################3
-# prereqs
-################################################################################
+############################################
+# Corvette Queue Bonus
+############################################
 	ProvidesPrerequisite@Corvette:
 		Prerequisite: CorvetteQueue
 		RequiresCondition: CorvetteQueue
+	WithFacingSpriteBody@Corvette:
+		RequiresCondition: CorvetteQueue
+		Sequence: CorvetteQueue
+############################################
+# Frigate Queue Bonus
+############################################
 	ProvidesPrerequisite@FrigateQueue:
 		Prerequisite: FrigateQueue
 		RequiresCondition: FrigateQueue
+	WithFacingSpriteBody@FrigateQueue:
+		RequiresCondition: FrigateQueue
+		Sequence: FrigateQueue
+############################################
+# Baseship Queue Bonus
+############################################
 	ProvidesPrerequisite@BaseShipQueue:
 		Prerequisite: BaseShipQueue
 		RequiresCondition: BaseShipQueue
-        
+	WithFacingSpriteBody@BaseShipQueue:
+		RequiresCondition: BaseShipQueue
+		Sequence: BaseShipQueue
+
 PATROLCRUISERGENERIC:
 	Inherits@1: ^CapitalShip
 	Inherits@2: ^AutoTargetAll
