@@ -190,6 +190,11 @@ gaderrick:
 	stand:
 		Length: *
 	icon: gaderrickicon
+	anticovertteturret: gacplatform
+		Facings: -32
+	antifighteridle: gaiplatform
+	antifighterturret: gturret
+		Facings: -32
 
 gaiplatform:
 	idle:

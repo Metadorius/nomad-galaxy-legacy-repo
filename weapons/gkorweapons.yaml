@@ -72,7 +72,8 @@ GPlatformNeedle:
 	Projectile: Missile
 		HorizontalRateOfTurn: 5
 	Warhead@1Dam: SpreadDamage
-		Damage: 5000
+		Damage: 20000
+		ValidStances: Ally, Enemy, Neutral
 
 GPlatformCannon:
 	Inherits: CorvetteCannon
@@ -87,14 +88,14 @@ FrigateGasBullet:
 		Image: gacid
 		Palette: apolgren
 		TrailInterval: 3
-	ValidTargets: Fighter, Ground
+	ValidTargets: Fighter
 	InvalidTargets: Corvette, Frigate
 	Warhead@1Dam: SpreadDamage
 		Spread: 600
 		Damage: 4500
 		Versus:
 			Corvette: 25
-		ValidTargets: Fighter, Ground
+		ValidTargets: Fighter
 		InvalidTargets: Corvette, Frigate
 		ValidStances: Neutral, Enemy
 	Warhead@2Eff: CreateEffect
@@ -106,6 +107,8 @@ FrigateGasBullet:
 FrigateGasBullet2:
 	Inherits: FrigateGasBullet
 	ValidTargets: Fighter
+	Projectile: InstantHit
+	Range: 7c0
 	Warhead@1Dam: SpreadDamage
 		ValidTargets: Fighter
 

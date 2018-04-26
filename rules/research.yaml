@@ -43,10 +43,6 @@
 	# ConditionManager:
 	# Interactable:
 
-###############################################################
-# PRODUCTION SHIP UPGRADES
-###############################################################
-
 ^Research:
 	AlwaysVisible:
 	Buildable:
@@ -74,6 +70,10 @@ research.Crystal.Harvest:
 		Prerequisite: research.Crystal.Harvest
 	RenderSprites:
 		Image: crystalicon
+
+###############################################################
+# PRODUCTION SHIP UPGRADES
+###############################################################
 
 ^default.upgrade:
 	Interactable:
@@ -145,6 +145,32 @@ upgrade.baseshipqueue:
 		BuildLimit: 0
 	Valued:
 		Cost: 2000
+
+###############################################################
+# DEFENCE STATION UPGRADES
+###############################################################
+
+upgrade.antifighterstation:
+	Inherits: ^default.upgrade
+	Tooltip:
+		Name: Acid Turret
+	Buildable:
+		Queue: DefenceStationUpgrade
+		Description: Anti fighter system
+		BuildLimit: 0
+	Valued:
+		Cost: 250
+
+upgrade.anticorvettestation:
+	Inherits: ^default.upgrade
+	Tooltip:
+		Name: Needler Turret
+	Buildable:
+		Queue: DefenceStationUpgrade
+		Description: Anti Corvette System
+		BuildLimit: 0
+	Valued:
+		Cost: 250
 
 ###############################################################
 # MERCENARY RESERACH

@@ -69,9 +69,7 @@ GENGINEER:
 		OnlyToOwner: True
 
 GADERRICK:
-	Inherits: ^BuildableStation
-	Tooltip:
-		Name: Trade Station
+	Inherits: ^DefenceStation
 	Buildable:
 		Queue: BaseShipQueue
 		BuildPaletteOrder: 5
@@ -79,19 +77,36 @@ GADERRICK:
 		Description: Customizable station\n- Customization options are unlocked after placement.
 	Valued:
 		Cost: 400
-	Power:
-		Amount: -15
-	Sellable:
-	Selectable:
-		Bounds: 24,24
-	SelectionDecorations:
-		VisualBounds: 22,48,0,-12
-	RevealsShroud:
-		Range: 8c0
-	BodyOrientation:
-		QuantizedFacings: 8
-	DetectCloaked:
-		Range: 5c0
+	Interactable:
+		Bounds: 40,40
+	Armament@AntiCorvette:
+		Weapon: GPlatformNeedle
+		LocalYaw: 255, -255, 255, -255, 255, -255
+		LocalOffset: 175, -250, 5, 175, 250, 5, 0, -250, 5, 0, 250, 5, -175, -250, 5, -175, 250, 5
+		RequiresCondition: anticorvettestation
+	ExplodeWeapon:
+		Weapon: GKorGasBulletSpawner
+		RequiresCondition: antifighterstation
+	ExplodeWeapon@1:
+		Weapon: GKorGasBulletSpawner
+		RequiresCondition: antifighterstation
+	WithSpriteBody:
+		RequiresCondition: !antifighterstation && !anticorvettestation
+	WithSpriteBody@antifighterstation:
+		Sequence: antifighteridle
+		RequiresCondition: antifighterstation
+	WithSpriteTurret@anticorvettestation:
+		RequiresCondition: anticorvettestation
+		Sequence: anticovertteturret
+	Tooltip:
+		Name: Defence Station
+		RequiresCondition: !antifighterstation && !anticorvettestation
+	Tooltip@antifighterstation:
+		Name: Acid Turret (Anti Fighter)
+		RequiresCondition: antifighterstation
+	Tooltip@anticorvettestation:
+		Name: Needler Turret (Anti Corvette)
+		RequiresCondition: anticorvettestation
 
 GSURVEYFRIGATE:
 	Inherits: SURVEYFRIGATE

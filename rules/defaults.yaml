@@ -709,8 +709,14 @@
 		Dimensions: 3,3
 		Footprint: ___ _x_ ___
 		TerrainTypes: Clear, Ground
-		Adjacent: 5
+		Adjacent: 2
+		RequiresBaseProvider: True
 	WithSpriteBody:
+	GivesBuildableArea:
+		AreaTypes: building
+	RequiresBuildableArea:
+		AreaTypes: building
+		Adjacent: 3
 	ActorLostNotification:
 		Notification: BuildingLost
 	Guardable:
@@ -757,10 +763,6 @@
 	Explodes:
 		Weapon: FrigateExplode
 		EmptyWeapon: FrigateExplode
-	ProximityExternalCondition:
-		Condition: DisablePlanetCapture
-		Range: 2c0
-		ValidStances: Ally, Enemy, Neutral
 	WithColoredOverlay:
 		Palette: disabled
 		RequiresCondition: empdisable
@@ -1224,6 +1226,8 @@ MOTHERSHIP:
 	Exit@3:
 		ExitCell: -1,-1
 		SpawnOffset: 0,0,0
+	BaseProvider:
+		Range: 2c0
 	ExplodeWeapon:
 		Weapon: FieldDefenceLaserSpawnMothership
 		LocalOffset: 0,-500,1150
@@ -1402,6 +1406,11 @@ FRIGATEASSEMBLYBAY:
 	SpeedMultiplier@Upgrade:
 		Modifier: 50
 		RequiresCondition: CorvetteQueue || FrigateQueue || BaseShipQueue
+	BaseProvider:
+		Range: 2c0
+	GivesBuildableArea:
+		AreaTypes: building
+		RequiresCondition: BaseShipQueue
 #######################################
 # PRODUCTION
 #######################################
@@ -1513,9 +1522,6 @@ PATROLCRUISERGENERIC:
 		RespawnTicks: 700
 		ReamTicks: 100
 		InstaRepair: true
-#########################################################
-# Upgrades
-#########################################################
 
 SURVEYFRIGATE:
 	Inherits: ^CapitalShip
@@ -1603,8 +1609,6 @@ ENGINEER:
 		Actor: gengineerh
 		OwnerType: InternalName
 		InternalOwner: Neutral
-	BaseProvider:
-		Range: 3c0
 	ProvidesPrerequisite@buildingname2:
 		Prerequisite: planetstation
 
@@ -1858,6 +1862,54 @@ MOBSPANWERMASTER:
 	DamageMultiplier@INVINCIBLE:
 		Modifier: 0
 	Selectable:
+
+^DefenceStation:
+	Inherits: ^BuildableStation
+	Tooltip:
+		Name: Trade Station
+	Buildable:
+		Queue: BaseShipQueue
+		BuildPaletteOrder: 5
+		Prerequisites: gengineer
+		Description: Customizable station\n- Customization options are unlocked after placement.
+	Valued:
+		Cost: 400
+	Power:
+		Amount: -15
+	Sellable:
+	Selectable:
+		Bounds: 24,24
+	SelectionDecorations:
+		VisualBounds: 22,48,0,-12
+	RevealsShroud:
+		Range: 8c0
+	BodyOrientation:
+		QuantizedFacings: 8
+	DetectCloaked:
+		Range: 5c0
+	Exit:
+	ProvidesPrerequisite@unitname:
+	ProductionBar:
+	AttackTurreted:
+		RequiresCondition: antifighterstation || anticorvettestation
+	Turreted:
+		TurnSpeed: 5
+#######################################
+# SELF UPGRADE
+#######################################
+	ProductionQueue@DefenceStationUpgrade:
+		Type: DefenceStationUpgrade
+		Group: Vehicle
+		LowPowerSlowdown: 3
+	Production@DefenceStationUpgrade:
+		Produces: DefenceStationUpgrade
+		RequiresCondition: !antifighterstation && !anticorvettestation
+	GrantConditionOnProduction@antifighterstation:
+		Condition: antifighterstation
+		Actors: upgrade.antifighterstation
+	GrantConditionOnProduction@anticorvettestation:
+		Condition: anticorvettestation
+		Actors: upgrade.anticorvettestation
 
 PROBE:
 	Inherits: ^Fighter
