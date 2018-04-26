@@ -24,6 +24,8 @@ Player:
 			upgrade.frigatequeue: 1%
 			upgrade.baseshipqueue: 1%
 		UnitsToBuild:
+			gfighter1master: 15%
+			gfighter2master: 1%
 			gcorv1: 5%
 			# gcorv2: 10%
 			gfrig1: 20%

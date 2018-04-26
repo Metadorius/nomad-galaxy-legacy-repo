@@ -46,30 +46,40 @@ GFRIG1:
 	AttackTurreted:
 		Turrets: Primary, Secondary
 
-GCORV2:
-	Inherits: ^Corvette
-	Inherits@2: ^FrigateTargetPriority
+GFRIG3:
+	Inherits: ^TurretedFrigate
+	Inherits@2: ^FighterTargetPriority
 	Buildable:
 		Queue: FrigateQueue
-		BuildPaletteOrder: 2
-		Prerequisites: gsurveyfrigate
-		Description: Medium craft armed with torpedo launchers.\nEffective against Corvettes.\nIneffective against Fighters and Capital Ships.
+		BuildPaletteOrder: 3
+		Description: Dedicated anti fighter frigate.\n- Engages fighters automatically when in range.
 	Valued:
-		Cost: 175
+		Cost: 1000
 	Tooltip:
-		Name: Cannon Corvette
-	Power:
-		Amount: -2
+		Name: Acid Frigate
 	Health:
-		HP: 170000
+		HP: 1250000
 	RevealsShroud:
 		Range: 5c0
-	Armament@1:
-		Weapon: CorvetteCannon
-		LocalOffset: 200, 200, 0, 200, -200, 0, -200, 200, 0, -200, -200, 0
+	Mobile:
+		TurnSpeed: 2
+		Speed: 45
+	Armament:
+		Weapon: FrigateGasBullet
+		LocalOffset: 300,0,0
 		RequiresCondition: !HyperSpaceFadeOut
-	MustBeDestroyed:
-	AttackFrontal:
+	ExplodeWeapon:
+		Weapon: GKorGasBulletSpawner
+		LocalOffset: 300,0,0
+		RequiresCondition: !HyperSpaceFadeOut
+	ExplodeWeapon@1:
+		Weapon: GKorGasBulletSpawner
+		LocalOffset: 300,0,0
+		RequiresCondition: !HyperSpaceFadeOut
+	SpawnActorOnDeath:
+		Actor: gfrig3h
+		OwnerType: InternalName
+		InternalOwner: Neutral
 
 GFRIG2:
 	Inherits: ^AFrontalFrigate
@@ -151,3 +161,41 @@ GBC1:
 		Actor: gbc1h
 		OwnerType: InternalName
 		InternalOwner: Neutral
+
+GPATROLCRUISER:
+	Inherits@1: PATROLCRUISERGENERIC
+	# Buildable:
+		# Queue: CorvetteQueue
+		# BuildPaletteOrder: 4
+		# Prerequisites: gresearchship
+		# Description: Capital ship capable of sending squadrons of bombers.
+	Tooltip:
+		Name: Carrier
+	AnnounceOnBuildAS:
+		Voice: PatrolCruiserReady
+		OnlyToOwner: True
+	ProvidesPrerequisite:
+
+GFIGHTER2:
+	Inherits: SlaveFighter
+	Tooltip:
+		Name: Bomber
+	Health:
+		HP: 40000
+	Armament:
+		Weapon: BomberAcid
+		PauseOnCondition: !Ammo
+	Aircraft:
+		Speed: 75
+		TurnSpeed: 8
+		CruiseAltitude: 500
+		Repulsable: False
+		RearmBuildings: carrier
+		LandWhenIdle: True
+		CanHover: False
+	AmmoPool:
+		Ammo: 2
+		PipCount: 0
+		ReloadCount: 1
+		ReloadDelay: 1
+		AmmoCondition: Ammo

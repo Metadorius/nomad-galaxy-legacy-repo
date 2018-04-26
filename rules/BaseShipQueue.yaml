@@ -2,21 +2,6 @@
 # G KOR
 #################################################################################
 
-^CivilianShipWeaponsGkor:
-	ExplodeWeapon@Repairs:
-		Weapon: FieldRepairLaserSpawn
-	Armament@AntiCorvette:
-		Weapon: CapitalShipAutoCannon
-	Armament@PDLASER:
-		Weapon: PDLaser
-		LocalOffset: 0,213,-85
-		Name: pdlaser
-	AttackTurreted:
-	ExplodeWeapon@1:
-		Weapon: FieldDefenceLaserSpawnAntiFighter
-	Turreted:
-	AutoTarget:
-
 GMOTHERSHIP:
 	Inherits: MOTHERSHIP
 	Tooltip:
@@ -65,7 +50,7 @@ GFRIGATEASSEMBLYBAY:
 		Queue: BaseShipQueue
 		BuildPaletteOrder: 3
 		Prerequisites: grefinery
-		Description: Customizable production unit.
+		Description: Customizable production unit.\n- Has basic anti fighter coverage.
 	AnnounceOnBuildAS:
 		Voice: FrigateAssemblyBayReady
 		OnlyToOwner: True
@@ -83,11 +68,36 @@ GENGINEER:
 		Voice: EngineerCrewReady
 		OnlyToOwner: True
 
+GADERRICK:
+	Inherits: ^BuildableStation
+	Tooltip:
+		Name: Trade Station
+	Buildable:
+		Queue: BaseShipQueue
+		BuildPaletteOrder: 5
+		Prerequisites: gengineer
+		Description: Customizable station\n- Customization options are unlocked after placement.
+	Valued:
+		Cost: 400
+	Power:
+		Amount: -15
+	Sellable:
+	Selectable:
+		Bounds: 24,24
+	SelectionDecorations:
+		VisualBounds: 22,48,0,-12
+	RevealsShroud:
+		Range: 8c0
+	BodyOrientation:
+		QuantizedFacings: 8
+	DetectCloaked:
+		Range: 5c0
+
 GSURVEYFRIGATE:
 	Inherits: SURVEYFRIGATE
 	Buildable:
 		Queue: BaseShipQueue
-		BuildPaletteOrder: 5
+		BuildPaletteOrder: 6
 		Prerequisites: gfrigateassemblybay
 		Description: Exploration vessel equipped with long range scanners.\nEnables the radar upon construction.\nDetects cloaked units.
 	Tooltip:
@@ -108,7 +118,7 @@ GSUBSPESS:
 		Name: Support Cruiser
 	Buildable:
 		Queue: BaseShipQueue
-		BuildPaletteOrder: 5
+		BuildPaletteOrder: 7
 		Prerequisites: gfrigateassemblybay
 		Description: Exploration vessel equipped with long range scanners.\nEnables the radar upon construction.\nDetects cloaked units.
 	Power:
@@ -155,7 +165,7 @@ GRESEARCHSHIP:
 		OnlyToOwner: True
 	Buildable:
 		Queue: BaseShipQueue
-		BuildPaletteOrder: 7
+		BuildPaletteOrder: 8
 		Prerequisites: ~mothership, gsurveyfrigate
 		Description: Heavy armored carrier that supports frigate production.\nCan be deployed to become static to and use rallypoints.
 	-AttackMove:

@@ -172,28 +172,6 @@ GCARGOFRIG:
 	ExternalCondition@ChaseMothership:
 		Condition: ChaseMothership
 
-GCORV3:
-	Inherits: ^Corvette
-	Valued:
-		Cost: 325
-	Tooltip:
-		Name: Adrenaline Buffer
-	# Buildable:
-		# Queue: CorvetteQueue
-		# BuildPaletteOrder: 1
-		# Prerequisites: gsurveyfrigate
-		# Description: Medium craft armed with torpedo launchers.\nEffective against Corvettes.\nIneffective against Fighters and Capital Ships.
-	Power:
-		Amount: -2
-	Health:
-		HP: 170000
-	RevealsShroud:
-		Range: 5c0
-	Armament:
-		Weapon: AdrenalineShot
-	MustBeDestroyed:
-	AttackFrontal:
-
 GMINER:
 	Inherits: MINER
 	Buildable:
@@ -509,29 +487,6 @@ GAPPLATFORM:
 		Modifier: 50
 		RequiresCondition: PowerDisable
 	RenderRangeCircle:
-
-GADERRICK:
-	Inherits: ^BuildableStation
-	Tooltip:
-		Name: Trade Station
-	Valued:
-		Cost: 1000
-	Sellable:
-	CashTrickler:
-		Amount: 22
-		Interval: 500
-	Selectable:
-		Bounds: 24,24
-	SelectionDecorations:
-		VisualBounds: 22,48,0,-12
-	RevealsShroud:
-		Range: 8c0
-	BodyOrientation:
-		QuantizedFacings: 8
-	DetectCloaked:
-		Range: 5c0
-	Power:
-		Amount: 30
 
 gasensorplatform:
 	Inherits: ^BuildableStation

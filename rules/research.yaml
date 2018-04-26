@@ -222,14 +222,14 @@ merc.dummy:
 	ProvidesPrerequisite@upgradename:
 	Interactable:
 
-research.pirates:
-	Inherits: ^Tier1Contract
-	Tooltip:
-		Name: Blood Dust clan contact
-	Buildable:
-		Description: Establishes connections with the pirate clans in the sector.\nPirate units focus on boarding actions and hit and run tactics.\n\nUnits unlocked:\n-Boarding Frigate.\n-Corsair.\n-Battle Axe Fighter Bomber.
-	RenderSprites:
-		Image: punit3
+# research.pirates:
+	# Inherits: ^Tier1Contract
+	# Tooltip:
+		# Name: Blood Dust clan contact
+	# Buildable:
+		# Description: Establishes connections with the pirate clans in the sector.\nPirate units focus on boarding actions and hit and run tactics.\n\nUnits unlocked:\n-Boarding Frigate.\n-Corsair.\n-Battle Axe Fighter Bomber.
+	# RenderSprites:
+		# Image: punit3
 
 research.hyperion:
 	Inherits: ^Tier1Contract
@@ -258,17 +258,17 @@ research.controller:
 	RenderSprites:
 		Image: cunit1
 
-researchT2.pirates:
-	Inherits: ^Tier2Contract
-	Tooltip:
-		Name: Blood Dust clan contact
-	Buildable:
-		Prerequisites: ~T1Contract, ~!T2Contract, ~!research.pirates
-		Description: Establishes connections with the pirate clans in the sector.\nPirate units focus on boarding actions and hit and run tactics.\n\nUnits unlocked:\n-Boarding Frigate.\n-Corsair.\n-Battle Axe Fighter Bomber.
-	RenderSprites:
-		Image: punit3
-	ProvidesPrerequisite@upgradename:
-		Prerequisite: research.pirates
+# researchT2.pirates:
+	# Inherits: ^Tier2Contract
+	# Tooltip:
+		# Name: Blood Dust clan contact
+	# Buildable:
+		# Prerequisites: ~T1Contract, ~!T2Contract, ~!research.pirates
+		# Description: Establishes connections with the pirate clans in the sector.\nPirate units focus on boarding actions and hit and run tactics.\n\nUnits unlocked:\n-Boarding Frigate.\n-Corsair.\n-Battle Axe Fighter Bomber.
+	# RenderSprites:
+		# Image: punit3
+	# ProvidesPrerequisite@upgradename:
+		# Prerequisite: research.pirates
 
 researchT2.hyperion:
 	Inherits: ^Tier2Contract

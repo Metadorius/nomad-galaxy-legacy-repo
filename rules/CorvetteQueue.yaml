@@ -7,22 +7,30 @@ GFIGHTER1MASTER:
 	Buildable:
 		Queue: CorvetteQueue
 		BuildPaletteOrder: 1
-		Description: Fighter Squadron
+		Description: Fighter Squadron, only effective versus fighters.
 	Interactable:
 		Bounds: 30,30
+	Power:
+		Amount: -2
 	Tooltip:
-		Name: Scout Squadron
+		Name: Interceptor Squadron
 	# -Mobile:
 	# Aircraft:
 		# Speed: 90
 	# AttackPlane:
+	WithTextDecoration@deployed:
+		Text: F
+		ReferencePoint: Bottom
+		Color: E0D048
+		ZOffset: 9999
+		ValidStances: Ally, Enemy
 
 GFIGHTER1:
 	Inherits: ^Fighter
 	Valued:
 		Cost: 50
 	Tooltip:
-		Name: Scout
+		Name: Interceptor
 	Health:
 		HP: 30000
 	Aircraft:
@@ -30,6 +38,47 @@ GFIGHTER1:
 	MobSpawnerSlave:
 	Armament:
 		Weapon: InterceptorBullet
+
+GFIGHTER2MASTER:
+	Inherits: MOBSPANWERMASTER
+	Valued:
+		Cost: 500
+	Buildable:
+		Queue: CorvetteQueue
+		BuildPaletteOrder: 1
+		Description: Effective versus units other than interceptors
+	Interactable:
+		Bounds: 30,30
+	Power:
+		Amount: -4
+	Tooltip:
+		Name: Bomber Squadron
+	MobSpawnerMaster:
+		Actors: gfighter2b, gfighter2b, gfighter2b, gfighter2b, gfighter2b
+	WithTextDecoration@deployed:
+		Text: B
+		ReferencePoint: Bottom
+		Color: E0D048
+		ZOffset: 9999
+		ValidStances: Ally, Enemy
+	RenderSprites:
+		Image: gfighter2
+
+GFIGHTER2B:
+	Inherits: ^Fighter
+	Tooltip:
+		Name: Bomber
+	Health:
+		HP: 40000
+	Valued:
+		Cost: 50
+	Armament:
+		Weapon: BomberAcid
+	Aircraft:
+		Speed: 75
+	MobSpawnerSlave:
+	RenderSprites:
+		Image: gfighter2
 
 GCORV1:
 	Inherits: ^Corvette
@@ -55,72 +104,50 @@ GCORV1:
 		LocalOffset: 0,-200,0,0,0,0,0,200,0
 	AttackFrontal:
 
-GFRIG3:
-	Inherits: ^TurretedFrigate
-	Inherits@2: ^FighterTargetPriority
+GCORV2:
+	Inherits: ^Corvette
+	Inherits@2: ^FrigateTargetPriority
 	Buildable:
 		Queue: CorvetteQueue
-		BuildPaletteOrder: 3
-		Prerequisites: gresearchship
-		Description: Dedicated anti fighter frigate.\nEffective Against Fighters.
+		BuildPaletteOrder: 2
+		Prerequisites: gsurveyfrigate
+		Description: Medium craft armed with torpedo launchers.\nEffective against Corvettes.\nIneffective against Fighters and Capital Ships.
 	Valued:
-		Cost: 1000
+		Cost: 175
 	Tooltip:
-		Name: Acid Frigate
+		Name: Cannon Corvette
+	Power:
+		Amount: -2
 	Health:
-		HP: 1250000
+		HP: 170000
 	RevealsShroud:
 		Range: 5c0
-	Mobile:
-		TurnSpeed: 2
-		Speed: 45
-	Armament:
-		Weapon: FrigateGasBullet
-		LocalOffset: 300,0,0
+	Armament@1:
+		Weapon: CorvetteCannon
+		LocalOffset: 200, 200, 0, 200, -200, 0, -200, 200, 0, -200, -200, 0
 		RequiresCondition: !HyperSpaceFadeOut
-	ExplodeWeapon@1:
-		Weapon: GKorGasBulletSpawner
-		LocalOffset: 300,0,0
-		RequiresCondition: !HyperSpaceFadeOut
-	SpawnActorOnDeath:
-		Actor: gfrig3h
-		OwnerType: InternalName
-		InternalOwner: Neutral
+	MustBeDestroyed:
+	AttackFrontal:
 
-GPATROLCRUISER:
-	Inherits@1: PATROLCRUISERGENERIC
-	Buildable:
-		Queue: CorvetteQueue
-		BuildPaletteOrder: 4
-		Prerequisites: gresearchship
-		Description: Capital ship capable of sending squadrons of bombers.
-	Tooltip:
-		Name: Carrier
-	AnnounceOnBuildAS:
-		Voice: PatrolCruiserReady
-		OnlyToOwner: True
-	ProvidesPrerequisite:
 
-GFIGHTER2:
-	Inherits: SlaveFighter
+GCORV3:
+	Inherits: ^Corvette
+	Valued:
+		Cost: 325
 	Tooltip:
-		Name: Bomber
+		Name: Adrenaline Buffer
+	# Buildable:
+		# Queue: CorvetteQueue
+		# BuildPaletteOrder: 1
+		# Prerequisites: gsurveyfrigate
+		# Description: Medium craft armed with torpedo launchers.\nEffective against Corvettes.\nIneffective against Fighters and Capital Ships.
+	Power:
+		Amount: -2
 	Health:
-		HP: 40000
+		HP: 170000
+	RevealsShroud:
+		Range: 5c0
 	Armament:
-		Weapon: BomberAcid
-		PauseOnCondition: !Ammo
-	Aircraft:
-		Speed: 75
-		TurnSpeed: 8
-		CruiseAltitude: 500
-		Repulsable: False
-		RearmBuildings: carrier
-		LandWhenIdle: True
-		CanHover: False
-	AmmoPool:
-		Ammo: 2
-		PipCount: 0
-		ReloadCount: 1
-		ReloadDelay: 1
-		AmmoCondition: Ammo
+		Weapon: AdrenalineShot
+	MustBeDestroyed:
+	AttackFrontal:

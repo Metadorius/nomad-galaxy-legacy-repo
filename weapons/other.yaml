@@ -135,7 +135,7 @@ AFProjectile:
 		Blockable: True
 	Warhead@1Dam: SpreadDamage
 		Spread: 100
-		Damage: 80000
+		Damage: 800
 			Fighter: 200
 			Corvette: 100
 			Frigate: 75

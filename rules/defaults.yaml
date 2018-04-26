@@ -1089,6 +1089,10 @@
 # Base Rules Starts here
 #########################################################################
 
+^CivilianShipWeaponsGkor:
+	ExplodeWeapon@1:
+		Weapon: FieldDefenceLaserSpawnAntiFighter
+
 ^BuildingQueue:
 	ProductionQueue@Building:
 		Type: Building
@@ -1163,21 +1167,20 @@
 		Produces: Defence
 
 ^AIWander:
-	ProvidesAIPrerequisite@LogisticShipWanderer:
-		Prerequisite: LogisticShipWanderer
-	GrantConditionOnPrerequisite@LogisticShipWanderer:
-		Condition: LogisticShipWanderer
-		Prerequisites: AImoney
-	AttackWander@LogisticShipWanderer:
-		RequiresCondition: LogisticShipWanderer
-		WanderMoveRadius: 1
-		ReduceMoveRadiusDelay: 6000
-	AttackFrontal:
-		RequiresCondition: LogisticShipWanderer
-	Armament@Capture2:
-		Weapon: LogisticShipKiller
-		TargetStances: Enemy, Ally, Neutral
-		RequiresCondition: LogisticShipWanderer
+	Wanders:
+		MinMoveDelay: 200
+		MaxMoveDelay: 1000
+		RequiresCondition: AIWanderer
+	ProvidesAIPrerequisite@AIWanderer:
+		Prerequisite: AIWanderer
+	CashTrickler@AIWanderer:
+		Interval: 1000
+		Amount: 50
+		ShowTicks: False
+		RequiresCondition: AIWanderer
+	Power@AIWanderer:
+		Amount: 20
+		RequiresCondition: AIWanderer
 
 MOTHERSHIP:
 	Inherits: ^Building
@@ -1254,19 +1257,6 @@ MOTHERSHIP:
 		Type: CorvetteQueue
 		Group: Defence
 		LowPowerSlowdown: 3
-	ProvidesAIPrerequisite@AImoney:
-		Prerequisite: AImoney
-	GrantConditionOnPrerequisite@AImoney:
-		Condition: money
-		Prerequisites: AImoney
-	CashTrickler@AImoney:
-		Interval: 1000
-		Amount: 250
-		ShowTicks: False
-		RequiresCondition: money
-	Power@AI:
-		Amount: 999
-		RequiresCondition: money
 
 HABITATSHIP:
 	Inherits: ^CapitalShip
@@ -1322,20 +1312,6 @@ HABITATSHIP:
 		ValidStances: Ally
 	Targetable@LogisticShip:
 		TargetTypes: LogisticShip
-	# Armament@Capture:
-		# Weapon: PlanetCaptureAlien
-		# TargetStances: Enemy, Ally, Neutral
-		# RequiresCondition: !HyperSpaceFadeOut
-	# Armament@Capture2:
-		# Weapon: LogisticShipKiller
-		# TargetStances: Enemy, Ally, Neutral
-		# RequiresCondition: !HyperSpaceFadeOut
-	# AttackFrontal:
-	# KillsSelf:
-		# RequiresCondition: LogisticShipKill
-		# RemoveInstead: True
-	# ExternalCondition@LogisticShipKill:
-		# Condition: LogisticShipKill
 	SpawnActorOnDeath:
 		Actor: ghabitatshiph
 		OwnerType: InternalName
@@ -1375,7 +1351,7 @@ REFINERY:
 FRIGATEASSEMBLYBAY:
 	Inherits: ^CapitalShip
 	Inherits@1: ^AIWander
-	Inherits@2: ^AutoTargetAll
+	Inherits@2: ^CivilianShipWeaponsGkor
 	ProvidesPrerequisite@T1Carrier:
 	Valued:
 		Cost: 750
@@ -1394,18 +1370,6 @@ FRIGATEASSEMBLYBAY:
 		ReferencePoint: Top, Right
 		RequiresCondition: !weonqloweonlawea
 		ZOffset: 256
-	AutoTarget:
-	# AttackFrontal:
-	# Armament@1:
-		# Weapon: CrystalHarvest
-		# TargetStances: Ally
-		# LocalOffset: 400,0,0
-		# ForceTargetStances: Ally
-	# Armament@2:
-		# Weapon: CrateHarvest
-		# TargetStances: Ally
-		# LocalOffset: 400,0,0
-		# ForceTargetStances: Ally
 	GrantConditionOnDeploy:
 		DeployedCondition: deployed
 	Mobile:
@@ -1497,6 +1461,7 @@ FRIGATEASSEMBLYBAY:
 PATROLCRUISERGENERIC:
 	Inherits@1: ^CapitalShip
 	Inherits@2: ^AutoTargetAll
+	Inherits@3: ^AIWander
 	ProvidesPrerequisite@buildingname:
 	Valued:
 		Cost: 2500
@@ -1593,6 +1558,7 @@ SURVEYFRIGATE:
 
 ENGINEER:
 	Inherits: ^CapitalShip
+	Inherits@1: ^AIWander
 	Valued:
 		Cost: 1000
 	Tooltip:
@@ -1641,18 +1607,10 @@ ENGINEER:
 		Range: 3c0
 	ProvidesPrerequisite@buildingname2:
 		Prerequisite: planetstation
-	# ProductionQueue@Aircraft:
-		# Type: Aircraft
-		# Factions: gkor, terran
-		# Group: Aircraft
-		# LowPowerSlowdown: 1
-		# QueuedAudio: Building
-		# BuildDurationModifier: 150
-	# Production:
-		# Produces: Aircraft
 
 RESEARCHSHIP:
 	Inherits: ^CapitalShip
+	Inherits@1: ^AIWander
 	Valued:
 		Cost: 3000
 	Power:
@@ -1866,7 +1824,7 @@ MOBSPANWERMASTER:
 	RenderSprites:
 		Image: gfighter1
 	MobSpawnerMaster:
-		Actors: gfighter1, gfighter1, gfighter1, gfighter1
+		Actors: gfighter1, gfighter1, gfighter1, gfighter1, gfighter1
 	AttackFrontal:
 	Armament@PRIMARY:
 		Weapon: PlatformFighterSpawn

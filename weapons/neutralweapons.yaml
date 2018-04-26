@@ -50,7 +50,7 @@ DangerBuoyComet1:
 		Palette: apolgrey
 	Warhead@1Dam: SpreadDamage
 		Spread: 256
-		Damage: 15000
+		Damage: 1500
 		AffectsParent: True
 		Versus:
 			Fighter: 100
