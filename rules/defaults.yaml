@@ -1160,15 +1160,15 @@
 
 ^AIWander:
 	Wanders:
-		MinMoveDelay: 200
-		MaxMoveDelay: 1000
+		MinMoveDelay: 500
+		MaxMoveDelay: 5000
 		RequiresCondition: AIWanderer
 	ProvidesAIPrerequisite@AIWanderer:
 		Prerequisite: AIWanderer
+	GrantConditionOnPrerequisite@AIWanderer:
+		Condition: AIWanderer
+		Prerequisites: AIWanderer
 	CashTrickler@AIWanderer:
-		Interval: 1000
-		Amount: 50
-		# ShowTicks: False
 		RequiresCondition: AIWanderer
 	Power@AIWanderer:
 		Amount: 20
@@ -1183,7 +1183,6 @@ MOTHERSHIP:
 		Name: Mothership
 	ProvidesPrerequisite@buildingname:
 	CashTrickler:
-	CashTricklerBar:
 	Health:
 		HP: 1500000
 	Interactable:
@@ -1338,7 +1337,7 @@ CIVILIANCORESHIP:
 		Sequence: supplyship
 	ProvidesPrerequisite@supplyship:
 		Prerequisite: ghabitatship
-		RequiresCondition: supplyship
+		RequiresCondition: supplyship || AIWanderer
 #######################################
 # Engineering Crew Bonus
 #######################################
