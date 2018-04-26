@@ -65,7 +65,7 @@ GFRIG3:
 		TurnSpeed: 2
 		Speed: 45
 	Armament@AntiCorvette:
-		Weapon: GPlatformNeedle
+		Weapon: GAcidFrigateNeedle
 		LocalYaw: 255, -255, 255, -255, 255, -255
 		LocalOffset: 175, -250, 5, 175, 250, 5, 0, -250, 5, 0, 250, 5, -175, -250, 5, -175, 250, 5
 	Armament:

@@ -75,6 +75,11 @@ GPlatformNeedle:
 		Damage: 20000
 		ValidStances: Ally, Enemy, Neutral
 
+GAcidFrigateNeedle:
+	Inherits: GPlatformNeedle
+	Warhead@1Dam: SpreadDamage
+		Damage: 10000
+
 GPlatformCannon:
 	Inherits: CorvetteCannon
 	Range: 5c0
@@ -91,7 +96,7 @@ FrigateGasBullet:
 	ValidTargets: Fighter
 	InvalidTargets: Corvette, Frigate
 	Warhead@1Dam: SpreadDamage
-		Spread: 600
+		Spread: 300
 		Damage: 4500
 		Versus:
 			Corvette: 25

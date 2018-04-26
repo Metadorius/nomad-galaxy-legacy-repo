@@ -29,6 +29,8 @@ DGREFINERY:
 	ProvidesPrerequisite:
 	Targetable@asd:
 		TargetTypes: DeployedShip
+	Power:
+		Amount: -10
 	Valued:
 		Cost: 1100
 	Tooltip:

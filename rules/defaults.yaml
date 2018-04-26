@@ -1014,6 +1014,7 @@
 		Prerequisites: AIWanderer
 	CashTrickler@AIWanderer:
 		RequiresCondition: AIWanderer
+		Interval: 100
 	Power@AIWanderer:
 		Amount: 20
 		RequiresCondition: AIWanderer
@@ -1047,6 +1048,10 @@ MOTHERSHIP:
 		Step: 0
 		PercentageStep: 1
 		Delay: 50
+	ProductionBar@BaseShipQueue:
+		ProductionType: BaseShipQueue
+	ProductionBar@CorvetteQueue:
+		ProductionType: CorvetteQueue  
 	Exit:
 		ExitCell: 1,1
 		SpawnOffset: 0,0,0
@@ -1107,6 +1112,7 @@ CIVILIANCORESHIP:
 	RevealsShroud:
 		Range: 5c0
 	MustBeDestroyed:
+		RequiredForShortGame: true
 	RenderSprites:
 	Selectable:
 		Priority: 5
@@ -1137,9 +1143,6 @@ CIVILIANCORESHIP:
 		RequiresCondition: !deployed
 	GrantConditionOnDeploy:
 		DeployedCondition: deployed
-	Power:
-		Amount: 60
-		RequiresCondition: deployed
 	WithFacingSpriteBody:
 		RequiresCondition: !supplyship && !surveyfrigate && !engineeringcrew && !researchship
 #######################################
@@ -1165,20 +1168,18 @@ CIVILIANCORESHIP:
 		Condition: researchship
 		Actors: upgrade.researchship
 	Power:
-		Amount: 20
-		RequiresCondition: !surveyfrigate || !engineeringcrew || !researchship
+		Amount: 10
 #######################################
 # Supply Ship Bonus
 #######################################
 	Power@2:
 		Amount: 40
-		RequiresCondition: deployed && surveyfrigate
+		RequiresCondition: deployed && supplyship
 	WithFacingSpriteBody@supplyship:
 		RequiresCondition: supplyship
 		Sequence: supplyship
 	ProvidesPrerequisite@supplyship:
 		Prerequisite: ghabitatship
-		RequiresCondition: supplyship || AIWanderer
 #######################################
 # Engineering Crew Bonus
 #######################################
@@ -1194,7 +1195,7 @@ CIVILIANCORESHIP:
 		ZOffset: 256
 	ProvidesPrerequisite@engineeringcrew:
 		Prerequisite: gengineer
-		RequiresCondition: engineeringcrew
+		RequiresCondition: engineeringcrew && deployed
 #######################################
 # Survey Frigate Bonus
 #######################################
@@ -1215,7 +1216,7 @@ CIVILIANCORESHIP:
 		ZOffset: 256
 	ProvidesPrerequisite@surveyfrigate:
 		Prerequisite: gsurveyfrigate
-		RequiresCondition: surveyfrigate
+		RequiresCondition: surveyfrigate && deployed
 #######################################
 # Research Ship Bonus
 #######################################
@@ -1231,7 +1232,7 @@ CIVILIANCORESHIP:
 		ZOffset: 256
 	ProvidesPrerequisite@researchship:
 		Prerequisite: gresearchship
-		RequiresCondition: researchship
+		RequiresCondition: researchship && deployed
 
 REFINERY:
 	Inherits: ^CapitalShip
@@ -1392,6 +1393,17 @@ PRODUCTIONSHIP:
 	WithFacingSpriteBody@BaseShipQueue:
 		RequiresCondition: BaseShipQueue
 		Sequence: BaseShipQueue
+#######################################
+# PRODUCTION Bars
+#######################################
+	ProductionBar@AssemblyBayUpgrade:
+		ProductionType: AssemblyBayUpgrade
+	ProductionBar@BaseShipQueue:
+		ProductionType: BaseShipQueue
+	ProductionBar@CorvetteQueue:
+		ProductionType: CorvetteQueue
+	ProductionBar@FrigateQueue:
+		ProductionType: FrigateQueue
 
 PATROLCRUISERGENERIC:
 	Inherits@1: ^CapitalShip
@@ -1760,7 +1772,8 @@ MOBSPANWERMASTER:
 	# Aircraft:
 		Speed: 90
 	Mobile:
-		Speed: 18
+		Speed: 90
+		TurnSpeed: 100
 		Crushes: mine, crate
 		SharesCell: true
 		OccupySpace: false

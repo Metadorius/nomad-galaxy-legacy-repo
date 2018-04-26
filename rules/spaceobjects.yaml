@@ -78,6 +78,7 @@ ORECRYSTAL:
 		Categories: Gas Clouds
 	Interactable:
 		Bounds 600,600
+	-AppearsOnRadar:
 
 DUSTCLOUD1:
 	Inherits: ^GasCloud
