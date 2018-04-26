@@ -1296,9 +1296,6 @@ CIVILIANCORESHIP:
 	Power:
 		Amount: 60
 		RequiresCondition: deployed
-	Targetable:
-		TargetTypes: DeployedShip
-		RequiresCondition: deployed
 	WithFacingSpriteBody:
 		RequiresCondition: !supplyship && !surveyfrigate && !engineeringcrew && !researchship
 #######################################
@@ -1450,9 +1447,6 @@ PRODUCTIONSHIP:
 	Mobile:
 		Speed: 40
 		RequiresCondition: !deployed
-	Targetable@asd:
-		TargetTypes: DeployedShip
-		RequiresCondition: deployed
 	RevealsShroud:
 		Range: 5c0
 	MustBeDestroyed:
@@ -1576,9 +1570,6 @@ PATROLCRUISERGENERIC:
 	Mobile:
 		Speed: 30
 		RequiresCondition: !deployed
-	Targetable:
-		TargetTypes: DeployedShip
-		RequiresCondition: deployed
 	Selectable:
 		Priority: 5
 	Interactable:

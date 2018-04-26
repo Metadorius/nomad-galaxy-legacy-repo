@@ -491,7 +491,7 @@ CUNIT1:
 		HP: 2000000
 	RevealsShroud:
 		Range: 5c0
-	Aircraft:
+	Mobile:
 		RequiresCondition: !GravSlow
 	SelfHealing@GravSlow:
 		RequiresCondition: GravSlow

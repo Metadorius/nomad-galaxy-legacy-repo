@@ -299,6 +299,7 @@ LancerTesla2:
 LeechEat:
 	ReloadDelay: 25
 	Range: 250
+	ValidTargets: CapitalShip, Frigate
 	Projectile: InstantExplode
 	InvalidTargets: Leached
 	Warhead@1Dam: SpreadDamage
