@@ -336,9 +336,14 @@ spinesphere:
 	idle:
 		Facings: -32
 
+gglaive:
+	idle:
+		Length: *
+		Tick: 10
+
 spineprojectile:
 	idle:
-		Facings: -32
+		Length: *
 
 spineprojectile2:
 	idle:

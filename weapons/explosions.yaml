@@ -152,7 +152,7 @@ CapShipExplode:
 		ExplosionPalette: gensmkexploj
 	Warhead@4Ore: CreateResource
 		AddsResourceType: Junk
-		Size: 1,0
+		Size: 0,0
 
 MotherShipExplode:
 	Inherits: CapShipExplode

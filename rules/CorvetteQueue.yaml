@@ -110,21 +110,26 @@ GCORV2:
 	Buildable:
 		Queue: CorvetteQueue
 		BuildPaletteOrder: 2
-		Prerequisites: gsurveyfrigate
-		Description: Medium craft armed with torpedo launchers.\nEffective against Corvettes.\nIneffective against Fighters and Capital Ships.
+		Prerequisites: gresearchship
+		Description: Cloaked corvette, fires glaives that bounce 6 times.
 	Valued:
-		Cost: 175
+		Cost: 450
 	Tooltip:
-		Name: Cannon Corvette
+		Name: Silencer
 	Power:
-		Amount: -2
+		Amount: -4
+	Mobile:
+		Speed: 60
 	Health:
 		HP: 170000
 	RevealsShroud:
 		Range: 5c0
+	Cloak:
+		IsPlayerPalette: True
+		CloakDelay: 100
 	Armament@1:
-		Weapon: CorvetteCannon
-		LocalOffset: 200, 200, 0, 200, -200, 0, -200, 200, 0, -200, -200, 0
+		Weapon: SilencerGlaive
+		LocalOffset: 200, 0, 0
 		RequiresCondition: !HyperSpaceFadeOut
 	MustBeDestroyed:
 	AttackFrontal:

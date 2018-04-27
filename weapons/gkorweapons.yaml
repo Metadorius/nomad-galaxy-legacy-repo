@@ -30,6 +30,75 @@ PiranhaBite:
 	-Warhead@2Eff: CreateEffect
 	ValidTargets: CapitalShip, Frigate, Corvette, Ground
 
+^AutoCannon:
+	Inherits: ^NormalWeaponWarhead
+	ValidTargets: CapitalShip, Frigate, Corvette, Ground
+	InvalidTargets: Fighter
+	Range: 4c0
+	Report: rmachinegun1.wav, rmachinegun2.wav
+	Projectile: Bullet
+		Speed: 300
+		Blockable: False
+		Image: bulletinterceptor
+		Palette: chrome
+		Inaccuracy: 200
+	Warhead@1Dam: SpreadDamage
+		ValidTargets: CapitalShip, Frigate, Corvette, Ground
+	Warhead@2Eff: CreateEffect
+		Explosions: piff
+
+SilencerGlaive:
+	Inherits: ^AutoCannon
+	ReloadDelay: 80
+	Range: 4c0
+	ValidTargets: Frigate, CapitalShip, Corvette, Ground
+	Report: projectile1.wav, projectile2.wav, projectile3.wav
+	Projectile: Missile
+		Image: gglaive
+		Palette: chrome
+		RangeLimit: 10c204
+	Warhead@1Dam: SpreadDamage
+		Damage: 4000
+	-Warhead@2Eff: CreateEffect
+	Warhead@op: FireShrapnel
+		Weapon: SilencerGlaiveJump
+		Amount: 1
+		AimChance: 100
+		AllowDirectHit: true
+		AimTargetStances: Enemy
+		ValidTargets: Frigate, CapitalShip, Corvette, Ground
+
+SilencerGlaiveJump:
+	Inherits: SilencerGlaive
+	Range: 4c0
+	-Report:
+	Warhead@op: FireShrapnel
+		Weapon: SilencerGlaiveJump2
+
+SilencerGlaiveJump2:
+	Inherits: SilencerGlaiveJump
+	Warhead@op: FireShrapnel
+		Weapon: SilencerGlaiveJump3
+
+SilencerGlaiveJump3:
+	Inherits: SilencerGlaiveJump
+	Warhead@op: FireShrapnel
+		Weapon: SilencerGlaiveJump4
+
+SilencerGlaiveJump4:
+	Inherits: SilencerGlaiveJump
+	Warhead@op: FireShrapnel
+		Weapon: SilencerGlaiveJump5
+        
+SilencerGlaiveJump5:
+	Inherits: SilencerGlaiveJump
+	Warhead@op: FireShrapnel
+		Weapon: SilencerGlaiveJump6
+
+SilencerGlaiveJump6:
+	Inherits: SilencerGlaiveJump
+	-Warhead@op: FireShrapnel
+
 CorvetteNeedle:
 	Inherits: ^Torpedo
 	ReloadDelay: 40

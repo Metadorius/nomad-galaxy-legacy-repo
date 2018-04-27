@@ -16,7 +16,7 @@ GFRIG1:
 	Mobile:
 		TurnSpeed: 7
 	Health:
-		HP: 1500000
+		HP: 750000
 	RevealsShroud:
 		Range: 5c0
 	Armament:
@@ -58,7 +58,7 @@ GFRIG3:
 	Tooltip:
 		Name: Acid Frigate
 	Health:
-		HP: 1250000
+		HP: 620000
 	RevealsShroud:
 		Range: 5c0
 	Mobile:
@@ -68,10 +68,6 @@ GFRIG3:
 		Weapon: GAcidFrigateNeedle
 		LocalYaw: 255, -255, 255, -255, 255, -255
 		LocalOffset: 175, -250, 5, 175, 250, 5, 0, -250, 5, 0, 250, 5, -175, -250, 5, -175, 250, 5
-	Armament:
-		Weapon: FrigateGasBullet
-		LocalOffset: 300,0,0
-		RequiresCondition: !HyperSpaceFadeOut
 	ExplodeWeapon:
 		Weapon: GKorGasBulletSpawner
 		LocalOffset: 300,0,0
@@ -99,7 +95,7 @@ GFRIG2:
 	Mobile:
 		TurnSpeed: 1
 	Health:
-		HP: 900000
+		HP: 450000
 	RevealsShroud:
 		Range: 7c0
 	Armament:

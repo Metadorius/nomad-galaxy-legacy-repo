@@ -30,7 +30,7 @@ gproductionship:
 		UseClassicFacingFudge: True
 	deployed:
 		Start: 13
-	icon: gfrigateassemblybayicon
+	icon: gproductionshipicon
 
 gcivship:
 	Inherits: ^shipdefault

@@ -320,6 +320,10 @@ merc.dummy:
 		ReadyAudio: ConstructionComplete
 	Production:
 		Produces: MercContract
+		RequiresCondition: surveyfrigate
+	GrantConditionOnPrerequisite@ProbeCloak:
+		Prerequisites: surveyfrigate
+		Condition: surveyfrigate
 	Exit:
 	ProvidesPrerequisite@upgradename:
 	Interactable:

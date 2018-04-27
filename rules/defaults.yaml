@@ -1196,6 +1196,14 @@ CIVILIANCORESHIP:
 	ProvidesPrerequisite@engineeringcrew:
 		Prerequisite: gengineer
 		RequiresCondition: engineeringcrew && deployed
+	ExplodeWeapon@1:
+		Weapon: FieldRepairLaserSpawnStrong
+		LocalOffset: 0,0,0
+		DeployedCondition: engineeringcrew && deployed
+	ExplodeWeapon@2:
+		Weapon: FieldRepairLaserSpawnStrong
+		LocalOffset: 0,0,0
+		DeployedCondition: engineeringcrew && deployed
 #######################################
 # Survey Frigate Bonus
 #######################################
