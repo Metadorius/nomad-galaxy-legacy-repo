@@ -174,7 +174,7 @@ MotherShipExplode:
 		ExplosionPalette: gensmkexploj
 	Warhead@4Ore: CreateResource
 		AddsResourceType: Junk
-		Size: 2,0
+		Size: 1,0
 
 CrystalExplosion:
 	Inherits: FighterExplode

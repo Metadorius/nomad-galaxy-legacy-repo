@@ -68,7 +68,9 @@ GFIGHTERTURRET:
 
 GNORMALTURRET:
 	Inherits: ^DeployableTurret
-	Inherits@1: ^TurretedFrigate
+	Inherits@Autotarget: ^AutoTargetAll
+	Turreted:
+	AttackTurreted:
 	Tooltip:
 		Name: Needler Defence
 	Armament@AntiCorvette:
@@ -79,11 +81,6 @@ GNORMALTURRET:
 
 GADERRICK:
 	Inherits: ^DefenceStation
-        # Buildable:
-            # Queue: BaseShipQueue
-            # BuildPaletteOrder: 5
-            # Prerequisites: gengineer
-            # Description: Customizable station\n- Customization options are unlocked after placement.
 	Valued:
 		Cost: 400
 	Interactable:

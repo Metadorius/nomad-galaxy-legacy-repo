@@ -1135,6 +1135,9 @@ CIVILIANCORESHIP:
 		Actor: ghabitatshiph
 		OwnerType: InternalName
 		InternalOwner: Neutral
+		RequiresCondition: !antifighterturret && !antismallturret
+	Explodes:
+		RequiresCondition: !antifighterturret && !antismallturret
 #######################################
 # PRODUCTION STUFF
 #######################################
@@ -1207,10 +1210,10 @@ CIVILIANCORESHIP:
 	ProvidesPrerequisite@engineeringcrew:
 		Prerequisite: gengineer
 		RequiresCondition: engineeringcrew && deployed
-	ExplodeWeapon@1:
+	ExplodeWeapon@engineeringcrew:
 		Weapon: FieldRepairLaserSpawnStrong
 		LocalOffset: 0,0,0
-		DeployedCondition: engineeringcrew && deployed
+		RequiresCondition: engineeringcrew && deployed
 #######################################
 # Survey Frigate Bonus
 #######################################
@@ -1261,9 +1264,18 @@ CIVILIANCORESHIP:
 		ReferencePoint: Top, Right
 		RequiresCondition: antifighterturret
 		ZOffset: 256
-	TransformOnCondition@antifighterturret:
-		IntoActor: gfighterturret
+	SelfHealing@antifighterturret:
+		Step: 0
+		PercentageStep: -101
+		HealIfBelow: 101
+		DamageTypes: antifighterturret
 		RequiresCondition: antifighterturret && deployed
+	SpawnActorOnDeath@antifighterturret:
+		Actor: gfighterturret
+		DeathType: antifighterturret
+	# TransformOnCondition@antifighterturret:
+		# IntoActor: gfighterturret
+		# RequiresCondition: antifighterturret# && deployed
 	ExternalCondition@antifighterturret:
 		Condition: antifighterturret
 #######################################
@@ -1279,9 +1291,18 @@ CIVILIANCORESHIP:
 		ReferencePoint: Top, Right
 		RequiresCondition: antismallturret
 		ZOffset: 256
-	TransformOnCondition@antismallturret:
-		IntoActor: gnormalturret
+	SelfHealing@antismallturret:
+		Step: 0
+		PercentageStep: -101
+		HealIfBelow: 101
+		DamageTypes: antismallturret
 		RequiresCondition: antismallturret && deployed
+	SpawnActorOnDeath@antismallturret:
+		Actor: gnormalturret
+		DeathType: antismallturret
+	# TransformOnCondition@antismallturret:
+		# IntoActor: gnormalturret
+		# RequiresCondition: antismallturret# && deployed
 	ExternalCondition@antismallturret:
 		Condition: antismallturret
 
@@ -1680,10 +1701,12 @@ MOBSPANWERMASTER:
 	Power:
 		Amount: -15
 	GrantConditionOnDeploy:
-		DeployedCondition: !deployed
+		DeployedCondition: deployed
+	Health:
+		HP: 400000
 	Mobile:
 		Speed: 40
-		RequiresCondition: !deployed
+		RequiresCondition: deployed
 	WithTextDecoration@deployed:
 		RequiresCondition: !deployed 
 
