@@ -163,7 +163,7 @@ GBC1:
 		InternalOwner: Neutral
 
 GPATROLCRUISER:
-	Inherits@1: PATROLCRUISERGENERIC
+	Inherits@1: ^CapitalShip
 	# Buildable:
 		# Queue: CorvetteQueue
 		# BuildPaletteOrder: 4

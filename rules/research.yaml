@@ -248,6 +248,29 @@ upgrade.researchship:
 	RenderSprites:
 		Image: gresearchship
 
+upgrade.antifighterturret:
+	Inherits: ^default.upgrade
+	Tooltip:
+		Name: Acid Turret
+	Buildable:
+		Queue: CivilianShipUpgrade
+		Description: Anti fighter deployable defence
+		Prerequisite: gengineer
+		BuildLimit: 0
+	Valued:
+		Cost: 250
+
+upgrade.antismallturret:
+	Inherits: ^default.upgrade
+	Tooltip:
+		Name: Needler Turret
+	Buildable:
+		Queue: CivilianShipUpgrade
+		Description: Anti Corvette deployable defence
+		Prerequisite: gengineer
+		BuildLimit: 0
+	Valued:
+		Cost: 250
 ###############################################################
 # MERCENARY RESERACH
 ###############################################################
@@ -320,10 +343,10 @@ merc.dummy:
 		ReadyAudio: ConstructionComplete
 	Production:
 		Produces: MercContract
-		RequiresCondition: surveyfrigate
-	GrantConditionOnPrerequisite@ProbeCloak:
-		Prerequisites: surveyfrigate
-		Condition: surveyfrigate
+		RequiresCondition: gsurveyfrigate
+	GrantConditionOnPrerequisite@gsurveyfrigate:
+		Prerequisites: gsurveyfrigate
+		Condition: gsurveyfrigate
 	Exit:
 	ProvidesPrerequisite@upgradename:
 	Interactable:

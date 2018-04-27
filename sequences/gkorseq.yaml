@@ -34,6 +34,7 @@ gproductionship:
 
 gcivship:
 	Inherits: ^shipdefault
+##### Civ Stuff
 	supplyship: ghabitatship
 		Facings: -32
 		UseClassicFacingFudge: True
@@ -46,7 +47,21 @@ gcivship:
 	researchship: gresearchship
 		Facings: -32
 		UseClassicFacingFudge: True
+##### Turrets
+	anticovertteturret: gacplatform
+		Facings: -32
+	antifighteridle: gaiplatform
 	icon: gcivshipicon
+
+gfighterturret:
+	Inherits: ^shipdefault
+	idle: gaiplatform
+		Facings: 1
+		UseClassicFacingFudge: False
+
+gnormalturret:
+	Inherits: ^shipdefault
+	idle: gacplatform
 
 ghabitatship:
 	Inherits: ^shipdefault

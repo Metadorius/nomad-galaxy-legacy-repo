@@ -27,16 +27,6 @@ GCIVSHIP:
 		Voice: LogisticShipReady
 		OnlyToOwner: True
 
-GHABITATSHIP:
-	Inherits: ^CapitalShip
-	Valued:
-		Cost: 900
-	AnnounceOnBuildAS:
-		Voice: LogisticShipReady
-		OnlyToOwner: True
-	RenderSprites:
-		Image: ghabitatship
-
 GREFINERY:
 	Inherits: REFINERY
 	Buildable:
@@ -65,44 +55,39 @@ GPRODUCTIONSHIP:
 		Voice: FrigateAssemblyBayReady
 		OnlyToOwner: True
 
-GFRIGATEASSEMBLYBAY:
-	Inherits: PRODUCTIONSHIP
-	AnnounceOnBuildAS:
-		Voice: FrigateAssemblyBayReady
-		OnlyToOwner: True
-	ProvidesPrerequisite:
-		Prerequisite:  Patrol Cruiser or Shipyard
-	-WithFacingSpriteBody@Corvette:
-	-WithFacingSpriteBody@FrigateQueue:
-	-WithFacingSpriteBody@BaseShipQueue:
+GFIGHTERTURRET:
+	Inherits: ^DeployableTurret
+	Tooltip:
+		Name: Anti Fighter Defence
+	ExplodeWeapon:
+		Weapon: GKorGasBulletSpawner
+		RequiresCondition: !deployed
+	ExplodeWeapon@1:
+		Weapon: GKorGasBulletSpawner
+		RequiresCondition: !deployed
 
-GENGINEER:
-	Inherits: ENGINEER
-	# Buildable:
-		# Queue: BaseShipQueue
-		# BuildPaletteOrder: 4
-		# Prerequisites: gfrigateassemblybay
-		# Description: Captures neutral objects and Repairs nearby ships.\ncan repair while moving.
-	AnnounceOnBuildAS:
-		Voice: EngineerCrewReady
-		OnlyToOwner: True
-
-GADERRICK:
-	Inherits: ^DefenceStation
-	Buildable:
-		Queue: BaseShipQueue
-		BuildPaletteOrder: 5
-		Prerequisites: gengineer
-		Description: Customizable station\n- Customization options are unlocked after placement.
-	Valued:
-		Cost: 400
-	Interactable:
-		Bounds: 40,40
+GNORMALTURRET:
+	Inherits: ^DeployableTurret
+	Inherits@1: ^TurretedFrigate
+	Tooltip:
+		Name: Needler Defence
 	Armament@AntiCorvette:
 		Weapon: GPlatformNeedle
 		LocalYaw: 255, -255, 255, -255, 255, -255
 		LocalOffset: 175, -250, 5, 175, 250, 5, 0, -250, 5, 0, 250, 5, -175, -250, 5, -175, 250, 5
-		RequiresCondition: anticorvettestation
+		RequiresCondition: !deployed
+
+GADERRICK:
+	Inherits: ^DefenceStation
+        # Buildable:
+            # Queue: BaseShipQueue
+            # BuildPaletteOrder: 5
+            # Prerequisites: gengineer
+            # Description: Customizable station\n- Customization options are unlocked after placement.
+	Valued:
+		Cost: 400
+	Interactable:
+		Bounds: 40,40
 	ExplodeWeapon:
 		Weapon: GKorGasBulletSpawner
 		RequiresCondition: antifighterstation
@@ -127,25 +112,8 @@ GADERRICK:
 		Name: Needler Turret (Anti Corvette)
 		RequiresCondition: anticorvettestation
 
-GSURVEYFRIGATE:
-	Inherits: SURVEYFRIGATE
-	# Buildable:
-		# Queue: BaseShipQueue
-		# BuildPaletteOrder: 6
-		# Prerequisites: gfrigateassemblybay
-		# Description: Exploration vessel equipped with long range scanners.\nEnables the radar upon construction.\nDetects cloaked units.
-	Tooltip:
-		Name: Survey Frigate
-	AnnounceOnBuildAS:
-		Voice: SurveyFrigateReady
-		OnlyToOwner: True
-	SpawnActorOnDeath:
-		Actor: gsurveyfrigateh
-		OwnerType: InternalName
-		InternalOwner: Neutral
-
 GSUBSPESS:
-	Inherits: RESEARCHSHIP
+	Inherits: ^CapitalShip
 	Valued:
 		Cost: 3000
 	Tooltip:
@@ -191,18 +159,6 @@ GSUBSPESS:
 		Weapon: PatrolCruiserEmp
 	Turreted:
 	AutoTarget:
-
-GRESEARCHSHIP:
-	Inherits: RESEARCHSHIP
-	AnnounceOnBuildAS:
-		Voice: ResearchShipReady
-		OnlyToOwner: True
-	# Buildable:
-		# Queue: BaseShipQueue
-		# BuildPaletteOrder: 8
-		# Prerequisites: ~mothership, gsurveyfrigate
-		# Description: Heavy armored carrier that supports frigate production.\nCan be deployed to become static to and use rallypoints.
-	-AttackMove:
 
 GBC2:
 	Inherits: ^CapitalShip

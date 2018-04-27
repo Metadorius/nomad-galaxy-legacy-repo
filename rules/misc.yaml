@@ -555,7 +555,7 @@ TMOTHERSHIP:
 		Produces: TUtility
 
 TSF:
-	Inherits: SURVEYFRIGATE
+	Inherits: ^CapitalShip
 	Buildable:
 		IconPalette: terranicon
 		Queue: TUtility
@@ -573,7 +573,7 @@ TSF:
 		InternalOwner: Neutral
 
 TREF:
-	Inherits: REFINERY
+	Inherits: ^CapitalShip
 	Buildable:
 		Queue: TUtility
 		BuildPaletteOrder: 2
@@ -588,7 +588,7 @@ TREF:
 		DeployedCondition: deployed
 
 TPATROLCRUISER:
-	Inherits@1: PATROLCRUISERGENERIC
+	Inherits@1: ^CapitalShip
 	Inherits@2: ^CivilianShipWeaponsGkor
 	Buildable:
 		Queue: TUtility
@@ -650,14 +650,14 @@ THAB:
 	# -Transforms:
 
 TRS:
-	Inherits: RESEARCHSHIP
+	Inherits: ^CapitalShip
 	AnnounceOnBuildAS:
 		Voice: ResearchShipReady
 		OnlyToOwner: True
 	-AttackMove:
 
 TENG:
-	Inherits: ENGINEER
+	Inherits: ^CapitalShip
 	Buildable:
 		IconPalette: terranicon
 		Queue: TUtility

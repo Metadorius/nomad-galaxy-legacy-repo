@@ -64,6 +64,7 @@ Rules:
 	ng|rules/research.yaml
 	ng|rules/tech.yaml
 	ng|rules/CorvetteQueue.yaml
+	ng|rules/NonBuildable.yaml
 	ng|rules/FrigateQueue.yaml
 	ng|rules/BaseShipQueue.yaml
 	ng|rules/deployedstuff.yaml

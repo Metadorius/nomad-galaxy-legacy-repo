@@ -11,6 +11,7 @@
 	Inherits: ^1x1Shape
 	BodyOrientation:
 	QuantizeFacingsFromSequence:
+		Sequence: idle
 	RenderSprites:
 
 ^1x1Shape:
@@ -246,6 +247,14 @@
 		Weapon: HyperSpaceFadeOutAnim
 		RequiresCondition: !HyperSpace && HyperSpaceFadeOut
 
+^DeployableText:
+	WithTextDecoration@deployed:
+		Text: DEPLOYED
+		ReferencePoint: Bottom
+		Color: E0D048
+		ZOffset: 9999
+		RequiresCondition: deployed
+
 ^Upgrades:
 	FirepowerMultiplier@UpgradeT1:
 		RequiresCondition: WeaponT1
@@ -368,11 +377,14 @@
 	Inherits@1: ^ExistsInWorld
 	Inherits@2: ^GainsExperience
 	Inherits@3: ^SpriteActor
+	Inherits@4: ^DeployableText
 	HitShape:
 		UseTargetableCellsOffsets: true
 		Type: Rectangle
 			TopLeft: -550, -750
 			BottomRight: 550, 750
+	Valued:
+		Cost: 1
 	Huntable:
 	SelectionDecorations:
 	WithSpriteControlGroupDecoration:
@@ -408,7 +420,7 @@
 	Guard:
 	Guardable:
 	Tooltip:
-		GenericName: Vehicle
+		GenericName: Capital Ship
 	ActorLostNotification:
 	HiddenUnderFog:
 		Type: GroundPosition
@@ -433,12 +445,6 @@
 		EmptyWeapon: CapShipExplode
 	EditorTilesetFilter:
 		Categories: Capital Ships
-	WithTextDecoration@deployed:
-		Text: DEPLOYED
-		ReferencePoint: Bottom
-		Color: E0D048
-		ZOffset: 9999
-		RequiresCondition: deployed
 
 ^CombatCapitalShip:
 	Inherits@1: ^CapitalShip
@@ -483,7 +489,6 @@
 	Targetable:
 		TargetTypes: Frigate
 	QuantizeFacingsFromSequence:
-		Sequence: stand
 	DetectCloaked:
 		Range: 2c0
 	Voiced:
@@ -1144,7 +1149,7 @@ CIVILIANCORESHIP:
 	GrantConditionOnDeploy:
 		DeployedCondition: deployed
 	WithFacingSpriteBody:
-		RequiresCondition: !supplyship && !surveyfrigate && !engineeringcrew && !researchship
+		RequiresCondition: !supplyship && !surveyfrigate && !engineeringcrew && !researchship && !antismallturret && !antifighterturret
 #######################################
 # SELF UPGRADE
 #######################################
@@ -1154,7 +1159,7 @@ CIVILIANCORESHIP:
 		LowPowerSlowdown: 3
 	Production@CivilianShipUpgrade:
 		Produces: CivilianShipUpgrade
-		RequiresCondition: !supplyship && !surveyfrigate && !engineeringcrew && !researchship
+		RequiresCondition: !supplyship && !surveyfrigate && !engineeringcrew && !researchship && !antismallturret && !antifighterturret
 	GrantConditionOnProduction@supplyship:
 		Condition: supplyship
 		Actors: upgrade.supplyship
@@ -1167,6 +1172,12 @@ CIVILIANCORESHIP:
 	GrantConditionOnProduction@researchship:
 		Condition: researchship
 		Actors: upgrade.researchship
+	GrantConditionOnProduction@antifighterturret:
+		Condition: antifighterturret
+		Actors: upgrade.antifighterturret
+	GrantConditionOnProduction@antismallturret:
+		Condition: antismallturret
+		Actors: upgrade.antismallturret
 	Power:
 		Amount: 10
 #######################################
@@ -1197,10 +1208,6 @@ CIVILIANCORESHIP:
 		Prerequisite: gengineer
 		RequiresCondition: engineeringcrew && deployed
 	ExplodeWeapon@1:
-		Weapon: FieldRepairLaserSpawnStrong
-		LocalOffset: 0,0,0
-		DeployedCondition: engineeringcrew && deployed
-	ExplodeWeapon@2:
 		Weapon: FieldRepairLaserSpawnStrong
 		LocalOffset: 0,0,0
 		DeployedCondition: engineeringcrew && deployed
@@ -1241,6 +1248,42 @@ CIVILIANCORESHIP:
 	ProvidesPrerequisite@researchship:
 		Prerequisite: gresearchship
 		RequiresCondition: researchship && deployed
+#######################################
+# Anti Fighter Turret
+#######################################
+	WithFacingSpriteBody@antifighterturret:
+		RequiresCondition: antifighterturret
+		Sequence: antifighteridle
+	WithDecoration@antifighterturret:
+		Image: rank
+		Sequence: towericon
+		Palette: effect
+		ReferencePoint: Top, Right
+		RequiresCondition: antifighterturret
+		ZOffset: 256
+	TransformOnCondition@antifighterturret:
+		IntoActor: gfighterturret
+		RequiresCondition: antifighterturret && deployed
+	ExternalCondition@antifighterturret:
+		Condition: antifighterturret
+#######################################
+# Anti Normal Turret
+#######################################
+	WithFacingSpriteBody@antismallturret:
+		RequiresCondition: antismallturret
+		Sequence: anticovertteturret
+	WithDecoration@antismallturret:
+		Image: rank
+		Sequence: towericon
+		Palette: effect
+		ReferencePoint: Top, Right
+		RequiresCondition: antismallturret
+		ZOffset: 256
+	TransformOnCondition@antismallturret:
+		IntoActor: gnormalturret
+		RequiresCondition: antismallturret && deployed
+	ExternalCondition@antismallturret:
+		Condition: antismallturret
 
 REFINERY:
 	Inherits: ^CapitalShip
@@ -1412,184 +1455,6 @@ PRODUCTIONSHIP:
 		ProductionType: CorvetteQueue
 	ProductionBar@FrigateQueue:
 		ProductionType: FrigateQueue
-
-PATROLCRUISERGENERIC:
-	Inherits@1: ^CapitalShip
-	Inherits@2: ^AutoTargetAll
-	Inherits@3: ^AIWander
-	ProvidesPrerequisite@buildingname:
-	Valued:
-		Cost: 2500
-	Tooltip:
-		Name: Carrier
-	Health:
-		HP: 300000
-	RevealsShroud:
-		Range: 5c0
-	MustBeDestroyed:
-	GrantConditionOnDeploy:
-		DeployedCondition: deployed
-	Power:
-		Amount: -20
-	Mobile:
-		Speed: 30
-		RequiresCondition: !deployed
-	Selectable:
-		Priority: 5
-	Interactable:
-		Bounds: 80,80
-	RenderSprites:
-	WithDecoration@Role:
-		Image: rank
-		Sequence: factoryicon
-		Palette: effect
-		ReferencePoint: Top, Right
-		RequiresCondition: !weonqloweonlawea
-		ZOffset: 256
-	HitShape:
-		UseTargetableCellsOffsets: true
-		Type: Rectangle
-			TopLeft: -550, -1250
-			BottomRight: 550, 1250
-	SpawnActorOnDeath:
-		Actor: gpatrolcruiserh
-		OwnerType: InternalName
-		InternalOwner: Neutral
-	Armament@PRIMARY:
-		Weapon: PlatformFighterSpawn
-	MustBeDestroyed:
-	Turreted:
-	AttackTurreted:
-	CarrierMaster:
-		Actors: gfighter2, gfighter2, gfighter2, gfighter2, gfighter2, gfighter2
-		RespawnTicks: 700
-		ReamTicks: 100
-		InstaRepair: true
-
-SURVEYFRIGATE:
-	Inherits: ^CapitalShip
-	Inherits@1: ^AIWander
-	Valued:
-		Cost: 750
-	Tooltip:
-		Name: Survey Frigate
-	Health:
-		HP: 125000
-	RevealsShroud:
-		Range: 15c0
-		RequiresCondition: !lawea
-	Mobile:
-		Speed: 35
-	Power:
-		Amount: -20
-	MustBeDestroyed:
-	Selectable:
-		Priority: 5
-		Bounds: 80,80
-	SelectionDecorations:
-		VisualBounds: 60,60
-	ProvidesRadar:
-	RenderSprites:
-	ProducibleWithLevel:
-		Prerequisites: vehicles.upgraded
-	DetectCloaked:
-		Range: 10c0
-		RequiresCondition: !weonqloweonlawea
-	RenderDetectionCircle:
-	WithDecoration@Role:
-		Image: rank
-		Sequence: dishicon
-		Palette: effect
-		ReferencePoint: Top, Right
-		RequiresCondition: !weonqloweonlawea
-		ZOffset: 256
-	ProvidesPrerequisite@buildingname:
-
-ENGINEER:
-	Inherits: ^CapitalShip
-	Inherits@1: ^AIWander
-	Valued:
-		Cost: 1000
-	Tooltip:
-		Name: Engineer Crew
-	Selectable:
-		Priority: 5
-		Bounds: 80,80
-	Health:
-		HP: 130000
-	RevealsShroud:
-		Range: 5c0
-	AutoTarget:
-	AttackFrontal:
-	Power:
-		Amount: -20
-	ExternalCaptures:
-		CaptureTypes: CarrierCaptor
-	WithDecoration@Role:
-		Image: rank
-		Sequence: wrenchicon
-		Palette: effect
-		ReferencePoint: Top, Right
-		RequiresCondition: !weonqloweonlawea
-		ZOffset: 256
-	MustBeDestroyed:
-	SelectionDecorations:
-		VisualBounds: 80,80
-	RenderSprites:
-	Mobile:
-		RequiresCondition: !deployed
-	GrantConditionOnDeploy:
-		DeployedCondition: deployed
-	ExplodeWeapon@1:
-		Weapon: FieldRepairLaserSpawnStrong
-		LocalOffset: 0,0,0
-		DeployedCondition: deployed
-	ExplodeWeapon@2:
-		Weapon: FieldRepairLaserSpawnStrong
-		LocalOffset: 0,0,0
-		DeployedCondition: deployed
-	SpawnActorOnDeath:
-		Actor: gengineerh
-		OwnerType: InternalName
-		InternalOwner: Neutral
-	ProvidesPrerequisite@buildingname2:
-		Prerequisite: planetstation
-
-RESEARCHSHIP:
-	Inherits: ^CapitalShip
-	Inherits@1: ^AIWander
-	Valued:
-		Cost: 3000
-	Power:
-		Amount: -30
-	Tooltip:
-		Name: Research Ship
-	Mobile:
-		Speed: 15
-	Selectable:
-		Priority: 5
-		Bounds: 80,80
-	Exit:
-		ExitCell: -1,-1
-	WithDecoration@Role:
-		Image: rank
-		Sequence: vialicon
-		Palette: effect
-		ReferencePoint: Top, Right
-		RequiresCondition: !weonqloweonlawea
-		ZOffset: 256
-	Health:
-		HP: 300000
-	RevealsShroud:
-		Range: 5c0
-	MustBeDestroyed:
-	SelectionDecorations:
-		VisualBounds: 80,80
-	RenderSprites:
-	SpawnActorOnDeath:
-		Actor: gresearchshiph
-		OwnerType: InternalName
-		InternalOwner: Neutral
 
 CARRIER4:
 	Inherits: ^CapitalShip
@@ -1807,15 +1672,25 @@ MOBSPANWERMASTER:
 		Modifier: 0
 	Selectable:
 
+#The turret will start deployed so this has to be inverted
+^DeployableTurret:
+	Inherits: ^CapitalShip
+	Valued:
+		Cost: 400
+	Power:
+		Amount: -15
+	GrantConditionOnDeploy:
+		DeployedCondition: !deployed
+	Mobile:
+		Speed: 40
+		RequiresCondition: !deployed
+	WithTextDecoration@deployed:
+		RequiresCondition: !deployed 
+
 ^DefenceStation:
 	Inherits: ^BuildableStation
 	Tooltip:
 		Name: Trade Station
-	Buildable:
-		Queue: BaseShipQueue
-		BuildPaletteOrder: 5
-		Prerequisites: gengineer
-		Description: Customizable station\n- Customization options are unlocked after placement.
 	Valued:
 		Cost: 400
 	Power:

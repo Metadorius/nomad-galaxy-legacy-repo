@@ -1,5 +1,5 @@
 PCARRIER:
-	Inherits: PATROLCRUISERGENERIC
+	Inherits: ^CapitalShip
 	Valued:
 		Cost: 1500
 	Tooltip:
