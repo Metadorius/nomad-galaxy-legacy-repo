@@ -105,7 +105,7 @@ LaneSpeedShock:
 	ReloadDelay: 10
 	-Report:
 	Range: 6c0
-	InvalidTargets: DeployedShip
+	InvalidTargets: DeployedShip, supplyship
 	Projectile: TeslaZap
 		Image: litning
 	Warhead@1Dam: SpreadDamage

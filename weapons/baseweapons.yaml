@@ -206,6 +206,44 @@ FieldRepairLaser:
 		ValidStances: Ally
 		ValidTargets: CapitalShip, Frigate, Corvette, Ground, Air, Airhit
 
+SupplyShipShockSpawn:
+	Inherits: FieldDefenceLaserSpawnMothership
+	ReloadDelay: 75
+	Warhead@op: FireShrapnel
+		Weapon: SupplyShipShock
+		Amount: 1
+		AimChance: 100
+		AllowDirectHit: true
+		ThrowWithoutTarget: false
+		AimTargetStances: Ally
+		ValidTargets: CapitalShip, Frigate, Corvette, Fighter, Ground, Air, Airhit
+
+SupplyShipShock:
+	ReloadDelay: 50
+	Range: 6c0
+	ValidTargets: CapitalShip, Frigate, Corvette, Ground, Air, Airhit
+	Projectile: TeslaZap
+		Image: litning
+	Warhead@1Dam: SpreadDamage
+		Spread: 32
+		Damage: 1
+		ValidStances: Ally
+		ValidTargets: CapitalShip, Frigate, Corvette, Ground, Air, Airhit
+	Warhead@1Dam: SpreadDamage
+		Damage: 1
+		ValidStances: Ally, Neutral, Enemy
+		InvalidTargets: LaneSpeedBoosted, DeployedShip
+	Warhead@LaneSpeedBost1: GrantExternalCondition
+		Range: 250
+		Duration: 250
+		Condition: LaneSpeedBost1
+		InvalidTargets: LaneSpeedBoosted
+	Warhead@LaneSpeedBost2: GrantExternalCondition
+		Range: 250
+		Duration: 150
+		Condition: LaneSpeedBost2
+		InvalidTargets: LaneSpeedBoosted
+
 FieldRepairLaserSpawnStrong:
 	Inherits: FieldRepairLaserSpawn
 	Warhead@op: FireShrapnel

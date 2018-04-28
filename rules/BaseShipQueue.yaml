@@ -71,6 +71,10 @@ GNORMALTURRET:
 	Inherits@Autotarget: ^AutoTargetAll
 	Turreted:
 	AttackTurreted:
+	Interactable:
+		Bounds: 60,60
+	Selectable:
+  		Bounds: 60,60      
 	Tooltip:
 		Name: Needler Defence
 	Armament@AntiCorvette:

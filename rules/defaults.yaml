@@ -192,6 +192,8 @@
 		Modifier: 1
 	ExternalCondition@RendingClaws:
 		Condition: RendingClaws
+	ExternalCondition@PowerField:
+		Condition: PowerField
 
 ^HyperSpaceAble:
 	SpeedMultiplier@HyperSpace:
@@ -254,6 +256,13 @@
 		Color: E0D048
 		ZOffset: 9999
 		RequiresCondition: deployed
+	Targetable@DeployedShip:
+		TargetTypes: DeployedShip
+		RequiresCondition: deployed
+	Mobile:
+		RequiresCondition: !deployed
+	GrantConditionOnDeploy:
+		DeployedCondition: deployed
 
 ^Upgrades:
 	FirepowerMultiplier@UpgradeT1:
@@ -377,7 +386,6 @@
 	Inherits@1: ^ExistsInWorld
 	Inherits@2: ^GainsExperience
 	Inherits@3: ^SpriteActor
-	Inherits@4: ^DeployableText
 	HitShape:
 		UseTargetableCellsOffsets: true
 		Type: Rectangle
@@ -1023,6 +1031,11 @@
 	Power@AIWanderer:
 		Amount: 20
 		RequiresCondition: AIWanderer
+	ProvidesAIPrerequisite@PowerField:
+		Prerequisite: PowerField
+	GrantConditionOnPrerequisite@PowerField:
+		Condition: PowerField
+		Prerequisites: PowerField
 
 MOTHERSHIP:
 	Inherits: ^Building
@@ -1035,11 +1048,18 @@ MOTHERSHIP:
 	CashTrickler:
 	Health:
 		HP: 1500000
+	ProximityExternalCondition@supplyship:
+		Condition: PowerField
+		RequiresCondition: supplyship && deployed
+		Range: 8c0
 	Interactable:
 		Bounds: 60,60
+	Targetable@supplyship:
+		TargetTypes: supplyship
 	StoresResources:
 		PipCount: 10
 		Capacity: 1000
+	RallyPoint:
 	Power:
 		Amount: 30
 	RevealsShroud:
@@ -1108,6 +1128,7 @@ MOTHERSHIP:
 CIVILIANCORESHIP:
 	Inherits: ^CapitalShip
 	Inherits@1: ^AIWander
+	Inherits@3: ^DeployableText
 	Valued:
 		Cost: 300
 	Tooltip:
@@ -1147,10 +1168,6 @@ CIVILIANCORESHIP:
 #######################################
 # Deployment related traits
 #######################################
-	Mobile:
-		RequiresCondition: !deployed
-	GrantConditionOnDeploy:
-		DeployedCondition: deployed
 	WithFacingSpriteBody:
 		RequiresCondition: !supplyship && !surveyfrigate && !engineeringcrew && !researchship && !antismallturret && !antifighterturret
 #######################################
@@ -1159,7 +1176,6 @@ CIVILIANCORESHIP:
 	ProductionQueue@CivilianShipUpgrade:
 		Type: CivilianShipUpgrade
 		Group: Vehicle
-		LowPowerSlowdown: 3
 	Production@CivilianShipUpgrade:
 		Produces: CivilianShipUpgrade
 		RequiresCondition: !supplyship && !surveyfrigate && !engineeringcrew && !researchship && !antismallturret && !antifighterturret
@@ -1182,7 +1198,7 @@ CIVILIANCORESHIP:
 		Condition: antismallturret
 		Actors: upgrade.antismallturret
 	Power:
-		Amount: 10
+		Amount: 20
 #######################################
 # Supply Ship Bonus
 #######################################
@@ -1194,6 +1210,19 @@ CIVILIANCORESHIP:
 		Sequence: supplyship
 	ProvidesPrerequisite@supplyship:
 		Prerequisite: ghabitatship
+	ProximityExternalCondition@supplyship:
+		Condition: PowerField
+		RequiresCondition: supplyship && deployed
+		Range: 4c0
+	ExplodeWeapon@supplyship:
+		Weapon: SupplyShipShockSpawn
+		RequiresCondition: supplyship && deployed
+	WithRangeCircle:
+		Type: PowerField
+		Range: 4c0
+	Targetable@supplyship:
+		TargetTypes: supplyship
+		RequiresCondition: supplyship
 #######################################
 # Engineering Crew Bonus
 #######################################
@@ -1209,11 +1238,11 @@ CIVILIANCORESHIP:
 		ZOffset: 256
 	ProvidesPrerequisite@engineeringcrew:
 		Prerequisite: gengineer
-		RequiresCondition: engineeringcrew && deployed
+		RequiresCondition: engineeringcrew && deployed 
 	ExplodeWeapon@engineeringcrew:
 		Weapon: FieldRepairLaserSpawnStrong
 		LocalOffset: 0,0,0
-		RequiresCondition: engineeringcrew && deployed
+		RequiresCondition: engineeringcrew && deployed && PowerField
 #######################################
 # Survey Frigate Bonus
 #######################################
@@ -1221,7 +1250,7 @@ CIVILIANCORESHIP:
 		RequiresCondition: surveyfrigate
 		Sequence: surveyfrigate
 	ProvidesRadar:
-		RequiresCondition: surveyfrigate && deployed
+		RequiresCondition: surveyfrigate && deployed && PowerField
 	RevealsShroud@surveyfrigate:
 		Range: 15c0
 		RequiresCondition: surveyfrigate
@@ -1250,7 +1279,7 @@ CIVILIANCORESHIP:
 		ZOffset: 256
 	ProvidesPrerequisite@researchship:
 		Prerequisite: gresearchship
-		RequiresCondition: researchship && deployed
+		RequiresCondition: researchship && deployed && PowerField
 #######################################
 # Anti Fighter Turret
 #######################################
@@ -1341,6 +1370,7 @@ PRODUCTIONSHIP:
 	Inherits: ^CapitalShip
 	Inherits@1: ^AIWander
 	Inherits@2: ^CivilianShipWeaponsGkor
+	Inherits@3: ^DeployableText
 	ProvidesPrerequisite@T1Carrier:
 	Valued:
 		Cost: 750
@@ -1419,10 +1449,10 @@ PRODUCTIONSHIP:
 		BuildDurationModifier: 140
 	Production@CorvetteQueue:
 		Produces: CorvetteQueue
-		RequiresCondition: CorvetteQueue
+		RequiresCondition: CorvetteQueue && deployed && PowerField
 	Production@FrigateQueue:
 		Produces: FrigateQueue
-		RequiresCondition: FrigateQueue
+		RequiresCondition: FrigateQueue && deployed && PowerField
 	Production@BaseShipQueue:
 		Produces: BaseShipQueue
 		RequiresCondition: BaseShipQueue
@@ -1696,19 +1726,25 @@ MOBSPANWERMASTER:
 #The turret will start deployed so this has to be inverted
 ^DeployableTurret:
 	Inherits: ^CapitalShip
+	Inherits@1: ^DeployableText
 	Valued:
 		Cost: 400
 	Power:
 		Amount: -15
 	GrantConditionOnDeploy:
 		DeployedCondition: deployed
+	Interactable:
+		Bounds: 60,60
 	Health:
 		HP: 400000
 	Mobile:
 		Speed: 40
 		RequiresCondition: deployed
 	WithTextDecoration@deployed:
-		RequiresCondition: !deployed 
+		RequiresCondition: !deployed
+	Targetable@DeployedShip:
+		TargetTypes: DeployedShip
+		RequiresCondition: !deployed
 
 ^DefenceStation:
 	Inherits: ^BuildableStation
