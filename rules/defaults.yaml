@@ -1210,10 +1210,6 @@ CIVILIANCORESHIP:
 		Sequence: supplyship
 	ProvidesPrerequisite@supplyship:
 		Prerequisite: ghabitatship
-	ProximityExternalCondition@supplyship:
-		Condition: PowerField
-		RequiresCondition: supplyship && deployed
-		Range: 4c0
 	ExplodeWeapon@supplyship:
 		Weapon: SupplyShipShockSpawn
 		RequiresCondition: supplyship && deployed
@@ -1242,7 +1238,7 @@ CIVILIANCORESHIP:
 	ExplodeWeapon@engineeringcrew:
 		Weapon: FieldRepairLaserSpawnStrong
 		LocalOffset: 0,0,0
-		RequiresCondition: engineeringcrew && deployed && PowerField
+		RequiresCondition: engineeringcrew && deployed
 #######################################
 # Survey Frigate Bonus
 #######################################
@@ -1250,7 +1246,7 @@ CIVILIANCORESHIP:
 		RequiresCondition: surveyfrigate
 		Sequence: surveyfrigate
 	ProvidesRadar:
-		RequiresCondition: surveyfrigate && deployed && PowerField
+		RequiresCondition: surveyfrigate && deployed
 	RevealsShroud@surveyfrigate:
 		Range: 15c0
 		RequiresCondition: surveyfrigate
@@ -1279,7 +1275,7 @@ CIVILIANCORESHIP:
 		ZOffset: 256
 	ProvidesPrerequisite@researchship:
 		Prerequisite: gresearchship
-		RequiresCondition: researchship && deployed && PowerField
+		RequiresCondition: researchship && deployed
 #######################################
 # Anti Fighter Turret
 #######################################
@@ -1449,10 +1445,10 @@ PRODUCTIONSHIP:
 		BuildDurationModifier: 140
 	Production@CorvetteQueue:
 		Produces: CorvetteQueue
-		RequiresCondition: CorvetteQueue && deployed && PowerField
+		RequiresCondition: CorvetteQueue && deployed
 	Production@FrigateQueue:
 		Produces: FrigateQueue
-		RequiresCondition: FrigateQueue && deployed && PowerField
+		RequiresCondition: FrigateQueue && deployed
 	Production@BaseShipQueue:
 		Produces: BaseShipQueue
 		RequiresCondition: BaseShipQueue
