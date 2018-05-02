@@ -97,6 +97,11 @@
 		Condition: LaneSpeedBost1
 	ExternalCondition@LaneSpeedBost2:
 		Condition: LaneSpeedBost2
+	SpeedMultiplier@PowerField:
+		RequiresCondition: PowerField
+		Modifier: 125
+	ExternalCondition@PowerField:
+		Condition: PowerField
 
 ^EmpDisable:
 	WithColoredOverlay@EMPDISABLE:
@@ -1048,10 +1053,6 @@ MOTHERSHIP:
 	CashTrickler:
 	Health:
 		HP: 1500000
-	ProximityExternalCondition@supplyship:
-		Condition: PowerField
-		RequiresCondition: supplyship && deployed
-		Range: 8c0
 	Interactable:
 		Bounds: 60,60
 	Targetable@supplyship:
@@ -1089,8 +1090,6 @@ MOTHERSHIP:
 	Exit@3:
 		ExitCell: -1,-1
 		SpawnOffset: 0,0,0
-	BaseProvider:
-		Range: 6c0
 	ExplodeWeapon:
 		Weapon: FieldDefenceLaserSpawnMothership
 		LocalOffset: 0,-500,1150
@@ -1213,9 +1212,12 @@ CIVILIANCORESHIP:
 	ExplodeWeapon@supplyship:
 		Weapon: SupplyShipShockSpawn
 		RequiresCondition: supplyship && deployed
+	ProximityExternalCondition@PowerField:
+		Condition: PowerField
+		Range: 3c0
 	WithRangeCircle:
 		Type: PowerField
-		Range: 4c0
+		Range: 3c0
 	Targetable@supplyship:
 		TargetTypes: supplyship
 		RequiresCondition: supplyship
@@ -1416,8 +1418,6 @@ PRODUCTIONSHIP:
 		RequiresCondition: CorvetteQueue || FrigateQueue || BaseShipQueue
 	WithFacingSpriteBody:
 		RequiresCondition: !CorvetteQueue && !FrigateQueue && !BaseShipQueue
-	BaseProvider:
-		Range: 2c0
 	GivesBuildableArea:
 		AreaTypes: building
 		RequiresCondition: BaseShipQueue

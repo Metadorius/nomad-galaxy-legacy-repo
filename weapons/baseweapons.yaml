@@ -233,16 +233,6 @@ SupplyShipShock:
 		Damage: 1
 		ValidStances: Ally, Neutral, Enemy
 		InvalidTargets: LaneSpeedBoosted, DeployedShip
-	Warhead@LaneSpeedBost1: GrantExternalCondition
-		Range: 250
-		Duration: 250
-		Condition: LaneSpeedBost1
-		InvalidTargets: LaneSpeedBoosted
-	Warhead@LaneSpeedBost2: GrantExternalCondition
-		Range: 250
-		Duration: 150
-		Condition: LaneSpeedBost2
-		InvalidTargets: LaneSpeedBoosted
 
 FieldRepairLaserSpawnStrong:
 	Inherits: FieldRepairLaserSpawn
