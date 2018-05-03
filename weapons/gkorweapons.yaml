@@ -226,7 +226,7 @@ AlienArtillery:
 	Inherits: HeavyCannon
 	ReloadDelay: 200
 	Range: 10c0
-	MinRange: 4c0
+	MinRange: 2c0
 	ValidTargets: CapitalShip, Frigate, Corvette, Ground, Air, Airhit
 	Projectile: WarheadTrailProjectile
 		Offsets: 0,128,0#, 64,96,0, -64,96,0
@@ -234,6 +234,7 @@ AlienArtillery:
 		Inaccuracy: 0c0
 		Weapon: AlienArtilleryTrail
 		Speed: 200
+		Image: artyneedle
 		ExplosionInterval: 3
 		ExplodeUnderThisAltitude: -9999
 		Blockable: False
@@ -249,7 +250,7 @@ AlienArtilleryTrail:
 	Projectile: BulletAS
 	Warhead@1Dam: SpreadDamage
 		Spread: 0c190
-		Damage: 11000
+		Damage: 22000
 		ValidStances: Enemy, Neutral
 		DamageTypes: Prone50Percent, TriggerProne, CabalDeath
 

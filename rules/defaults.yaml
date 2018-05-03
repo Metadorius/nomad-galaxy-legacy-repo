@@ -577,7 +577,7 @@
 		FacingTolerance: 90
 	Aircraft:
 		CruiseAltitude: 5
-		IdealSeparation: 200
+		IdealSeparation: 150
 		MoveIntoShroud: true
 		RepulsionSpeed: 60
 		Speed: 75
@@ -1036,11 +1036,6 @@
 	Power@AIWanderer:
 		Amount: 20
 		RequiresCondition: AIWanderer
-	ProvidesAIPrerequisite@PowerField:
-		Prerequisite: PowerField
-	GrantConditionOnPrerequisite@PowerField:
-		Condition: PowerField
-		Prerequisites: PowerField
 
 MOTHERSHIP:
 	Inherits: ^Building
@@ -1132,6 +1127,7 @@ CIVILIANCORESHIP:
 		Cost: 300
 	Tooltip:
 		Name: Core Ship
+		RequiresCondition: !supplyship && !surveyfrigate && !engineeringcrew && !researchship && !antismallturret && !antifighterturret
 	Health:
 		HP: 200000
 	RevealsShroud:
@@ -1197,13 +1193,19 @@ CIVILIANCORESHIP:
 		Condition: antismallturret
 		Actors: upgrade.antismallturret
 	Power:
-		Amount: 20
+		Amount: 10
 #######################################
 # Supply Ship Bonus
 #######################################
+	Power@1:
+		Amount: 20
+		RequiresCondition: supplyship
 	Power@2:
 		Amount: 40
 		RequiresCondition: deployed && supplyship
+	Tooltip@supplyship:
+		Name: Supply Ship
+		RequiresCondition: supplyship
 	WithFacingSpriteBody@supplyship:
 		RequiresCondition: supplyship
 		Sequence: supplyship
@@ -1215,6 +1217,7 @@ CIVILIANCORESHIP:
 	ProximityExternalCondition@PowerField:
 		Condition: PowerField
 		Range: 3c0
+		RequiresCondition: supplyship && deployed
 	WithRangeCircle:
 		Type: PowerField
 		Range: 3c0
@@ -1227,6 +1230,9 @@ CIVILIANCORESHIP:
 	WithFacingSpriteBody@engineeringcrew:
 		RequiresCondition: engineeringcrew
 		Sequence: engineeringcrew
+	Tooltip@engineeringcrew:
+		Name: Engineering Crew
+		RequiresCondition: engineeringcrew
 	WithDecoration@engineeringcrew:
 		Image: rank
 		Sequence: wrenchicon
@@ -1236,7 +1242,7 @@ CIVILIANCORESHIP:
 		ZOffset: 256
 	ProvidesPrerequisite@engineeringcrew:
 		Prerequisite: gengineer
-		RequiresCondition: engineeringcrew && deployed 
+		RequiresCondition: engineeringcrew
 	ExplodeWeapon@engineeringcrew:
 		Weapon: FieldRepairLaserSpawnStrong
 		LocalOffset: 0,0,0
@@ -1247,11 +1253,14 @@ CIVILIANCORESHIP:
 	WithFacingSpriteBody@surveyfrigate:
 		RequiresCondition: surveyfrigate
 		Sequence: surveyfrigate
+	Tooltip@surveyfrigate:
+		Name: Survey Frigate
+		RequiresCondition: surveyfrigate
 	ProvidesRadar:
-		RequiresCondition: surveyfrigate && deployed
+		RequiresCondition: deployed
 	RevealsShroud@surveyfrigate:
 		Range: 15c0
-		RequiresCondition: surveyfrigate
+		RequiresCondition: surveyfrigate && deployed
 	WithDecoration@surveyfrigate:
 		Image: rank
 		Sequence: dishicon
@@ -1261,13 +1270,16 @@ CIVILIANCORESHIP:
 		ZOffset: 256
 	ProvidesPrerequisite@surveyfrigate:
 		Prerequisite: gsurveyfrigate
-		RequiresCondition: surveyfrigate && deployed
+		RequiresCondition: surveyfrigate
 #######################################
 # Research Ship Bonus
 #######################################
 	WithFacingSpriteBody@researchship:
 		RequiresCondition: researchship
 		Sequence: researchship
+	Tooltip@researchship:
+		Name: Research Ship
+		RequiresCondition: researchship
 	WithDecoration@researchship:
 		Image: rank
 		Sequence: vialicon
@@ -1275,9 +1287,12 @@ CIVILIANCORESHIP:
 		ReferencePoint: Top, Right
 		RequiresCondition: researchship
 		ZOffset: 256
+	DamageMultiplier@researchship:
+		Modifier: 75
+		RequiresCondition: researchship
 	ProvidesPrerequisite@researchship:
 		Prerequisite: gresearchship
-		RequiresCondition: researchship && deployed
+		RequiresCondition: researchship
 #######################################
 # Anti Fighter Turret
 #######################################
@@ -1677,47 +1692,37 @@ SlaveFighter:
 MOBSPANWERMASTER:
 	Inherits@1: ^ExistsInWorld
 	Inherits@4: ^SpriteActor
-	HiddenUnderShroud:
 	Valued:
-		Cost: 300
+		Cost: 600
 	RenderSprites:
 		Image: gfighter1
 	MobSpawnerMaster:
-		Actors: gfighter1, gfighter1, gfighter1, gfighter1, gfighter1
-	AttackFrontal:
+		Actors: gfighter1, gfighter1, gfighter1, gfighter1, gfighter1, gfighter1, gfighter1, gfighter1
+		ExitByBudding: False
+	AttackOmni:
 	Armament@PRIMARY:
 		Weapon: PlatformFighterSpawn
 	Health:
 		HP: 30000
-	# Aircraft:
+	AttackMove:
+	Aircraft:
+		CruiseAltitude: 5
+		Repulsable: False
+		MoveIntoShroud: true
+		TurnSpeed: 14
+		CanHover: True
+		LandWhenIdle: False
 		Speed: 90
-	Mobile:
-		Speed: 90
-		TurnSpeed: 100
-		Crushes: mine, crate
-		SharesCell: true
-		OccupySpace: false
-		Voice: Move
-		TerrainSpeeds:
-			Clear: 100
-			Ground: 100
-			Tiberium: 100
-			BlueTiberium: 100
-			Junk: 100
-			Gas: 100
-			SpaceGray: 100
-			SpaceGray2: 100
-			SpaceGreen: 100
-			SpaceGreen2: 100
-			SpaceBlue: 100
-			SpaceBlue2: 100
-			SpaceRed: 100
-			SpaceRed2: 100
+	HiddenUnderFog:
+		Type: CenterPosition
 	SpeedMultiplier@Generic:
 		Modifier: 200
 	DamageMultiplier@INVINCIBLE:
 		Modifier: 0
+	SelectionDecorations:
+	WithSpriteControlGroupDecoration:
 	Selectable:
+		Bounds: 32, 32
 
 #The turret will start deployed so this has to be inverted
 ^DeployableTurret:

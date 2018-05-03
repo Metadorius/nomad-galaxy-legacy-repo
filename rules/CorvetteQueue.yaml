@@ -9,15 +9,11 @@ GFIGHTER1MASTER:
 		BuildPaletteOrder: 1
 		Description: Fighter Squadron, only effective versus fighters.
 	Interactable:
-		Bounds: 30,30
+		Bounds: 70,70
 	Power:
-		Amount: -2
+		Amount: -6
 	Tooltip:
 		Name: Interceptor Squadron
-	# -Mobile:
-	# Aircraft:
-		# Speed: 90
-	# AttackPlane:
 	WithTextDecoration@deployed:
 		Text: F
 		ReferencePoint: Bottom
@@ -42,7 +38,7 @@ GFIGHTER1:
 GFIGHTER2MASTER:
 	Inherits: MOBSPANWERMASTER
 	Valued:
-		Cost: 500
+		Cost: 1000
 	Buildable:
 		Queue: CorvetteQueue
 		BuildPaletteOrder: 1
@@ -50,11 +46,11 @@ GFIGHTER2MASTER:
 	Interactable:
 		Bounds: 30,30
 	Power:
-		Amount: -4
+		Amount: -6
 	Tooltip:
 		Name: Bomber Squadron
 	MobSpawnerMaster:
-		Actors: gfighter2b, gfighter2b, gfighter2b, gfighter2b, gfighter2b
+		Actors: gfighter2b, gfighter2b, gfighter2b, gfighter2b, gfighter2b, gfighter2b, gfighter2b, gfighter2b
 	WithTextDecoration@deployed:
 		Text: B
 		ReferencePoint: Bottom
@@ -103,6 +99,8 @@ GCORV1:
 		RequiresCondition: !HyperSpaceFadeOut
 		LocalOffset: 0,-200,0,0,0,0,0,200,0
 	AttackFrontal:
+	Mobile:
+		OccupySpace: False
 
 GCORV2:
 	Inherits: ^Corvette
