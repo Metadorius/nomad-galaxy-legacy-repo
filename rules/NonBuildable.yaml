@@ -10,106 +10,132 @@ GMOTHERSHIP:
 		Condition: LogisticShipWanderer
 		Range: 5c0
 		AffectsParent: False
-	ProductionQueue@Building:
-		Type: BaseShipQueue
-		Group: Building
-	Production:
-		Produces: BaseShipQueue
 
 GHABITATSHIP:
 	Inherits: ^CapitalShip
 	Valued:
 		Cost: 900
-	AnnounceOnBuildAS:
-		Voice: LogisticShipReady
-		OnlyToOwner: True
+	Tooltip:
+		Name: Test
 	RenderSprites:
 		Image: ghabitatship
-
-GFRIGATEASSEMBLYBAY:
-	Inherits: ^CapitalShip
-	AnnounceOnBuildAS:
-		Voice: FrigateAssemblyBayReady
-		OnlyToOwner: True
-	ProvidesPrerequisite:
-		Prerequisite:  Patrol Cruiser or Shipyard
+	Transforms:
+		IntoActor: dgsupplyship
+		Offset: 0,0
+	Power@1:
+		Amount: 20
+	ProvidesPrerequisite@ghabitatship:
+		Prerequisite: ghabitatship
 
 GENGINEER:
 	Inherits: ^CapitalShip
-	# Buildable:
-		# Queue: BaseShipQueue
-		# BuildPaletteOrder: 4
-		# Prerequisites: gfrigateassemblybay
-		# Description: Captures neutral objects and Repairs nearby ships.\ncan repair while moving.
-	AnnounceOnBuildAS:
-		Voice: EngineerCrewReady
-		OnlyToOwner: True
-
-GADERRICK:
-	Inherits: ^DefenceStation
-        # Buildable:
-            # Queue: BaseShipQueue
-            # BuildPaletteOrder: 5
-            # Prerequisites: gengineer
-            # Description: Customizable station\n- Customization options are unlocked after placement.
-	Valued:
-		Cost: 400
-	Interactable:
-		Bounds: 40,40
-	Armament@AntiCorvette:
-		Weapon: GPlatformNeedle
-		LocalYaw: 255, -255, 255, -255, 255, -255
-		LocalOffset: 175, -250, 5, 175, 250, 5, 0, -250, 5, 0, 250, 5, -175, -250, 5, -175, 250, 5
-		RequiresCondition: anticorvettestation
-	ExplodeWeapon:
-		Weapon: GKorGasBulletSpawner
-		RequiresCondition: antifighterstation
-	ExplodeWeapon@1:
-		Weapon: GKorGasBulletSpawner
-		RequiresCondition: antifighterstation
-	WithSpriteBody:
-		RequiresCondition: !antifighterstation && !anticorvettestation
-	WithSpriteBody@antifighterstation:
-		Sequence: antifighteridle
-		RequiresCondition: antifighterstation
-	WithSpriteTurret@anticorvettestation:
-		RequiresCondition: anticorvettestation
-		Sequence: anticovertteturret
-	Tooltip:
-		Name: Defence Station
-		RequiresCondition: !antifighterstation && !anticorvettestation
-	Tooltip@antifighterstation:
-		Name: Acid Turret (Anti Fighter)
-		RequiresCondition: antifighterstation
-	Tooltip@anticorvettestation:
-		Name: Needler Turret (Anti Corvette)
-		RequiresCondition: anticorvettestation
+	Inherits@1: ^EngineerShipLogo
+	Transforms:
+		IntoActor: dgengineer
+		Offset: 0,0
+	RenderSprites:
+		Image: gengineer
+	ProvidesPrerequisite@gengineer:
+		Prerequisite: gengineer
 
 GSURVEYFRIGATE:
 	Inherits: ^CapitalShip
-	# Buildable:
-		# Queue: BaseShipQueue
-		# BuildPaletteOrder: 6
-		# Prerequisites: gfrigateassemblybay
-		# Description: Exploration vessel equipped with long range scanners.\nEnables the radar upon construction.\nDetects cloaked units.
+	Transforms:
+		IntoActor: dgsurveyfrigate
+		Offset: 0,0
 	Tooltip:
 		Name: Survey Frigate
-	AnnounceOnBuildAS:
-		Voice: SurveyFrigateReady
-		OnlyToOwner: True
 	SpawnActorOnDeath:
 		Actor: gsurveyfrigateh
 		OwnerType: InternalName
 		InternalOwner: Neutral
+	RenderSprites:
+		Image: gsurveyfrigate
+	ProvidesPrerequisite@gsurveyfrigate:
+		Prerequisite: gsurveyfrigate
 
 GRESEARCHSHIP:
 	Inherits: ^CapitalShip
-	AnnounceOnBuildAS:
-		Voice: ResearchShipReady
-		OnlyToOwner: True
-	# Buildable:
-		# Queue: BaseShipQueue
-		# BuildPaletteOrder: 8
-		# Prerequisites: ~mothership, gsurveyfrigate
-		# Description: Heavy armored carrier that supports frigate production.\nCan be deployed to become static to and use rallypoints.
-	-AttackMove:
+	Transforms:
+		IntoActor: dgresearchship
+		Offset: 0,0
+	SpawnActorOnDeath:
+		Actor: gresearchshiph
+		OwnerType: InternalName
+		InternalOwner: Neutral
+	RenderSprites:
+		Image: gresearchship
+	ProvidesPrerequisite@gresearchship:
+		Prerequisite: gresearchship
+
+GFIGHTERTURRET:
+	Inherits: ^DeployableTurret
+	Tooltip:
+		Name: Anti Fighter Defence
+	ExplodeWeapon:
+		Weapon: GKorGasBulletSpawner
+		RequiresCondition: !deployed
+	ExplodeWeapon@1:
+		Weapon: GKorGasBulletSpawner
+		RequiresCondition: !deployed
+
+GNORMALTURRET:
+	Inherits: ^DeployableTurret
+	Inherits@Autotarget: ^AutoTargetAll
+	Turreted:
+	AttackTurreted:
+	Interactable:
+		Bounds: 60,60
+	Selectable:
+  		Bounds: 60,60      
+	Tooltip:
+		Name: Needler Defence
+	Armament@AntiCorvette:
+		Weapon: GPlatformNeedle
+		LocalYaw: 255, -255, 255, -255, 255, -255
+		LocalOffset: 175, -250, 5, 175, 250, 5, 0, -250, 5, 0, 250, 5, -175, -250, 5, -175, 250, 5
+		RequiresCondition: !deployed
+
+GPATROLCRUISER:
+	Inherits@1: ^CapitalShip
+	Tooltip:
+		Name: Patrol Cruiser
+	Transforms:
+		IntoActor: dgpatrolcruiser
+		Offset: 0,0
+	SpawnActorOnDeath:
+		Actor: gpatrolcruiserh
+		OwnerType: InternalName
+		InternalOwner: Neutral
+	ProvidesPrerequisite@T1Carrier: 
+		Prerequisite: gproductionship
+
+GFRIGATEASSEMBLYBAY:
+	Inherits: ^CapitalShip
+	Tooltip:
+		Name: Frigate Assembly Bay
+	Transforms:
+		IntoActor: dgfrigateassemblybay
+		Offset: 0,0
+	SpawnActorOnDeath:
+		Actor: gfrigateassemblybayh
+		OwnerType: InternalName
+		InternalOwner: Neutral
+	ProvidesPrerequisite@T1Carrier: 
+		Prerequisite: gproductionship
+
+GSHIPYARD:
+	Inherits: ^CapitalShip
+	Exit:
+	RallyPoint:
+	Tooltip:
+		Name: Shipyard
+	Transforms:
+		IntoActor: dgshipyard
+		Offset: 0,0
+	SpawnActorOnDeath:
+		Actor: gshipyardh
+		OwnerType: InternalName
+		InternalOwner: Neutral
+	ProvidesPrerequisite@T1Carrier: 
+		Prerequisite: gproductionship

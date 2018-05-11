@@ -71,6 +71,11 @@ grefinery:
 	Inherits: ^shipdefault
 	idle:
 		ZOffset: -1000
+	harvest: harvestanim
+	crystal: orecrystal
+		Facings: -32
+	box: box
+		Facings: -20
 	icon: grefineryicon
 
 gfrigateassemblybay:

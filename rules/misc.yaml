@@ -172,13 +172,6 @@ GCARGOFRIG:
 	ExternalCondition@ChaseMothership:
 		Condition: ChaseMothership
 
-GMINER:
-	Inherits: MINER
-	Buildable:
-		Queue: Miner
-		BuildPaletteOrder: 1
-		Description: Utility Ship
-
 GFIGHTERCARRIER:
 	Inherits: SERVICEFRIGATE
 	Inherits@2: ^FighterTargetPriority
@@ -321,30 +314,6 @@ COMBATSTATIONDUMMY:
 		QuantizedFacings: 8
 	Plug:
 		Type: gkor.station.combat
-
-GSHIPYARD:
-	Inherits: GSTATIONT1
-	ProductionQueue@Building:
-		Type: BaseShipQueue
-		Factions: gkor
-		Group: Building
-		LowPowerSlowdown: 2
-		BuildDurationModifier: 150
-	Production@Building:
-		Produces: BaseShipQueue
-	Exit:
-	RallyPoint:
-	AnnounceOnBuildAS:
-		Voice: ShipyardReady
-		OnlyToOwner: True
-	SpawnActorOnDeath:
-		Actor: gshipyardh
-		OwnerType: InternalName
-		InternalOwner: Neutral
-	ProximityExternalCondition@LogisticShipWanderer:
-		Condition: LogisticShipWanderer
-		Range: 5c0
-		AffectsParent: False
 
 GSTATIONT2:
 	Inherits: StationT1Template
@@ -536,6 +505,40 @@ GAREPAIRPLATFORM:
 		Range: 5c0
 	AutoTarget:
 
+GADERRICK:
+	Inherits: ^DefenceStation
+	Valued:
+		Cost: 400
+	Interactable:
+		Bounds: 40,40
+	Armament@AntiCorvette:
+		Weapon: GPlatformNeedle
+		LocalYaw: 255, -255, 255, -255, 255, -255
+		LocalOffset: 175, -250, 5, 175, 250, 5, 0, -250, 5, 0, 250, 5, -175, -250, 5, -175, 250, 5
+		RequiresCondition: anticorvettestation
+	ExplodeWeapon:
+		Weapon: GKorGasBulletSpawner
+		RequiresCondition: antifighterstation
+	ExplodeWeapon@1:
+		Weapon: GKorGasBulletSpawner
+		RequiresCondition: antifighterstation
+	WithSpriteBody:
+		RequiresCondition: !antifighterstation && !anticorvettestation
+	WithSpriteBody@antifighterstation:
+		Sequence: antifighteridle
+		RequiresCondition: antifighterstation
+	WithSpriteTurret@anticorvettestation:
+		RequiresCondition: anticorvettestation
+		Sequence: anticovertteturret
+	Tooltip:
+		Name: Defence Station
+		RequiresCondition: !antifighterstation && !anticorvettestation
+	Tooltip@antifighterstation:
+		Name: Acid Turret (Anti Fighter)
+		RequiresCondition: antifighterstation
+	Tooltip@anticorvettestation:
+		Name: Needler Turret (Anti Corvette)
+		RequiresCondition: anticorvettestation
 #####################################################################################
 # TERRAN
 #####################################################################################

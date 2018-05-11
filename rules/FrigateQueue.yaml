@@ -162,20 +162,6 @@ GBC1:
 		OwnerType: InternalName
 		InternalOwner: Neutral
 
-GPATROLCRUISER:
-	Inherits@1: ^CapitalShip
-	# Buildable:
-		# Queue: CorvetteQueue
-		# BuildPaletteOrder: 4
-		# Prerequisites: gresearchship
-		# Description: Capital ship capable of sending squadrons of bombers.
-	Tooltip:
-		Name: Carrier
-	AnnounceOnBuildAS:
-		Voice: PatrolCruiserReady
-		OnlyToOwner: True
-	ProvidesPrerequisite:
-
 GFIGHTER2:
 	Inherits: SlaveFighter
 	Tooltip:

@@ -1,3 +1,149 @@
+^SupplyShipLogo:
+	WithDecoration@supplyship:
+		Image: rank
+		Sequence: houseicon
+		Palette: effect
+		ReferencePoint: Top, Right
+		ZOffset: 256
+		RequiresCondition: !surveyfrigate && !engineeringcrew && !researchship && !antismallturret && !antifighterturret
+
+^EngineerShipLogo:
+	WithDecoration@engineeringcrew:
+		Image: rank
+		Sequence: wrenchicon
+		Palette: effect
+		ReferencePoint: Top, Right
+		ZOffset: 256
+
+^SurveyFrigateShipLogo:
+	WithDecoration@surveyfrigate:
+		Image: rank
+		Sequence: dishicon
+		Palette: effect
+		ReferencePoint: Top, Right
+		ZOffset: 256
+
+^ResearchShipLogo:
+	WithDecoration@researchship:
+		Image: rank
+		Sequence: vialicon
+		Palette: effect
+		ReferencePoint: Top, Right
+		ZOffset: 256
+
+^DefenceShipLogo:
+	WithDecoration@antifighterturret:
+		Image: rank
+		Sequence: towericon
+		Palette: effect
+		ReferencePoint: Top, Right
+		RequiresCondition: antifighterturret
+		ZOffset: 256
+
+^FactoryShipLogo:
+	WithDecoration@Role:
+		Image: rank
+		Sequence: factoryicon
+		Palette: effect
+		ReferencePoint: Top, Right
+		ZOffset: 256
+
+DGSUPPLYSHIP:
+	Inherits@1: ^Building
+	Building:
+		Dimensions: 1,1
+		Footprint: _
+	RevealsShroud:
+		Range: 5c0
+		Type: CenterPosition
+	Transforms:
+		IntoActor: ghabitatship
+		Offset: 0,0
+	RenderSprites:
+		Image: ghabitatship
+	Selectable:
+		Priority: 5
+	Power@2:
+		Amount: 60
+	ProvidesPrerequisite@ghabitatship:
+		Prerequisite: ghabitatship
+	StoresResources:
+		PipCount: 10
+		Capacity: 1000
+	Refinery:
+		DockOffset: 0,0
+	Tooltip:
+		Name: Supply Ship
+
+DGSURVEYFRIGATE:
+	Inherits@1: ^Building
+	Inherits@2: ^SurveyFrigateShipLogo
+	Building:
+		Dimensions: 1,1
+		Footprint: _
+	RevealsShroud:
+		Range: 5c0
+		Type: CenterPosition
+	Transforms:
+		IntoActor: gsurveyfrigate
+		Offset: 0,0
+	RenderSprites:
+		Image: gsurveyfrigate
+	Selectable:
+		Priority: 5
+	ProvidesRadar:
+	RevealsShroud@surveyfrigate:
+		Range: 15c0
+		RequiresCondition: surveyfrigate && deployed
+	ProvidesPrerequisite@gsurveyfrigate:
+		Prerequisite: gsurveyfrigate
+	Tooltip:
+		Name: Survey Frigate
+
+DGENGINEER:
+	Inherits@1: ^Building
+	Inherits@2: ^EngineerShipLogo
+	Building:
+		Dimensions: 1,1
+		Footprint: _
+	RevealsShroud:
+		Range: 5c0
+		Type: CenterPosition
+	Transforms:
+		IntoActor: gengineer
+		Offset: 0,0
+	RenderSprites:
+		Image: gengineer
+	Selectable:
+		Priority: 5
+	ExplodeWeapon@engineeringcrew:
+		Weapon: FieldRepairLaserSpawnStrong
+		LocalOffset: 0,0,0
+	ProvidesPrerequisite@gengineer:
+		Prerequisite: gengineer
+	Tooltip:
+		Name: Engineer Crew
+
+DGRESEARCHSHIP:
+	Inherits@1: ^Building
+	Building:
+		Dimensions: 1,1
+		Footprint: _
+	RevealsShroud:
+		Range: 5c0
+		Type: CenterPosition
+	Transforms:
+		IntoActor: gresearchship
+		Offset: 0,0
+	RenderSprites:
+		Image: gresearchship
+	Selectable:
+		Priority: 5
+	ProvidesPrerequisite@gresearchship:
+		Prerequisite: gresearchship
+	Tooltip:
+		Name: Research Ship
+
 DGREFINERY:
 	Inherits@1: ^Building
 	Inherits: ^AircraftQueue
@@ -49,9 +195,6 @@ DGREFINERY:
 		ReferencePoint: Top, Right
 		RequiresCondition: !weonqloweonlawea
 		ZOffset: 256
-	StoresResources:
-		PipCount: 10
-		Capacity: 1000
 	Interactable:
 		Bounds 50,50
 	WithTextDecoration@deployed:
@@ -59,6 +202,9 @@ DGREFINERY:
 		ReferencePoint: Bottom
 		Color: E0D048
 		ZOffset: 9999
+	StoresResources:
+		PipCount: 10
+		Capacity: 1000
 	Refinery:
 		DockOffset: 0,0
 	ProductionQueue@Aircraft:
@@ -66,3 +212,66 @@ DGREFINERY:
 		Group: Aircraft
 	Production:
 		Produces: Miner
+
+DGPATROLCRUISER:
+	Inherits@1: ^Building
+	Inherits@2: ^ProducesCorvettes
+	Building:
+		Dimensions: 1,1
+		Footprint: _
+	Tooltip:
+		Name: Patrol Cruiser
+	RevealsShroud:
+		Range: 5c0
+		Type: CenterPosition
+	Transforms:
+		IntoActor: gpatrolcruiser
+		Offset: 0,0
+	RenderSprites:
+		Image: gpatrolcruiser
+	Selectable:
+		Priority: 5
+	ProvidesPrerequisite@T1Carrier: 
+		Prerequisite: gproductionship
+
+DGFRIGATEASSEMBLYBAY:
+	Inherits@1: ^Building
+	Inherits@2: ^ProducesFrigates
+	Building:
+		Dimensions: 1,1
+		Footprint: _
+	Tooltip:
+		Name: Frigate Assembly Bay
+	RevealsShroud:
+		Range: 5c0
+		Type: CenterPosition
+	Transforms:
+		IntoActor: gfrigateassemblybay
+		Offset: 0,0
+	RenderSprites:
+		Image: gfrigateassemblybay
+	Selectable:
+		Priority: 5
+	ProvidesPrerequisite@T1Carrier: 
+		Prerequisite: gproductionship
+
+DGSHIPYARD:
+	Inherits@1: ^Building
+	Inherits@2: ^ProducesBaseShips
+	Building:
+		Dimensions: 1,1
+		Footprint: _
+	Tooltip:
+		Name: Shipyard
+	RevealsShroud:
+		Range: 5c0
+		Type: CenterPosition
+	Transforms:
+		IntoActor: gshipyard
+		Offset: 0,0
+	RenderSprites:
+		Image: gshipyard
+	Selectable:
+		Priority: 5
+	ProvidesPrerequisite@T1Carrier: 
+		Prerequisite: gproductionship

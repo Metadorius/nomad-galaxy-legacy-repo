@@ -89,8 +89,8 @@ DUSTCLOUD1:
 		Palette: terrain
 	SeedsResource:
 		ResourceType: Minerals
-		MaxRange: 1
-		Interval: 2
+		MaxRange: 3
+		Interval: 50
 	ExplodeWeapon:
 		Weapon: AFCommetSummon
 	ExplodeWeapon@1:

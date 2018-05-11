@@ -2,20 +2,6 @@
 # G KOR
 #################################################################################
 
-GMOTHERSHIP:
-	Inherits: MOTHERSHIP
-	Tooltip:
-		Name: G'kor Mothership
-	ProximityExternalCondition@LogisticShipWanderer:
-		Condition: LogisticShipWanderer
-		Range: 5c0
-		AffectsParent: False
-	ProductionQueue@Building:
-		Type: BaseShipQueue
-		Group: Building
-	Production:
-		Produces: BaseShipQueue
-
 GCIVSHIP:
 	Inherits: CIVILIANCORESHIP
 	Buildable:
@@ -27,13 +13,22 @@ GCIVSHIP:
 		Voice: LogisticShipReady
 		OnlyToOwner: True
 
+GMINER:
+	Inherits: MINER
+	Buildable:
+		Queue: BaseShipQueue
+		BuildPaletteOrder: 1
+		Description: Utility Ship
+	RenderSprites:
+		Image: grefinery
+
 GREFINERY:
 	Inherits: REFINERY
 	Buildable:
-		Queue: BaseShipQueue
-		BuildPaletteOrder: 2
-		Prerequisites: ghabitatship
-		Description: Resource gatherer, builds miners slowly.\nSupports up to 5 miners.
+		# Queue: BaseShipQueue
+		# BuildPaletteOrder: 2
+		# Prerequisites: ghabitatship
+		# Description: Resource gatherer, builds miners slowly.\nSupports up to 5 miners.
 	SpawnActorOnDeath:
 		Actor: grefineryh
 		OwnerType: InternalName
@@ -49,39 +44,11 @@ GPRODUCTIONSHIP:
 	Buildable:
 		Queue: BaseShipQueue
 		BuildPaletteOrder: 3
-		Prerequisites: grefinery
+		Prerequisites: ghabitatship
 		Description: Upgradable Ship, it can assume different utility roles depending on the upgrade.\n\nCurrent queues are the following.\n- Fighter and Corvette production\n- Frigate production.\n- Core ship production.
 	AnnounceOnBuildAS:
 		Voice: FrigateAssemblyBayReady
 		OnlyToOwner: True
-
-GFIGHTERTURRET:
-	Inherits: ^DeployableTurret
-	Tooltip:
-		Name: Anti Fighter Defence
-	ExplodeWeapon:
-		Weapon: GKorGasBulletSpawner
-		RequiresCondition: !deployed
-	ExplodeWeapon@1:
-		Weapon: GKorGasBulletSpawner
-		RequiresCondition: !deployed
-
-GNORMALTURRET:
-	Inherits: ^DeployableTurret
-	Inherits@Autotarget: ^AutoTargetAll
-	Turreted:
-	AttackTurreted:
-	Interactable:
-		Bounds: 60,60
-	Selectable:
-  		Bounds: 60,60      
-	Tooltip:
-		Name: Needler Defence
-	Armament@AntiCorvette:
-		Weapon: GPlatformNeedle
-		LocalYaw: 255, -255, 255, -255, 255, -255
-		LocalOffset: 175, -250, 5, 175, 250, 5, 0, -250, 5, 0, 250, 5, -175, -250, 5, -175, 250, 5
-		RequiresCondition: !deployed
 
 GADERRICK:
 	Inherits: ^DefenceStation

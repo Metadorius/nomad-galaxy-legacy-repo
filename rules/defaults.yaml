@@ -264,10 +264,12 @@
 	Targetable@DeployedShip:
 		TargetTypes: DeployedShip
 		RequiresCondition: deployed
-	Mobile:
-		RequiresCondition: !deployed
+	# Mobile:
+		# RequiresCondition: !deployed
 	GrantConditionOnDeploy:
 		DeployedCondition: deployed
+	GrantConditionOnMovement:
+		Condition: moving
 
 ^Upgrades:
 	FirepowerMultiplier@UpgradeT1:
@@ -713,6 +715,8 @@
 		TargetTypes: CapitalShip, DeployedShip
 	Armor:
 		Type: Heavy
+	Health:
+		HP: 300000
 	Building:
 		Dimensions: 3,3
 		Footprint: ___ _x_ ___
@@ -738,6 +742,13 @@
 		DamageCooldown: 100
 		Delay: 100
 		HealIfBelow: 105
+	RevealsShroud:
+		Range: 5c0
+		Type: CenterPosition
+	Selectable:
+		Bounds: 60,60
+	Interactable:
+		Bounds: 60,60
 
 ^BuildableStation:
 	Inherits: ^Building
@@ -1039,12 +1050,17 @@
 
 MOTHERSHIP:
 	Inherits: ^Building
-	Inherits@3: ^GUtilityShipProduction
+	Inherits@3: ^ProducesBaseShips
+	ProductionQueue:
+		BuildDurationModifier: 100
 	Valued:
 		Cost: 10000
 	Tooltip:
 		Name: Mothership
 	ProvidesPrerequisite@buildingname:
+	Building:
+		Dimensions: 1,1
+		Footprint: _
 	CashTrickler:
 	Health:
 		HP: 1500000
@@ -1055,6 +1071,8 @@ MOTHERSHIP:
 	StoresResources:
 		PipCount: 10
 		Capacity: 1000
+	Refinery:
+		DockOffset: 0,0
 	RallyPoint:
 	Power:
 		Amount: 30
@@ -1069,21 +1087,8 @@ MOTHERSHIP:
 		Step: 0
 		PercentageStep: 1
 		Delay: 50
-	ProductionBar@BaseShipQueue:
-		ProductionType: BaseShipQueue
-	ProductionBar@CorvetteQueue:
-		ProductionType: CorvetteQueue  
 	Exit:
 		ExitCell: 1,1
-		SpawnOffset: 0,0,0
-	Exit@1:
-		ExitCell: 1,-1
-		SpawnOffset: 0,0,0
-	Exit@2:
-		ExitCell: -1,1
-		SpawnOffset: 0,0,0
-	Exit@3:
-		ExitCell: -1,-1
 		SpawnOffset: 0,0,0
 	ExplodeWeapon:
 		Weapon: FieldDefenceLaserSpawnMothership
@@ -1099,30 +1104,24 @@ MOTHERSHIP:
 		EmptyWeapon: MotherShipExplode
 	Targetable@CargoFreighterMagnet:
 		TargetTypes: CargoFreighterMagnet
-	BaseBuilding:
 	MustBeDestroyed:
 		RequiredForShortGame: true
 	ProximityExternalCondition@ChaseMothership:
 		Condition: ChaseMothership
 		Range: 3c0
-	ProductionQueue@Building:
-		Factions: gkor, terran
-		LowPowerSlowdown: 1
-		BuildDurationModifier: 100
 	ProvidesPrerequisite@mothership:
 		Prerequisite: mothership
 	ProvidesPrerequisite@buildingname:
-	Production@CorvetteQueue:
-		Produces: CorvetteQueue
-	ProductionQueue@CorvetteQueue:
-		Type: CorvetteQueue
-		Group: Defence
-		LowPowerSlowdown: 3
 
 CIVILIANCORESHIP:
 	Inherits: ^CapitalShip
 	Inherits@1: ^AIWander
-	Inherits@3: ^DeployableText
+	Inherits@2: ^DeployableText
+	Inherits@3: ^EngineerShipLogo
+	Inherits@4: ^SurveyFrigateShipLogo
+	Inherits@5: ^ResearchShipLogo
+	Inherits@6: ^DefenceShipLogo
+	Inherits@7: ^SupplyShipLogo
 	Valued:
 		Cost: 300
 	Tooltip:
@@ -1141,19 +1140,10 @@ CIVILIANCORESHIP:
 	SelectionDecorations:
 		VisualBounds: 80,80
 	RenderSprites:
-	WithDecoration@Role:
-		Image: rank
-		Sequence: houseicon
-		Palette: effect
-		ReferencePoint: Top, Right
-		ZOffset: 256
 	SpawnActorOnDeath:
 		Actor: ghabitatshiph
 		OwnerType: InternalName
 		InternalOwner: Neutral
-		RequiresCondition: !antifighterturret && !antismallturret
-	Explodes:
-		RequiresCondition: !antifighterturret && !antismallturret
 #######################################
 # PRODUCTION STUFF
 #######################################
@@ -1200,9 +1190,10 @@ CIVILIANCORESHIP:
 	Power@1:
 		Amount: 20
 		RequiresCondition: supplyship
-	Power@2:
-		Amount: 40
-		RequiresCondition: deployed && supplyship
+	TransformOnCondition@supplyship:
+		IntoActor: dgsupplyship
+		Offset: 0,0
+		RequiresCondition: supplyship && !moving && deployed
 	Tooltip@supplyship:
 		Name: Supply Ship
 		RequiresCondition: supplyship
@@ -1211,42 +1202,6 @@ CIVILIANCORESHIP:
 		Sequence: supplyship
 	ProvidesPrerequisite@supplyship:
 		Prerequisite: ghabitatship
-	ExplodeWeapon@supplyship:
-		Weapon: SupplyShipShockSpawn
-		RequiresCondition: supplyship && deployed
-	ProximityExternalCondition@PowerField:
-		Condition: PowerField
-		Range: 3c0
-		RequiresCondition: supplyship && deployed
-	WithRangeCircle:
-		Type: PowerField
-		Range: 3c0
-	Targetable@supplyship:
-		TargetTypes: supplyship
-		RequiresCondition: supplyship
-#######################################
-# Engineering Crew Bonus
-#######################################
-	WithFacingSpriteBody@engineeringcrew:
-		RequiresCondition: engineeringcrew
-		Sequence: engineeringcrew
-	Tooltip@engineeringcrew:
-		Name: Engineering Crew
-		RequiresCondition: engineeringcrew
-	WithDecoration@engineeringcrew:
-		Image: rank
-		Sequence: wrenchicon
-		Palette: effect
-		ReferencePoint: Top, Right
-		RequiresCondition: engineeringcrew
-		ZOffset: 256
-	ProvidesPrerequisite@engineeringcrew:
-		Prerequisite: gengineer
-		RequiresCondition: engineeringcrew
-	ExplodeWeapon@engineeringcrew:
-		Weapon: FieldRepairLaserSpawnStrong
-		LocalOffset: 0,0,0
-		RequiresCondition: engineeringcrew && deployed
 #######################################
 # Survey Frigate Bonus
 #######################################
@@ -1256,21 +1211,33 @@ CIVILIANCORESHIP:
 	Tooltip@surveyfrigate:
 		Name: Survey Frigate
 		RequiresCondition: surveyfrigate
-	ProvidesRadar:
-		RequiresCondition: deployed
-	RevealsShroud@surveyfrigate:
-		Range: 15c0
-		RequiresCondition: surveyfrigate && deployed
+	TransformOnCondition@surveyfrigate:
+		IntoActor: dgsurveyfrigate
+		Offset: 0,0
+		RequiresCondition: surveyfrigate && !moving && deployed
 	WithDecoration@surveyfrigate:
-		Image: rank
-		Sequence: dishicon
-		Palette: effect
-		ReferencePoint: Top, Right
 		RequiresCondition: surveyfrigate
-		ZOffset: 256
 	ProvidesPrerequisite@surveyfrigate:
 		Prerequisite: gsurveyfrigate
 		RequiresCondition: surveyfrigate
+#######################################
+# Engineering Crew Bonus
+#######################################
+	WithFacingSpriteBody@engineeringcrew:
+		RequiresCondition: engineeringcrew
+		Sequence: engineeringcrew
+	Tooltip@engineeringcrew:
+		Name: Engineering Crew
+		RequiresCondition: engineeringcrew
+	TransformOnCondition@engineeringcrew:
+		IntoActor: dgengineer
+		Offset: 0,0
+		RequiresCondition: engineeringcrew && !moving && deployed
+	WithDecoration@engineeringcrew:
+		RequiresCondition: engineeringcrew
+	ProvidesPrerequisite@engineeringcrew:
+		Prerequisite: gengineer
+		RequiresCondition: engineeringcrew
 #######################################
 # Research Ship Bonus
 #######################################
@@ -1280,15 +1247,11 @@ CIVILIANCORESHIP:
 	Tooltip@researchship:
 		Name: Research Ship
 		RequiresCondition: researchship
+	TransformOnCondition@researchship:
+		IntoActor: dgresearchship
+		Offset: 0,0
+		RequiresCondition: researchship && !moving && deployed
 	WithDecoration@researchship:
-		Image: rank
-		Sequence: vialicon
-		Palette: effect
-		ReferencePoint: Top, Right
-		RequiresCondition: researchship
-		ZOffset: 256
-	DamageMultiplier@researchship:
-		Modifier: 75
 		RequiresCondition: researchship
 	ProvidesPrerequisite@researchship:
 		Prerequisite: gresearchship
@@ -1300,24 +1263,10 @@ CIVILIANCORESHIP:
 		RequiresCondition: antifighterturret
 		Sequence: antifighteridle
 	WithDecoration@antifighterturret:
-		Image: rank
-		Sequence: towericon
-		Palette: effect
-		ReferencePoint: Top, Right
-		RequiresCondition: antifighterturret
-		ZOffset: 256
-	SelfHealing@antifighterturret:
-		Step: 0
-		PercentageStep: -101
-		HealIfBelow: 101
-		DamageTypes: antifighterturret
-		RequiresCondition: antifighterturret && deployed
-	SpawnActorOnDeath@antifighterturret:
-		Actor: gfighterturret
-		DeathType: antifighterturret
-	# TransformOnCondition@antifighterturret:
-		# IntoActor: gfighterturret
-		# RequiresCondition: antifighterturret# && deployed
+		RequiresCondition: antifighterturret || antismallturret
+	TransformOnCondition@antifighterturret:
+		IntoActor: gfighterturret
+		RequiresCondition: antifighterturret && !moving && deployed
 	ExternalCondition@antifighterturret:
 		Condition: antifighterturret
 #######################################
@@ -1326,25 +1275,9 @@ CIVILIANCORESHIP:
 	WithFacingSpriteBody@antismallturret:
 		RequiresCondition: antismallturret
 		Sequence: anticovertteturret
-	WithDecoration@antismallturret:
-		Image: rank
-		Sequence: towericon
-		Palette: effect
-		ReferencePoint: Top, Right
-		RequiresCondition: antismallturret
-		ZOffset: 256
-	SelfHealing@antismallturret:
-		Step: 0
-		PercentageStep: -101
-		HealIfBelow: 101
-		DamageTypes: antismallturret
-		RequiresCondition: antismallturret && deployed
-	SpawnActorOnDeath@antismallturret:
-		Actor: gnormalturret
-		DeathType: antismallturret
-	# TransformOnCondition@antismallturret:
-		# IntoActor: gnormalturret
-		# RequiresCondition: antismallturret# && deployed
+	TransformOnCondition@antismallturret:
+		IntoActor: gnormalturret
+		RequiresCondition: antismallturret && !moving && deployed
 	ExternalCondition@antismallturret:
 		Condition: antismallturret
 
@@ -1373,20 +1306,52 @@ REFINERY:
 		Sequence: houseicon
 		Palette: effect
 		ReferencePoint: Top, Right
-		RequiresCondition: !weonqloweonlawea
 		ZOffset: 256
 	StoresResources:
 		PipCount: 10
 		Capacity: 1000
+
+^ProducesCorvettes:
+	ProductionQueue:
+		Type: CorvetteQueue
+		Group: Defence
+		LowPowerSlowdown: 3
+	Production:
+		Produces: CorvetteQueue
+	ProductionBar:
+		ProductionType: CorvetteQueue
+	Exit:
+	RallyPoint:
+
+^ProducesFrigates:
+	Inherits: ^ProducesCorvettes
+	ProductionQueue:
+		Type: FrigateQueue
+		Group: Infantry
+	Production:
+		Produces: FrigateQueue
+	ProductionBar:
+		ProductionType: FrigateQueue
+
+^ProducesBaseShips:
+	Inherits: ^ProducesCorvettes
+	ProductionQueue:
+		Type: BaseShipQueue
+		Group: Building
+	Production:
+		Produces: BaseShipQueue
+	ProductionBar:
+		ProductionType: BaseShipQueue
 
 PRODUCTIONSHIP:
 	Inherits: ^CapitalShip
 	Inherits@1: ^AIWander
 	Inherits@2: ^CivilianShipWeaponsGkor
 	Inherits@3: ^DeployableText
-	ProvidesPrerequisite@T1Carrier:
+	Inherits@4: ^FactoryShipLogo
+	ProvidesPrerequisite@T1Carrier: 
 	Valued:
-		Cost: 750
+		Cost: 400
 	Tooltip:
 		Name: Core Production Ship
 	BaseBuilding:
@@ -1395,18 +1360,9 @@ PRODUCTIONSHIP:
 	Power:
 		Amount: -10
 	RenderSprites:
-	WithDecoration@Role:
-		Image: rank
-		Sequence: factoryicon
-		Palette: effect
-		ReferencePoint: Top, Right
-		RequiresCondition: !weonqloweonlawea
-		ZOffset: 256
-	GrantConditionOnDeploy:
-		DeployedCondition: deployed
 	Mobile:
 		Speed: 40
-		RequiresCondition: !deployed
+	Exit:
 	RevealsShroud:
 		Range: 5c0
 	MustBeDestroyed:
@@ -1416,26 +1372,12 @@ PRODUCTIONSHIP:
 	SelectionDecorations:
 		VisualBounds: 80,80
 	RenderSprites:
-	Exit:
-		ExitCell: 1,1
-	Exit@1:
-		ExitCell: 1,-1
-	Exit@2:
-		ExitCell: -1,1
-	Exit@3:
-		ExitCell: -1,-1
 	SpawnActorOnDeath:
 		Actor: gfrigateassemblybayh
 		OwnerType: InternalName
 		InternalOwner: Neutral
-	SpeedMultiplier@Upgrade:
-		Modifier: 50
-		RequiresCondition: CorvetteQueue || FrigateQueue || BaseShipQueue
 	WithFacingSpriteBody:
 		RequiresCondition: !CorvetteQueue && !FrigateQueue && !BaseShipQueue
-	GivesBuildableArea:
-		AreaTypes: building
-		RequiresCondition: BaseShipQueue
 #######################################
 # PRODUCTION
 #######################################
@@ -1443,33 +1385,11 @@ PRODUCTIONSHIP:
 		Type: AssemblyBayUpgrade
 		Group: Vehicle
 		LowPowerSlowdown: 3
-	ProductionQueue@CorvetteQueue:
-		Type: CorvetteQueue
-		Group: Defence
-		LowPowerSlowdown: 3
-		BuildDurationModifier: 140
-	ProductionQueue@FrigateQueue:
-		Type: FrigateQueue
-		Group: Infantry
-		LowPowerSlowdown: 3
-		BuildDurationModifier: 140
-	ProductionQueue@BaseShipQueue:
-		Type: BaseShipQueue
-		Group: Building
-		LowPowerSlowdown: 3
-		BuildDurationModifier: 140
-	Production@CorvetteQueue:
-		Produces: CorvetteQueue
-		RequiresCondition: CorvetteQueue && deployed
-	Production@FrigateQueue:
-		Produces: FrigateQueue
-		RequiresCondition: FrigateQueue && deployed
-	Production@BaseShipQueue:
-		Produces: BaseShipQueue
-		RequiresCondition: BaseShipQueue
 	Production@AssemblyBayUpgrade:
 		Produces: AssemblyBayUpgrade
 		RequiresCondition: !CorvetteQueue && !FrigateQueue && !BaseShipQueue
+	ProductionBar@AssemblyBayUpgrade:
+		ProductionType: AssemblyBayUpgrade
 	GrantConditionOnProduction@CorvetteQueue:
 		Condition: CorvetteQueue
 		Actors: upgrade.corvettequeue
@@ -1480,45 +1400,43 @@ PRODUCTIONSHIP:
 		Condition: BaseShipQueue
 		Actors: upgrade.baseshipqueue
 ############################################
-# Corvette Queue Bonus
+# Patrol Cruiser
 ############################################
 	ProvidesPrerequisite@Corvette:
 		Prerequisite: CorvetteQueue
 		RequiresCondition: CorvetteQueue
+	TransformOnCondition@Corvette:
+		IntoActor: dgpatrolcruiser
+		RequiresCondition: CorvetteQueue && !moving && deployed
 	WithFacingSpriteBody@Corvette:
 		RequiresCondition: CorvetteQueue
 		Sequence: CorvetteQueue
 ############################################
-# Frigate Queue Bonus
+# Frigate Assembly Bay
 ############################################
 	ProvidesPrerequisite@FrigateQueue:
 		Prerequisite: FrigateQueue
 		RequiresCondition: FrigateQueue
+	TransformOnCondition@FrigateQueue:
+		IntoActor: dgfrigateassemblybay
+		RequiresCondition: FrigateQueue && !moving && deployed
 	WithFacingSpriteBody@FrigateQueue:
 		RequiresCondition: FrigateQueue
 		Sequence: FrigateQueue
 ############################################
-# Baseship Queue Bonus
+# Shipyard
 ############################################
 	ProvidesPrerequisite@BaseShipQueue:
 		Prerequisite: BaseShipQueue
 		RequiresCondition: BaseShipQueue
+	TransformOnCondition@BaseShipQueue:
+		IntoActor: dgshipyard
+		RequiresCondition: BaseShipQueue && !moving && deployed
 	WithFacingSpriteBody@BaseShipQueue:
 		RequiresCondition: BaseShipQueue
 		Sequence: BaseShipQueue
-#######################################
-# PRODUCTION Bars
-#######################################
-	ProductionBar@AssemblyBayUpgrade:
-		ProductionType: AssemblyBayUpgrade
-	ProductionBar@BaseShipQueue:
-		ProductionType: BaseShipQueue
-	ProductionBar@CorvetteQueue:
-		ProductionType: CorvetteQueue
-	ProductionBar@FrigateQueue:
-		ProductionType: FrigateQueue
 
-CARRIER4:
+SHIPYARD:
 	Inherits: ^CapitalShip
 	ProvidesPrerequisite@buildingname:
 	Valued:
@@ -1597,25 +1515,25 @@ MINER:
 			TopLeft: -256, -256
 			BottomRight: 256, 256
 	Valued:
-		Cost: 150
+		Cost: 1400
 	Tooltip:
 		Name: Miner
 	Selectable:
 		Priority: 6
 		Class: Miner
 	Power:
-		Amount: -3
+		Amount: -15
 	Armor:
-		Type: Small
+		Type: Medium
 	Health:
-		HP: 200000
+		HP: 400000
 	WithHarvestOverlay:
 		Palette: terrain
 	Explodes:
 		Weapon: CorvetteExplode
 	Mobile:
 		Speed: 40
-		SharesCell: True
+		SharesCell: False
 		TurnSpeed: 20
 		TerrainSpeeds:
 			Clear: 100
@@ -1636,11 +1554,11 @@ MINER:
 		Range: 5c0
 	MustBeDestroyed:
 	Harvester:
-		DeliveryBuildings: dgrefinery, tref
+		DeliveryBuildings: dgrefinery, gmothership, dgsupplyship
 		Resources: CyanOre, BlueOre, Gas, Junk, Minerals
-		BaleLoadDelay: 60
-		BaleUnloadDelay: 35
-		Capacity: 12
+		BaleLoadDelay: 12
+		BaleUnloadDelay: 3
+		Capacity: 60
 		SearchForDeliveryBuildingDelay: 150
 		MaxIdleDuration: 20
 		WaitDuration: 20
@@ -1653,15 +1571,16 @@ MINER:
 		DockSequence: idle
 		DockLoopSequence: idle
 	Selectable:
-		Bounds: 30,30
+		Bounds: 60,60
 	Interactable:
-		Bounds: 35,35
+		Bounds: 60,60
 	Voiced:
 		VoiceSet: GenericVoice
-	KillsSelf:
-		RequiresCondition: MuereQlo
-	ExternalCondition@MuereQlo:
-		Condition: MuereQlo
+	# KillsSelf:
+		# RequiresCondition: MuereQlo
+	# ExternalCondition@MuereQlo:
+		# Condition: MuereQlo
+	-Hovers:
 
 SlaveFighter:
 	Inherits: ^Fighter
