@@ -22,7 +22,7 @@ ghabitatshiph:
 gfrigateassemblybayh:
 	Inherits: ^shipdefault
 
-gcarrier4h:
+gshipyardh:
 	Inherits: ^shipdefault
 
 gengineerh:

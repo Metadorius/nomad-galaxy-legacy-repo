@@ -361,6 +361,91 @@ GSTATIONT3:
 	ExternalCondition@BeamReady:
 		Condition: BeamReady
 
+GREFINERY:
+	Inherits: REFINERY
+	Buildable:
+		# Queue: BaseShipQueue
+		# BuildPaletteOrder: 2
+		# Prerequisites: ghabitatship
+		# Description: Resource gatherer, builds miners slowly.\nSupports up to 5 miners.
+	SpawnActorOnDeath:
+		Actor: grefineryh
+		OwnerType: InternalName
+		InternalOwner: Neutral
+	Transforms:
+		IntoActor: dgrefinery
+		Offset: 0,0
+	Interactable:
+		Bounds 50,50
+
+DGREFINERY:
+	Inherits@1: ^Building
+	Building:
+		Dimensions: 1,1
+		Footprint: _
+	SpawnActorOnDeath:
+		Actor: grefineryh
+		OwnerType: InternalName
+		InternalOwner: Neutral
+	RevealsShroud:
+		Range: 5c0
+		Type: CenterPosition
+	Exit:
+		ExitCell: 1,1
+	Exit@1:
+		ExitCell: 1,-1
+	Exit@2:
+		ExitCell: -1,1
+	Exit@3:
+		ExitCell: -1,-1
+	RenderSprites:
+		Image: GREFINERY
+	Transforms:
+		IntoActor: grefinery
+		Offset: 0,0
+	ProvidesPrerequisite@lactm:
+		Prerequisite: grefinery
+	ProvidesPrerequisite:
+	Targetable@asd:
+		TargetTypes: DeployedShip
+	Power:
+		Amount: -10
+	Valued:
+		Cost: 1100
+	Tooltip:
+		Name: Refinery
+	Selectable:
+		Priority: 5
+	Health:
+		HP: 2000000
+	MustBeDestroyed:
+	RenderSprites:
+	MustBeDestroyed:
+	WithDecoration@Role:
+		Image: rank
+		Sequence: houseicon
+		Palette: effect
+		ReferencePoint: Top, Right
+		RequiresCondition: !weonqloweonlawea
+		ZOffset: 256
+	Interactable:
+		Bounds 50,50
+	WithTextDecoration@deployed:
+		Text: DEPLOYED
+		ReferencePoint: Bottom
+		Color: E0D048
+		ZOffset: 9999
+	StoresResources:
+		PipCount: 10
+		Capacity: 1000
+	Refinery:
+		DockOffset: 0,0
+	ProductionQueue@Aircraft:
+		Type: Miner
+		Group: Aircraft
+	Production:
+		Produces: Miner
+
 GAIPLATFORM:
 	Inherits: GAPPLATFORM
 	Tooltip:

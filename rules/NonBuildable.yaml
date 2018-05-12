@@ -13,10 +13,9 @@ GMOTHERSHIP:
 
 GHABITATSHIP:
 	Inherits: ^CapitalShip
+	Inherits@1: ^SupplyShipHP
 	Valued:
 		Cost: 900
-	Tooltip:
-		Name: Test
 	RenderSprites:
 		Image: ghabitatship
 	Transforms:
@@ -30,32 +29,27 @@ GHABITATSHIP:
 GENGINEER:
 	Inherits: ^CapitalShip
 	Inherits@1: ^EngineerShipLogo
+	Inherits@2: ^EngineerCrewHP
 	Transforms:
 		IntoActor: dgengineer
 		Offset: 0,0
 	RenderSprites:
 		Image: gengineer
-	ProvidesPrerequisite@gengineer:
-		Prerequisite: gengineer
 
 GSURVEYFRIGATE:
 	Inherits: ^CapitalShip
+	Inherits@3: ^SurveyFrigateHP
 	Transforms:
 		IntoActor: dgsurveyfrigate
 		Offset: 0,0
-	Tooltip:
-		Name: Survey Frigate
 	SpawnActorOnDeath:
 		Actor: gsurveyfrigateh
 		OwnerType: InternalName
 		InternalOwner: Neutral
-	RenderSprites:
-		Image: gsurveyfrigate
-	ProvidesPrerequisite@gsurveyfrigate:
-		Prerequisite: gsurveyfrigate
 
 GRESEARCHSHIP:
 	Inherits: ^CapitalShip
+	Inherits@3: ^ResearchShipHP
 	Transforms:
 		IntoActor: dgresearchship
 		Offset: 0,0
@@ -65,8 +59,6 @@ GRESEARCHSHIP:
 		InternalOwner: Neutral
 	RenderSprites:
 		Image: gresearchship
-	ProvidesPrerequisite@gresearchship:
-		Prerequisite: gresearchship
 
 GFIGHTERTURRET:
 	Inherits: ^DeployableTurret
@@ -78,7 +70,10 @@ GFIGHTERTURRET:
 	ExplodeWeapon@1:
 		Weapon: GKorGasBulletSpawner
 		RequiresCondition: !deployed
-
+	WithRangeCircle:
+		Range: 7c0
+		Type: GkorFlakTurret
+    
 GNORMALTURRET:
 	Inherits: ^DeployableTurret
 	Inherits@Autotarget: ^AutoTargetAll
@@ -95,9 +90,12 @@ GNORMALTURRET:
 		LocalYaw: 255, -255, 255, -255, 255, -255
 		LocalOffset: 175, -250, 5, 175, 250, 5, 0, -250, 5, 0, 250, 5, -175, -250, 5, -175, 250, 5
 		RequiresCondition: !deployed
+	RenderRangeCircle:
 
 GPATROLCRUISER:
 	Inherits@1: ^CapitalShip
+	Inherits@1: ^AIWanderer
+	Inherits@2: ^AICorvetteProduction
 	Tooltip:
 		Name: Patrol Cruiser
 	Transforms:
@@ -112,6 +110,8 @@ GPATROLCRUISER:
 
 GFRIGATEASSEMBLYBAY:
 	Inherits: ^CapitalShip
+	Inherits@1: ^AIWanderer
+	Inherits@2: ^AIFrigateProduction
 	Tooltip:
 		Name: Frigate Assembly Bay
 	Transforms:
@@ -126,6 +126,8 @@ GFRIGATEASSEMBLYBAY:
 
 GSHIPYARD:
 	Inherits: ^CapitalShip
+	Inherits@1: ^AIWanderer
+	Inherits@2: ^AIBaseShipProduction
 	Exit:
 	RallyPoint:
 	Tooltip:

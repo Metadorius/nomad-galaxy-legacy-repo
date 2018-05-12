@@ -118,9 +118,6 @@
 	ReloadDelayMultiplier@empdisable:
 		RequiresCondition: empdisable
 		Modifier: 2000
-	RangeMultiplier@empdisable:
-		RequiresCondition: empdisable
-		Modifier: 1
 
 ^Leachable:
 	ExternalCondition@LeechEat:
@@ -958,80 +955,53 @@
 	ExplodeWeapon@1:
 		Weapon: FieldDefenceLaserSpawnAntiFighter
 
-^BuildingQueue:
-	ProductionQueue@Building:
-		Type: Building
-		Factions: gkor, terran
-		Group: Building
-		LowPowerSlowdown: 2
-		QueuedAudio: Building
-		ReadyAudio: ConstructionComplete
-
-^DefenceQueue:
-	ProductionQueue@Defence:
-		Type: Defence
-		Factions: gkor, terran
+^ProducesCorvettes:
+	ProductionQueue:
+		Type: CorvetteQueue
 		Group: Defence
-		LowPowerSlowdown: 2
-		QueuedAudio: Building
-		ReadyAudio: ConstructionComplete
+		LowPowerSlowdown: 3
 	Production:
-		Produces: Defence
+		Produces: CorvetteQueue
+	ProductionBar:
+		ProductionType: CorvetteQueue
+	Exit:
 
-^InfantryQueue:
-	ProductionQueue@Infantry:
-		Type: Infantry
-		Factions: gkor, terran
+^ProducesFrigates:
+	Inherits: ^ProducesCorvettes
+	ProductionQueue:
+		Type: FrigateQueue
 		Group: Infantry
-		LowPowerSlowdown: 50
-		BuildDurationModifier: 100
-		ReadyAudio: ConstructionComplete
 	Production:
-		Produces: Infantry
+		Produces: FrigateQueue
+	ProductionBar:
+		ProductionType: FrigateQueue
 
-^VehicleQueue:
-	ProductionQueue@Vehicle:
-		Type: Vehicle
-		Factions: gkor, terran
-		Group: Vehicle
-		LowPowerSlowdown: 3
-		QueuedAudio: Building
-		ReadyAudio: ConstructionComplete
+^ProducesBaseShips:
+	Inherits: ^ProducesCorvettes
+	ProductionQueue:
+		Type: BaseShipQueue
+		Group: Building
 	Production:
-		Produces: Vehicle
+		Produces: BaseShipQueue
+	ProductionBar:
+		ProductionType: BaseShipQueue
 
-^AircraftQueue:
-	ProductionQueue@Aircraft:
-		Type: Aircraft
-		Factions: gkor, terran
-		Group: Aircraft
-		LowPowerSlowdown: 3
-		QueuedAudio: Building
-		BuildDurationModifier: 100
-		ReadyAudio: ConstructionComplete
+^AICorvetteProduction:
+	Inherits: ^ProducesCorvettes
 	Production:
-		Produces: Aircraft
+		RequiresCondition: AIWanderer
 
-^GUtilityShipProduction:
-	Inherits: ^BuildingQueue
-	ProductionQueue@Building:
-		Factions: gkor, terran
-		LowPowerSlowdown: 1
-		BuildDurationModifier: 100
-	Production@Building:
-		Produces: Building
+^AIFrigateProduction:
+	Inherits: ^ProducesFrigates
+	Production:
+		RequiresCondition: AIWanderer
 
-^GCapitalShipProduction:
-	Inherits: ^DefenceQueue
-	ProductionQueue@Defence:
-		Factions: gkor
-		LowPowerSlowdown: 50
-		BuildDurationModifier: 100
-		ReadyAudio: frigateready
-	Production@Defence:
-		Produces: Defence
+^AIBaseShipProduction:
+	Inherits: ^ProducesBaseShips
+	Production:
+		RequiresCondition: AIWanderer
 
-^AIWander:
+^AIWanderer:
 	Wanders:
 		MinMoveDelay: 500
 		MaxMoveDelay: 5000
@@ -1043,10 +1013,69 @@
 		Prerequisites: AIWanderer
 	CashTrickler@AIWanderer:
 		RequiresCondition: AIWanderer
-		Interval: 100
+		Interval: 200
 	Power@AIWanderer:
 		Amount: 20
 		RequiresCondition: AIWanderer
+
+^SupplyShipHP:
+	Health:
+		HP: 400000
+	Tooltip:
+		Name: Supply Ship
+	ProvidesPrerequisite@ghabitatship:
+		Prerequisite: ghabitatship
+	StoresResources:
+		PipCount: 10
+		Capacity: 1000
+
+^SurveyFrigateHP:
+	Health:
+		HP: 400000
+	Tooltip:
+		Name: Survey Frigate
+	ProvidesPrerequisite@gsurveyfrigate:
+		Prerequisite: gsurveyfrigate
+	RevealsShroud:
+		Range: 5c0
+		Type: CenterPosition
+
+^EngineerCrewHP:
+	Health:
+		HP: 400000
+	Tooltip:
+		Name: Engineering Crew
+	ProvidesPrerequisite@gengineer:
+		Prerequisite: gengineer
+
+^ResearchShipHP:
+	Health:
+		HP: 400000
+	Tooltip:
+		Name: Research Ship
+	ProvidesPrerequisite@RearchshipAI:
+		Prerequisite: gresearchship
+		RequiresCondition: AIWanderer
+
+^ProductionShipHP:
+	Health:
+		HP: 800000
+
+^PatrolCruiserHP:
+	Health:
+		HP: 800000
+
+^FrigateAssemblyBayHP:
+	Health:
+		HP: 800000
+
+^ShipyardHP:
+	Health:
+		HP: 800000
+
+^SupportShipHP:
+	Health:
+		HP: 800000
 
 MOTHERSHIP:
 	Inherits: ^Building
@@ -1097,7 +1126,7 @@ MOTHERSHIP:
 		Weapon: FieldDefenceLaserSpawnMothership
 		LocalOffset: 0,500,1150
 	ExplodeWeapon@3:
-		Weapon: FieldRepairLaserSpawnStrong
+		Weapon: FieldRepairLaserSpawn
 		LocalOffset: 0,0,0
 	Explodes:
 		Weapon: MotherShipExplode
@@ -1115,7 +1144,7 @@ MOTHERSHIP:
 
 CIVILIANCORESHIP:
 	Inherits: ^CapitalShip
-	Inherits@1: ^AIWander
+	Inherits@1: ^AIWanderer
 	Inherits@2: ^DeployableText
 	Inherits@3: ^EngineerShipLogo
 	Inherits@4: ^SurveyFrigateShipLogo
@@ -1128,7 +1157,7 @@ CIVILIANCORESHIP:
 		Name: Core Ship
 		RequiresCondition: !supplyship && !surveyfrigate && !engineeringcrew && !researchship && !antismallturret && !antifighterturret
 	Health:
-		HP: 200000
+		HP: 400000
 	RevealsShroud:
 		Range: 5c0
 	MustBeDestroyed:
@@ -1283,7 +1312,7 @@ CIVILIANCORESHIP:
 
 REFINERY:
 	Inherits: ^CapitalShip
-	Inherits@1: ^AIWander
+	Inherits@1: ^AIWanderer
 	Valued:
 		Cost: 800
 	Tooltip:
@@ -1297,7 +1326,7 @@ REFINERY:
 	Power:
 		Amount: -10
 	Health:
-		HP: 200000
+		HP: 400000
 	MustBeDestroyed:
 	RenderSprites:
 	MustBeDestroyed:
@@ -1311,41 +1340,9 @@ REFINERY:
 		PipCount: 10
 		Capacity: 1000
 
-^ProducesCorvettes:
-	ProductionQueue:
-		Type: CorvetteQueue
-		Group: Defence
-		LowPowerSlowdown: 3
-	Production:
-		Produces: CorvetteQueue
-	ProductionBar:
-		ProductionType: CorvetteQueue
-	Exit:
-	RallyPoint:
-
-^ProducesFrigates:
-	Inherits: ^ProducesCorvettes
-	ProductionQueue:
-		Type: FrigateQueue
-		Group: Infantry
-	Production:
-		Produces: FrigateQueue
-	ProductionBar:
-		ProductionType: FrigateQueue
-
-^ProducesBaseShips:
-	Inherits: ^ProducesCorvettes
-	ProductionQueue:
-		Type: BaseShipQueue
-		Group: Building
-	Production:
-		Produces: BaseShipQueue
-	ProductionBar:
-		ProductionType: BaseShipQueue
-
 PRODUCTIONSHIP:
 	Inherits: ^CapitalShip
-	Inherits@1: ^AIWander
+	Inherits@1: ^AIWanderer
 	Inherits@2: ^CivilianShipWeaponsGkor
 	Inherits@3: ^DeployableText
 	Inherits@4: ^FactoryShipLogo
@@ -1356,7 +1353,7 @@ PRODUCTIONSHIP:
 		Name: Core Production Ship
 	BaseBuilding:
 	Health:
-		HP: 400000
+		HP: 800000
 	Power:
 		Amount: -10
 	RenderSprites:
@@ -1408,6 +1405,9 @@ PRODUCTIONSHIP:
 	TransformOnCondition@Corvette:
 		IntoActor: dgpatrolcruiser
 		RequiresCondition: CorvetteQueue && !moving && deployed
+	TransformOnCondition@CorvetteAI:
+		IntoActor: gpatrolcruiser
+		RequiresCondition: CorvetteQueue && !moving && AIWanderer    
 	WithFacingSpriteBody@Corvette:
 		RequiresCondition: CorvetteQueue
 		Sequence: CorvetteQueue
@@ -1420,6 +1420,9 @@ PRODUCTIONSHIP:
 	TransformOnCondition@FrigateQueue:
 		IntoActor: dgfrigateassemblybay
 		RequiresCondition: FrigateQueue && !moving && deployed
+	TransformOnCondition@FrigateQueueAI:
+		IntoActor: gfrigateassemblybay
+		RequiresCondition: FrigateQueue && !moving && AIWanderer  
 	WithFacingSpriteBody@FrigateQueue:
 		RequiresCondition: FrigateQueue
 		Sequence: FrigateQueue
@@ -1432,44 +1435,12 @@ PRODUCTIONSHIP:
 	TransformOnCondition@BaseShipQueue:
 		IntoActor: dgshipyard
 		RequiresCondition: BaseShipQueue && !moving && deployed
+	TransformOnCondition@BaseShipQueueAI:
+		IntoActor: gshipyard
+		RequiresCondition: BaseShipQueue && !moving && AIWanderer  
 	WithFacingSpriteBody@BaseShipQueue:
 		RequiresCondition: BaseShipQueue
 		Sequence: BaseShipQueue
-
-SHIPYARD:
-	Inherits: ^CapitalShip
-	ProvidesPrerequisite@buildingname:
-	Valued:
-		Cost: 5000
-	Health:
-		HP: 600000
-	RevealsShroud:
-		Range: 5c0
-	Tooltip:
-		Name: Shipyard
-	Selectable:
-		Priority: 5
-		Bounds: 80,80
-	Selectable:
-		Bounds: 100,100
-	BaseBuilding:
-	ProximityExternalCondition@ChaseMothership:
-		Condition: ChaseMothership
-		Range: 3c0
-	Targetable@CargoFreighterMagnet:
-		TargetTypes: CargoFreighterMagnet
-	WithDecoration@Role:
-		Image: rank
-		Sequence: factoryicon
-		Palette: effect
-		ReferencePoint: Top, Right
-		RequiresCondition: !weonqloweonlawea
-		ZOffset: 256
-	SelectionDecorations:
-		VisualBounds: 200,200
-	RenderSprites:
-	Exit:
-		ExitCell: -1,-1
 
 SERVICEFRIGATE:
 	Inherits: ^TurretedFrigate
@@ -1535,21 +1506,6 @@ MINER:
 		Speed: 40
 		SharesCell: False
 		TurnSpeed: 20
-		TerrainSpeeds:
-			Clear: 100
-			Ground: 100
-			Tiberium: 70
-			BlueTiberium: 70
-			Gas: 70
-			Junk: 70
-			SpaceGray: 100
-			SpaceGray2: 100
-			SpaceGreen: 100
-			SpaceGreen2: 100
-			SpaceBlue: 100
-			SpaceBlue2: 100
-			SpaceRed: 100
-			SpaceRed2: 100
 	RevealsShroud:
 		Range: 5c0
 	MustBeDestroyed:
@@ -1576,10 +1532,6 @@ MINER:
 		Bounds: 60,60
 	Voiced:
 		VoiceSet: GenericVoice
-	# KillsSelf:
-		# RequiresCondition: MuereQlo
-	# ExternalCondition@MuereQlo:
-		# Condition: MuereQlo
 	-Hovers:
 
 SlaveFighter:

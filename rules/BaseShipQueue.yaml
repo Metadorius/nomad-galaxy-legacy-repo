@@ -22,23 +22,6 @@ GMINER:
 	RenderSprites:
 		Image: grefinery
 
-GREFINERY:
-	Inherits: REFINERY
-	Buildable:
-		# Queue: BaseShipQueue
-		# BuildPaletteOrder: 2
-		# Prerequisites: ghabitatship
-		# Description: Resource gatherer, builds miners slowly.\nSupports up to 5 miners.
-	SpawnActorOnDeath:
-		Actor: grefineryh
-		OwnerType: InternalName
-		InternalOwner: Neutral
-	Transforms:
-		IntoActor: dgrefinery
-		Offset: 0,0
-	Interactable:
-		Bounds 50,50
-
 GPRODUCTIONSHIP:
 	Inherits: PRODUCTIONSHIP
 	Buildable:

@@ -50,6 +50,7 @@
 
 DGSUPPLYSHIP:
 	Inherits@1: ^Building
+	Inherits@1: ^SupplyShipHP
 	Building:
 		Dimensions: 1,1
 		Footprint: _
@@ -65,25 +66,16 @@ DGSUPPLYSHIP:
 		Priority: 5
 	Power@2:
 		Amount: 60
-	ProvidesPrerequisite@ghabitatship:
-		Prerequisite: ghabitatship
-	StoresResources:
-		PipCount: 10
-		Capacity: 1000
 	Refinery:
 		DockOffset: 0,0
-	Tooltip:
-		Name: Supply Ship
 
 DGSURVEYFRIGATE:
 	Inherits@1: ^Building
 	Inherits@2: ^SurveyFrigateShipLogo
+	Inherits@3: ^SurveyFrigateHP
 	Building:
 		Dimensions: 1,1
 		Footprint: _
-	RevealsShroud:
-		Range: 5c0
-		Type: CenterPosition
 	Transforms:
 		IntoActor: gsurveyfrigate
 		Offset: 0,0
@@ -94,15 +86,11 @@ DGSURVEYFRIGATE:
 	ProvidesRadar:
 	RevealsShroud@surveyfrigate:
 		Range: 15c0
-		RequiresCondition: surveyfrigate && deployed
-	ProvidesPrerequisite@gsurveyfrigate:
-		Prerequisite: gsurveyfrigate
-	Tooltip:
-		Name: Survey Frigate
 
 DGENGINEER:
 	Inherits@1: ^Building
 	Inherits@2: ^EngineerShipLogo
+	Inherits@3: ^EngineerCrewHP
 	Building:
 		Dimensions: 1,1
 		Footprint: _
@@ -119,13 +107,10 @@ DGENGINEER:
 	ExplodeWeapon@engineeringcrew:
 		Weapon: FieldRepairLaserSpawnStrong
 		LocalOffset: 0,0,0
-	ProvidesPrerequisite@gengineer:
-		Prerequisite: gengineer
-	Tooltip:
-		Name: Engineer Crew
 
 DGRESEARCHSHIP:
 	Inherits@1: ^Building
+	Inherits@3: ^ResearchShipHP
 	Building:
 		Dimensions: 1,1
 		Footprint: _
@@ -141,81 +126,11 @@ DGRESEARCHSHIP:
 		Priority: 5
 	ProvidesPrerequisite@gresearchship:
 		Prerequisite: gresearchship
-	Tooltip:
-		Name: Research Ship
-
-DGREFINERY:
-	Inherits@1: ^Building
-	Inherits: ^AircraftQueue
-	Building:
-		Dimensions: 1,1
-		Footprint: _
-	SpawnActorOnDeath:
-		Actor: grefineryh
-		OwnerType: InternalName
-		InternalOwner: Neutral
-	RevealsShroud:
-		Range: 5c0
-		Type: CenterPosition
-	Exit:
-		ExitCell: 1,1
-	Exit@1:
-		ExitCell: 1,-1
-	Exit@2:
-		ExitCell: -1,1
-	Exit@3:
-		ExitCell: -1,-1
-	RenderSprites:
-		Image: GREFINERY
-	Transforms:
-		IntoActor: grefinery
-		Offset: 0,0
-	ProvidesPrerequisite@lactm:
-		Prerequisite: grefinery
-	ProvidesPrerequisite:
-	Targetable@asd:
-		TargetTypes: DeployedShip
-	Power:
-		Amount: -10
-	Valued:
-		Cost: 1100
-	Tooltip:
-		Name: Refinery
-	Selectable:
-		Priority: 5
-	Health:
-		HP: 2000000
-	MustBeDestroyed:
-	RenderSprites:
-	MustBeDestroyed:
-	WithDecoration@Role:
-		Image: rank
-		Sequence: houseicon
-		Palette: effect
-		ReferencePoint: Top, Right
-		RequiresCondition: !weonqloweonlawea
-		ZOffset: 256
-	Interactable:
-		Bounds 50,50
-	WithTextDecoration@deployed:
-		Text: DEPLOYED
-		ReferencePoint: Bottom
-		Color: E0D048
-		ZOffset: 9999
-	StoresResources:
-		PipCount: 10
-		Capacity: 1000
-	Refinery:
-		DockOffset: 0,0
-	ProductionQueue@Aircraft:
-		Type: Miner
-		Group: Aircraft
-	Production:
-		Produces: Miner
 
 DGPATROLCRUISER:
 	Inherits@1: ^Building
 	Inherits@2: ^ProducesCorvettes
+	Inherits@3: ^PatrolCruiserHP
 	Building:
 		Dimensions: 1,1
 		Footprint: _
@@ -233,10 +148,12 @@ DGPATROLCRUISER:
 		Priority: 5
 	ProvidesPrerequisite@T1Carrier: 
 		Prerequisite: gproductionship
+	RallyPoint:
 
 DGFRIGATEASSEMBLYBAY:
 	Inherits@1: ^Building
 	Inherits@2: ^ProducesFrigates
+	Inherits@3: ^FrigateAssemblyBayHP
 	Building:
 		Dimensions: 1,1
 		Footprint: _
@@ -254,10 +171,12 @@ DGFRIGATEASSEMBLYBAY:
 		Priority: 5
 	ProvidesPrerequisite@T1Carrier: 
 		Prerequisite: gproductionship
+	RallyPoint:
 
 DGSHIPYARD:
 	Inherits@1: ^Building
 	Inherits@2: ^ProducesBaseShips
+	Inherits@3: ^ShipyardHP
 	Building:
 		Dimensions: 1,1
 		Footprint: _
@@ -275,3 +194,4 @@ DGSHIPYARD:
 		Priority: 5
 	ProvidesPrerequisite@T1Carrier: 
 		Prerequisite: gproductionship
+	RallyPoint:

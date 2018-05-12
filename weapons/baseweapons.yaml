@@ -27,7 +27,7 @@ BomberPlasma:
 		# Inaccuracy: 1c0
 	Warhead@1Dam: SpreadDamage
 		Spread: 64
-		Damage: 7500
+		Damage: 6500
 		ValidTargets: CapitalShip, Frigate, Corvette, Ground
 		InvalidTargets: Fighter
 
@@ -206,6 +206,17 @@ FieldRepairLaser:
 		ValidStances: Ally
 		ValidTargets: CapitalShip, Frigate, Corvette, Ground, Air, Airhit
 
+FieldRepairLaserSpawnStrong:
+	Inherits: FieldRepairLaserSpawn
+	Warhead@op: FireShrapnel
+		Weapon: FieldRepairLaserStrong
+
+FieldRepairLaserStrong:
+	Inherits: FieldRepairLaser
+	Range: 8c0
+	Warhead@1Dam: SpreadDamage
+		Damage: -35000
+
 SupplyShipShockSpawn:
 	Inherits: FieldDefenceLaserSpawnMothership
 	ReloadDelay: 75
@@ -233,17 +244,6 @@ SupplyShipShock:
 		Damage: 1
 		ValidStances: Ally, Neutral, Enemy
 		InvalidTargets: LaneSpeedBoosted, DeployedShip
-
-FieldRepairLaserSpawnStrong:
-	Inherits: FieldRepairLaserSpawn
-	Warhead@op: FireShrapnel
-		Weapon: FieldRepairLaserStrong
-
-FieldRepairLaserStrong:
-	Inherits: FieldRepairLaser
-	Range: 8c0
-	Warhead@1Dam: SpreadDamage
-		Damage: -35000
 
 ConstantRepairLaser:
 	ReloadDelay: 10

@@ -35,6 +35,7 @@ Player:
 			gfrig1: 20%
 			gfrig2: 20%
 			gfrig3: 5%
+			gminer: 5%
 			gsurveyfrigate: 50%
 			gfightercarrier: 2%
 			gbombercarrier: 10%
@@ -64,6 +65,7 @@ Player:
 			gfighter1master: 3
 			gfighter2master: 5
 			gcivship: 10
+			gminer: 5
 			gproductionship: 5
 			gfightercarrier: 3
 			gbombercarrier: 5

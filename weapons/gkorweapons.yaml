@@ -178,6 +178,12 @@ FrigateGasBullet:
 		ExplosionPalette: apolgrenalpha
 	-Warhead@SlowFighter: GrantExternalCondition
 
+GKorGasBulletSpawner:
+	Inherits: FieldDefenceLaserSpawnMothership
+	ReloadDelay: 35
+	Warhead@op: FireShrapnel
+		Weapon: FrigateGasBullet2
+
 FrigateGasBullet2:
 	Inherits: FrigateGasBullet
 	ValidTargets: Fighter
@@ -185,12 +191,6 @@ FrigateGasBullet2:
 	Range: 7c0
 	Warhead@1Dam: SpreadDamage
 		ValidTargets: Fighter
-
-GKorGasBulletSpawner:
-	Inherits: FieldDefenceLaserSpawnMothership
-	ReloadDelay: 35
-	Warhead@op: FireShrapnel
-		Weapon: FrigateGasBullet2
 
 RendingClaws:
 	Inherits: HeavyCannon
