@@ -189,7 +189,7 @@ upgrade.surveyfrigate:
 		BuildLimit: 0
 		IconPalette: terrain
 	Valued:
-		Cost: 1000
+		Cost: 1500
 	RenderSprites:
 		Image: gsurveyfrigate
 
@@ -200,11 +200,11 @@ upgrade.engineeringcrew:
 	Buildable:
 		Queue: CivilianShipUpgrade
 		Description: Cruiser that High vision ship that provides radar,\nstealth detection, and technology when deployed.
-		Prerequisites: gproductionship
+		Prerequisites: gsurveyfrigate
 		BuildLimit: 0
 		IconPalette: terrain
 	Valued:
-		Cost: 600
+		Cost: 1000
 	RenderSprites:
 		Image: gengineer
 
@@ -219,7 +219,7 @@ upgrade.researchship:
 		BuildLimit: 0
 		IconPalette: terrain
 	Valued:
-		Cost: 1500
+		Cost: 2000
 	RenderSprites:
 		Image: gresearchship
 

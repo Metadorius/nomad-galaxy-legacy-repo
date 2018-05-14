@@ -31,7 +31,7 @@ Player:
 			gfighter1master: 15%
 			gfighter2master: 1%
 			gcorv1: 5%
-			# gcorv2: 10%
+			gcorv2: 10%
 			gfrig1: 20%
 			gfrig2: 20%
 			gfrig3: 5%
@@ -63,7 +63,8 @@ Player:
 			teng: 5%
 		UnitLimits:
 			gfighter1master: 3
-			gfighter2master: 5
+			gfighter2master: 4
+			GFIGHTER2MASTER: 4
 			gcivship: 10
 			gminer: 5
 			gproductionship: 5

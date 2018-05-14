@@ -45,6 +45,8 @@
 ^AutoTargetAll:
 	AutoTarget:
 		AttackAnythingCondition: stance-attackanything
+		MinimumScanTimeInterval: 16
+		MaximumScanTimeInterval: 20
 	AutoTargetPriority@DEFAULT:
 		RequiresCondition: !stance-attackanything
 		ValidTargets: CapitalShip, Frigate, Corvette, Fighter, Station
@@ -57,8 +59,7 @@
 		Priority: 2
 
 ^FrigateTargetPriority:
-	AutoTarget:
-		AttackAnythingCondition: stance-attackanything
+	Inherits: ^AutoTargetAll
 	AutoTargetPriority@1:
 		RequiresCondition: !stance-attackanything
 		ValidTargets: CapitalShip, Frigate, Station
@@ -66,8 +67,7 @@
 		Priority: 1
 
 ^CorvetteTargetPriority:
-	AutoTarget:
-		AttackAnythingCondition: stance-attackanything
+	Inherits: ^AutoTargetAll
 	AutoTargetPriority@1:
 		RequiresCondition: !stance-attackanything
 		ValidTargets: Corvette
@@ -75,8 +75,7 @@
 		Priority: 1
 
 ^FighterTargetPriority:
-	AutoTarget:
-		AttackAnythingCondition: stance-attackanything
+	Inherits: ^AutoTargetAll
 	AutoTargetPriority@1:
 		RequiresCondition: !stance-attackanything
 		ValidTargets: Fighter
@@ -401,6 +400,7 @@
 	SelectionDecorations:
 	WithSpriteControlGroupDecoration:
 	Health:
+		HP: 750000
 	WithFacingSpriteBody:
 	Armor:
 		Type: Heavy
@@ -537,7 +537,6 @@
 	Inherits@2: ^SpriteActor
 	Inherits@3: ^GainsExperience
 	Inherits@4: ^HyperSpaceAble
-	Inherits@Autotarget: ^AutoTargetAll
 	HitShape:
 		UseTargetableCellsOffsets: true
 		Type: Rectangle
@@ -644,6 +643,7 @@
 	Inherits@1: ^Fighter
 	Inherits@2: ^Boardable
 	Inherits@5: ^Cloakable
+	Inherits@Autotarget: ^AutoTargetAll
 	Guard:
 	HitShape:
 		UseTargetableCellsOffsets: true
@@ -1062,16 +1062,31 @@
 		HP: 800000
 
 ^PatrolCruiserHP:
+	Inherits@1: ^CivilianShipWeaponsGkor
 	Health:
 		HP: 800000
+	SpawnActorOnDeath:
+		Actor: gpatrolcruiserh
+		OwnerType: InternalName
+		InternalOwner: Neutral
 
 ^FrigateAssemblyBayHP:
+	Inherits@1: ^CivilianShipWeaponsGkor
 	Health:
 		HP: 800000
+	SpawnActorOnDeath:
+		Actor: gfrigateassemblybayh
+		OwnerType: InternalName
+		InternalOwner: Neutral
 
 ^ShipyardHP:
+	Inherits@1: ^CivilianShipWeaponsGkor
 	Health:
 		HP: 800000
+	SpawnActorOnDeath:
+		Actor: gshipyardh
+		OwnerType: InternalName
+		InternalOwner: Neutral
 
 ^SupportShipHP:
 	Health:
@@ -1223,6 +1238,7 @@ CIVILIANCORESHIP:
 		IntoActor: dgsupplyship
 		Offset: 0,0
 		RequiresCondition: supplyship && !moving && deployed
+		SkipMakeAnims: False
 	Tooltip@supplyship:
 		Name: Supply Ship
 		RequiresCondition: supplyship
@@ -1261,6 +1277,7 @@ CIVILIANCORESHIP:
 	TransformOnCondition@engineeringcrew:
 		IntoActor: dgengineer
 		Offset: 0,0
+		SkipMakeAnims: False
 		RequiresCondition: engineeringcrew && !moving && deployed
 	WithDecoration@engineeringcrew:
 		RequiresCondition: engineeringcrew
@@ -1561,14 +1578,15 @@ SlaveFighter:
 		CloseEnoughDistance: 600
 
 MOBSPANWERMASTER:
-	Inherits@1: ^ExistsInWorld
-	Inherits@4: ^SpriteActor
+	Inherits: ^ExistsInWorld
+	Inherits@1: ^SpriteActor
+	Inherits@4: ^AutoTargetAll
 	Valued:
-		Cost: 600
+		Cost: 350
 	RenderSprites:
 		Image: gfighter1
 	MobSpawnerMaster:
-		Actors: gfighter1, gfighter1, gfighter1, gfighter1, gfighter1, gfighter1, gfighter1, gfighter1
+		Actors: gfighter1, gfighter1, gfighter1, gfighter1
 		ExitByBudding: False
 	AttackOmni:
 	Armament@PRIMARY:

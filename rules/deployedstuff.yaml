@@ -60,14 +60,18 @@ DGSUPPLYSHIP:
 	Transforms:
 		IntoActor: ghabitatship
 		Offset: 0,0
+		Facing: 128
 	RenderSprites:
 		Image: ghabitatship
 	Selectable:
 		Priority: 5
 	Power@2:
-		Amount: 60
+		Amount: 90
 	Refinery:
 		DockOffset: 0,0
+	WithMakeAnimation:
+	WithSpriteBody:
+		Sequence: deployed
 
 DGSURVEYFRIGATE:
 	Inherits@1: ^Building
@@ -100,6 +104,7 @@ DGENGINEER:
 	Transforms:
 		IntoActor: gengineer
 		Offset: 0,0
+		Facing: 64
 	RenderSprites:
 		Image: gengineer
 	Selectable:
@@ -107,6 +112,9 @@ DGENGINEER:
 	ExplodeWeapon@engineeringcrew:
 		Weapon: FieldRepairLaserSpawnStrong
 		LocalOffset: 0,0,0
+	WithMakeAnimation:
+	WithSpriteBody:
+		Sequence: deployed
 
 DGRESEARCHSHIP:
 	Inherits@1: ^Building

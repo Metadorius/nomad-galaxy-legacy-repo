@@ -65,19 +65,19 @@ CometProjectile:
 		Speed: 35
 		Blockable: False
 		Palette: apolcybl
-	# Warhead@1Dam: SpreadDamage
-		# Spread: 512
-		# Damage: 15000
-		# AffectsParent: True
-		# InvalidTargets: Mine
-		# Versus:
-			# Fighter: 100
-			# Corvette: 150
-			# Frigate: 75
-			# CapitalShip: 50
-			# Mothership: 50
-		# ValidTargets: CometMagnet, CapitalShip, Frigate, Corvette, Fighter, Ground, Air, Airhit
-		# DamageTypes: Prone50Percent, TriggerProne, ExplosionDeath
+	Warhead@1Dam: SpreadDamage
+		Spread: 1
+		Damage: 1
+		AffectsParent: True
+		InvalidTargets: Mine
+		Versus:
+			Fighter: 100
+			Corvette: 150
+			Frigate: 75
+			CapitalShip: 50
+			Mothership: 50
+		ValidTargets: CometMagnet, CapitalShip, Frigate, Corvette, Fighter, Ground, Air, Airhit
+		DamageTypes: Prone50Percent, TriggerProne, ExplosionDeath
 	Warhead@3Eff: CreateEffect
 		Explosions: meteorexplo
 		ExplosionPalette: apolcybl
@@ -452,7 +452,7 @@ BlueNebulaTeslaSpawner:
 		AllowDirectHit: true
 		ThrowWithoutTarget: true
 	Warhead@1Dam: SpreadDamage
-		Damage: 40000
+		Damage: 1
 		ValidStances: Neutral, Enemy
 	Warhead@EMP: GrantExternalCondition
 		Range: 400

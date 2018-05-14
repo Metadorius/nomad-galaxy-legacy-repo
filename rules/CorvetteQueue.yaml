@@ -11,7 +11,7 @@ GFIGHTER1MASTER:
 	Interactable:
 		Bounds: 70,70
 	Power:
-		Amount: -6
+		Amount: -3
 	Tooltip:
 		Name: Interceptor Squadron
 	WithTextDecoration@deployed:
@@ -57,6 +57,8 @@ GFIGHTER2MASTER:
 		Color: E0D048
 		ZOffset: 9999
 		ValidStances: Ally, Enemy
+	Armament@PRIMARY:
+		Weapon: PlatformBomberSpawn
 	RenderSprites:
 		Image: gfighter2
 

@@ -66,6 +66,10 @@ gnormalturret:
 ghabitatship:
 	Inherits: ^shipdefault
 	icon: ghabitatshipicon
+	deployed: ghabitatshipmake
+		Start: 56
+	make: ghabitatshipmake
+		Length: *
 
 grefinery:
 	Inherits: ^shipdefault
@@ -97,6 +101,10 @@ gshipyard:
 gengineer:
 	Inherits: ^shipdefault
 	icon: gengineericon
+	deployed: gengineermake
+		Start: 56
+	make: gengineermake
+		Length: *
 
 gresearchship:
 	Inherits: ^shipdefault

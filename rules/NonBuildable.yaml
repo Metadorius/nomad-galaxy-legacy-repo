@@ -21,8 +21,9 @@ GHABITATSHIP:
 	Transforms:
 		IntoActor: dgsupplyship
 		Offset: 0,0
+		Facing: 128
 	Power@1:
-		Amount: 20
+		Amount: 30
 	ProvidesPrerequisite@ghabitatship:
 		Prerequisite: ghabitatship
 
@@ -33,6 +34,7 @@ GENGINEER:
 	Transforms:
 		IntoActor: dgengineer
 		Offset: 0,0
+		Facing: 64
 	RenderSprites:
 		Image: gengineer
 
@@ -101,10 +103,6 @@ GPATROLCRUISER:
 	Transforms:
 		IntoActor: dgpatrolcruiser
 		Offset: 0,0
-	SpawnActorOnDeath:
-		Actor: gpatrolcruiserh
-		OwnerType: InternalName
-		InternalOwner: Neutral
 	ProvidesPrerequisite@T1Carrier: 
 		Prerequisite: gproductionship
 
@@ -117,10 +115,6 @@ GFRIGATEASSEMBLYBAY:
 	Transforms:
 		IntoActor: dgfrigateassemblybay
 		Offset: 0,0
-	SpawnActorOnDeath:
-		Actor: gfrigateassemblybayh
-		OwnerType: InternalName
-		InternalOwner: Neutral
 	ProvidesPrerequisite@T1Carrier: 
 		Prerequisite: gproductionship
 
@@ -135,9 +129,5 @@ GSHIPYARD:
 	Transforms:
 		IntoActor: dgshipyard
 		Offset: 0,0
-	SpawnActorOnDeath:
-		Actor: gshipyardh
-		OwnerType: InternalName
-		InternalOwner: Neutral
 	ProvidesPrerequisite@T1Carrier: 
 		Prerequisite: gproductionship
