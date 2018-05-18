@@ -115,6 +115,7 @@ GFRIGATEASSEMBLYBAY:
 	Transforms:
 		IntoActor: dgfrigateassemblybay
 		Offset: 0,0
+		Facing: 192
 	ProvidesPrerequisite@T1Carrier: 
 		Prerequisite: gproductionship
 

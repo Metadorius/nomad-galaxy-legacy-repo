@@ -1439,7 +1439,8 @@ PRODUCTIONSHIP:
 		RequiresCondition: FrigateQueue && !moving && deployed
 	TransformOnCondition@FrigateQueueAI:
 		IntoActor: gfrigateassemblybay
-		RequiresCondition: FrigateQueue && !moving && AIWanderer  
+		RequiresCondition: FrigateQueue && !moving && AIWanderer
+		SkipMakeAnims: False
 	WithFacingSpriteBody@FrigateQueue:
 		RequiresCondition: FrigateQueue
 		Sequence: FrigateQueue

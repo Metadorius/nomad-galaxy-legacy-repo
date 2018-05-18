@@ -87,6 +87,10 @@ gfrigateassemblybay:
 	deployed:
 		Start: 13
 	icon: gfrigateassemblybayicon
+	deployed: gfrigateassemblybaymake
+		Start: 76
+	make: gfrigateassemblybaymake
+		Length: 77
 
 gshipyard:
 	Inherits: ^shipdefault

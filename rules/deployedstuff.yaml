@@ -173,6 +173,7 @@ DGFRIGATEASSEMBLYBAY:
 	Transforms:
 		IntoActor: gfrigateassemblybay
 		Offset: 0,0
+		Facing: 192
 	RenderSprites:
 		Image: gfrigateassemblybay
 	Selectable:
@@ -180,6 +181,9 @@ DGFRIGATEASSEMBLYBAY:
 	ProvidesPrerequisite@T1Carrier: 
 		Prerequisite: gproductionship
 	RallyPoint:
+	WithMakeAnimation:
+	WithSpriteBody:
+		Sequence: deployed
 
 DGSHIPYARD:
 	Inherits@1: ^Building
