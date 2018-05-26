@@ -13,9 +13,11 @@ gbc2:
 
 gpatrolcruiser:
 	Inherits: ^shipdefault
-	deployed:
-		Start: 13
 	icon: gpatrolcruisericon
+	deployed: gpatrolcruisermake
+		Start: 78
+	make: gpatrolcruisermake
+		Length: *
 
 gproductionship:
 	Inherits: ^shipdefault
@@ -84,8 +86,6 @@ grefinery:
 
 gfrigateassemblybay:
 	Inherits: ^shipdefault
-	deployed:
-		Start: 13
 	icon: gfrigateassemblybayicon
 	deployed: gfrigateassemblybaymake
 		Start: 76
@@ -94,12 +94,10 @@ gfrigateassemblybay:
 
 gshipyard:
 	Inherits: ^shipdefault
-	idle:
-		Start: 13
-		Facings: 3
-		UseClassicFacingFudge: False
-	deployed:
-		Start: 13
+	deployed: gshipyardmake
+		Start: 88
+	make: gshipyardmake
+		Length: *
 	icon: gshipyardicon
 
 gengineer:
@@ -166,6 +164,10 @@ gfrig5:
 gsurveyfrigate:
 	Inherits: ^shipdefault
 	icon: gsurveyfrigateicon
+	deployed: gsurveyfrigatemake
+		Start: 57
+	make: gsurveyfrigatemake
+		Length: *
 
 gcargofrig:
 	Inherits: ^shipdefault
@@ -295,8 +297,10 @@ garepairplatform:
 
 shipyardummy:
 	Inherits: ^shipdefault
-	deployed: gshipyard
-		Start: 13
+	deployed: gshipyardmake
+		Start: 88
+	make: gshipyardmake
+		Length: *
 	icon: gshipyardicon
 
 combatstationdummy:

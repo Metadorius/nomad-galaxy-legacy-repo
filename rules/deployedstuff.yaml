@@ -83,6 +83,7 @@ DGSURVEYFRIGATE:
 	Transforms:
 		IntoActor: gsurveyfrigate
 		Offset: 0,0
+		Facing: 0
 	RenderSprites:
 		Image: gsurveyfrigate
 	Selectable:
@@ -90,6 +91,9 @@ DGSURVEYFRIGATE:
 	ProvidesRadar:
 	RevealsShroud@surveyfrigate:
 		Range: 15c0
+	WithMakeAnimation:
+	WithSpriteBody:
+		Sequence: deployed
 
 DGENGINEER:
 	Inherits@1: ^Building
@@ -150,6 +154,7 @@ DGPATROLCRUISER:
 	Transforms:
 		IntoActor: gpatrolcruiser
 		Offset: 0,0
+		Facing: 64
 	RenderSprites:
 		Image: gpatrolcruiser
 	Selectable:
@@ -157,6 +162,9 @@ DGPATROLCRUISER:
 	ProvidesPrerequisite@T1Carrier: 
 		Prerequisite: gproductionship
 	RallyPoint:
+	WithMakeAnimation:
+	WithSpriteBody:
+		Sequence: deployed
 
 DGFRIGATEASSEMBLYBAY:
 	Inherits@1: ^Building
@@ -207,3 +215,6 @@ DGSHIPYARD:
 	ProvidesPrerequisite@T1Carrier: 
 		Prerequisite: gproductionship
 	RallyPoint:
+	WithMakeAnimation:
+	WithSpriteBody:
+		Sequence: deployed
