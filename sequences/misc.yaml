@@ -674,6 +674,7 @@ pips:
 overlay:
 	build-valid-space:
 	build-invalid-space:
+	target-valid-space:
 	target-invalid-space:
 		Start: 1
 	build-valid:

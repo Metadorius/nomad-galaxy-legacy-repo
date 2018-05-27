@@ -264,6 +264,7 @@ DGSUBSPESS:
 	Health:
 		HP: 3500000
 	ChronoshiftPower@chronoshift:
+		Range: 0
 		OrderName: SubspaceJump
 		Prerequisites: !pdox.germany
 		Icon: FighterCleanup

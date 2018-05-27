@@ -89,6 +89,7 @@ GSUBSPESS:
 		Offset: 0,0
 		Facing: 192
 	ChronoshiftPower@chronoshift:
+		Range: 0
 		OrderName: SubspaceJump
 		Prerequisites: !pdox.germany
 		Icon: FighterCleanup
