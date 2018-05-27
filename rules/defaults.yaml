@@ -1497,7 +1497,7 @@ SERVICEFRIGATE:
 		Weapon: FieldDefenceLaserSpawnAntiFighter
 
 MINER:
-	Inherits: ^Corvette
+	Inherits: ^Frigate
 	HitShape:
 		UseTargetableCellsOffsets: true
 		Type: Rectangle
