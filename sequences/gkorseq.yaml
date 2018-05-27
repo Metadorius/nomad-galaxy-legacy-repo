@@ -111,16 +111,23 @@ gengineer:
 gresearchship:
 	Inherits: ^shipdefault
 	icon: gresearchshipicon
+	deployed: gresearchshipmake
+		Start: 78
+	make: gresearchshipmake
+		Length: *
 
 gsubspess:
 	Inherits: ^shipdefault
-	idle:
-		Start: 0
-		Length: 5
-		Facings: -32
 	subpessanimship: subpessanimship
 		Length: *
 	icon: gsubspessicon
+	deployed: gsubspessmake
+		Start: 69
+	roof: gsubspessmake
+		Start: 70
+		ZOffset: 5000
+	make: gsubspessmake
+		Length: 68
 
 gstationmobile:
 	Inherits: ^shipdefault

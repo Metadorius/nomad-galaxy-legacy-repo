@@ -31,3 +31,5 @@ Player:
 	GrantConditionOnPrerequisiteManager:
 	ResourceStorageWarning:
 	PlayerExperience:
+	TeleportNetworkManager:
+		Type: hyperspace

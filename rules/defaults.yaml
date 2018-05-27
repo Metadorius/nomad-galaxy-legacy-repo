@@ -399,6 +399,8 @@
 	Huntable:
 	SelectionDecorations:
 	WithSpriteControlGroupDecoration:
+	TeleportNetworkTransportable:
+	Chronoshiftable:
 	Health:
 		HP: 750000
 	WithFacingSpriteBody:
@@ -472,7 +474,6 @@
 
 ^Frigate:
 	Inherits@1: ^CapitalShip
-	Inherits@2: ^HyperSpaceAble
 	HitShape:
 		UseTargetableCellsOffsets: true
 		Type: Rectangle
@@ -480,6 +481,7 @@
 			BottomRight: 480, 480
 	Armor:
 		Type: Medium
+	TeleportNetworkTransportable:
 	Mobile:
 		Speed: 40
 		TurnSpeed: 6
@@ -532,11 +534,10 @@
 	Turreted:
 	AttackTurreted:
 
-^Fighter:
+^Figther&CorvetteDefaults:
 	Inherits@1: ^ExistsInWorld
 	Inherits@2: ^SpriteActor
 	Inherits@3: ^GainsExperience
-	Inherits@4: ^HyperSpaceAble
 	HitShape:
 		UseTargetableCellsOffsets: true
 		Type: Rectangle
@@ -570,6 +571,15 @@
 	Hovers:
 	Voiced:
 		VoiceSet: GenericVoice
+	SpeedMultiplier@GravGenSlow:
+		RequiresCondition: GravGenSlow
+		Modifier: 0
+	ExternalCondition@GravGenSlow:
+		Condition: GravGenSlow
+
+^Fighter:
+	Inherits: ^Figther&CorvetteDefaults
+	Inherits@4: ^HyperSpaceAble
 	AttackPlane:
 		AttackTurnDelay: 10
 		FacingTolerance: 90
@@ -615,32 +625,13 @@
 		HealIfBelow: 25
 	ExternalCondition@SlowdownFighter:
 		Condition: SlowdownFighter
-	SpeedMultiplier@GravGenSlow:
-		RequiresCondition: GravGenSlow
-		Modifier: 0
-	ExternalCondition@GravGenSlow:
-		Condition: GravGenSlow
+
 	Voiced:
 		VoiceSet: GFighterVoice
 	MustBeDestroyed:
 
-^ShootableMissile:
-	Inherits@1: ^ExistsInWorld
-	Inherits@4: ^SpriteActor
-	Targetable:
-		TargetTypes: Fighter
-	HiddenUnderFog:
-		Type: GroundPosition
-	Tooltip:
-		GenericName: Missile
-	WithShadow:
-		Offset: 43, 128, 0
-		ZOffset: -129
-	WithFacingSpriteBody:
-	HitShape:
-
 ^Corvette:
-	Inherits@1: ^Fighter
+	Inherits@1: ^Figther&CorvetteDefaults
 	Inherits@2: ^Boardable
 	Inherits@5: ^Cloakable
 	Inherits@Autotarget: ^AutoTargetAll
@@ -650,6 +641,7 @@
 		Type: Rectangle
 			TopLeft: -200, -200
 			BottomRight: 200, 200
+	TeleportNetworkTransportable:
 	Mobile:
 		Speed: 65
 		TurnSpeed: 30
@@ -667,13 +659,6 @@
 			SpaceBlue2: 100
 			SpaceRed: 130
 			SpaceRed2: 130
-	-AttackPlane:
-	-Aircraft:
-	-SmokeTrailWhenDamaged:
-	-SpeedMultiplier@BUFFS:
-	-GrantConditionOnDamageState@fighterflametrails:
-	-SelfHealing@fighterflametrails:
-	-ExternalCondition@SlowdownFighter:
 	AttackFrontal:
 	Targetable:
 		TargetTypes: Corvette
@@ -699,6 +684,21 @@
 	Voiced:
 		VoiceSet: GenericVoice
 	MustBeDestroyed:
+
+^ShootableMissile:
+	Inherits@1: ^ExistsInWorld
+	Inherits@4: ^SpriteActor
+	Targetable:
+		TargetTypes: Fighter
+	HiddenUnderFog:
+		Type: GroundPosition
+	Tooltip:
+		GenericName: Missile
+	WithShadow:
+		Offset: 43, 128, 0
+		ZOffset: -129
+	WithFacingSpriteBody:
+	HitShape:
 
 ^Building:
 	Inherits@1: ^ExistsInWorld

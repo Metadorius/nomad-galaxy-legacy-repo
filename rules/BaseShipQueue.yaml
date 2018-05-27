@@ -65,51 +65,41 @@ GADERRICK:
 
 GSUBSPESS:
 	Inherits: ^CapitalShip
+	Inherits@2: ^CivilianShipWeaponsGkor
 	Valued:
-		Cost: 3000
+		Cost: 1500
 	Tooltip:
-		Name: Support Cruiser
+		Name: Subspace Gate
 	Buildable:
 		Queue: BaseShipQueue
 		BuildPaletteOrder: 7
 		Prerequisites: gproductionship
-		Description: Exploration vessel equipped with long range scanners.\nEnables the radar upon construction.\nDetects cloaked units.
+		Description: Deployable Gate that instantly transport ships.\n- Has to be deployed to enable gate.\n- Cannot be undeployed (engine limitation).
 	Power:
-		Amount: -25
+		Amount: -30
 	Mobile:
-		Speed: 15
+		Speed: 45
 	Health:
 		HP: 3500000
-	WithDecoration@Role:
-		Image: rank
-		Sequence: vialicon
-		Palette: effect
-		ReferencePoint: Top, Right
-		RequiresCondition: !weonqloweonlawea
-		ZOffset: 256
-	WithIdleOverlay@HyperSpaceGenerator:
-		Sequence: subpessanimship
-		Palette: darkbluepal
-		Offset: 25,0,-500
-		RequiresCondition: HyperSpaceGenerator && !HyperSpaceFadeOut
-	GrantTimedConditionOnDeploy:
-		DeployedCondition: HyperSpaceGenerator
-		CooldownTicks: 1500
-		DeployedTicks: 350
-		StartsFullyCharged: True
-	ExplodeWeapon@HyperSpace:
-		Weapon: HyperSpaceGenerator
-		RequiresCondition: HyperSpaceGenerator && !HyperSpaceFadeOut
-	ExternalCondition@HyperSpaceGenerator:
-		Condition: HyperSpaceGenerator
 	AnnounceOnBuildAS:
 		Voice: SubspaceGeneratorReady
 		OnlyToOwner: True
-	AttackTurreted:
-	Armament@1:
-		Weapon: PatrolCruiserEmp
-	Turreted:
-	AutoTarget:
+	Transforms:
+		IntoActor: dgsubspess
+		Offset: 0,0
+		Facing: 192
+	ChronoshiftPower@chronoshift:
+		OrderName: SubspaceJump
+		Prerequisites: !pdox.germany
+		Icon: FighterCleanup
+		ChargeInterval: 3000
+		Description: Subspace Jump
+		LongDesc: Teleports a subspace gate somewhere.
+		SelectTargetSpeechNotification: SelectTarget
+		InsufficientPowerSpeechNotification: InsufficientPower
+		Duration: 500
+		KillCargo: yes
+		DisplayRadarPing: True
 
 GBC2:
 	Inherits: ^CapitalShip
@@ -169,3 +159,26 @@ GBC2:
 	AnnounceOnBuildAS:
 		Voice: CapitalShipReady
 		OnlyToOwner: True
+
+	# WithDecoration@Role:
+		# Image: rank
+		# Sequence: vialicon
+		# Palette: effect
+		# ReferencePoint: Top, Right
+		# RequiresCondition: !weonqloweonlawea
+		# ZOffset: 256
+	# WithIdleOverlay@HyperSpaceGenerator:
+		# Sequence: subpessanimship
+		# Palette: darkbluepal
+		# Offset: 25,0,-500
+		# RequiresCondition: HyperSpaceGenerator && !HyperSpaceFadeOut
+	# GrantTimedConditionOnDeploy:
+		# DeployedCondition: HyperSpaceGenerator
+		# CooldownTicks: 1500
+		# DeployedTicks: 350
+		# StartsFullyCharged: True
+	# ExplodeWeapon@HyperSpace:
+		# Weapon: HyperSpaceGenerator
+		# RequiresCondition: HyperSpaceGenerator && !HyperSpaceFadeOut
+	# ExternalCondition@HyperSpaceGenerator:
+		# Condition: HyperSpaceGenerator

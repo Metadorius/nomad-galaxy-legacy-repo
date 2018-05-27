@@ -138,6 +138,9 @@ DGRESEARCHSHIP:
 		Priority: 5
 	ProvidesPrerequisite@gresearchship:
 		Prerequisite: gresearchship
+	WithMakeAnimation:
+	WithSpriteBody:
+		Sequence: deployed
 
 DGPATROLCRUISER:
 	Inherits@1: ^Building
@@ -218,3 +221,57 @@ DGSHIPYARD:
 	WithMakeAnimation:
 	WithSpriteBody:
 		Sequence: deployed
+
+DGSUBSPESS:
+	Inherits@1: ^Building
+	Building:
+		Dimensions: 1,1
+		Footprint: _
+	Tooltip:
+		Name: Subspace Gate
+	RevealsShroud:
+		Range: 5c0
+		Type: CenterPosition
+	Power:
+		Amount: -30
+	RenderSprites:
+		Image: gsubspess
+	Selectable:
+		Priority: 5
+	ProvidesPrerequisite@T1Carrier: 
+		Prerequisite: gproductionship
+	TeleportNetworkPrimaryExit:
+	TeleportNetwork:
+		Type: hyperspace
+	RallyPoint:
+	Exit:
+	WithTextDecoration@primary:
+		Text: PRIMARY
+		ReferencePoint: Top
+		Color: E0D048
+		ZOffset: 9999
+		RequiresCondition: primary
+	# PrimaryBuilding:
+		# PrimaryCondition: PortalEnabled
+	WithMakeAnimation:
+	WithSpriteBody:
+		Sequence: deployed
+	WithIdleOverlay@subspaceanim:
+		Sequence: subspaceanim
+		Palette: darkbluepal
+	WithIdleOverlay@roof:
+		Sequence: roof
+	Health:
+		HP: 3500000
+	ChronoshiftPower@chronoshift:
+		OrderName: SubspaceJump
+		Prerequisites: !pdox.germany
+		Icon: FighterCleanup
+		ChargeInterval: 3000
+		Description: Subspace Jump
+		LongDesc: Teleports a subspace gate somewhere.
+		SelectTargetSpeechNotification: SelectTarget
+		InsufficientPowerSpeechNotification: InsufficientPower
+		Duration: 500
+		KillCargo: yes
+		DisplayRadarPing: True
