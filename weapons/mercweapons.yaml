@@ -142,7 +142,7 @@ BoardingPodDebuff:
 	Inherits: BoardingPod
 	Burst: 6
 	BurstDelay: 20
-	ValidTargets: CapitalShip, Frigate Ground, Air, AirHit
+	ValidTargets: CapitalShip, Frigate, Ground, Air, AirHit
 	Warhead@1Dam: SpreadDamage
 		ValidTargets: CapitalShip, Frigate, Ground, Air, AirHit
 	-Warhead@4OwnerChange: ChangeOwner

@@ -230,7 +230,7 @@ upgrade.antifighterturret:
 	Buildable:
 		Queue: CivilianShipUpgrade
 		Description: Anti fighter deployable defence
-		Prerequisites: gproductionship
+		Prerequisites: gengineer
 		BuildLimit: 0
 		IconPalette: terrain
 	Valued:

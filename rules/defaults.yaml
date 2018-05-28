@@ -1,5 +1,6 @@
 ^ExistsInWorld:
 	AppearsOnRadar:
+	UpdatesPlayerStatistics:
 	CombatDebugOverlay:
 	GivesExperience:
 		PlayerExperienceModifier: 1
@@ -175,7 +176,6 @@
 ^GenericBuffs:
 	Inherits: ^EmpDisable
 	Inherits@1: ^LaneSpeedBoost
-	Inherits@4: ^Boardable
 	Inherits@5: ^Cloakable
 	Inherits@6: ^Leachable
 	Inherits@7: ^AdrenalineBuff
@@ -389,6 +389,7 @@
 	Inherits@1: ^ExistsInWorld
 	Inherits@2: ^GainsExperience
 	Inherits@3: ^SpriteActor
+	Inherits@4: ^Boardable
 	HitShape:
 		UseTargetableCellsOffsets: true
 		Type: Rectangle
@@ -571,6 +572,12 @@
 	Hovers:
 	Voiced:
 		VoiceSet: GenericVoice
+#####################################
+# Gravity Generator Debuff
+#####################################
+	FirepowerMultiplier@GravGenSlow:
+		RequiresCondition: GravGenSlow
+		Modifier: 0
 	SpeedMultiplier@GravGenSlow:
 		RequiresCondition: GravGenSlow
 		Modifier: 0
@@ -585,9 +592,9 @@
 		FacingTolerance: 90
 	Aircraft:
 		CruiseAltitude: 5
-		IdealSeparation: 150
+		IdealSeparation: 200
 		MoveIntoShroud: true
-		RepulsionSpeed: 60
+		RepulsionSpeed: 50
 		Speed: 75
 		TurnSpeed: 14
 		CanHover: True
@@ -625,14 +632,15 @@
 		HealIfBelow: 25
 	ExternalCondition@SlowdownFighter:
 		Condition: SlowdownFighter
-
 	Voiced:
 		VoiceSet: GFighterVoice
 	MustBeDestroyed:
+	RevealsShroud:
+		Range: 3c0
+		Type: CenterPosition
 
 ^Corvette:
 	Inherits@1: ^Figther&CorvetteDefaults
-	Inherits@2: ^Boardable
 	Inherits@5: ^Cloakable
 	Inherits@Autotarget: ^AutoTargetAll
 	Guard:
@@ -1583,17 +1591,17 @@ MOBSPANWERMASTER:
 	Inherits@1: ^SpriteActor
 	Inherits@4: ^AutoTargetAll
 	Valued:
-		Cost: 350
+		Cost: 500
 	RenderSprites:
 		Image: gfighter1
 	MobSpawnerMaster:
-		Actors: gfighter1, gfighter1, gfighter1, gfighter1
+		Actors: gfighter1, gfighter1
 		ExitByBudding: False
 	AttackOmni:
 	Armament@PRIMARY:
 		Weapon: PlatformFighterSpawn
 	Health:
-		HP: 30000
+		HP: 60000
 	AttackMove:
 	Aircraft:
 		CruiseAltitude: 5
@@ -1627,7 +1635,7 @@ MOBSPANWERMASTER:
 	Interactable:
 		Bounds: 60,60
 	Health:
-		HP: 400000
+		HP: 800000
 	Mobile:
 		Speed: 40
 		RequiresCondition: deployed

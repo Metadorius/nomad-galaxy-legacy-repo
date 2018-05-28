@@ -14,6 +14,7 @@ GFIGHTER1MASTER:
 		Amount: -3
 	Tooltip:
 		Name: Interceptor Squadron
+	MobSpawnerMaster:
 	WithTextDecoration@deployed:
 		Text: F
 		ReferencePoint: Bottom
@@ -50,7 +51,7 @@ GFIGHTER2MASTER:
 	Tooltip:
 		Name: Bomber Squadron
 	MobSpawnerMaster:
-		Actors: gfighter2b, gfighter2b, gfighter2b, gfighter2b, gfighter2b, gfighter2b, gfighter2b, gfighter2b
+		Actors: gfighter2b, gfighter2b, gfighter2b, gfighter2b
 	WithTextDecoration@deployed:
 		Text: B
 		ReferencePoint: Bottom
@@ -67,7 +68,7 @@ GFIGHTER2B:
 	Tooltip:
 		Name: Bomber
 	Health:
-		HP: 40000
+		HP: 80000
 	Valued:
 		Cost: 50
 	Armament:

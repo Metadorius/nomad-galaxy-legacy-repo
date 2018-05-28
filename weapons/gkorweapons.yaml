@@ -58,7 +58,7 @@ SilencerGlaive:
 		Palette: chrome
 		RangeLimit: 10c204
 	Warhead@1Dam: SpreadDamage
-		Damage: 4000
+		Damage: 6000
 	-Warhead@2Eff: CreateEffect
 	Warhead@op: FireShrapnel
 		Weapon: SilencerGlaiveJump
@@ -166,7 +166,7 @@ FrigateGasBullet:
 	InvalidTargets: Corvette, Frigate
 	Warhead@1Dam: SpreadDamage
 		Spread: 300
-		Damage: 4500
+		Damage: 6000
 		Versus:
 			Corvette: 25
 		ValidTargets: Fighter

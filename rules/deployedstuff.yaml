@@ -263,16 +263,16 @@ DGSUBSPESS:
 		Sequence: roof
 	Health:
 		HP: 3500000
-	ChronoshiftPower@chronoshift:
-		Range: 0
-		OrderName: SubspaceJump
-		Prerequisites: !pdox.germany
-		Icon: FighterCleanup
-		ChargeInterval: 3000
-		Description: Subspace Jump
-		LongDesc: Teleports a subspace gate somewhere.
-		SelectTargetSpeechNotification: SelectTarget
-		InsufficientPowerSpeechNotification: InsufficientPower
-		Duration: 500
-		KillCargo: yes
-		DisplayRadarPing: True
+	# ChronoshiftPower@chronoshift:
+		# Range: 0
+		# OrderName: SubspaceJump
+		# Prerequisites: !pdox.germany
+		# Icon: FighterCleanup
+		# ChargeInterval: 3000
+		# Description: Subspace Jump
+		# LongDesc: Teleports a subspace gate somewhere.
+		# SelectTargetSpeechNotification: SelectTarget
+		# InsufficientPowerSpeechNotification: InsufficientPower
+		# Duration: 500
+		# KillCargo: yes
+		# DisplayRadarPing: True

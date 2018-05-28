@@ -73,7 +73,7 @@ GSUBSPESS:
 	Buildable:
 		Queue: BaseShipQueue
 		BuildPaletteOrder: 7
-		Prerequisites: gproductionship
+		Prerequisites: gresearchship
 		Description: Deployable Gate that instantly transport ships.\n- Has to be deployed to enable gate.\n- Cannot be undeployed (engine limitation).
 	Power:
 		Amount: -30
@@ -88,19 +88,19 @@ GSUBSPESS:
 		IntoActor: dgsubspess
 		Offset: 0,0
 		Facing: 192
-	ChronoshiftPower@chronoshift:
-		Range: 0
-		OrderName: SubspaceJump
-		Prerequisites: !pdox.germany
-		Icon: FighterCleanup
-		ChargeInterval: 3000
-		Description: Subspace Jump
-		LongDesc: Teleports a subspace gate somewhere.
-		SelectTargetSpeechNotification: SelectTarget
-		InsufficientPowerSpeechNotification: InsufficientPower
-		Duration: 500
-		KillCargo: yes
-		DisplayRadarPing: True
+	# ChronoshiftPower@chronoshift:
+		# Range: 0
+		# OrderName: SubspaceJump
+		# Prerequisites: !pdox.germany
+		# Icon: FighterCleanup
+		# ChargeInterval: 3000
+		# Description: Subspace Jump
+		# LongDesc: Teleports a subspace gate somewhere.
+		# SelectTargetSpeechNotification: SelectTarget
+		# InsufficientPowerSpeechNotification: InsufficientPower
+		# Duration: 500
+		# KillCargo: yes
+		# DisplayRadarPing: True
 
 GBC2:
 	Inherits: ^CapitalShip

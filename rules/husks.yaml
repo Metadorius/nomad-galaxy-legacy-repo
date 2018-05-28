@@ -4,6 +4,7 @@ GFRIG1H:
 		Cost: 1
 	Tooltip:
 		Name: Husk
+	-AppearsOnRadar:
 	-SelectionDecorations:
 	-BlocksProjectiles:
 	Health:
