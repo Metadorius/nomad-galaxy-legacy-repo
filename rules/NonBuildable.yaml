@@ -134,3 +134,49 @@ GSHIPYARD:
 		Offset: 0,0
 	ProvidesPrerequisite@T1Carrier: 
 		Prerequisite: gproductionship
+
+#######Fighter
+
+GFIGHTER3:
+	Inherits: ^Fighter
+	Inherits@1: ^AutoTargetAll
+	Valued:
+		Cost: 60
+	Tooltip:
+		Name: Piranha
+	Health:
+		HP: 2500
+	CarrierSlave:
+	RejectsOrders:
+	Aircraft:
+		Speed: 60
+		CruiseAltitude: 106
+		IdealSeparation: 100
+	Armament:
+		Weapon: PiranhaBite
+		TargetStances: Ally
+	MustBeDestroyed:
+	-AttackPlane:
+	AttackHeli:
+	SelectionDecorations:
+		VisualBounds: 20,20
+	AutoTarget:
+		ScanRadius: 20
+	AmmoPool:
+		Ammo: 2
+	KillsSelf:
+		RequiresCondition: KillFighter
+		# RemoveInstead: True
+	GrantPeriodicCondition:
+		Condition: KillFighter
+		CooldownDuration: 1000
+	ExternalCondition@KillFighter:
+		Condition: KillFighter
+	AutoTargetPriority@DEFAULT:
+		RequiresCondition: !stance-attackanything
+		ValidTargets: CapitalShip, Frigate, Corvette, Fighter, Station
+		InvalidTargets: NoAutoTarget
+		Priority: 2
+	AttackWander:
+		MinMoveDelay: 1
+		MaxMoveDelay: 9999

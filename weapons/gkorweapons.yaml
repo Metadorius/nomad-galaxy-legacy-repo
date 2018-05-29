@@ -21,14 +21,19 @@ BomberAcid:
 
 PiranhaBite:
 	Inherits: BomberPlasma
-	ReloadDelay: 30
-	Range: 500
-	Burst: 1
+	ReloadDelay: 50
+	-Report:
+	Range: 1c0
+	MinRange: 0c050
+	Projectile: LaserZap
+		Width: 25
+		BeamDuration: 5
+		Color: 2FE00B
 	Warhead@1Dam: SpreadDamage
-		Damage: 5000
-		ValidTargets: CapitalShip, Frigate, Corvette, Ground
+		Damage: -5000
+		ValidTargets: Fighter, CapitalShip, Frigate, Corvette, Ground
 	-Warhead@2Eff: CreateEffect
-	ValidTargets: CapitalShip, Frigate, Corvette, Ground
+	ValidTargets: Fighter, CapitalShip, Frigate, Corvette, Ground
 
 ^AutoCannon:
 	Inherits: ^NormalWeaponWarhead
@@ -147,7 +152,7 @@ GPlatformNeedle:
 GAcidFrigateNeedle:
 	Inherits: GPlatformNeedle
 	Warhead@1Dam: SpreadDamage
-		Damage: 10000
+		Damage: 7000
 
 GPlatformCannon:
 	Inherits: CorvetteCannon

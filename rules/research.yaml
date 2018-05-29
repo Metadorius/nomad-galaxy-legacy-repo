@@ -85,24 +85,7 @@ research.Crystal.Harvest:
 		IconPalette: pirateicon
 	RenderSprites:
 		Image: upgradeicon
-	Mobile:
-		Speed: 15
-		TurnSpeed: 5
-		TerrainSpeeds:
-			Clear: 100
-			Ground: 100
-			Tiberium: 100
-			BlueTiberium: 100
-			Junk: 100
-			Gas: 100
-			SpaceGray: 100
-			SpaceGray2: 100
-			SpaceGreen: 100
-			SpaceGreen2: 100
-			SpaceBlue: 100
-			SpaceBlue2: 100
-			SpaceRed: 100
-			SpaceRed2: 100
+	Immobile:
 	Doctrine:
 	ProvidesPrerequisite@upgradename:
 	KillsSelf:

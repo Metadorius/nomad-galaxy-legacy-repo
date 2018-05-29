@@ -17,6 +17,8 @@ GFRIG1:
 		TurnSpeed: 7
 	Health:
 		HP: 750000
+	RevealsShroud:
+		Range: 5c0
 	Armament:
 		Weapon: FrigateCannon
 		RequiresCondition: !HyperSpaceFadeOut
@@ -57,6 +59,8 @@ GFRIG3:
 		Name: Acid Frigate
 	Health:
 		HP: 620000
+	RevealsShroud:
+		Range: 5c0
 	Mobile:
 		TurnSpeed: 2
 		Speed: 45
@@ -92,6 +96,8 @@ GFRIG2:
 		TurnSpeed: 1
 	Health:
 		HP: 450000
+	RevealsShroud:
+		Range: 7c0
 	Armament:
 		Weapon: AlienArtillery
 		RequiresCondition: !HyperSpaceFadeOut
@@ -109,7 +115,7 @@ GBC1:
 		Prerequisites: gresearchship
 		Description: Basic capital ship armed with heavy cannons and point defence lasers.\nEffective against Frigates and Capital Ships.
 	Valued:
-		Cost: 2000
+		Cost: 3000
 	Tooltip:
 		Name: Destroyer
 	Power:
@@ -119,7 +125,7 @@ GBC1:
 	Health:
 		HP: 3000000
 	RevealsShroud:
-		Range: 9c0
+		Range: 5c0
 	Armament:
 		Weapon: CapitalShipAutoCannon
 	Armament@1:

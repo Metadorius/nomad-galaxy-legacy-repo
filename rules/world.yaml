@@ -32,7 +32,7 @@
 		Description: Selection is a lie
 	ResourceType@green-tib:
 		Name: Minerals ($30)
-		PipColor: Green
+		PipColor: Blue
 		ResourceType: 1
 		Palette: apolcybl
 		Type: BlueOre
@@ -43,7 +43,7 @@
 		AllowedTerrainTypes: Clear, SpaceGray, SpaceGreen, SpaceBlue, SpaceRed, SpaceGray2, SpaceGreen2, SpaceBlue2, SpaceRed2, Notifier
 		AllowUnderActors: true
 	ResourceType@blue-tib:
-		Name: High density minerals ($20)
+		Name: High density minerals ($15)
 		PipColor: Blue
 		ResourceType: 2
 		Palette: chrome
@@ -51,7 +51,7 @@
 		TerrainType: BlueTiberium
 		Sequences: astorecyan1, astorecyan2, astorecyan3, astorecyan4, astorecyan5, astorecyan6, astorecyan7, astorecyan8, astorecyan9, astorecyan10, astorecyan11, astorecyan12, astorecyan13
 		MaxDensity: 1300
-		ValuePerUnit: 20
+		ValuePerUnit: 15
 		AllowedTerrainTypes: Clear, SpaceGray, SpaceGreen, SpaceBlue, SpaceRed, SpaceGray2, SpaceGreen2, SpaceBlue2, SpaceRed2, Notifier
 		AllowUnderActors: true
 	ResourceType@junk:
@@ -68,7 +68,7 @@
 		AllowUnderActors: true
 	ResourceType@gray-tib:
 		Name: Minerals ($15)
-		PipColor: Gray
+		PipColor: Red
 		ResourceType: 4
 		Palette: apolgrey
 		Type: Minerals
@@ -80,7 +80,7 @@
 		AllowUnderActors: true
 	ResourceType@gas:
 		Name: Gas ($15)
-		PipColor: Blue
+		PipColor: Red
 		ResourceType: 8
 		Palette: yellowpal
 		Type: Gas

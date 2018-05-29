@@ -56,6 +56,7 @@ CommetDummyBullet2:
 	Warhead@op: FireShrapnel
 		Weapon: CometProjectile2
 		Amount: 2
+	-Warhead@1Dam:
 
 CometProjectile:
 	ReloadDelay: 200

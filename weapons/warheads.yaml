@@ -36,7 +36,6 @@
 			Small: 50
 			medium: 75
 			Heavy: 100
-		ValidStances: Neutral, Enemy
 
 ^Flak:
 	Inherits: ^LightWeaponsWarhead

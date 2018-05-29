@@ -201,31 +201,6 @@ GBOMBERCARRIER:
 		InternalOwner: Neutral
 	-ExplodeWeapon@AntiFighter:
 
-GFIGHTER3:
-	Inherits: ^Fighter
-	Valued:
-		Cost: 60
-	Tooltip:
-		Name: Piranha
-	Power:
-		Amount: -1
-	Health:
-		HP: 25000
-	Aircraft:
-		Speed: 80
-		CruiseAltitude: 106
-		IdealSeparation: 100
-	Armament:
-		Weapon: PiranhaBite
-		RequiresCondition: !HyperSpaceFadeOut
-	MustBeDestroyed:
-	AttackHeli:
-		AttackTurnDelay: 25
-	SelectionDecorations:
-		VisualBounds: 20,20
-	AutoTarget:
-		ScanRadius: 4
-
 GPROBE:
 	Inherits: PROBE
 

@@ -750,10 +750,15 @@
 	RevealsShroud:
 		Range: 5c0
 		Type: CenterPosition
+	Explodes:
+		Weapon: CapShipExplode
+		EmptyWeapon: CapShipExplode
 	Selectable:
 		Bounds: 60,60
 	Interactable:
 		Bounds: 60,60
+	EditorTilesetFilter:
+		Categories: Station or Deployed Ship
 
 ^BuildableStation:
 	Inherits: ^Building
@@ -1200,6 +1205,8 @@ CIVILIANCORESHIP:
 # PRODUCTION STUFF
 #######################################
 	Exit:
+        SpawnOffset: 99999,99999,99999
+        ExitCell: 3,3
 	ProvidesPrerequisite@unitname:
 	ProductionBar:
 #######################################
@@ -1267,6 +1274,7 @@ CIVILIANCORESHIP:
 	TransformOnCondition@surveyfrigate:
 		IntoActor: dgsurveyfrigate
 		Offset: 0,0
+		SkipMakeAnims: False
 		RequiresCondition: surveyfrigate && !moving && deployed
 	WithDecoration@surveyfrigate:
 		RequiresCondition: surveyfrigate
@@ -1385,6 +1393,8 @@ PRODUCTIONSHIP:
 	Mobile:
 		Speed: 40
 	Exit:
+        SpawnOffset: 99999,99999,99999
+        ExitCell: 3,3
 	RevealsShroud:
 		Range: 5c0
 	MustBeDestroyed:
@@ -1429,6 +1439,7 @@ PRODUCTIONSHIP:
 		RequiresCondition: CorvetteQueue
 	TransformOnCondition@Corvette:
 		IntoActor: dgpatrolcruiser
+		SkipMakeAnims: False
 		RequiresCondition: CorvetteQueue && !moving && deployed
 	TransformOnCondition@CorvetteAI:
 		IntoActor: gpatrolcruiser
@@ -1444,6 +1455,7 @@ PRODUCTIONSHIP:
 		RequiresCondition: FrigateQueue
 	TransformOnCondition@FrigateQueue:
 		IntoActor: dgfrigateassemblybay
+		SkipMakeAnims: False
 		RequiresCondition: FrigateQueue && !moving && deployed
 	TransformOnCondition@FrigateQueueAI:
 		IntoActor: gfrigateassemblybay
@@ -1460,6 +1472,7 @@ PRODUCTIONSHIP:
 		RequiresCondition: BaseShipQueue
 	TransformOnCondition@BaseShipQueue:
 		IntoActor: dgshipyard
+		SkipMakeAnims: False
 		RequiresCondition: BaseShipQueue && !moving && deployed
 	TransformOnCondition@BaseShipQueueAI:
 		IntoActor: gshipyard

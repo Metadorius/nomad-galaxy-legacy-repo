@@ -44,6 +44,7 @@ BasicAutocannon:
 	Range: 3c0
 	Warhead@1Dam: SpreadDamage
 		Damage: 3000
+		ValidStances: Ally, Neutral, Enemy
 	Warhead@2Eff: CreateEffect
 		Explosions: piff
 
@@ -299,7 +300,7 @@ LeechVaccine:
 
 IonBeamCharge:
 	ReloadDelay: 150
-	Range: 7c0
+	Range: 10c0
 	InvalidTargets: Fighter
 	ValidTargets: CapitalShip, Frigate, Corvette, Ground, Air, Airhit
 	Projectile: InstantExplode
@@ -321,7 +322,7 @@ IonBeamCharge:
 IonBeam:
 	ReloadDelay: 2
 	Report: lastur1.aud
-	Range: 7c0
+	Range: 10c0
 	InvalidTargets: Fighter
 	ValidTargets: CapitalShip, Frigate, Corvette, Ground, Air, Airhit
 	Projectile: LaserZap
@@ -424,6 +425,18 @@ PlatformBomberSpawn:
 	Warhead@1Dam: SpreadDamage
 		ValidTargets: CapitalShip, Frigate, Corvette, Ground
 		InvalidTargets: Fighter
+
+EngineerCrewFighterSpawn:
+	Inherits: PlatformFighterSpawn
+	ReloadDelay: 15
+	ValidTargets: CapitalShip, Frigate, Fighter, Corvette, Ground
+	-InvalidTargets:
+	Range: 7c0
+	Warhead@1Dam: SpreadDamage
+		Spread: 1
+		Damage: -1
+		ValidTargets: CapitalShip, Frigate, Fighter, Corvette, Ground
+		-InvalidTargets: CapitalShip, Frigate
 
 ChaseAIPlatform:
 	Inherits: ChaseWeapon

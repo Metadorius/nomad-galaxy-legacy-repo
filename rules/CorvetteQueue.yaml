@@ -51,7 +51,7 @@ GFIGHTER2MASTER:
 	Tooltip:
 		Name: Bomber Squadron
 	MobSpawnerMaster:
-		Actors: gfighter2b, gfighter2b, gfighter2b, gfighter2b
+		Actors: gfighter2b, gfighter2b, gfighter2b
 	WithTextDecoration@deployed:
 		Text: B
 		ReferencePoint: Bottom

@@ -99,6 +99,7 @@ DGENGINEER:
 	Inherits@1: ^Building
 	Inherits@2: ^EngineerShipLogo
 	Inherits@3: ^EngineerCrewHP
+	Inherits@4: ^AutoTargetAll
 	Building:
 		Dimensions: 1,1
 		Footprint: _
@@ -113,12 +114,27 @@ DGENGINEER:
 		Image: gengineer
 	Selectable:
 		Priority: 5
-	ExplodeWeapon@engineeringcrew:
-		Weapon: FieldRepairLaserSpawnStrong
-		LocalOffset: 0,0,0
 	WithMakeAnimation:
 	WithSpriteBody:
 		Sequence: deployed
+	AttackOmni:
+	ExplodeWeapon:
+		Weapon: EngineerCrewFighterSpawn
+	CarrierMaster:
+		Actors: gfighter3, gfighter3, gfighter3
+		RespawnTicks: 10
+		ReamTicks: 10
+		NoRegeneration: True
+		InstaRepair: true
+		SpawnAllAtOnce: True
+	Armament@PRIMARY:
+		Weapon: EngineerCrewFighterSpawn
+		TargetStances: Ally
+	AutoTargetPriority@DEFAULT:
+		RequiresCondition: !stance-attackanything
+		ValidTargets: CapitalShip, Frigate, Corvette, Fighter, Station
+		InvalidTargets: NoAutoTarget
+		Priority: 2
 
 DGRESEARCHSHIP:
 	Inherits@1: ^Building
