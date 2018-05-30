@@ -43,7 +43,7 @@
 		AllowedTerrainTypes: Clear, SpaceGray, SpaceGreen, SpaceBlue, SpaceRed, SpaceGray2, SpaceGreen2, SpaceBlue2, SpaceRed2, Notifier
 		AllowUnderActors: true
 	ResourceType@blue-tib:
-		Name: High density minerals ($15)
+		Name: High density minerals ($10)
 		PipColor: Blue
 		ResourceType: 2
 		Palette: chrome
@@ -51,7 +51,7 @@
 		TerrainType: BlueTiberium
 		Sequences: astorecyan1, astorecyan2, astorecyan3, astorecyan4, astorecyan5, astorecyan6, astorecyan7, astorecyan8, astorecyan9, astorecyan10, astorecyan11, astorecyan12, astorecyan13
 		MaxDensity: 1300
-		ValuePerUnit: 15
+		ValuePerUnit: 10
 		AllowedTerrainTypes: Clear, SpaceGray, SpaceGreen, SpaceBlue, SpaceRed, SpaceGray2, SpaceGreen2, SpaceBlue2, SpaceRed2, Notifier
 		AllowUnderActors: true
 	ResourceType@junk:
@@ -129,7 +129,7 @@ World:
 		ClassName: MCV Only
 		Factions: gkor
 		BaseActor: gmothership
-		SupportActors: merc.dummy, #grefinery research.dummy,
+		SupportActors: merc.dummy
 	# MPStartUnits@terranmcv:
 		# Class: none
 		# ClassName: MCV Only

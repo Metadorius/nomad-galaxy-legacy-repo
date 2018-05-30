@@ -595,7 +595,7 @@
 		IdealSeparation: 200
 		MoveIntoShroud: true
 		RepulsionSpeed: 50
-		Speed: 75
+		Speed: 100
 		TurnSpeed: 14
 		CanHover: True
 		LandWhenIdle: False
@@ -651,7 +651,7 @@
 			BottomRight: 200, 200
 	TeleportNetworkTransportable:
 	Mobile:
-		Speed: 65
+		Speed: 80
 		TurnSpeed: 30
 		SharesCell: True
 		TerrainSpeeds:
@@ -972,7 +972,7 @@
 	ProductionQueue:
 		Type: CorvetteQueue
 		Group: Defence
-		LowPowerSlowdown: 3
+        LowPowerSlowdown: 10
 	Production:
 		Produces: CorvetteQueue
 	ProductionBar:
@@ -984,6 +984,7 @@
 	ProductionQueue:
 		Type: FrigateQueue
 		Group: Infantry
+        LowPowerSlowdown: 10
 	Production:
 		Produces: FrigateQueue
 	ProductionBar:
@@ -994,6 +995,7 @@
 	ProductionQueue:
 		Type: BaseShipQueue
 		Group: Building
+        LowPowerSlowdown: 1
 	Production:
 		Produces: BaseShipQueue
 	ProductionBar:
@@ -1040,7 +1042,13 @@
 		Prerequisite: ghabitatship
 	StoresResources:
 		PipCount: 10
-		Capacity: 1000
+		Capacity: 500
+	SpawnActorOnDeath@husk:
+		Actor: ghabitatshiph
+		OwnerType: InternalName
+		InternalOwner: Neutral
+	Power:
+		Amount: 40
 
 ^SurveyFrigateHP:
 	Health:
@@ -1049,26 +1057,46 @@
 		Name: Survey Frigate
 	ProvidesPrerequisite@gsurveyfrigate:
 		Prerequisite: gsurveyfrigate
+	Power:
+		Amount: -25
+    DetectCloaked:
+		Range: 10c0
 	RevealsShroud:
-		Range: 5c0
+		Range: 10c0
 		Type: CenterPosition
+	SpawnActorOnDeath@husk:
+		Actor: gsurveyfrigateh
+		OwnerType: InternalName
+		InternalOwner: Neutral
 
 ^EngineerCrewHP:
 	Health:
 		HP: 400000
+	Power:
+		Amount: -15
 	Tooltip:
 		Name: Engineering Crew
 	ProvidesPrerequisite@gengineer:
 		Prerequisite: gengineer
+	SpawnActorOnDeath@husk:
+		Actor: gengineercrewh
+		OwnerType: InternalName
+		InternalOwner: Neutral
 
 ^ResearchShipHP:
 	Health:
 		HP: 400000
 	Tooltip:
 		Name: Research Ship
+	Power:
+		Amount: -50
 	ProvidesPrerequisite@RearchshipAI:
 		Prerequisite: gresearchship
 		RequiresCondition: AIWanderer
+	SpawnActorOnDeath@husk:
+		Actor: gresearchshiph
+		OwnerType: InternalName
+		InternalOwner: Neutral
 
 ^ProductionShipHP:
 	Health:
@@ -1082,6 +1110,11 @@
 		Actor: gpatrolcruiserh
 		OwnerType: InternalName
 		InternalOwner: Neutral
+	Power:
+		Amount: -20
+	StoresResources:
+		PipCount: 5
+		Capacity: 1000
 
 ^FrigateAssemblyBayHP:
 	Inherits@1: ^CivilianShipWeaponsGkor
@@ -1091,6 +1124,11 @@
 		Actor: gfrigateassemblybayh
 		OwnerType: InternalName
 		InternalOwner: Neutral
+	Power:
+		Amount: -40
+	StoresResources:
+		PipCount: 5
+		Capacity: 1000
 
 ^ShipyardHP:
 	Inherits@1: ^CivilianShipWeaponsGkor
@@ -1100,10 +1138,18 @@
 		Actor: gshipyardh
 		OwnerType: InternalName
 		InternalOwner: Neutral
+	Power:
+		Amount: -40
 
 ^SupportShipHP:
 	Health:
 		HP: 800000
+
+^SubspessHP:
+	Health:
+		HP: 3500000
+	Power:
+		Amount: -40
 
 MOTHERSHIP:
 	Inherits: ^Building
@@ -1117,7 +1163,7 @@ MOTHERSHIP:
 	ProvidesPrerequisite@buildingname:
 	Building:
 		Dimensions: 1,1
-		Footprint: _
+		Footprint: =
 	CashTrickler:
 	Health:
 		HP: 1500000
@@ -1220,6 +1266,7 @@ CIVILIANCORESHIP:
 	ProductionQueue@CivilianShipUpgrade:
 		Type: CivilianShipUpgrade
 		Group: Vehicle
+		LowPowerSlowdown: 10
 	Production@CivilianShipUpgrade:
 		Produces: CivilianShipUpgrade
 		RequiresCondition: !supplyship && !surveyfrigate && !engineeringcrew && !researchship && !antismallturret && !antifighterturret
@@ -1242,12 +1289,12 @@ CIVILIANCORESHIP:
 		Condition: antismallturret
 		Actors: upgrade.antismallturret
 	Power:
-		Amount: 10
+		Amount: 15
 #######################################
 # Supply Ship Bonus
 #######################################
 	Power@1:
-		Amount: 20
+		Amount: 25
 		RequiresCondition: supplyship
 	TransformOnCondition@supplyship:
 		IntoActor: dgsupplyship
@@ -1388,7 +1435,10 @@ PRODUCTIONSHIP:
 	Health:
 		HP: 800000
 	Power:
-		Amount: -10
+		Amount: -20
+	StoresResources:
+		PipCount: 5
+		Capacity: 1000
 	RenderSprites:
 	Mobile:
 		Speed: 40
@@ -1416,7 +1466,7 @@ PRODUCTIONSHIP:
 	ProductionQueue@AssemblyBayUpgrade:
 		Type: AssemblyBayUpgrade
 		Group: Vehicle
-		LowPowerSlowdown: 3
+		LowPowerSlowdown: 10
 	Production@AssemblyBayUpgrade:
 		Produces: AssemblyBayUpgrade
 		RequiresCondition: !CorvetteQueue && !FrigateQueue && !BaseShipQueue
@@ -1525,7 +1575,7 @@ MINER:
 			TopLeft: -256, -256
 			BottomRight: 256, 256
 	Valued:
-		Cost: 1400
+		Cost: 700
 	Tooltip:
 		Name: Miner
 	Selectable:
@@ -1536,7 +1586,7 @@ MINER:
 	Armor:
 		Type: Medium
 	Health:
-		HP: 400000
+		HP: 200000
 	WithHarvestOverlay:
 		Palette: terrain
 	Explodes:
@@ -1553,7 +1603,7 @@ MINER:
 		Resources: CyanOre, BlueOre, Gas, Junk, Minerals
 		BaleLoadDelay: 12
 		BaleUnloadDelay: 3
-		Capacity: 60
+		Capacity: 30
 		SearchForDeliveryBuildingDelay: 150
 		MaxIdleDuration: 20
 		WaitDuration: 20

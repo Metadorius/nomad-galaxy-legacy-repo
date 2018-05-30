@@ -53,7 +53,7 @@ DGSUPPLYSHIP:
 	Inherits@1: ^SupplyShipHP
 	Building:
 		Dimensions: 1,1
-		Footprint: _
+		Footprint: =
 	RevealsShroud:
 		Range: 5c0
 		Type: CenterPosition
@@ -66,7 +66,7 @@ DGSUPPLYSHIP:
 	Selectable:
 		Priority: 5
 	Power@2:
-		Amount: 90
+		Amount: 40
 	Refinery:
 		DockOffset: 0,0
 	WithMakeAnimation:
@@ -79,7 +79,7 @@ DGSURVEYFRIGATE:
 	Inherits@3: ^SurveyFrigateHP
 	Building:
 		Dimensions: 1,1
-		Footprint: _
+		Footprint: x
 	Transforms:
 		IntoActor: gsurveyfrigate
 		Offset: 0,0
@@ -90,7 +90,7 @@ DGSURVEYFRIGATE:
 		Priority: 5
 	ProvidesRadar:
 	RevealsShroud@surveyfrigate:
-		Range: 15c0
+		Range: 20c0
 	WithMakeAnimation:
 	WithSpriteBody:
 		Sequence: deployed
@@ -102,7 +102,7 @@ DGENGINEER:
 	Inherits@4: ^AutoTargetAll
 	Building:
 		Dimensions: 1,1
-		Footprint: _
+		Footprint: x
 	RevealsShroud:
 		Range: 5c0
 		Type: CenterPosition
@@ -112,6 +112,7 @@ DGENGINEER:
 		Facing: 64
 	RenderSprites:
 		Image: gengineer
+	RenderRangeCircle:
 	Selectable:
 		Priority: 5
 	WithMakeAnimation:
@@ -141,7 +142,7 @@ DGRESEARCHSHIP:
 	Inherits@3: ^ResearchShipHP
 	Building:
 		Dimensions: 1,1
-		Footprint: _
+		Footprint: x
 	RevealsShroud:
 		Range: 5c0
 		Type: CenterPosition
@@ -164,7 +165,7 @@ DGPATROLCRUISER:
 	Inherits@3: ^PatrolCruiserHP
 	Building:
 		Dimensions: 1,1
-		Footprint: _
+		Footprint: x
 	Tooltip:
 		Name: Patrol Cruiser
 	RevealsShroud:
@@ -191,7 +192,7 @@ DGFRIGATEASSEMBLYBAY:
 	Inherits@3: ^FrigateAssemblyBayHP
 	Building:
 		Dimensions: 1,1
-		Footprint: _
+		Footprint: x
 	Tooltip:
 		Name: Frigate Assembly Bay
 	RevealsShroud:
@@ -218,7 +219,7 @@ DGSHIPYARD:
 	Inherits@3: ^ShipyardHP
 	Building:
 		Dimensions: 1,1
-		Footprint: _
+		Footprint: x
 	Tooltip:
 		Name: Shipyard
 	RevealsShroud:
@@ -240,9 +241,10 @@ DGSHIPYARD:
 
 DGSUBSPESS:
 	Inherits@1: ^Building
+    Inherits@2: ^SubspessHP
 	Building:
 		Dimensions: 1,1
-		Footprint: _
+		Footprint: x
 	Tooltip:
 		Name: Subspace Gate
 	RevealsShroud:
@@ -267,8 +269,6 @@ DGSUBSPESS:
 		Color: E0D048
 		ZOffset: 9999
 		RequiresCondition: primary
-	# PrimaryBuilding:
-		# PrimaryCondition: PortalEnabled
 	WithMakeAnimation:
 	WithSpriteBody:
 		Sequence: deployed
@@ -277,18 +277,3 @@ DGSUBSPESS:
 		Palette: darkbluepal
 	WithIdleOverlay@roof:
 		Sequence: roof
-	Health:
-		HP: 3500000
-	# ChronoshiftPower@chronoshift:
-		# Range: 0
-		# OrderName: SubspaceJump
-		# Prerequisites: !pdox.germany
-		# Icon: FighterCleanup
-		# ChargeInterval: 3000
-		# Description: Subspace Jump
-		# LongDesc: Teleports a subspace gate somewhere.
-		# SelectTargetSpeechNotification: SelectTarget
-		# InsufficientPowerSpeechNotification: InsufficientPower
-		# Duration: 500
-		# KillCargo: yes
-		# DisplayRadarPing: True

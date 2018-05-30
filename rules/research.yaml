@@ -112,6 +112,8 @@ upgrade.corvettequeue:
 		Cost: 500
 	RenderSprites:
 		Image: gpatrolcruiser
+	Power:
+		Amount: -20
 
 upgrade.frigatequeue:
 	Inherits: ^default.upgrade
@@ -127,6 +129,8 @@ upgrade.frigatequeue:
 		Cost: 1000
 	RenderSprites:
 		Image: gfrigateassemblybay
+	Power:
+		Amount: -40
 
 upgrade.baseshipqueue:
 	Inherits: ^default.upgrade
@@ -142,6 +146,8 @@ upgrade.baseshipqueue:
 		Cost: 2000
 	RenderSprites:
 		Image: gshipyard
+	Power:
+		Amount: -40
 
 ###############################################################
 # CIVILIAN SHIP UPGRADES
@@ -160,6 +166,8 @@ upgrade.supplyship:
 		Cost: 500
 	RenderSprites:
 		Image: ghabitatship
+	Power:
+		Amount: 80
 
 upgrade.surveyfrigate:
 	Inherits: ^default.upgrade
@@ -167,7 +175,7 @@ upgrade.surveyfrigate:
 		Name: Survey Frigate
 	Buildable:
 		Queue: CivilianShipUpgrade
-		Description: High vision ship that provides radar,\nstealth detection, and technology when deployed.
+		Description: High vision ship that provides radar and\nstealth detection, vision increases when deployed.
 		Prerequisites: gproductionship
 		BuildLimit: 0
 		IconPalette: terrain
@@ -175,6 +183,8 @@ upgrade.surveyfrigate:
 		Cost: 1500
 	RenderSprites:
 		Image: gsurveyfrigate
+	Power:
+		Amount: -25
 
 upgrade.engineeringcrew:
 	Inherits: ^default.upgrade
@@ -190,6 +200,9 @@ upgrade.engineeringcrew:
 		Cost: 1000
 	RenderSprites:
 		Image: gengineer
+		HP: 400000
+	Power:
+		Amount: -15
 
 upgrade.researchship:
 	Inherits: ^default.upgrade
@@ -202,7 +215,9 @@ upgrade.researchship:
 		BuildLimit: 0
 		IconPalette: terrain
 	Valued:
-		Cost: 2000
+		Cost: 3000
+	Power:
+		Amount: -50
 	RenderSprites:
 		Image: gresearchship
 
@@ -243,25 +258,23 @@ upgrade.antismallturret:
 	AlwaysVisible:
 	Buildable:
 		BuildPaletteOrder: 50
-		Prerequisites: ~!T1Contract
 		Queue: MercContract
 		BuildLimit: 1
 		IconPalette: pirateicon
+        Prerequisites: ~gsurveyfrigate
 		BuildDurationModifier: 240
 	ProvidesPrerequisite@upgradename:
 	ProvidesPrerequisite@T1Contract:
 		Prerequisite: T1Contract
 	Valued:
 		Cost: 750
-	Power:
-		Amount: -15
 	Interactable:
 
 ^Tier2Contract:
 	AlwaysVisible:
 	Buildable:
 		BuildPaletteOrder: 50
-		Prerequisites: ~T1Contract
+		Prerequisites: ~T1Contract, ~gsurveyfrigate
 		Queue: MercContract
 		BuildLimit: 1
 		IconPalette: pirateicon
@@ -270,8 +283,6 @@ upgrade.antismallturret:
 		Prerequisite: T2Contract
 	Valued:
 		Cost: 750
-	Power:
-		Amount: -15
 	Interactable:
 
 merc.dummy:
@@ -301,28 +312,24 @@ merc.dummy:
 	ProductionQueue:
 		Type: MercContract
 		Factions: gkor, terran
-		Group: Vehicle
-		LowPowerSlowdown: 3
+		Group: Aircraft
+		LowPowerSlowdown: 10
 		QueuedAudio: Building
 		ReadyAudio: ConstructionComplete
 	Production:
-		Produces: MercContract
-		RequiresCondition: gsurveyfrigate
-	GrantConditionOnPrerequisite@gsurveyfrigate:
-		Prerequisites: gsurveyfrigate
-		Condition: gsurveyfrigate
+        Produces: MercContract
 	Exit:
 	ProvidesPrerequisite@upgradename:
 	Interactable:
 
-# research.pirates:
-	# Inherits: ^Tier1Contract
-	# Tooltip:
-		# Name: Blood Dust clan contact
-	# Buildable:
-		# Description: Establishes connections with the pirate clans in the sector.\nPirate units focus on boarding actions and hit and run tactics.\n\nUnits unlocked:\n-Boarding Frigate.\n-Corsair.\n-Battle Axe Fighter Bomber.
-	# RenderSprites:
-		# Image: punit3
+research.pirates:
+	Inherits: ^Tier1Contract
+	Tooltip:
+		Name: Blood Dust clan contact
+	Buildable:
+		Description: Establishes connections with the pirate clans in the sector.\nPirate units focus on boarding actions and hit and run tactics.\n\nUnits unlocked:\n-Boarding Frigate.\n-Corsair.\n-Battle Axe Fighter Bomber.
+	RenderSprites:
+		Image: punit3
 
 research.hyperion:
 	Inherits: ^Tier1Contract

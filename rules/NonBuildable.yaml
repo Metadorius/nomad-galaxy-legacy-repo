@@ -22,8 +22,6 @@ GHABITATSHIP:
 		IntoActor: dgsupplyship
 		Offset: 0,0
 		Facing: 128
-	Power@1:
-		Amount: 30
 	ProvidesPrerequisite@ghabitatship:
 		Prerequisite: ghabitatship
 
@@ -157,6 +155,7 @@ GFIGHTER3:
 		TargetStances: Ally
 	MustBeDestroyed:
 	-AttackPlane:
+	-Explodes:
 	AttackHeli:
 	SelectionDecorations:
 		VisualBounds: 20,20
@@ -169,7 +168,7 @@ GFIGHTER3:
 		# RemoveInstead: True
 	GrantPeriodicCondition:
 		Condition: KillFighter
-		CooldownDuration: 1000
+		CooldownDuration: 500
 	ExternalCondition@KillFighter:
 		Condition: KillFighter
 	AutoTargetPriority@DEFAULT:

@@ -20,20 +20,17 @@ BomberAcid:
 		ExplosionPalette: tsanim
 
 PiranhaBite:
-	Inherits: BomberPlasma
 	ReloadDelay: 50
-	-Report:
 	Range: 1c0
 	MinRange: 0c050
+	ValidTargets: Fighter, CapitalShip, Frigate, Corvette, Ground
 	Projectile: LaserZap
 		Width: 25
 		BeamDuration: 5
 		Color: 2FE00B
 	Warhead@1Dam: SpreadDamage
-		Damage: -5000
+		Damage: -10000
 		ValidTargets: Fighter, CapitalShip, Frigate, Corvette, Ground
-	-Warhead@2Eff: CreateEffect
-	ValidTargets: Fighter, CapitalShip, Frigate, Corvette, Ground
 
 ^AutoCannon:
 	Inherits: ^NormalWeaponWarhead
@@ -152,7 +149,7 @@ GPlatformNeedle:
 GAcidFrigateNeedle:
 	Inherits: GPlatformNeedle
 	Warhead@1Dam: SpreadDamage
-		Damage: 7000
+		Damage: 4000
 
 GPlatformCannon:
 	Inherits: CorvetteCannon

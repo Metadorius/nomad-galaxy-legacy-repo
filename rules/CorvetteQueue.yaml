@@ -119,8 +119,6 @@ GCORV2:
 		Name: Silencer
 	Power:
 		Amount: -4
-	Mobile:
-		Speed: 60
 	Health:
 		HP: 170000
 	RevealsShroud:

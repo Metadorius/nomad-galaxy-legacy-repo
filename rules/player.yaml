@@ -9,6 +9,16 @@ Player:
 	Inherits: ^BasePlayer
 	AlwaysVisible:
 	PlaceBuilding:
+	# ProductionQueue@MercContract:
+		# Type: MercContract
+		# Group: Aircraft
+	# Production@MercContract:
+		# Produces: MercContract
+		# RequiresCondition: UnlockMercenary
+    # GrantCondition@UnlockMercenary:
+        # Condition: UnlockMercenary
+        # RequiresCondition: gsurveyfrigate
+    # Exit:
 	TechTree:
 	SupportPowerManager:
 	ScriptTriggers:

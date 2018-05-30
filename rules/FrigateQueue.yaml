@@ -80,6 +80,8 @@ GFRIG3:
 		Actor: gfrig3h
 		OwnerType: InternalName
 		InternalOwner: Neutral
+    WithRangeCircle:
+        Range: 7c0
 
 GFRIG2:
 	Inherits: ^AFrontalFrigate
@@ -115,7 +117,7 @@ GBC1:
 		Prerequisites: gresearchship
 		Description: Basic capital ship armed with heavy cannons and point defence lasers.\nEffective against Frigates and Capital Ships.
 	Valued:
-		Cost: 3000
+		Cost: 4000
 	Tooltip:
 		Name: Destroyer
 	Power:
