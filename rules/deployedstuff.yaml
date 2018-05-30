@@ -57,6 +57,8 @@ DGSUPPLYSHIP:
 	RevealsShroud:
 		Range: 5c0
 		Type: CenterPosition
+	AppearsOnRadar:
+		UseLocation: True
 	Transforms:
 		IntoActor: ghabitatship
 		Offset: 0,0

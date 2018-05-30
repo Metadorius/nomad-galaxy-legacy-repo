@@ -1170,6 +1170,8 @@ MOTHERSHIP:
 	CashTrickler:
 	Health:
 		HP: 1500000
+	AppearsOnRadar:
+		UseLocation: True
 	Interactable:
 		Bounds: 60,60
 	Targetable@supplyship:
