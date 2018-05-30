@@ -17,7 +17,7 @@ CRYSTALTIBTREE:
 	SeedsResource:
 		ResourceType: Gas
 		MaxRange: 1
-		Interval: 20
+		Interval: 40
 
 CRYSTALTIBTREE2:
 	Inherits: CRYSTALTIBTREE
@@ -89,8 +89,8 @@ DUSTCLOUD1:
 		Palette: terrain
 	SeedsResource:
 		ResourceType: Minerals
-		MaxRange: 3
-		Interval: 150
+		MaxRange: 5
+		Interval: 50
 	ExplodeWeapon:
 		Weapon: AFCommetSummon
 	ExplodeWeapon@1:

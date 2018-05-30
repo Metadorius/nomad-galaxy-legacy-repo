@@ -565,8 +565,6 @@
 		Type: CenterPosition
 		AlwaysVisibleStances: None
 	ActorLostNotification:
-	Targetable:
-		TargetTypes: Fighter
 	AttackMove:
 	WithFacingSpriteBody:
 	Hovers:
@@ -590,6 +588,8 @@
 	AttackPlane:
 		AttackTurnDelay: 10
 		FacingTolerance: 90
+	Targetable:
+		TargetTypes: Fighter
 	Aircraft:
 		CruiseAltitude: 5
 		IdealSeparation: 200
@@ -1042,13 +1042,13 @@
 		Prerequisite: ghabitatship
 	StoresResources:
 		PipCount: 10
-		Capacity: 500
+		Capacity: 250
 	SpawnActorOnDeath@husk:
 		Actor: ghabitatshiph
 		OwnerType: InternalName
 		InternalOwner: Neutral
 	Power:
-		Amount: 40
+		Amount: 50
 
 ^SurveyFrigateHP:
 	Health:
@@ -1058,7 +1058,7 @@
 	ProvidesPrerequisite@gsurveyfrigate:
 		Prerequisite: gsurveyfrigate
 	Power:
-		Amount: -25
+		Amount: -15
     DetectCloaked:
 		Range: 10c0
 	RevealsShroud:
@@ -1114,7 +1114,7 @@
 		Amount: -20
 	StoresResources:
 		PipCount: 5
-		Capacity: 1000
+		Capacity: 500
 
 ^FrigateAssemblyBayHP:
 	Inherits@1: ^CivilianShipWeaponsGkor
@@ -1128,7 +1128,7 @@
 		Amount: -40
 	StoresResources:
 		PipCount: 5
-		Capacity: 1000
+		Capacity: 500
 
 ^ShipyardHP:
 	Inherits@1: ^CivilianShipWeaponsGkor
@@ -1140,6 +1140,9 @@
 		InternalOwner: Neutral
 	Power:
 		Amount: -40
+	StoresResources:
+		PipCount: 5
+		Capacity: 500
 
 ^SupportShipHP:
 	Health:
@@ -1438,7 +1441,7 @@ PRODUCTIONSHIP:
 		Amount: -20
 	StoresResources:
 		PipCount: 5
-		Capacity: 1000
+		Capacity: 500
 	RenderSprites:
 	Mobile:
 		Speed: 40
@@ -1586,7 +1589,7 @@ MINER:
 	Armor:
 		Type: Medium
 	Health:
-		HP: 200000
+		HP: 170000
 	WithHarvestOverlay:
 		Palette: terrain
 	Explodes:
@@ -1660,9 +1663,10 @@ MOBSPANWERMASTER:
 	MobSpawnerMaster:
 		Actors: gfighter1, gfighter1
 		ExitByBudding: False
+		AggregateHealth: False
 	AttackOmni:
 	Armament@PRIMARY:
-		Weapon: PlatformFighterSpawn
+		Weapon: InterceptorOrder
 	Health:
 		HP: 60000
 	AttackMove:

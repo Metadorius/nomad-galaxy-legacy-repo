@@ -167,7 +167,7 @@ upgrade.supplyship:
 	RenderSprites:
 		Image: ghabitatship
 	Power:
-		Amount: 80
+		Amount: 90
 
 upgrade.surveyfrigate:
 	Inherits: ^default.upgrade
@@ -184,7 +184,7 @@ upgrade.surveyfrigate:
 	RenderSprites:
 		Image: gsurveyfrigate
 	Power:
-		Amount: -25
+		Amount: -15
 
 upgrade.engineeringcrew:
 	Inherits: ^default.upgrade

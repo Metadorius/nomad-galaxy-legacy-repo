@@ -2,10 +2,12 @@ ScoutBullet:
 	Inherits: ^FighterBullet
 	ReloadDelay: 45
 	Range: 3c0
-	ValidTargets: Fighter, Ground
+	ValidTargets: Fighter
+    InvalidTargets: Corvette
 	Warhead@1Dam: SpreadDamage
 		Damage: 1500
-		ValidTargets: Fighter, Ground
+		ValidTargets: Fighter
+        InvalidTargets: Corvette
 
 InterceptorBullet:
 	Inherits: ^FighterBullet
@@ -16,6 +18,7 @@ InterceptorBullet:
 	Warhead@1Dam: SpreadDamage
 		Damage: 7000
 		ValidTargets: Fighter
+		InvalidTargets: CapitalShip, Frigate, Corvette
 
 BomberPlasma:
 	Inherits: ^PlasmaBomb
@@ -114,8 +117,8 @@ FieldDefenceLaserSpawnMothership:
 	ValidTargets: CapitalShip, Frigate, Corvette, Fighter, Ground, Air, Airhit
 	Projectile: InstantExplode
 	Warhead@1Dam: SpreadDamage
-		Spread: 1
-		Damage: -1
+		Spread: 0
+		Damage: 0
 		ValidTargets: SeekerTarget
 	Warhead@op: FireShrapnel
 		Weapon: FieldDefenceLaser
@@ -416,6 +419,18 @@ PlatformFighterSpawn:
 		Spread: 1
 		Damage: 1
 		ValidTargets: Fighter, Corvette, Ground
+		InvalidTargets: CapitalShip, Frigate
+
+InterceptorOrder:
+	ReloadDelay: 25
+	Range: 15c0
+	ValidTargets: Fighter
+	InvalidTargets: CapitalShip, Frigate
+	Projectile: InstantExplode
+	Warhead@1Dam: SpreadDamage
+		Spread: 1
+		Damage: 1
+		ValidTargets: Fighter
 		InvalidTargets: CapitalShip, Frigate
 
 PlatformBomberSpawn:

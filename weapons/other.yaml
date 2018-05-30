@@ -1,12 +1,12 @@
 SpawnResourceOnSpot:
-	ReloadDelay: 20
+	ReloadDelay: 100
 	Projectile: InstantExplode
 	Warhead@1Dam: SpreadDamage
 		Spread: 1
 		Damage: 1
 	Warhead@4Ore: CreateResource
 		AddsResourceType: Minerals
-		Size: 1,0
+		Size: 0,0
 		ValidTargets: CapitalShip, Frigate, Corvette, Fighter, Ground, Air, Airhit
 
 CometSummon:
@@ -42,8 +42,8 @@ CommetDummyBullet:
 	Range: 8c0
 	Projectile: Bullet
 		-Image:
-	Warhead@1Dam: SpreadDamage
-		Damage: 1
+	# -Warhead@1Dam: SpreadDamage
+		# Damage: 1
 	-Warhead@SlowFighter: GrantExternalCondition
 	-Warhead@2Eff: CreateEffect
 	Warhead@op: FireShrapnel
