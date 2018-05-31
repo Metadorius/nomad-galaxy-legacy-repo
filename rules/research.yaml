@@ -122,11 +122,11 @@ upgrade.frigatequeue:
 	Buildable:
 		Queue: AssemblyBayUpgrade
 		Description: Allows frigate production.
-		Prerequisites: gsurveyfrigate
+		Prerequisites: ghabitatship, gminer
 		BuildLimit: 0
 		IconPalette: terrain
 	Valued:
-		Cost: 1000
+		Cost: 2000
 	RenderSprites:
 		Image: gfrigateassemblybay
 	Power:
@@ -143,7 +143,7 @@ upgrade.baseshipqueue:
 		BuildLimit: 0
 		IconPalette: terrain
 	Valued:
-		Cost: 2000
+		Cost: 3000
 	RenderSprites:
 		Image: gshipyard
 	Power:
@@ -176,7 +176,7 @@ upgrade.surveyfrigate:
 	Buildable:
 		Queue: CivilianShipUpgrade
 		Description: High vision ship that provides radar and\nstealth detection, vision increases when deployed.
-		Prerequisites: gproductionship
+		Prerequisites: gfrigateassemblybay
 		BuildLimit: 0
 		IconPalette: terrain
 	Valued:
@@ -193,7 +193,7 @@ upgrade.engineeringcrew:
 	Buildable:
 		Queue: CivilianShipUpgrade
 		Description: Cruiser that High vision ship that provides radar,\nstealth detection, and technology when deployed.
-		Prerequisites: gsurveyfrigate
+		Prerequisites: gfrigateassemblybay
 		BuildLimit: 0
 		IconPalette: terrain
 	Valued:
@@ -211,7 +211,7 @@ upgrade.researchship:
 	Buildable:
 		Queue: CivilianShipUpgrade
 		Description: High vision ship that provides radar,\nstealth detection, and technology when deployed.
-		Prerequisites: gsurveyfrigate
+		Prerequisites: gengineer, gsurveyfrigate
 		BuildLimit: 0
 		IconPalette: terrain
 	Valued:
@@ -228,7 +228,7 @@ upgrade.antifighterturret:
 	Buildable:
 		Queue: CivilianShipUpgrade
 		Description: Anti fighter deployable defence
-		Prerequisites: gengineer
+		Prerequisites: gsurveyfrigate
 		BuildLimit: 0
 		IconPalette: terrain
 	Valued:

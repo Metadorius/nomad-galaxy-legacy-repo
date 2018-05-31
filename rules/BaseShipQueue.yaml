@@ -28,7 +28,7 @@ GPRODUCTIONSHIP:
 	Buildable:
 		Queue: BaseShipQueue
 		BuildPaletteOrder: 3
-		Prerequisites: gminer
+		Prerequisites: ghabitatship
 		Description: Upgradable Ship, it can assume different utility roles depending on the upgrade.\n\nCurrent queues are the following.\n- Fighter and Corvette production\n- Frigate production.\n- Core ship production.
 	AnnounceOnBuildAS:
 		Voice: FrigateAssemblyBayReady

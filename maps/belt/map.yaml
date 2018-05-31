@@ -8,8 +8,6 @@ Author: Nolt
 
 Tileset: SPACE
 
-SkyboxImage: gargan.png
-
 MapSize: 66,50
 
 Bounds: 1,1,64,48
@@ -56,9 +54,6 @@ Actors:
 	Actor11: planet8
 		Owner: Neutral
 		Location: 40,43
-	Actor22: mpspawn
-		Owner: Neutral
-		Location: 55,25
 	Actor25: dangerbeacon
 		Owner: Neutral
 		Location: 23,15
@@ -107,18 +102,6 @@ Actors:
 	Actor21: dustcloud1
 		Owner: Neutral
 		Location: 15,5
-	Actor29: crystaltibtree
-		Owner: Neutral
-		Location: 52,21
-	Actor30: crystaltibtree3
-		Owner: Neutral
-		Location: 49,21
-	Actor35: crystaltibtree4
-		Owner: Neutral
-		Location: 52,28
-	Actor36: crystaltibtree2
-		Owner: Neutral
-		Location: 49,28
 	Actor37: crystaltibtree4
 		Owner: Neutral
 		Location: 13,22
@@ -128,6 +111,21 @@ Actors:
 	Actor39: crystaltibtree2
 		Owner: Neutral
 		Location: 13,29
-	Actor40: crystaltibtree4
+	Actor42: crystaltibtree4
 		Owner: Neutral
-		Location: 18,29
+		Location: 52,22
+	Actor43: crystaltibtree3
+		Owner: Neutral
+		Location: 48,22
+	Actor41: mpspawn
+		Owner: Neutral
+		Location: 55,24
+	Actor30: crystaltibtree3
+		Owner: Neutral
+		Location: 52,29
+	Actor35: crystaltibtree4
+		Owner: Neutral
+		Location: 48,29
+	Actor36: crystaltibtree4
+		Owner: Neutral
+		Location: 17,29

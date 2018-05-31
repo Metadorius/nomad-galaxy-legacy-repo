@@ -7,8 +7,9 @@ GFRIG1:
 	Inherits@2: ^FrigateTargetPriority
 	Buildable:
 		Queue: FrigateQueue
-		BuildPaletteOrder: 1
+		BuildPaletteOrder: 2
 		Description: Combat craft armed with three Heavy Cannon.\nEffective against Frigates, Capital Ships.\nModerate against Corvettes.\nIneffective against Fighters.
+		Prerequisites: gsurveyfrigate
 	Valued:
 		Cost: 1100
 	Tooltip:
@@ -53,7 +54,7 @@ GFRIG3:
 	Inherits@2: ^FighterTargetPriority
 	Buildable:
 		Queue: FrigateQueue
-		BuildPaletteOrder: 3
+		BuildPaletteOrder: 1
 		Description: Dedicated anti fighter frigate.\n- Engages fighters automatically when in range.
 	Valued:
 		Cost: 900
@@ -92,7 +93,7 @@ GFRIG2:
 	Buildable:
 		Queue: FrigateQueue
 		BuildPaletteOrder: 3
-		Prerequisites: gresearchship
+		Prerequisites: gsurveyfrigate, gengineer
 		Description: Frigate designed for long range bombardement.\nDeals moderate damage to all units.\nEffective vs Space stations.\nIneffective against mobile targets.
 	Valued:
 		Cost: 1250

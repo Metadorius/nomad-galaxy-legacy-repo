@@ -39,11 +39,12 @@ GFIGHTER1:
 GFIGHTER2MASTER:
 	Inherits: MOBSPANWERMASTER
 	Valued:
-		Cost: 1000
+		Cost: 800
 	Buildable:
 		Queue: CorvetteQueue
 		BuildPaletteOrder: 1
 		Description: Effective versus units other than interceptors
+		Prerequisites: ghabitatship
 	Interactable:
 		Bounds: 30,30
 	Power:

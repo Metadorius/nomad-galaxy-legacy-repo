@@ -149,7 +149,7 @@ GPlatformNeedle:
 GAcidFrigateNeedle:
 	Inherits: GPlatformNeedle
 	Warhead@1Dam: SpreadDamage
-		Damage: 4000
+		Damage: 8000
 
 GPlatformCannon:
 	Inherits: CorvetteCannon
@@ -168,9 +168,10 @@ FrigateGasBullet:
 	InvalidTargets: Corvette, Frigate
 	Warhead@1Dam: SpreadDamage
 		Spread: 300
-		Damage: 6000
+		Damage: 9000
 		Versus:
-			Corvette: 25
+			Small: 25
+			Fighter: 100
 		ValidTargets: Fighter
 		InvalidTargets: Corvette, Frigate
 		ValidStances: Neutral, Enemy
@@ -178,6 +179,7 @@ FrigateGasBullet:
 		Explosions: ggas, ggas2
 		ImpactSound: expnew12.aud
 		ExplosionPalette: apolgrenalpha
+		ValidTargets: CapitalShip, Frigate, Corvette, Fighter, Ground
 	-Warhead@SlowFighter: GrantExternalCondition
 
 GKorGasBulletSpawner:
@@ -252,7 +254,7 @@ AlienArtilleryTrail:
 	Projectile: BulletAS
 	Warhead@1Dam: SpreadDamage
 		Spread: 0c190
-		Damage: 22000
+		Damage: 30000
 		ValidStances: Enemy, Neutral
 		DamageTypes: Prone50Percent, TriggerProne, CabalDeath
 

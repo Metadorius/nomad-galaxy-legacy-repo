@@ -326,13 +326,6 @@
 	DamageMultiplier@RedNebula:
 		RequiresCondition: RedNebula
 		Modifier: 110
-	WithDecoration@Nebulas:
-		Image: rank
-		Sequence: rank
-		Palette: effect
-		ReferencePoint: Bottom, Right
-		RequiresCondition: BlueNebula || RedNebula || GreenNebula || ArtificialCloak
-		ZOffset: 256
 
 ^GainsExperience:
 	Inherits: ^GenericBuffs
@@ -340,50 +333,75 @@
 	Inherits@3: ^NebulaEffects
 	GainsExperience:
 		Conditions:
-			200: firepower, damage, speed, reload, inaccuracy, rank
-			400: firepower, damage, speed, reload, inaccuracy, rank
-			800: firepower, damage, speed, reload, inaccuracy, rank
-			1600: firepower, damage, speed, reload, inaccuracy, rank, eliteweapon, selfheal
-	FirepowerMultiplier@EXPERIENCE:
-		RequiresCondition: firepower
-		Modifier: 105
-	DamageMultiplier@EXPERIENCE:
-		RequiresCondition: damage
-		Modifier: 95
-	SpeedMultiplier@EXPERIENCE:
-		RequiresCondition: speed
-		Modifier: 105
-	ReloadDelayMultiplier@EXPERIENCE:
-		RequiresCondition: reload
-		Modifier: 95
-	InaccuracyMultiplier@EXPERIENCE:
-		RequiresCondition: inaccuracy
+			300: rank-veteran
+			600: rank-veteran
+			900: rank-veteran
+	GrantCondition@RANK-ELITE:
+		RequiresCondition: rank-veteran >= 3
+		Condition: rank-elite
+	DamageMultiplier@RANK-1:
+		RequiresCondition: rank-veteran == 1
 		Modifier: 90
+	DamageMultiplier@RANK-2:
+		RequiresCondition: rank-veteran == 2
+		Modifier: 80
+	DamageMultiplier@RANK-ELITE:
+		RequiresCondition: rank-elite
+		Modifier: 70
+	FirepowerMultiplier@RANK-1:
+		RequiresCondition: rank-veteran == 1
+		Modifier: 110
+	FirepowerMultiplier@RANK-2:
+		RequiresCondition: rank-veteran == 2
+		Modifier: 120
+	FirepowerMultiplier@RANK-ELITE:
+		RequiresCondition: rank-elite
+		Modifier: 130
+	ReloadDelayMultiplier@RANK-1:
+		RequiresCondition: rank-veteran == 1
+		Modifier: 90
+	ReloadDelayMultiplier@RANK-2:
+		RequiresCondition: rank-veteran == 2
+		Modifier: 80
+	ReloadDelayMultiplier@RANK-ELITE:
+		RequiresCondition: rank-elite
+		Modifier: 70
 	SelfHealing@ELITE:
-		PercentageStep: 1
-		Delay: 100
+		PercentageStep: 5
+		Delay: 75
 		HealIfBelow: 100
-		DamageCooldown: 125
-		RequiresCondition: selfheal
-	WithDecoration:
+		DamageCooldown: 150
+		RequiresCondition: rank-elite
+	WithDecoration@RANK-1:
 		Image: rank
-		Sequence: rank
+		Sequence: rank-veteran-1
 		Palette: effect
 		ReferencePoint: Bottom, Right
-		RequiresCondition: rank
+		RequiresCondition: rank-veteran == 1
 		ZOffset: 256
-	Targetable@Ground:
-		TargetTypes: Ground
-	ExternalCondition@firepower:
-		Condition: firepower
-	ExternalCondition@damage:
-		Condition: damage
-	ExternalCondition@speed:
-		Condition: speed
-	ExternalCondition@reload:
-		Condition: reload
-	ExternalCondition@inaccuracy:
-		Condition: inaccuracy
+	WithDecoration@RANK-2:
+		Image: rank
+		Sequence: rank-veteran-2
+		Palette: effect
+		ReferencePoint: Bottom, Right
+		RequiresCondition: rank-veteran == 2
+		ZOffset: 256
+	WithDecoration@RANK-3:
+		Image: rank
+		Sequence: rank-elite
+		Palette: effect
+		ReferencePoint: Bottom, Right
+		RequiresCondition: rank-veteran == 3
+		ZOffset: 256
+	GivesExperienceMultiplier@RANK-1:
+		Modifier: 150
+		RequiresCondition: rank-veteran == 1
+	GivesExperienceMultiplier@RANK-2:
+		Modifier: 200
+		RequiresCondition: rank-veteran == 2
+	GivesExperienceMultiplier@RANK-ELITE:
+		Modifier: 250
+		RequiresCondition: rank-elite
 
 ^CapitalShip:
 	Inherits@1: ^ExistsInWorld
@@ -590,6 +608,8 @@
 		FacingTolerance: 90
 	Targetable:
 		TargetTypes: Fighter
+	Armor:
+		Type: Fighter
 	Aircraft:
 		CruiseAltitude: 5
 		IdealSeparation: 200
@@ -650,6 +670,8 @@
 			TopLeft: -200, -200
 			BottomRight: 200, 200
 	TeleportNetworkTransportable:
+	Armor:
+		Type: Small
 	Mobile:
 		Speed: 80
 		TurnSpeed: 30
@@ -1106,6 +1128,8 @@
 	Inherits@1: ^CivilianShipWeaponsGkor
 	Health:
 		HP: 800000
+	ProvidesPrerequisite@gpatrolcruiser:
+		Prerequisite: gpatrolcruiser
 	SpawnActorOnDeath:
 		Actor: gpatrolcruiserh
 		OwnerType: InternalName
@@ -1120,6 +1144,8 @@
 	Inherits@1: ^CivilianShipWeaponsGkor
 	Health:
 		HP: 800000
+	ProvidesPrerequisite@gfrigateassemblybay:
+		Prerequisite: gfrigateassemblybay
 	SpawnActorOnDeath:
 		Actor: gfrigateassemblybayh
 		OwnerType: InternalName
@@ -1134,6 +1160,8 @@
 	Inherits@1: ^CivilianShipWeaponsGkor
 	Health:
 		HP: 800000
+	ProvidesPrerequisite@gshipyard:
+		Prerequisite: gshipyard
 	SpawnActorOnDeath:
 		Actor: gshipyardh
 		OwnerType: InternalName
@@ -1580,7 +1608,7 @@ MINER:
 			TopLeft: -256, -256
 			BottomRight: 256, 256
 	Valued:
-		Cost: 700
+		Cost: 800
 	Tooltip:
 		Name: Miner
 	Selectable:
@@ -1620,6 +1648,8 @@ MINER:
 	WithDockingAnimation:
 		DockSequence: idle
 		DockLoopSequence: idle
+	ProvidesPrerequisite@miner:
+		Prerequisite: miner
 	Selectable:
 		Bounds: 60,60
 	Interactable:
@@ -1665,12 +1695,12 @@ MOBSPANWERMASTER:
 	MobSpawnerMaster:
 		Actors: gfighter1, gfighter1
 		ExitByBudding: False
-		AggregateHealth: False
+		# AggregateHealth: False
 	AttackOmni:
 	Armament@PRIMARY:
 		Weapon: InterceptorOrder
 	Health:
-		HP: 60000
+		HP: 1
 	AttackMove:
 	Aircraft:
 		CruiseAltitude: 5

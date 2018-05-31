@@ -101,9 +101,9 @@ LaserFence:
 		ValidStances: Neutral, Enemy
 		Versus:
 			Fighter: 100
-			Corvette: 50
-			Frigate: 20
-			CapitalShip: 5
+			Small: 50
+			Medium: 20
+			Heavy: 5
 		DamageTypes: Prone50Percent, TriggerProne, SmallExplosionDeath
 	Warhead@2Dam: SpreadDamage
 		Range: 0, 32

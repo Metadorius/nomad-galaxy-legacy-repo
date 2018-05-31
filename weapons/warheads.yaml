@@ -105,7 +105,6 @@
 		VerticalRateOfTurn: 50
 		Palette: chrome
 		Blockable: False
-		Inaccuracy: 350
 		RangeLimit: 6c0
 		LaserShootable: False
 	Warhead@1Dam: SpreadDamage
@@ -170,9 +169,9 @@ HeavyCannon:
 		ValidTargets: CapitalShip, Frigate, Corvette, Ground
 		Versus:
 			Fighter: 1
-			Corvette: 100
-			Frigate: 80
-			CapitalShip: 60
+			Small: 100
+			Medium: 80
+			Heavy: 60
 	Warhead@3Eff: CreateEffect
 		Explosions: jsbang16, jsbang16b, jsbang24
 		ExplosionPalette: gensmkexploj
@@ -203,9 +202,9 @@ HeavyCannon:
 		ValidTargets: CapitalShip, Frigate, Corvette, Ground
 		Versus:
 			Fighter: 1
-			Corvette: 150
-			Frigate: 50
-			CapitalShip: 30
+			Small: 150
+			Medium: 50
+			Heavy: 30
 	Warhead@3Eff: CreateEffect
 		Explosions: jsbang16, jsbang16b, jsbang24
 		ExplosionPalette: gensmkexploj

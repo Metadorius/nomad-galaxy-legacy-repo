@@ -27,10 +27,9 @@ BomberPlasma:
 	InvalidTargets: Fighter
 	Projectile: Missile
 		Image: bulletbomber
-		# Inaccuracy: 1c0
 	Warhead@1Dam: SpreadDamage
 		Spread: 64
-		Damage: 13000
+		Damage: 16000
 		ValidTargets: CapitalShip, Frigate, Corvette, Ground
 		InvalidTargets: Fighter
 
@@ -165,9 +164,9 @@ FieldDefenceLaserAntiFighter:
 		Damage: 25000
 		Versus:
 			Fighter: 300
-			Corvette: 25
-			Frigate: 10
-			CapitalShip: 5
+			Small: 25
+			Medium: 10
+			Heavy: 5
 		ValidTargets: Fighter
 
 FieldDefenceLaserStation:

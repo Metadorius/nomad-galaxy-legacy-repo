@@ -520,8 +520,13 @@ patriot:
 		ZOffset: 1023
 
 rank:
-	rank:
-		Length: *
+	rank-veteran-1:
+	rank-veteran-2:
+		Start: 1
+	rank-veteran-3:
+		Start: 2
+	rank-elite:
+		Start: 3
 	dishicon: dishicon
 		Length: *
 	vialicon: vialicon
