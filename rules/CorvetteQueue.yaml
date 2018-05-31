@@ -11,7 +11,7 @@ GFIGHTER1MASTER:
 	Interactable:
 		Bounds: 70,70
 	Power:
-		Amount: -3
+		Amount: -1
 	Tooltip:
 		Name: Interceptor Squadron
 	MobSpawnerMaster:
@@ -47,7 +47,7 @@ GFIGHTER2MASTER:
 	Interactable:
 		Bounds: 30,30
 	Power:
-		Amount: -6
+		Amount: -2
 	Tooltip:
 		Name: Bomber Squadron
 	MobSpawnerMaster:
@@ -92,7 +92,7 @@ GCORV1:
 	Tooltip:
 		Name: Peace Keeper
 	Power:
-		Amount: -2
+		Amount: -1
 	Health:
 		HP: 170000
 	RevealsShroud:
@@ -118,7 +118,7 @@ GCORV2:
 	Tooltip:
 		Name: Silencer
 	Power:
-		Amount: -4
+		Amount: -2
 	Health:
 		HP: 170000
 	RevealsShroud:

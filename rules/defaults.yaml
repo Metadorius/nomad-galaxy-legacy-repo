@@ -1079,7 +1079,7 @@
 	ProvidesPrerequisite@gengineer:
 		Prerequisite: gengineer
 	SpawnActorOnDeath@husk:
-		Actor: gengineercrewh
+		Actor: gengineerh
 		OwnerType: InternalName
 		InternalOwner: Neutral
 

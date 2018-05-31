@@ -15,6 +15,8 @@ GFRIG1:
 		Name: Assault Frigate
 	Mobile:
 		TurnSpeed: 7
+	Power:
+		Amount: -4
 	Health:
 		HP: 750000
 	RevealsShroud:
@@ -54,13 +56,15 @@ GFRIG3:
 		BuildPaletteOrder: 3
 		Description: Dedicated anti fighter frigate.\n- Engages fighters automatically when in range.
 	Valued:
-		Cost: 1000
+		Cost: 900
 	Tooltip:
 		Name: Acid Frigate
 	Health:
-		HP: 620000
+		HP: 500000
 	RevealsShroud:
 		Range: 5c0
+	Power:
+		Amount: -3
 	Mobile:
 		TurnSpeed: 2
 		Speed: 45
@@ -94,6 +98,8 @@ GFRIG2:
 		Cost: 1250
 	Tooltip:
 		Name: Siege Frigate
+	Power:
+		Amount: -5
 	Mobile:
 		TurnSpeed: 1
 	Health:
@@ -121,7 +127,7 @@ GBC1:
 	Tooltip:
 		Name: Destroyer
 	Power:
-		Amount: -20
+		Amount: -15
 	Mobile:
 		Speed: 27
 	Health:
