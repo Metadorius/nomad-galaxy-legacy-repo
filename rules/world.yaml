@@ -31,7 +31,7 @@
 		RandomFactionMembers: gkor
 		Description: Selection is a lie
 	ResourceType@green-tib:
-		Name: Minerals ($25)
+		Name: Minerals ($20)
 		PipColor: Blue
 		ResourceType: 1
 		Palette: apolcybl
@@ -39,7 +39,7 @@
 		TerrainType: Tiberium
 		Sequences: astore1, astore2, astore3, astore4, astore5, astore6, astore7, astore8, astore9, astore10, astore11, astore12, astore13
 		MaxDensity: 8
-		ValuePerUnit: 25
+		ValuePerUnit: 20
 		AllowedTerrainTypes: Clear, SpaceGray, SpaceGreen, SpaceBlue, SpaceRed, SpaceGray2, SpaceGreen2, SpaceBlue2, SpaceRed2, Notifier
 		AllowUnderActors: true
 	ResourceType@blue-tib:

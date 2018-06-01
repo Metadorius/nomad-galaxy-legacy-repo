@@ -140,9 +140,6 @@ Cursors:
 		attackmove:
 			Start: 12
 			Length: 8
-		attackmove-blocked:
-			Start: 12
-			Length: 8
 		attackmove-minimap:
 			Start: 20
 			Length: 4

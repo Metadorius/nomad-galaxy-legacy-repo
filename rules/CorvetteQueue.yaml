@@ -14,6 +14,8 @@ GFIGHTER1MASTER:
 		Amount: -1
 	Tooltip:
 		Name: Interceptor Squadron
+	Armament:
+		Weapon: InterceptorBullet
 	MobSpawnerMaster:
 	WithTextDecoration@deployed:
 		Text: F
@@ -33,6 +35,11 @@ GFIGHTER1:
 	Aircraft:
 		Speed: 90
 	MobSpawnerSlave:
+    -Targetable:
+    -SelectionDecorations:
+    -Selectable:
+    Interactable:
+    RejectsOrders:
 	Armament:
 		Weapon: InterceptorBullet
 
@@ -60,7 +67,7 @@ GFIGHTER2MASTER:
 		ZOffset: 9999
 		ValidStances: Ally, Enemy
 	Armament@PRIMARY:
-		Weapon: PlatformBomberSpawn
+		Weapon: BomberAcid
 	RenderSprites:
 		Image: gfighter2
 
@@ -74,6 +81,9 @@ GFIGHTER2B:
 		Cost: 50
 	Armament:
 		Weapon: BomberAcid
+	-Targetable:
+    -SelectionDecorations:
+    -Selectable:
 	Aircraft:
 		Speed: 75
 	MobSpawnerSlave:
@@ -103,8 +113,8 @@ GCORV1:
 		RequiresCondition: !HyperSpaceFadeOut
 		LocalOffset: 0,-200,0,0,0,0,0,200,0
 	AttackFrontal:
+        FacingTolerance: 10
 	Mobile:
-		OccupySpace: False
 
 GCORV2:
 	Inherits: ^Corvette

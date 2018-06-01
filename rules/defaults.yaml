@@ -502,8 +502,8 @@
 		Type: Medium
 	TeleportNetworkTransportable:
 	Mobile:
-		Speed: 40
-		TurnSpeed: 6
+		Speed: 45
+		TurnSpeed: 5
 	Selectable:
 		Priority: 10
 	RevealsShroud:
@@ -1685,8 +1685,7 @@ SlaveFighter:
 		CloseEnoughDistance: 600
 
 MOBSPANWERMASTER:
-	Inherits: ^ExistsInWorld
-	Inherits@1: ^SpriteActor
+	Inherits: ^Fighter
 	Inherits@4: ^AutoTargetAll
 	Valued:
 		Cost: 500
@@ -1695,29 +1694,11 @@ MOBSPANWERMASTER:
 	MobSpawnerMaster:
 		Actors: gfighter1, gfighter1
 		ExitByBudding: False
-		# AggregateHealth: False
-	AttackOmni:
+		AggregateHealth: False
 	Armament@PRIMARY:
 		Weapon: InterceptorOrder
 	Health:
-		HP: 1
-	AttackMove:
-	Aircraft:
-		CruiseAltitude: 5
-		Repulsable: False
-		MoveIntoShroud: true
-		TurnSpeed: 14
-		CanHover: True
-		LandWhenIdle: False
-		Speed: 90
-	HiddenUnderFog:
-		Type: CenterPosition
-	SpeedMultiplier@Generic:
-		Modifier: 200
-	DamageMultiplier@INVINCIBLE:
-		Modifier: 0
-	SelectionDecorations:
-	WithSpriteControlGroupDecoration:
+		HP: 90000
 	Selectable:
 		Bounds: 32, 32
 

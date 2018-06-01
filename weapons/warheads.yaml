@@ -12,7 +12,7 @@
 			Small: 100
 			medium: 100
 			Heavy: 100
-		ValidStances: Neutral, Enemy
+		# ValidStances: Neutral, Enemy
 
 ^LightWeaponsWarhead:
 	Inherits: ^GeneralDebuffs
@@ -24,7 +24,6 @@
 			Small: 100
 			medium: 75
 			Heavy: 50
-		ValidStances: Neutral, Enemy
 
 ^HeavyWeaponsWarhead:
 	Inherits: ^GeneralDebuffs
@@ -53,7 +52,6 @@
 	Warhead@1Dam: SpreadDamage
 		Spread: 96
 		Damage: 15
-		ValidStances: Neutral, Enemy
 		ValidTargets: CapitalShip, Frigate, Corvette, Fighter, Ground
 	Warhead@2Eff: CreateEffect
 		Explosions: piff
@@ -73,7 +71,6 @@
 		Damage: 5000
 		ValidTargets: Fighter, Ground
 		InvalidTargets: CapitalShip, Frigate
-		ValidStances: Neutral, Enemy
 
 ^AutoCannon:
 	Inherits: ^NormalWeaponWarhead

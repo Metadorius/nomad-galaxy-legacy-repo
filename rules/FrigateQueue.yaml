@@ -30,6 +30,12 @@ GFRIG1:
 		Weapon: FrigateCannon
 		RequiresCondition: !HyperSpaceFadeOut
 		Turret: Secondary
+        FireDelay: 6
+	Armament@2:
+		Weapon: FrigateCannon
+		RequiresCondition: !HyperSpaceFadeOut
+		Turret: Tertiary
+        FireDelay: 15
 	Turreted:
 		Turret: Primary
 		Offset: -300, -400, 50
@@ -38,19 +44,25 @@ GFRIG1:
 		Turret: Secondary
 		Offset: -300, 400, 50
 		TurnSpeed: 6
+	Turreted@2:
+		Turret: Tertiary
+		Offset: 300,0, 50
+		TurnSpeed: 6
 	WithSpriteTurret:
 		Turret: Primary
 	WithSpriteTurret@1:
 		Turret: Secondary
+	WithSpriteTurret@2:
+		Turret: Tertiary
 	SpawnActorOnDeath:
 		Actor: gfrig1h
 		OwnerType: InternalName
 		InternalOwner: Neutral
 	AttackTurreted:
-		Turrets: Primary, Secondary
+		Turrets: Primary, Secondary, Tertiary
 
 GFRIG3:
-	Inherits: ^TurretedFrigate
+	Inherits: ^AFrontalFrigate
 	Inherits@2: ^FighterTargetPriority
 	Buildable:
 		Queue: FrigateQueue
@@ -72,7 +84,7 @@ GFRIG3:
 	Armament@AntiCorvette:
 		Weapon: GAcidFrigateNeedle
 		LocalYaw: 255, -255, 255, -255, 255, -255
-		LocalOffset: 175, -250, 5, 175, 250, 5, 0, -250, 5, 0, 250, 5, -175, -250, 5, -175, 250, 5
+		LocalOffset: 175, -250, 5, 175, 250, 5, 5, -250, 5, 5, 250, 5, -175, -250, 5, -175, 250, 5
 	ExplodeWeapon:
 		Weapon: GKorGasBulletSpawner
 		LocalOffset: 300,0,0
@@ -87,6 +99,8 @@ GFRIG3:
 		InternalOwner: Neutral
     WithRangeCircle:
         Range: 7c0
+	AttackFrontal:
+        # FacingTolerance: 30
 
 GFRIG2:
 	Inherits: ^AFrontalFrigate
