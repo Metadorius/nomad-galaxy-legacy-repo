@@ -413,6 +413,7 @@
 		Type: Rectangle
 			TopLeft: -550, -750
 			BottomRight: 550, 750
+		TargetableOffsets: 0,0,0, 450,0,0, -450,0,0, 0,450,0, 0,-450,0
 	Valued:
 		Cost: 1
 	Huntable:
@@ -612,9 +613,9 @@
 		Type: Fighter
 	Aircraft:
 		CruiseAltitude: 5
-		IdealSeparation: 200
+		IdealSeparation: 400
 		MoveIntoShroud: true
-		RepulsionSpeed: 50
+		RepulsionSpeed: 25
 		Speed: 100
 		TurnSpeed: 14
 		CanHover: True
@@ -639,9 +640,12 @@
 		Sequence: fighterflametrails
 		Palette: gensmkexploj
 		MinDamage: Critical
-	SpeedMultiplier@BUFFS:
+	SpeedMultiplier@BUFF1:
 		RequiresCondition: SlowdownFighter
-		Modifier: 200
+		Modifier: 150
+	SpeedMultiplier@BUFF2:
+		RequiresCondition: SlowdownFighter && DogfightEnabled
+		Modifier: 150
 	GrantConditionOnDamageState@fighterflametrails:
 		Condition: fighterflametrails
 		ValidDamageStates: Critical
@@ -652,6 +656,9 @@
 		HealIfBelow: 25
 	ExternalCondition@SlowdownFighter:
 		Condition: SlowdownFighter
+    GrantConditionOnAttack@SlowdownFighter:
+        Condition: DogfightEnabled
+        RevokeDelay: 100
 	Voiced:
 		VoiceSet: GFighterVoice
 	MustBeDestroyed:
@@ -674,7 +681,7 @@
 		Type: Small
 	Mobile:
 		Speed: 80
-		TurnSpeed: 30
+		TurnSpeed: 10
 		SharesCell: True
 		TerrainSpeeds:
 			Clear: 100
@@ -689,7 +696,8 @@
 			SpaceBlue2: 100
 			SpaceRed: 130
 			SpaceRed2: 130
-	AttackFrontal:
+	AttackTurreted:
+    Turreted:
 	Targetable:
 		TargetTypes: Corvette
 	RevealsShroud:
@@ -740,6 +748,12 @@
 		Priority: 3
 	Targetable:
 		TargetTypes: CapitalShip, DeployedShip
+	HitShape:
+		UseTargetableCellsOffsets: true
+		Type: Rectangle
+			TopLeft: -550, -750
+			BottomRight: 550, 750
+		TargetableOffsets: 840,0,0, -840,0,0
 	Armor:
 		Type: Heavy
 	Health:
@@ -1602,11 +1616,6 @@ SERVICEFRIGATE:
 
 MINER:
 	Inherits: ^Frigate
-	HitShape:
-		UseTargetableCellsOffsets: true
-		Type: Rectangle
-			TopLeft: -256, -256
-			BottomRight: 256, 256
 	Valued:
 		Cost: 800
 	Tooltip:
@@ -1685,22 +1694,42 @@ SlaveFighter:
 		CloseEnoughDistance: 600
 
 MOBSPANWERMASTER:
-	Inherits: ^Fighter
+	Inherits: ^ExistsInWorld
+	Inherits@1: ^SpriteActor
 	Inherits@4: ^AutoTargetAll
 	Valued:
-		Cost: 500
+		Cost: 350
 	RenderSprites:
 		Image: gfighter1
 	MobSpawnerMaster:
 		Actors: gfighter1, gfighter1
 		ExitByBudding: False
-		AggregateHealth: False
+	DrawLineToTarget:
+	AttackOmni:
 	Armament@PRIMARY:
 		Weapon: InterceptorOrder
 	Health:
-		HP: 90000
+		HP: 30000
+	AttackMove:
+	Aircraft:
+		CruiseAltitude: 7
+		IdealSeparation: 500
+		MoveIntoShroud: true
+		RepulsionSpeed: 50
+		Speed: 100
+		TurnSpeed: 14
+		CanHover: True
+		LandWhenIdle: False
+	HiddenUnderFog:
+		Type: CenterPosition
+	SpeedMultiplier@Generic:
+		Modifier: 200
+	DamageMultiplier@INVINCIBLE:
+		Modifier: 0
+	SelectionDecorations:
+	WithSpriteControlGroupDecoration:
 	Selectable:
-		Bounds: 32, 32
+		Bounds: 45, 45
 
 #The turret will start deployed so this has to be inverted
 ^DeployableTurret:

@@ -42,18 +42,6 @@ Actors:
 	Actor0: mpspawn
 		Owner: Neutral
 		Location: 10,24
-	Actor10: planet5
-		Owner: Neutral
-		Location: 21,43
-	Actor12: planet4
-		Owner: Neutral
-		Location: 20,6
-	Actor13: planet6
-		Owner: Neutral
-		Location: 40,6
-	Actor11: planet8
-		Owner: Neutral
-		Location: 40,43
 	Actor25: dangerbeacon
 		Owner: Neutral
 		Location: 23,15
@@ -72,36 +60,6 @@ Actors:
 	Actor28: dangerbeaconend
 		Owner: Neutral
 		Location: 40,31
-	Actor16: whitehole
-		Owner: Neutral
-		Location: 31,6
-	Actor17: whitehole
-		Owner: Neutral
-		Location: 31,43
-	Actor31: crystaltibtree4
-		Owner: Neutral
-		Location: 16,2
-	Actor32: crystaltibtree
-		Owner: Neutral
-		Location: 47,2
-	Actor33: crystaltibtree3
-		Owner: Neutral
-		Location: 17,47
-	Actor34: crystaltibtree4
-		Owner: Neutral
-		Location: 46,46
-	Actor18: dustcloud1
-		Owner: Neutral
-		Location: 48,5
-	Actor19: dustcloud1
-		Owner: Neutral
-		Location: 47,43
-	Actor20: dustcloud1
-		Owner: Neutral
-		Location: 16,44
-	Actor21: dustcloud1
-		Owner: Neutral
-		Location: 15,5
 	Actor37: crystaltibtree4
 		Owner: Neutral
 		Location: 13,22
@@ -129,3 +87,15 @@ Actors:
 	Actor36: crystaltibtree4
 		Owner: Neutral
 		Location: 17,29
+	Actor22: dustcloud1
+		Owner: Neutral
+		Location: 29,43
+	Actor29: dustcloud3
+		Owner: Neutral
+		Location: 33,43
+	Actor31: dustcloud4
+		Owner: Neutral
+		Location: 29,6
+	Actor32: dustcloud5
+		Owner: Neutral
+		Location: 33,6

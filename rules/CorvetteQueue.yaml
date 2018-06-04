@@ -12,11 +12,13 @@ GFIGHTER1MASTER:
 		Bounds: 70,70
 	Power:
 		Amount: -1
+	Aircraft:
+		Speed: 90
 	Tooltip:
 		Name: Interceptor Squadron
-	Armament:
-		Weapon: InterceptorBullet
 	MobSpawnerMaster:
+    WithSpriteBody:
+        Sequence: dot
 	WithTextDecoration@deployed:
 		Text: F
 		ReferencePoint: Bottom
@@ -35,13 +37,14 @@ GFIGHTER1:
 	Aircraft:
 		Speed: 90
 	MobSpawnerSlave:
-    -Targetable:
     -SelectionDecorations:
     -Selectable:
     Interactable:
     RejectsOrders:
 	Armament:
 		Weapon: InterceptorBullet
+	Armament@1:
+		Weapon: DummyContinuousInterceptorBullet
 
 GFIGHTER2MASTER:
 	Inherits: MOBSPANWERMASTER
@@ -56,6 +59,10 @@ GFIGHTER2MASTER:
 		Bounds: 30,30
 	Power:
 		Amount: -2
+	Aircraft:
+		Speed: 75
+    WithSpriteBody:
+        Sequence: dot
 	Tooltip:
 		Name: Bomber Squadron
 	MobSpawnerMaster:
@@ -67,7 +74,7 @@ GFIGHTER2MASTER:
 		ZOffset: 9999
 		ValidStances: Ally, Enemy
 	Armament@PRIMARY:
-		Weapon: BomberAcid
+		Weapon: PlatformBomberSpawn
 	RenderSprites:
 		Image: gfighter2
 
@@ -81,9 +88,9 @@ GFIGHTER2B:
 		Cost: 50
 	Armament:
 		Weapon: BomberAcid
-	-Targetable:
     -SelectionDecorations:
     -Selectable:
+    Interactable:
 	Aircraft:
 		Speed: 75
 	MobSpawnerSlave:
@@ -106,15 +113,17 @@ GCORV1:
 		Amount: -1
 	Health:
 		HP: 170000
+    WithSpriteTurret:
 	RevealsShroud:
 		Range: 5c0
-	Armament@2:
+	Armament@1:
 		Weapon: BasicAutocannon
 		RequiresCondition: !HyperSpaceFadeOut
-		LocalOffset: 0,-200,0,0,0,0,0,200,0
-	AttackFrontal:
-        FacingTolerance: 10
-	Mobile:
+		LocalOffset: 200,0,0
+	Armament@2:
+		Weapon: DummyContinuousAutoCannon
+		RequiresCondition: !HyperSpaceFadeOut
+		LocalOffset: 200,0,0
 
 GCORV2:
 	Inherits: ^Corvette
@@ -142,8 +151,6 @@ GCORV2:
 		LocalOffset: 200, 0, 0
 		RequiresCondition: !HyperSpaceFadeOut
 	MustBeDestroyed:
-	AttackFrontal:
-
 
 GCORV3:
 	Inherits: ^Corvette

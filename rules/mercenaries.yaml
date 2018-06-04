@@ -160,7 +160,6 @@ DUNIT3:
 	RevealsShroud:
 		Range: 5c0
 	MustBeDestroyed:
-    -AttackFrontal:
 	AttackTurreted:
     Turreted:
 	SelectionDecorations:

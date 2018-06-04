@@ -182,6 +182,8 @@ gcargofrig:
 gcorv1:
 	Inherits: ^shipdefault
 	icon: corvetteicon
+    turret: gturret2
+		Facings: -32
 	# turret-top: tentacletorpedotop
 		# Facings: 16
 		# Stride: 18
@@ -239,11 +241,13 @@ gbombercarrier:
 gfighter1:
 	Inherits: ^shipdefault
 	Inherits@2: ^fighterdefault
+    dot: dot
 	icon: gfighter1icon
 
 gfighter2:
 	Inherits: ^shipdefault
 	Inherits@2: ^fighterdefault
+    dot: dot
 	icon: gfighter2icon
 
 gfighter3:

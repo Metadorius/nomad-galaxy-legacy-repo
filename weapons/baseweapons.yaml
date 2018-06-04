@@ -20,6 +20,36 @@ InterceptorBullet:
 		ValidTargets: Fighter
 		InvalidTargets: CapitalShip, Frigate, Corvette
 
+InterceptorBulletNoDmg:
+    Inherits: InterceptorBullet
+	Range: 3c0
+	ValidTargets: Fighter#, Ground
+	InvalidTargets: CapitalShip, Frigate, Corvette
+	Warhead@1Dam: SpreadDamage
+		Damage: 1
+	Projectile: Bullet
+		Speed: 400
+		Blockable: False
+		Image: bulletinterceptor
+		Palette: chrome
+		Inaccuracy: 200
+	-Warhead@2Eff: CreateEffect
+
+DummyContinuousInterceptorBullet:
+	Inherits: InterceptorBulletNoDmg
+	Range: 3c0
+    Burst: 4
+    BurstDelay: 2
+	Projectile: WarheadTrailProjectile
+		Offsets: 0,128,0#, 64,96,0, -64,96,0
+		Firemode: Spread#Line # try putting "Line" or "Spread" here, "Focus"
+		Inaccuracy: 0c512
+		Weapon: InterceptorBulletNoDmg
+		Speed: 200
+		ExplosionInterval: 3
+		ExplodeUnderThisAltitude: -9999
+		KillProjectilesWhenReachedTargetLocation: false #try putting true
+
 BomberPlasma:
 	Inherits: ^PlasmaBomb
 	ReloadDelay: 50
@@ -40,15 +70,37 @@ CorvetteBulletSpawner:
 
 BasicAutocannon:
 	Inherits: ^AutoCannon
-	Burst: 3
-	BurstDelay: 5
-	ReloadDelay: 50
-	Range: 3c0
+	ReloadDelay: 40
+	Range: 4c0
+    Projectile:
+		Image: bulletcorvette
 	Warhead@1Dam: SpreadDamage
-		Damage: 3000
+		Damage: 4000
 		ValidStances: Ally, Neutral, Enemy
+		ValidTargets: CapitalShip, Frigate, Corvette, Ground
+		Image: bulletcorvette
 	Warhead@2Eff: CreateEffect
-		Explosions: piff
+		Explosions: jucflash
+		ExplosionPalette: gensmkexploj
+		ValidTargets: CapitalShip, Frigate, Corvette
+
+BasicAutocannonNoDmg:
+    Inherits: BasicAutocannon
+	# -Warhead@1Dam: SpreadDamage
+	-Warhead@2Eff: CreateEffect
+
+DummyContinuousAutoCannon:
+	Inherits: BasicAutocannonNoDmg
+	Range: 5c0
+	Projectile: WarheadTrailProjectile
+		Offsets: 0,128,0#, 64,96,0, -64,96,0
+		Firemode: Spread#Line # try putting "Line" or "Spread" here, "Focus"
+		Inaccuracy: 5c0
+		Weapon: BasicAutocannonNoDmg
+		Speed: 200
+		ExplosionInterval: 3
+		ExplodeUnderThisAltitude: -9999
+		KillProjectilesWhenReachedTargetLocation: false #try putting true
 
 CapitalShipAutoCannon:
 	Inherits: BasicAutocannon
@@ -94,6 +146,24 @@ FrigateCannon:
 	Warhead@1Dam: SpreadDamage
 		Damage: 40000
 		Spread: 150
+
+FrigateCannonNoDmg:
+    Inherits: FrigateCannon
+	# -Warhead@1Dam: SpreadDamage
+	-Warhead@1Dam: SpreadDamage
+
+DummyContinuousFrigateCannon:
+	Inherits: FrigateCannonNoDmg
+	Range: 7c0
+	Projectile: WarheadTrailProjectile
+		Offsets: 0,128,0#, 64,96,0, -64,96,0
+		Firemode: Spread#Line # try putting "Line" or "Spread" here, "Focus"
+		Inaccuracy: 3c0
+		Weapon: FrigateCannonNoDmg
+		Speed: 200
+		ExplosionInterval: 3
+		ExplodeUnderThisAltitude: -9999
+		KillProjectilesWhenReachedTargetLocation: false #try putting true
 
 CorvetteMissile:
 	Inherits: ^Missile
@@ -408,8 +478,6 @@ HyperSpaceFadeOutAnim:
 
 PlatformFighterSpawn:
 	ReloadDelay: 25
-	# Burst: 6
-	# BurstDelay: 
 	Range: 15c0
 	ValidTargets: Fighter, Corvette, Ground
 	InvalidTargets: CapitalShip, Frigate
@@ -422,7 +490,7 @@ PlatformFighterSpawn:
 
 InterceptorOrder:
 	ReloadDelay: 25
-	Range: 15c0
+	Range: 8c0
 	ValidTargets: Fighter
 	InvalidTargets: CapitalShip, Frigate
 	Projectile: InstantExplode
@@ -434,6 +502,7 @@ InterceptorOrder:
 
 PlatformBomberSpawn:
 	Inherits: PlatformFighterSpawn
+	Range: 5c0
 	ValidTargets: CapitalShip, Frigate, Corvette, Ground
 	InvalidTargets: Fighter
 	Warhead@1Dam: SpreadDamage

@@ -36,6 +36,20 @@ GFRIG1:
 		RequiresCondition: !HyperSpaceFadeOut
 		Turret: Tertiary
         FireDelay: 15
+	Armament@3:
+		Weapon: DummyContinuousFrigateCannon
+		RequiresCondition: !HyperSpaceFadeOut
+		Turret: Primary
+	Armament@4:
+		Weapon: DummyContinuousFrigateCannon
+		RequiresCondition: !HyperSpaceFadeOut
+		Turret: Secondary
+        FireDelay: 6
+	Armament@5:
+		Weapon: DummyContinuousFrigateCannon
+		RequiresCondition: !HyperSpaceFadeOut
+		Turret: Tertiary
+        FireDelay: 15
 	Turreted:
 		Turret: Primary
 		Offset: -300, -400, 50
@@ -98,7 +112,7 @@ GFRIG3:
 		OwnerType: InternalName
 		InternalOwner: Neutral
     WithRangeCircle:
-        Range: 7c0
+        Range: 6c0
 	AttackFrontal:
         # FacingTolerance: 30
 

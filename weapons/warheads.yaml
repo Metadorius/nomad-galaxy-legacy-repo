@@ -79,7 +79,7 @@
 	Range: 4c0
 	Report: rmachinegun1.wav, rmachinegun2.wav
 	Projectile: Bullet
-		Speed: 300
+		Speed: 200
 		Blockable: False
 		Image: bulletinterceptor
 		Palette: chrome
@@ -87,7 +87,9 @@
 	Warhead@1Dam: SpreadDamage
 		ValidTargets: CapitalShip, Frigate, Corvette, Ground
 	Warhead@2Eff: CreateEffect
-		Explosions: piff
+		Explosions: jucflash
+		ExplosionPalette: gensmkexploj
+		ValidTargets: CapitalShip, Frigate, Corvette, Ground
 
 ^PlasmaBomb:
 	Inherits: ^HeavyWeaponsWarhead
@@ -139,7 +141,7 @@ HeavyCannon:
 	Warhead@3Eff: CreateEffect
 		Explosions: jsclsn16, jsclsn16b, jexplosml, jexplosml
 		ExplosionPalette: gensmkexploj
-		ValidTargets: CapitalShip, Frigate, Corvette, Ground
+		ValidTargets: CapitalShip, Frigate, Corvette
 
 ^Missile:
 	Inherits: ^NormalWeaponWarhead

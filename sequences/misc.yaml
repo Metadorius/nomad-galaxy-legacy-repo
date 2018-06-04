@@ -317,6 +317,10 @@ bulletinterceptor:
 	idle:
 		Facings: -32
 
+bulletcorvette:
+	idle:
+		Facings: -32
+
 bulletbomber:
 	idle:
 		Facings: -32

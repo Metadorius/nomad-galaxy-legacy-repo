@@ -18,6 +18,7 @@ BomberAcid:
 		Explosions: babaexplo1, babaexplo2, babaexplo3, babaexplo4
 		ImpactSound: expnew12.aud
 		ExplosionPalette: tsanim
+		ValidTargets: Fighter, CapitalShip, Frigate, Corvette, Ground
 
 PiranhaBite:
 	ReloadDelay: 50
@@ -52,7 +53,7 @@ PiranhaBite:
 SilencerGlaive:
 	Inherits: ^AutoCannon
 	ReloadDelay: 80
-	Range: 4c0
+	Range: 5c0
 	ValidTargets: Frigate, CapitalShip, Corvette, Ground
 	Report: projectile1.wav, projectile2.wav, projectile3.wav
 	Projectile: Missile
@@ -192,7 +193,7 @@ FrigateGasBullet2:
 	Inherits: FrigateGasBullet
 	ValidTargets: Fighter
 	Projectile: InstantHit
-	Range: 7c0
+	Range: 6c0
 	Warhead@1Dam: SpreadDamage
 		ValidTargets: Fighter
 
