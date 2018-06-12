@@ -70,6 +70,7 @@ FighterExplode:
 	Warhead@2Eff: CreateEffect
 		Explosions: jflmtrail, jhtrkpuff, jsclsn16
 		ExplosionPalette: gensmkexploj
+		ValidTargets: CapitalShip, Frigate, Corvette, Ground
 
 CorvetteExplode:
 	Inherits: FighterExplode

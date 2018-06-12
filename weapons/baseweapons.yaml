@@ -13,18 +13,22 @@ InterceptorBullet:
 	Inherits: ^FighterBullet
 	ReloadDelay: 45
 	Range: 3c0
-	ValidTargets: Fighter
-	InvalidTargets: CapitalShip, Frigate, Corvette
+	ValidTargets: Fighter, Corvette
+	InvalidTargets: CapitalShip, Frigate
 	Warhead@1Dam: SpreadDamage
 		Damage: 7000
-		ValidTargets: Fighter
-		InvalidTargets: CapitalShip, Frigate, Corvette
+		ValidTargets: Fighter, Corvette
+		InvalidTargets: CapitalShip, Frigate
+
+PointDefenceCorvetteBullet:
+    Inherits: InterceptorBullet
+	-Warhead@SlowFighter: GrantExternalCondition
 
 InterceptorBulletNoDmg:
     Inherits: InterceptorBullet
 	Range: 3c0
-	ValidTargets: Fighter#, Ground
-	InvalidTargets: CapitalShip, Frigate, Corvette
+	ValidTargets: Fighter, Corvette
+	InvalidTargets: CapitalShip, Frigate
 	Warhead@1Dam: SpreadDamage
 		Damage: 1
 	Projectile: Bullet
@@ -34,6 +38,7 @@ InterceptorBulletNoDmg:
 		Palette: chrome
 		Inaccuracy: 200
 	-Warhead@2Eff: CreateEffect
+	-Warhead@SlowFighter: GrantExternalCondition
 
 DummyContinuousInterceptorBullet:
 	Inherits: InterceptorBulletNoDmg
@@ -86,7 +91,8 @@ BasicAutocannon:
 
 BasicAutocannonNoDmg:
     Inherits: BasicAutocannon
-	# -Warhead@1Dam: SpreadDamage
+	Warhead@1Dam: SpreadDamage
+		Damage: -1
 	-Warhead@2Eff: CreateEffect
 
 DummyContinuousAutoCannon:
@@ -149,7 +155,8 @@ FrigateCannon:
 
 FrigateCannonNoDmg:
     Inherits: FrigateCannon
-	# -Warhead@1Dam: SpreadDamage
+	Warhead@1Dam: SpreadDamage
+		Damage: -1
 	-Warhead@1Dam: SpreadDamage
 
 DummyContinuousFrigateCannon:
@@ -233,7 +240,7 @@ FieldDefenceLaserAntiFighter:
 		Spread: 32
 		Damage: 25000
 		Versus:
-			Fighter: 300
+			Fighter: 200
 			Small: 25
 			Medium: 10
 			Heavy: 5
@@ -491,13 +498,13 @@ PlatformFighterSpawn:
 InterceptorOrder:
 	ReloadDelay: 25
 	Range: 8c0
-	ValidTargets: Fighter
+	ValidTargets: Fighter, Corvette
 	InvalidTargets: CapitalShip, Frigate
 	Projectile: InstantExplode
 	Warhead@1Dam: SpreadDamage
 		Spread: 1
 		Damage: 1
-		ValidTargets: Fighter
+		ValidTargets: Fighter, Corvette
 		InvalidTargets: CapitalShip, Frigate
 
 PlatformBomberSpawn:

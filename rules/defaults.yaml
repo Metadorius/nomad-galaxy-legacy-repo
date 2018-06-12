@@ -52,12 +52,12 @@
 		RequiresCondition: !stance-attackanything
 		ValidTargets: CapitalShip, Frigate, Corvette, Fighter, Station
 		InvalidTargets: NoAutoTarget
-		Priority: 2
+		Priority: 1
 	AutoTargetPriority@ATTACKANYTHING:
 		RequiresCondition: stance-attackanything
 		ValidTargets: CapitalShip, Frigate, Corvette, Fighter, Station
 		InvalidTargets: NoAutoTarget
-		Priority: 2
+		Priority: 1
 
 ^FrigateTargetPriority:
 	Inherits: ^AutoTargetAll
@@ -65,7 +65,7 @@
 		RequiresCondition: !stance-attackanything
 		ValidTargets: CapitalShip, Frigate, Station
 		InvalidTargets: NoAutoTarget
-		Priority: 1
+		Priority: 2
 
 ^CorvetteTargetPriority:
 	Inherits: ^AutoTargetAll
@@ -73,7 +73,7 @@
 		RequiresCondition: !stance-attackanything
 		ValidTargets: Corvette
 		InvalidTargets: NoAutoTarget
-		Priority: 1
+		Priority: 2
 
 ^FighterTargetPriority:
 	Inherits: ^AutoTargetAll
@@ -81,7 +81,7 @@
 		RequiresCondition: !stance-attackanything
 		ValidTargets: Fighter
 		InvalidTargets: NoAutoTarget
-		Priority: 1
+		Priority: 2
 
 ^LaneSpeedBoost:
 	Targetable@LaneSpeedBoost:
@@ -472,7 +472,6 @@
 	Voiced:
 		VoiceSet: GenericVoice
 	Selectable:
-		Priority: 7
 	MustBeDestroyed:
 	Explodes:
 		Weapon: CapShipExplode
@@ -616,7 +615,7 @@
 		IdealSeparation: 400
 		MoveIntoShroud: true
 		RepulsionSpeed: 25
-		Speed: 100
+		Speed: 120
 		TurnSpeed: 14
 		CanHover: True
 		LandWhenIdle: False
@@ -745,7 +744,6 @@
 	SelectionDecorations:
 	WithSpriteControlGroupDecoration:
 	Selectable:
-		Priority: 3
 	Targetable:
 		TargetTypes: CapitalShip, DeployedShip
 	HitShape:

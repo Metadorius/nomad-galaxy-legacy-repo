@@ -21,6 +21,7 @@
 		Spread: 1
 		Damage: 1
 		Versus:
+			Fighter: 100
 			Small: 100
 			medium: 75
 			Heavy: 50

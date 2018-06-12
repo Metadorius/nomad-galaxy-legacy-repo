@@ -160,13 +160,14 @@ FrigateGasBullet:
 	Inherits: ^Flak
 	ReloadDelay: 35
 	Range: 4c0
-	Projectile: Bullet
-		Speed: 700
+	Projectile: Missile
+		Speed: 400
 		Image: gacid
+		HorizontalRateOfTurn: 20
 		Palette: apolgren
 		TrailInterval: 3
-	ValidTargets: Fighter
-	InvalidTargets: Corvette, Frigate
+	ValidTargets: Fighter, Corvette
+	InvalidTargets: Frigate
 	Warhead@1Dam: SpreadDamage
 		Spread: 300
 		Damage: 7000
@@ -174,7 +175,7 @@ FrigateGasBullet:
 			Small: 25
 			Fighter: 100
 		ValidTargets: Fighter
-		InvalidTargets: Corvette, Frigate
+		InvalidTargets: Frigate
 		ValidStances: Neutral, Enemy
 	Warhead@2Eff: CreateEffect
 		Explosions: ggas, ggas2
@@ -192,10 +193,12 @@ GKorGasBulletSpawner:
 FrigateGasBullet2:
 	Inherits: FrigateGasBullet
 	ValidTargets: Fighter
+	InvalidTargets: Corvette, Frigate
 	Projectile: InstantHit
 	Range: 6c0
 	Warhead@1Dam: SpreadDamage
 		ValidTargets: Fighter
+		InvalidTargets: Corvette, Frigate
 
 RendingClaws:
 	Inherits: HeavyCannon

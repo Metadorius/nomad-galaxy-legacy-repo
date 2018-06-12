@@ -218,6 +218,8 @@ gcorv2:
 gcorv3:
 	Inherits: ^shipdefault
 	icon: gcorv3icon
+    turret: gturret2
+		Facings: -32
 
 gminer:
 	Inherits: ^shipdefault

@@ -92,10 +92,35 @@ GFIGHTER2B:
     -Selectable:
     Interactable:
 	Aircraft:
-		Speed: 75
+		Speed: 95
 	MobSpawnerSlave:
 	RenderSprites:
 		Image: gfighter2
+
+GCORV3:
+	Inherits: ^Corvette
+	Valued:
+		Cost: 200
+	Tooltip:
+		Name: Point Defence Corvette
+	Buildable:
+		Queue: CorvetteQueue
+		BuildPaletteOrder: 1
+		Prerequisites: gsurveyfrigate
+		Description: Light corvette equipped to engage fighters and missiles.
+	Power:
+		Amount: -2
+	Health:
+		HP: 100000
+	RevealsShroud:
+		Range: 5c0
+	Armament:
+		Weapon: PointDefenceCorvetteBullet
+	Armament@1:
+		Weapon: DummyContinuousInterceptorBullet
+	MustBeDestroyed:
+	AttackFrontal:
+    WithSpriteTurret:
 
 GCORV1:
 	Inherits: ^Corvette
@@ -151,25 +176,3 @@ GCORV2:
 		LocalOffset: 200, 0, 0
 		RequiresCondition: !HyperSpaceFadeOut
 	MustBeDestroyed:
-
-GCORV3:
-	Inherits: ^Corvette
-	Valued:
-		Cost: 325
-	Tooltip:
-		Name: Adrenaline Buffer
-	# Buildable:
-		# Queue: CorvetteQueue
-		# BuildPaletteOrder: 1
-		# Prerequisites: gsurveyfrigate
-		# Description: Medium craft armed with torpedo launchers.\nEffective against Corvettes.\nIneffective against Fighters and Capital Ships.
-	Power:
-		Amount: -2
-	Health:
-		HP: 170000
-	RevealsShroud:
-		Range: 5c0
-	Armament:
-		Weapon: AdrenalineShot
-	MustBeDestroyed:
-	AttackFrontal:
