@@ -352,44 +352,6 @@ ConstantRepairLaser:
 		ValidStances: Ally
 		ValidTargets: CapitalShip, Frigate, Corvette, Fighter	, Ground, Air, Airhit
 
-HabitatShipBoost:
-	ReloadDelay: 50
-	Range: 8c0
-	Projectile: InstantExplode
-	Warhead@1Dam: SpreadDamage
-		Spread: 32
-		Damage: 1
-		ValidStances: Ally
-	Warhead@SlowFighter: GrantExternalCondition
-		Range: 3c0
-		Duration: 350
-		Condition: HabitatShipBoost
-		ValidTargets: Leached
-		InvalidTargets: Vaccined
-		ValidStances: Ally
-
-LeechVaccine:
-	ReloadDelay: 5
-	ValidTargets: Leached
-	InvalidTargets: Vaccined
-	Range: 8c0
-	Projectile: LaserZap
-		Width: 25
-		BeamDuration: 5
-		Color: 2FE00B
-	Warhead@1Dam: SpreadDamage
-		Spread: 32
-		Damage: -1
-		ValidStances: Ally
-		ValidTargets: CapitalShip, Frigate, Corvette, Fighter, Ground, Air, Airhit
-	Warhead@SlowFighter: GrantExternalCondition
-		Range: 64
-		Duration: 25
-		Condition: LeechVaccine
-		ValidTargets: Leached
-		InvalidTargets: Vaccined
-		ValidStances: Ally
-
 IonBeamCharge:
 	ReloadDelay: 150
 	Range: 10c0
@@ -540,6 +502,10 @@ EngineerCrewFighterSpawn:
 		Damage: -1
 		ValidTargets: CapitalShip, Frigate, Fighter, Corvette, Ground
 		-InvalidTargets: CapitalShip, Frigate
+
+ResearchShipFighterSpawn:
+    Inherits: EngineerCrewFighterSpawn
+	InvalidTargets: ResearchShipBoosted
 
 ChaseAIPlatform:
 	Inherits: ChaseWeapon

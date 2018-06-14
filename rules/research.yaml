@@ -300,7 +300,7 @@ upgrade.warpgate:
 		Queue: MercContract
 		BuildLimit: 1
 		IconPalette: pirateicon
-        Prerequisites: ~gsurveyfrigate
+        Prerequisites: ~!T1Contract
 		BuildDurationModifier: 240
 	ProvidesPrerequisite@upgradename:
 	ProvidesPrerequisite@T1Contract:

@@ -83,26 +83,6 @@
 		InvalidTargets: NoAutoTarget
 		Priority: 2
 
-^LaneSpeedBoost:
-	Targetable@LaneSpeedBoost:
-		TargetTypes: LaneSpeedBoosted
-		RequiresCondition: LaneSpeedBost1
-	SpeedMultiplier@LaneSpeedBost1:
-		RequiresCondition: LaneSpeedBost1
-		Modifier: 200
-	SpeedMultiplier@LaneSpeedBost2:
-		RequiresCondition: LaneSpeedBost2
-		Modifier: 250
-	ExternalCondition@LaneSpeedBost1:
-		Condition: LaneSpeedBost1
-	ExternalCondition@LaneSpeedBost2:
-		Condition: LaneSpeedBost2
-	SpeedMultiplier@PowerField:
-		RequiresCondition: PowerField
-		Modifier: 125
-	ExternalCondition@PowerField:
-		Condition: PowerField
-
 ^EmpDisable:
 	WithColoredOverlay@EMPDISABLE:
 		RequiresCondition: empdisable
@@ -120,10 +100,13 @@
 		Modifier: 2000
 
 ^Leachable:
+	DelayedWeaponAttachable:
+        Type: bomb
+        Condition: LeechEat
 	ExternalCondition@LeechEat:
-		Condition: LeechEat, LeechVaccine
+		Condition: LeechEat
 	SelfHealing@LeechEat:
-		RequiresCondition: LeechEat && !LeechVaccine
+		RequiresCondition: LeechEat
 		Step: 0
 		PercentageStep: -2
 		DamageCooldown: 0
@@ -131,10 +114,7 @@
 		HealIfBelow: 105
 	Targetable@LeechEat:
 		TargetTypes: Leached
-		RequiresCondition: LeechEat || LeechVaccine
-	Targetable@Vaccined:
-		TargetTypes: Vaccined
-		RequiresCondition: LeechVaccine
+		RequiresCondition: LeechEat
 
 ^Boardable:
 	TemporaryOwnerManager:
@@ -160,41 +140,13 @@
 	ExternalCondition@ArtificialCloak:
 		Condition: ArtificialCloak
 
-^AdrenalineBuff:
-	ReloadDelayMultiplier@AdrenalineBuff:
-		RequiresCondition: AdrenalineBuff
-		Modifier: 50
-	SelfHealing@AdrenalineBuff:
-		PercentageStep: -1
-		Delay: 50
-		HealIfBelow: 101
-		DamageCooldown: 200
-		RequiresCondition: AdrenalineBuff
-	ExternalCondition@AdrenalineBuff:
-		Condition: AdrenalineBuff
-
 ^GenericBuffs:
 	Inherits: ^EmpDisable
-	Inherits@1: ^LaneSpeedBoost
-	Inherits@5: ^Cloakable
-	Inherits@6: ^Leachable
-	Inherits@7: ^AdrenalineBuff
+	Inherits@1: ^ResearchShipBoosted
+	Inherits@2: ^Cloakable
+	Inherits@3: ^Leachable
 	BlocksProjectiles:
-	SelfHealing@HabitatCrap:
-		PercentageStep: 1
-		Delay: 50
-		HealIfBelow: 101
-		DamageCooldown: 200
-		RequiresCondition: GkorHabitatShip || TerranHabitatShip || EllarianHabitatShip
-	ExternalCondition@GenericBuffs:
-		Condition: GkorHabitatShip
-	SpeedMultiplier@RendingClaws:
-		RequiresCondition: RendingClaws
-		Modifier: 1
-	ExternalCondition@RendingClaws:
-		Condition: RendingClaws
-	ExternalCondition@PowerField:
-		Condition: PowerField
+	ConditionManager:
 
 ^HyperSpaceAble:
 	SpeedMultiplier@HyperSpace:
@@ -308,6 +260,22 @@
 		Condition: ReloadSpeedT1
 	ExternalCondition@UpgradeT1:
 		Condition: RangeT1
+
+^ResearchShipBoosted:
+	FirepowerMultiplier@ResearchShipBoosted:
+		RequiresCondition: ResearchShipBoosted
+		Modifier: 120
+	DamageMultiplier@ResearchShipBoosted:
+		RequiresCondition: ResearchShipBoosted
+		Modifier: 80
+	SpeedMultiplier@ResearchShipBoosted:
+		RequiresCondition: ResearchShipBoosted
+		Modifier: 150
+	ExternalCondition@ResearchShipBoosted:
+		Condition: ResearchShipBoosted
+	Targetable@ResearchShipBoosted:
+		TargetTypes: ResearchShipBoosted
+		RequiresCondition: ResearchShipBoosted
 
 ^NebulaEffects:
 	SpeedMultiplier@SpeedBuoy:
@@ -666,6 +634,8 @@
 	RevealsShroud:
 		Range: 3c0
 		Type: CenterPosition
+	EditorTilesetFilter:
+		Categories: Fighter
 
 ^Corvette:
 	Inherits@1: ^Figther&CorvetteDefaults
@@ -1130,6 +1100,25 @@
 	ProvidesPrerequisite@gresearchcoreship:
 		Prerequisite: gresearchcoreship
 
+^ResearchShipBuffer:
+	CarrierMaster:
+		Actors: gfighter4
+		RespawnTicks: 10
+		ReamTicks: 10
+		NoRegeneration: True
+		InstaRepair: true
+		SpawnAllAtOnce: True
+	RenderRangeCircle:
+	Armament@PRIMARY:
+		Weapon: ResearchShipFighterSpawn
+		TargetStances: Ally
+	AutoTargetPriority@DEFAULT:
+		RequiresCondition: !stance-attackanything
+		ValidTargets: CapitalShip, Frigate, Corvette, Fighter, Station
+		InvalidTargets: NoAutoTarget
+		Priority: 2
+	AttackOmni:
+
 ^ResearchShipHP:
     Inherits: ^ResearchCoreShipHP
 	Health:
@@ -1265,7 +1254,16 @@ MOTHERSHIP:
 		PercentageStep: 1
 		Delay: 50
 	Exit:
+		ExitCell: -1,-1
+		SpawnOffset: 0,0,0
+	Exit@1:
 		ExitCell: 1,1
+		SpawnOffset: 0,0,0
+	Exit@2:
+		ExitCell: -1,1
+		SpawnOffset: 0,0,0
+	Exit@3:
+		ExitCell: 1,-1
 		SpawnOffset: 0,0,0
 	ExplodeWeapon:
 		Weapon: FieldDefenceLaserSpawnMothership
@@ -1598,10 +1596,7 @@ RESEARCHCORESHIP:
 	Health:
 		HP: 800000
 	Power:
-		Amount: -40
-	StoresResources:
-		PipCount: 5
-		Capacity: 500
+		Amount: -20
 	RenderSprites:
 	Mobile:
 		Speed: 40

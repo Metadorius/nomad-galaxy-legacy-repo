@@ -52,7 +52,7 @@ GFIGHTER2MASTER:
 		Cost: 800
 	Buildable:
 		Queue: CorvetteQueue
-		BuildPaletteOrder: 1
+		BuildPaletteOrder: 3
 		Description: Effective versus units other than interceptors
 		Prerequisites: gmercenaryhub
 	Interactable:
@@ -102,7 +102,7 @@ GCORV1:
 	Inherits@2: ^CorvetteTargetPriority
 	Buildable:
 		Queue: CorvetteQueue
-		BuildPaletteOrder: 1
+		BuildPaletteOrder: 2
 		Description: Armed with a heavy cannon.\nEffective against Frigates.\nIneffective against Fighters and Corvettes.
 	Valued:
 		Cost: 150
@@ -136,7 +136,7 @@ GCORV3:
 		Name: Torpedo Corvette
 	Buildable:
 		Queue: CorvetteQueue
-		BuildPaletteOrder: 2
+		BuildPaletteOrder: 4
 		Prerequisites: gmercenaryhub
 		Description: Light corvette equipped to engage fighters and missiles.
 	Power:
@@ -156,7 +156,7 @@ GCORV2:
 	Inherits@2: ^FrigateTargetPriority
 	Buildable:
 		Queue: CorvetteQueue
-		BuildPaletteOrder: 3
+		BuildPaletteOrder: 5
 		Prerequisites: gresearchship
 		Description: Cloaked corvette, fires glaives that bounce 6 times.
 	Valued:

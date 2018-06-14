@@ -198,7 +198,6 @@ GFIGHTER3:
 		Ammo: 2
 	KillsSelf:
 		RequiresCondition: KillFighter
-		# RemoveInstead: True
 	GrantPeriodicCondition:
 		Condition: KillFighter
 		CooldownDuration: 500
@@ -212,3 +211,8 @@ GFIGHTER3:
 	AttackWander:
 		MinMoveDelay: 1
 		MaxMoveDelay: 9999
+
+GFIGHTER4:
+    Inherits: GFIGHTER3
+	Armament:
+		Weapon: ResearchShipUnitBuffer

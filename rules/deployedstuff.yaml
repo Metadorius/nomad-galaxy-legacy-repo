@@ -142,7 +142,9 @@ DGENGINEER:
 
 DGMERCENARYHUB:
 	Inherits@1: ^Building
+	Inherits@2: ^ResearchShipBuffer
 	Inherits@3: ^MercenaryHubHP
+	Inherits@4: ^AutoTargetAll
 	Building:
 		Dimensions: 1,1
 		Footprint: x
@@ -156,6 +158,7 @@ DGMERCENARYHUB:
 		Image: gmercenaryhub
 	ProvidesPrerequisite@gmercenaryhub:
 		Prerequisite: gmercenaryhub
+    Exit:
 	Selectable:
 		Priority: 5
 	WithMakeAnimation:
@@ -177,7 +180,9 @@ DGMERCENARYHUB:
 
 DGRESEARCHSHIP:
 	Inherits@1: ^Building
+	Inherits@2: ^ResearchShipBuffer
 	Inherits@3: ^ResearchShipHP
+	Inherits@4: ^AutoTargetAll
 	Building:
 		Dimensions: 1,1
 		Footprint: x

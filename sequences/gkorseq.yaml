@@ -276,6 +276,10 @@ gfighter3:
 	Inherits@2: ^fighterdefault
 	icon: gfighter3icon
 
+gfighter4:
+	Inherits: ^shipdefault
+	Inherits@2: ^fighterdefault
+
 gprobe:
 	Inherits: ^shipdefault
 	Inherits@2: ^fighterdefault

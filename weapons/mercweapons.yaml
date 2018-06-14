@@ -299,16 +299,26 @@ LancerTesla2:
 LeechEat:
 	ReloadDelay: 25
 	Range: 250
-	ValidTargets: CapitalShip, Frigate
+	ValidTargets: CapitalShip, Frigate, Building
 	Projectile: InstantExplode
 	InvalidTargets: Leached
 	Warhead@1Dam: SpreadDamage
 		Damage: 1
-	Warhead@2Eff: CreateEffect
-	Warhead@SlowFighter: GrantExternalCondition
-		Range: 250
-		Duration: 1000
-		Condition: LeechEat
 		InvalidTargets: Leached
-		AffectsParent: True
-		ValidStances: Ally, Enemy, Neutral
+		ValidTargets: Fighter, CapitalShip, Frigate, Corvette, Ground
+	Warhead@2Eff: AttachDelayedWeapon
+		Weapon: LeechEat
+		Type: bomb
+        TriggerTime: 150
+		ValidTargets: Fighter, CapitalShip, Frigate, Corvette, Ground
+    
+RenovateLeechDamage:
+	ValidTargets: CapitalShip, Frigate, Building
+	Projectile: InstantExplode
+	Warhead@1Dam: SpreadDamage
+		Damage: 1
+		ValidTargets: CapitalShip, Frigate, Building
+	Warhead@2Eff: AttachDelayedWeapon
+		Weapon: RenovateLeechDamage
+		Type: bomb
+		ValidTargets: Fighter, CapitalShip, Frigate, Corvette, Ground

@@ -578,19 +578,18 @@ CUNIT3:
 		Speed: 140
 	Armament@1:
 		Weapon: LeechEat
-		LocalOffset: 100,-200,0, 100,200,0
 	MustBeDestroyed:
 	AttackHeli:
 	SelectionDecorations:
 		VisualBounds: 20,20
 	AutoTarget:
 	RenderSprites:
-	KillsSelf:
-		RequiresCondition: LeechEat
 	-SmokeTrailWhenDamaged:
 	-GrantConditionOnDamageState@fighterflametrails:
 	-SelfHealing@fighterflametrails:
-	ExternalCondition@LeechEat:
-		Condition: LeechEat
 	Voiced:
 		VoiceSet: GenericVoice
+    GrantConditionOnAttack:
+        Condition: KillsSelf
+    KillsSelf:
+        RequiresCondition: KillsSelf
