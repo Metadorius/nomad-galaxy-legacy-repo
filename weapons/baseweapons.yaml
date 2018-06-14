@@ -20,6 +20,14 @@ InterceptorBullet:
 		ValidTargets: Fighter, Corvette
 		InvalidTargets: CapitalShip, Frigate
 
+CorvetteAntiFighterBullet:
+	Inherits: InterceptorBullet
+	ValidTargets: Fighter
+	Warhead@1Dam: SpreadDamage
+		Damage: 5000
+		ValidTargets: Fighter
+	-Warhead@SlowFighter: GrantExternalCondition
+
 PointDefenceCorvetteBullet:
     Inherits: InterceptorBullet
 	-Warhead@SlowFighter: GrantExternalCondition
@@ -31,6 +39,7 @@ InterceptorBulletNoDmg:
 	InvalidTargets: CapitalShip, Frigate
 	Warhead@1Dam: SpreadDamage
 		Damage: 1
+        Spread: 1
 	Projectile: Bullet
 		Speed: 400
 		Blockable: False
@@ -64,7 +73,7 @@ BomberPlasma:
 		Image: bulletbomber
 	Warhead@1Dam: SpreadDamage
 		Spread: 64
-		Damage: 10000
+		Damage: 15000
 		ValidTargets: CapitalShip, Frigate, Corvette, Ground
 		InvalidTargets: Fighter
 
@@ -77,13 +86,13 @@ BasicAutocannon:
 	Inherits: ^AutoCannon
 	ReloadDelay: 40
 	Range: 4c0
+	ValidTargets: CapitalShip, Frigate, Corvette, Ground
     Projectile:
 		Image: bulletcorvette
 	Warhead@1Dam: SpreadDamage
 		Damage: 4000
 		ValidStances: Ally, Neutral, Enemy
 		ValidTargets: CapitalShip, Frigate, Corvette, Ground
-		Image: bulletcorvette
 	Warhead@2Eff: CreateEffect
 		Explosions: jucflash
 		ExplosionPalette: gensmkexploj
@@ -91,13 +100,15 @@ BasicAutocannon:
 
 BasicAutocannonNoDmg:
     Inherits: BasicAutocannon
+		ValidTargets: Fighter, CapitalShip, Frigate, Corvette, Ground
 	Warhead@1Dam: SpreadDamage
+		Spread: 1
 		Damage: -1
 	-Warhead@2Eff: CreateEffect
 
 DummyContinuousAutoCannon:
 	Inherits: BasicAutocannonNoDmg
-	Range: 5c0
+	# Range: 5c0
 	Projectile: WarheadTrailProjectile
 		Offsets: 0,128,0#, 64,96,0, -64,96,0
 		Firemode: Spread#Line # try putting "Line" or "Spread" here, "Focus"
@@ -139,6 +150,7 @@ FrigateCannonSpawner:
 
 CorvetteCannon:
 	Inherits: HeavyCannon
+    Inherits@1: ^MediumWeaponsWarhead
 	ReloadDelay: 100
 	Range: 5c0
 	Warhead@1Dam: SpreadDamage
@@ -156,6 +168,7 @@ FrigateCannon:
 FrigateCannonNoDmg:
     Inherits: FrigateCannon
 	Warhead@1Dam: SpreadDamage
+		Spread: 1
 		Damage: -1
 	-Warhead@1Dam: SpreadDamage
 
@@ -177,7 +190,7 @@ CorvetteMissile:
 	Range: 6c0
 	Burst: 3
 	Warhead@1Dam: SpreadDamage
-		Damage: 5000
+		Damage: 20000
 
 FrigateMissile:
 	Inherits: ^Missile

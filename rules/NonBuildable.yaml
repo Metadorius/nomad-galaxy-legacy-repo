@@ -48,6 +48,19 @@ GSURVEYFRIGATE:
 		OwnerType: InternalName
 		InternalOwner: Neutral
 
+GMERCENARYHUB:
+	Inherits: ^CapitalShip
+	Inherits@3: ^MercenaryHubHP
+	Transforms:
+		IntoActor: dgmercenaryhub
+		Offset: 0,0
+	SpawnActorOnDeath:
+		Actor: gresearchshiph
+		OwnerType: InternalName
+		InternalOwner: Neutral
+	RenderSprites:
+		Image: gmercenaryhub
+
 GRESEARCHSHIP:
 	Inherits: ^CapitalShip
 	Inherits@3: ^ResearchShipHP
@@ -61,8 +74,27 @@ GRESEARCHSHIP:
 	RenderSprites:
 		Image: gresearchship
 
+GSUBSPESS:
+	Inherits: ^CapitalShip
+	Inherits@2: ^CivilianShipWeaponsGkor
+    Inherits@3: ^SubspessHP
+	Valued:
+		Cost: 1500
+	Tooltip:
+		Name: Subspace Gate
+	Mobile:
+		Speed: 45
+	AnnounceOnBuildAS:
+		Voice: SubspaceGeneratorReady
+		OnlyToOwner: True
+	Transforms:
+		IntoActor: dgsubspess
+		Offset: 0,0
+		Facing: 192
+
 GFIGHTERTURRET:
 	Inherits: ^DeployableTurret
+	Inherits@1: ^CivShipHP
 	Tooltip:
 		Name: Anti Fighter Defence
 	ExplodeWeapon:
@@ -78,6 +110,7 @@ GFIGHTERTURRET:
 GNORMALTURRET:
 	Inherits: ^DeployableTurret
 	Inherits@Autotarget: ^AutoTargetAll
+	Inherits@1: ^CivShipHP
 	Turreted:
 	AttackTurreted:
 	Interactable:

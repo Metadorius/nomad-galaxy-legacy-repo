@@ -169,8 +169,8 @@ FrigateGasBullet:
 	ValidTargets: Fighter, Corvette
 	InvalidTargets: Frigate
 	Warhead@1Dam: SpreadDamage
-		Spread: 300
-		Damage: 7000
+		Spread: 200
+		Damage: 10000
 		Versus:
 			Small: 25
 			Fighter: 100

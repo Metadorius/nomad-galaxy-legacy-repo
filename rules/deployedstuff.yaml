@@ -140,6 +140,41 @@ DGENGINEER:
 		InvalidTargets: NoAutoTarget
 		Priority: 2
 
+DGMERCENARYHUB:
+	Inherits@1: ^Building
+	Inherits@3: ^MercenaryHubHP
+	Building:
+		Dimensions: 1,1
+		Footprint: x
+	RevealsShroud:
+		Range: 5c0
+		Type: CenterPosition
+	Transforms:
+		IntoActor: gmercenaryhub
+		Offset: 0,0
+	RenderSprites:
+		Image: gmercenaryhub
+	ProvidesPrerequisite@gmercenaryhub:
+		Prerequisite: gmercenaryhub
+	Selectable:
+		Priority: 5
+	WithMakeAnimation:
+	WithSpriteBody:
+		Sequence: deployed
+	ProductionQueue:
+		Type: MercContract
+		Factions: gkor, terran
+		Group: Aircraft
+		LowPowerSlowdown: 10
+		QueuedAudio: Building
+		ReadyAudio: ConstructionComplete
+	Production:
+        Produces: MercContract
+        RequiresCondition: !ContractsFinished
+	GrantConditionOnPrerequisite@T2Contract:
+		Condition: ContractsFinished
+		Prerequisites: T2Contract
+
 DGRESEARCHSHIP:
 	Inherits@1: ^Building
 	Inherits@3: ^ResearchShipHP

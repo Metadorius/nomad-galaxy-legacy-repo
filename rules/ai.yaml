@@ -13,8 +13,8 @@ Player:
 			Silo: silo
 		UnitsCommonNames:
 			Mcv: gpatrolcruiser, ghabitatship
-			ExcludeFromSquads: gmothership, grefinery, gminer, ghabitatship, gfrig4, gfrigateassemblybay, gresearchship, gsurveyfrigate, gcivship, gproductionship
-		BuildingQueues: Aircraft, Vehicle, MercContract, Research, AssemblyBayUpgrade, CivilianShipUpgrade
+			ExcludeFromSquads: gmothership, grefinery, gminer, ghabitatship, gfrig4, gfrigateassemblybay, gresearchship, gsurveyfrigate, gcivship, gproductionship, gresearchcoreship, gmercenaryhub
+		BuildingQueues: Aircraft, Vehicle, MercContract, Research, AssemblyBayUpgrade, CivilianShipUpgrade, ResearchShipUpgrade
 		UnitQueues: BaseShipQueue, CorvetteQueue, FrigateQueue
 		CheckCaptureTargetsForVisibility: false
 		MaximumCaptureTargetOptions: 15
@@ -26,6 +26,7 @@ Player:
 			upgrade.supplyship: 1%
 			upgrade.surveyfrigate: 100%
 			upgrade.engineeringcrew: 100%
+			upgrade.mercenaryhub: 100%
 			upgrade.researchship: 100%
 		UnitsToBuild:
 			gfighter1master: 15%
@@ -41,6 +42,7 @@ Player:
 			gbombercarrier: 10%
 			gcivship: 5%
 			gproductionship: 5%
+			gresearchcoreship: 5%
 			grefinery: 100%
 			gpatrolcruiser: 5%
 			ghabitatship: 20%

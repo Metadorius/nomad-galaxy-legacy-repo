@@ -425,7 +425,7 @@
 		HP: 750000
 	WithFacingSpriteBody:
 	Armor:
-		Type: Heavy
+		Type: Big
 	RevealsShroud:
 		Range: 9c0
 		Type: CenterPosition
@@ -460,6 +460,8 @@
 		Type: GroundPosition
 	AttackMove:
 	DrawLineToTarget:
+	Selectable:
+		Priority: 5
 	WithDamageOverlay:
 	BodyOrientation:
 		UseClassicFacingFudge: True
@@ -753,7 +755,7 @@
 			BottomRight: 550, 750
 		TargetableOffsets: 840,0,0, -840,0,0
 	Armor:
-		Type: Heavy
+		Type: Big
 	Health:
 		HP: 300000
 	Building:
@@ -803,7 +805,7 @@
 	Health:
 		HP: 1250000
 	Armor:
-		Type: Heavy
+		Type: Big
 	Targetable:
 		TargetTypes: Station
 	Power:
@@ -887,7 +889,7 @@
 		Range: 10c0
 		Type: CenterPosition
 	Armor:
-		Type: Heavy
+		Type: Big
 	SoundOnDamageTransition:
 		DamagedSounds: xplos.aud
 		DestroyedSounds: crumble.aud
@@ -1067,7 +1069,12 @@
 		Amount: 20
 		RequiresCondition: AIWanderer
 
+^CivShipHP:
+	ProvidesPrerequisite@gcivship:
+		Prerequisite: gcivship
+
 ^SupplyShipHP:
+    Inherits: ^CivShipHP
 	Health:
 		HP: 400000
 	Tooltip:
@@ -1085,6 +1092,7 @@
 		Amount: 50
 
 ^SurveyFrigateHP:
+    Inherits: ^CivShipHP
 	Health:
 		HP: 400000
 	Tooltip:
@@ -1104,6 +1112,7 @@
 		InternalOwner: Neutral
 
 ^EngineerCrewHP:
+    Inherits: ^CivShipHP
 	Health:
 		HP: 400000
 	Power:
@@ -1117,7 +1126,12 @@
 		OwnerType: InternalName
 		InternalOwner: Neutral
 
+^ResearchCoreShipHP:
+	ProvidesPrerequisite@gresearchcoreship:
+		Prerequisite: gresearchcoreship
+
 ^ResearchShipHP:
+    Inherits: ^ResearchCoreShipHP
 	Health:
 		HP: 400000
 	Tooltip:
@@ -1132,14 +1146,31 @@
 		OwnerType: InternalName
 		InternalOwner: Neutral
 
+^MercenaryHubHP:
+    Inherits: ^ResearchCoreShipHP
+	Health:
+		HP: 400000
+	Tooltip:
+		Name: Mercenary Hub
+	Power:
+		Amount: -25
+	ProvidesPrerequisite@gmercenaryhubAI:
+		Prerequisite: gmercenaryhub
+		RequiresCondition: AIWanderer
+	SpawnActorOnDeath@husk:
+		Actor: gresearchshiph
+		OwnerType: InternalName
+		InternalOwner: Neutral
+
 ^ProductionShipHP:
 	Health:
 		HP: 800000
+	ProvidesPrerequisite@gproductionship:
+		Prerequisite: gproductionship 
 
 ^PatrolCruiserHP:
+	Inherits: ^ProductionShipHP
 	Inherits@1: ^CivilianShipWeaponsGkor
-	Health:
-		HP: 800000
 	ProvidesPrerequisite@gpatrolcruiser:
 		Prerequisite: gpatrolcruiser
 	SpawnActorOnDeath:
@@ -1153,9 +1184,8 @@
 		Capacity: 500
 
 ^FrigateAssemblyBayHP:
+	Inherits: ^ProductionShipHP
 	Inherits@1: ^CivilianShipWeaponsGkor
-	Health:
-		HP: 800000
 	ProvidesPrerequisite@gfrigateassemblybay:
 		Prerequisite: gfrigateassemblybay
 	SpawnActorOnDeath:
@@ -1169,9 +1199,8 @@
 		Capacity: 500
 
 ^ShipyardHP:
+	Inherits: ^ProductionShipHP
 	Inherits@1: ^CivilianShipWeaponsGkor
-	Health:
-		HP: 800000
 	ProvidesPrerequisite@gshipyard:
 		Prerequisite: gshipyard
 	SpawnActorOnDeath:
@@ -1273,8 +1302,8 @@ CIVILIANCORESHIP:
 	Valued:
 		Cost: 300
 	Tooltip:
-		Name: Core Ship
-		RequiresCondition: !supplyship && !surveyfrigate && !engineeringcrew && !researchship && !antismallturret && !antifighterturret
+		Name: Coreship
+		RequiresCondition: !supplyship && !surveyfrigate && !engineeringcrew && !antismallturret && !antifighterturret
 	Health:
 		HP: 400000
 	RevealsShroud:
@@ -1304,7 +1333,7 @@ CIVILIANCORESHIP:
 # Deployment related traits
 #######################################
 	WithFacingSpriteBody:
-		RequiresCondition: !supplyship && !surveyfrigate && !engineeringcrew && !researchship && !antismallturret && !antifighterturret
+		RequiresCondition: !supplyship && !surveyfrigate && !engineeringcrew && !antismallturret && !antifighterturret
 #######################################
 # SELF UPGRADE
 #######################################
@@ -1314,7 +1343,7 @@ CIVILIANCORESHIP:
 		LowPowerSlowdown: 10
 	Production@CivilianShipUpgrade:
 		Produces: CivilianShipUpgrade
-		RequiresCondition: !supplyship && !surveyfrigate && !engineeringcrew && !researchship && !antismallturret && !antifighterturret
+		RequiresCondition: !supplyship && !surveyfrigate && !engineeringcrew && !antismallturret && !antifighterturret
 	GrantConditionOnProduction@supplyship:
 		Condition: supplyship
 		Actors: upgrade.supplyship
@@ -1324,9 +1353,6 @@ CIVILIANCORESHIP:
 	GrantConditionOnProduction@engineeringcrew:
 		Condition: engineeringcrew
 		Actors: upgrade.engineeringcrew
-	GrantConditionOnProduction@researchship:
-		Condition: researchship
-		Actors: upgrade.researchship
 	GrantConditionOnProduction@antifighterturret:
 		Condition: antifighterturret
 		Actors: upgrade.antifighterturret
@@ -1393,24 +1419,6 @@ CIVILIANCORESHIP:
 		Prerequisite: gengineer
 		RequiresCondition: engineeringcrew
 #######################################
-# Research Ship Bonus
-#######################################
-	WithFacingSpriteBody@researchship:
-		RequiresCondition: researchship
-		Sequence: researchship
-	Tooltip@researchship:
-		Name: Research Ship
-		RequiresCondition: researchship
-	TransformOnCondition@researchship:
-		IntoActor: dgresearchship
-		Offset: 0,0
-		RequiresCondition: researchship && !moving && deployed
-	WithDecoration@researchship:
-		RequiresCondition: researchship
-	ProvidesPrerequisite@researchship:
-		Prerequisite: gresearchship
-		RequiresCondition: researchship
-#######################################
 # Anti Fighter Turret
 #######################################
 	WithFacingSpriteBody@antifighterturret:
@@ -1475,7 +1483,7 @@ PRODUCTIONSHIP:
 	Valued:
 		Cost: 400
 	Tooltip:
-		Name: Core Production Ship
+		Name: Production Coreship
 	BaseBuilding:
 	Health:
 		HP: 800000
@@ -1575,6 +1583,146 @@ PRODUCTIONSHIP:
 	WithFacingSpriteBody@BaseShipQueue:
 		RequiresCondition: BaseShipQueue
 		Sequence: BaseShipQueue
+
+RESEARCHCORESHIP:
+	Inherits: ^CapitalShip
+	Inherits@1: ^AIWanderer
+	Inherits@3: ^DeployableText
+	Inherits@4: ^ResearchCoreShipHP
+	ProvidesPrerequisite@T1Carrier: 
+	Valued:
+		Cost: 800
+	Tooltip:
+		Name: Research Coreship
+	BaseBuilding:
+	Health:
+		HP: 800000
+	Power:
+		Amount: -40
+	StoresResources:
+		PipCount: 5
+		Capacity: 500
+	RenderSprites:
+	Mobile:
+		Speed: 40
+	Exit:
+        SpawnOffset: 99999,99999,99999
+        ExitCell: 3,3
+	RevealsShroud:
+		Range: 5c0
+	MustBeDestroyed:
+	Selectable:
+		Priority: 5
+		Bounds: 80,80
+	SelectionDecorations:
+		VisualBounds: 80,80
+	RenderSprites:
+	SpawnActorOnDeath:
+		Actor: gfrigateassemblybayh
+		OwnerType: InternalName
+		InternalOwner: Neutral
+	WithFacingSpriteBody:
+		RequiresCondition: !mercenaryhub && !researchship && !Coreship1 && !Coreship2 && !warpgate
+#######################################
+# PRODUCTION
+#######################################
+	ProductionQueue@ResearchShipUpgrade:
+		Type: ResearchShipUpgrade
+		Group: Vehicle
+		LowPowerSlowdown: 10
+	Production@ResearchShipUpgrade:
+		Produces: ResearchShipUpgrade
+		RequiresCondition: !mercenaryhub && !researchship && !Coreship1 && !Coreship2 && !warpgate
+	ProductionBar@ResearchShipUpgrade:
+		ProductionType: ResearchShipUpgrade
+	GrantConditionOnProduction@mercenaryhub:
+		Condition: mercenaryhub
+		Actors: upgrade.mercenaryhub
+	GrantConditionOnProduction@researchship:
+		Condition: researchship
+		Actors: upgrade.researchship
+	GrantConditionOnProduction@Coreship1:
+		Condition: Coreship1
+		Actors: upgrade.Coreship1
+	GrantConditionOnProduction@Coreship2:
+		Condition: Coreship2
+		Actors: upgrade.Coreship2
+	GrantConditionOnProduction@warpgate:
+		Condition: warpgate
+		Actors: upgrade.warpgate
+#######################################
+# Research Ship Bonus
+#######################################
+	WithFacingSpriteBody@researchship:
+		RequiresCondition: researchship
+		Sequence: researchship
+	Tooltip@researchship:
+		Name: Research Ship
+		RequiresCondition: researchship
+	TransformOnCondition@researchship:
+		IntoActor: dgresearchship
+		Offset: 0,0
+		SkipMakeAnims: False
+		RequiresCondition: researchship && !moving && deployed
+	ProvidesPrerequisite@researchship:
+		Prerequisite: gresearchship
+		RequiresCondition: researchship
+#######################################
+# Mercenary Hub Bonus
+#######################################
+	WithFacingSpriteBody@mercenaryhub:
+		RequiresCondition: mercenaryhub
+		Sequence: mercenaryhub
+	Tooltip@mercenaryhub:
+		Name: Research Ship
+		RequiresCondition: mercenaryhub
+	TransformOnCondition@mercenaryhub:
+		IntoActor: dgmercenaryhub
+		Offset: 0,0
+		SkipMakeAnims: False
+		RequiresCondition: mercenaryhub && !moving && deployed
+	ProvidesPrerequisite@mercenaryhub:
+		Prerequisite: gresearchship
+		RequiresCondition: mercenaryhub
+#######################################
+# Support Coreship 1
+#######################################
+	# WithFacingSpriteBody@Coreship1:
+		# RequiresCondition: Coreship1
+		# Sequence: Coreship1
+	# Tooltip@Coreship1:
+		# Name: Research Ship
+		# RequiresCondition: Coreship1
+	# TransformOnCondition@Coreship1:
+		# IntoActor: dgresearchship
+		# Offset: 0,0
+		# RequiresCondition: Coreship1 && !moving && deployed
+#######################################
+# Support Coreship 2
+#######################################
+	# WithFacingSpriteBody@Coreship2:
+		# RequiresCondition: Coreship2
+		# Sequence: Coreship2
+	# Tooltip@Coreship2:
+		# Name: Research Ship
+		# RequiresCondition: Coreship2
+	# TransformOnCondition@Coreship2:
+		# IntoActor: dgresearchship
+		# Offset: 0,0
+		# RequiresCondition: Coreship2 && !moving && deployed
+############################################
+# Warp Gate
+############################################
+	ProvidesPrerequisite@warpgate:
+		Prerequisite: warpgate
+		RequiresCondition: warpgate
+	TransformOnCondition@warpgate:
+		IntoActor: dgsubspess
+		SkipMakeAnims: False
+		RequiresCondition: warpgate && !moving && deployed
+	WithFacingSpriteBody@warpgate:
+		RequiresCondition: warpgate
+		Sequence: warpgate
 
 SERVICEFRIGATE:
 	Inherits: ^TurretedFrigate

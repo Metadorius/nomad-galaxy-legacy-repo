@@ -122,7 +122,7 @@ upgrade.frigatequeue:
 	Buildable:
 		Queue: AssemblyBayUpgrade
 		Description: Allows frigate production.
-		Prerequisites: ghabitatship, gminer
+		Prerequisites: gresearchcoreship
 		BuildLimit: 0
 		IconPalette: terrain
 	Valued:
@@ -138,7 +138,7 @@ upgrade.baseshipqueue:
 		Name: Shipyard
 	Buildable:
 		Queue: AssemblyBayUpgrade
-		Prerequisites: gengineer
+		Prerequisites: gresearchship
 		Description: Allows base ship production.
 		BuildLimit: 0
 		IconPalette: terrain
@@ -176,7 +176,7 @@ upgrade.surveyfrigate:
 	Buildable:
 		Queue: CivilianShipUpgrade
 		Description: High vision ship that provides radar and\nstealth detection, vision increases when deployed.
-		Prerequisites: gfrigateassemblybay
+		Prerequisites: gmercenaryhub
 		BuildLimit: 0
 		IconPalette: terrain
 	Valued:
@@ -193,7 +193,7 @@ upgrade.engineeringcrew:
 	Buildable:
 		Queue: CivilianShipUpgrade
 		Description: Cruiser that High vision ship that provides radar,\nstealth detection, and technology when deployed.
-		Prerequisites: gfrigateassemblybay
+		Prerequisites: gmercenaryhub
 		BuildLimit: 0
 		IconPalette: terrain
 	Valued:
@@ -203,23 +203,6 @@ upgrade.engineeringcrew:
 		HP: 400000
 	Power:
 		Amount: -15
-
-upgrade.researchship:
-	Inherits: ^default.upgrade
-	Tooltip:
-		Name: Research Ship
-	Buildable:
-		Queue: CivilianShipUpgrade
-		Description: High vision ship that provides radar,\nstealth detection, and technology when deployed.
-		Prerequisites: gengineer, gsurveyfrigate
-		BuildLimit: 0
-		IconPalette: terrain
-	Valued:
-		Cost: 3000
-	Power:
-		Amount: -50
-	RenderSprites:
-		Image: gresearchship
 
 upgrade.antifighterturret:
 	Inherits: ^default.upgrade
@@ -250,6 +233,62 @@ upgrade.antismallturret:
 		Cost: 250
 	RenderSprites:
 		Image: gapplatform
+
+###############################################################
+# RESEARCH CORESHIP UPGRADES
+###############################################################
+
+upgrade.mercenaryhub:
+	Inherits: ^default.upgrade
+	Tooltip:
+		Name: Mercenary Hun Ship
+	Buildable:
+		Queue: ResearchShipUpgrade
+		Description: Provides extra technology and allows to hire mercenary forces to bolster your fleet.
+		Prerequisites: gresearchcoreship
+		BuildLimit: 0
+		IconPalette: terrain
+	Valued:
+		Cost: 1000
+	Power:
+		Amount: -25
+	RenderSprites:
+		Image: gmercenaryhub
+
+upgrade.researchship:
+	Inherits: ^default.upgrade
+	Tooltip:
+		Name: Research Ship
+	Buildable:
+		Queue: ResearchShipUpgrade
+		Description: Provides advanced technologies.
+		Prerequisites: gmercenaryhub
+		BuildLimit: 0
+		IconPalette: terrain
+	Valued:
+		Cost: 1500
+	Power:
+		Amount: -50
+	RenderSprites:
+		Image: gresearchship
+
+upgrade.warpgate:
+	Inherits: ^default.upgrade
+	Tooltip:
+		Name: Warp Gate
+	Buildable:
+		Queue: ResearchShipUpgrade
+		Description: Experimental ship that provides instant travel, cannot be undeployed.
+		Prerequisites: gresearchship
+		BuildLimit: 0
+		IconPalette: terrain
+	Valued:
+		Cost: 1000
+	Power:
+		Amount: -50
+	RenderSprites:
+		Image: gsubspess
+
 ###############################################################
 # MERCENARY RESERACH
 ###############################################################
@@ -274,7 +313,7 @@ upgrade.antismallturret:
 	AlwaysVisible:
 	Buildable:
 		BuildPaletteOrder: 50
-		Prerequisites: ~T1Contract, ~gsurveyfrigate
+		Prerequisites: ~T1Contract, ~!T2Contract
 		Queue: MercContract
 		BuildLimit: 1
 		IconPalette: pirateicon
@@ -283,43 +322,6 @@ upgrade.antismallturret:
 		Prerequisite: T2Contract
 	Valued:
 		Cost: 750
-	Interactable:
-
-merc.dummy:
-	AlwaysVisible:
-	Tooltip:
-		Name: Merc Dummy
-	RenderSprites:
-		Image: punit3
-	Mobile:
-		Speed: 1
-		TerrainSpeeds:
-			Clear: 100
-			Ground: 100
-			Tiberium: 100
-			BlueTiberium: 100
-			Junk: 100
-			Gas: 100
-			SpaceGray: 100
-			SpaceGray2: 100
-			SpaceGreen: 100
-			SpaceGreen2: 100
-			SpaceBlue: 100
-			SpaceBlue2: 100
-			SpaceRed: 100
-			SpaceRed2: 100
-		TurnSpeed: 3
-	ProductionQueue:
-		Type: MercContract
-		Factions: gkor, terran
-		Group: Aircraft
-		LowPowerSlowdown: 10
-		QueuedAudio: Building
-		ReadyAudio: ConstructionComplete
-	Production:
-        Produces: MercContract
-	Exit:
-	ProvidesPrerequisite@upgradename:
 	Interactable:
 
 research.pirates:

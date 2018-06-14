@@ -54,7 +54,7 @@ GFIGHTER2MASTER:
 		Queue: CorvetteQueue
 		BuildPaletteOrder: 1
 		Description: Effective versus units other than interceptors
-		Prerequisites: ghabitatship
+		Prerequisites: gmercenaryhub
 	Interactable:
 		Bounds: 30,30
 	Power:
@@ -97,38 +97,12 @@ GFIGHTER2B:
 	RenderSprites:
 		Image: gfighter2
 
-GCORV3:
-	Inherits: ^Corvette
-	Valued:
-		Cost: 200
-	Tooltip:
-		Name: Point Defence Corvette
-	Buildable:
-		Queue: CorvetteQueue
-		BuildPaletteOrder: 1
-		Prerequisites: gsurveyfrigate
-		Description: Light corvette equipped to engage fighters and missiles.
-	Power:
-		Amount: -2
-	Health:
-		HP: 100000
-	RevealsShroud:
-		Range: 5c0
-	Armament:
-		Weapon: PointDefenceCorvetteBullet
-	Armament@1:
-		Weapon: DummyContinuousInterceptorBullet
-	MustBeDestroyed:
-	AttackFrontal:
-    WithSpriteTurret:
-
 GCORV1:
 	Inherits: ^Corvette
 	Inherits@2: ^CorvetteTargetPriority
 	Buildable:
 		Queue: CorvetteQueue
-		BuildPaletteOrder: 2
-		Prerequisites: gsurveyfrigate
+		BuildPaletteOrder: 1
 		Description: Armed with a heavy cannon.\nEffective against Frigates.\nIneffective against Fighters and Corvettes.
 	Valued:
 		Cost: 150
@@ -141,21 +115,48 @@ GCORV1:
     WithSpriteTurret:
 	RevealsShroud:
 		Range: 5c0
+	Armament:
+		Weapon: CorvetteAntiFighterBullet
 	Armament@1:
+		Weapon: DummyContinuousInterceptorBullet
+	Armament@2:
 		Weapon: BasicAutocannon
 		RequiresCondition: !HyperSpaceFadeOut
 		LocalOffset: 200,0,0
-	Armament@2:
+	Armament@3:
 		Weapon: DummyContinuousAutoCannon
 		RequiresCondition: !HyperSpaceFadeOut
 		LocalOffset: 200,0,0
+
+GCORV3:
+	Inherits: ^Corvette
+	Valued:
+		Cost: 200
+	Tooltip:
+		Name: Torpedo Corvette
+	Buildable:
+		Queue: CorvetteQueue
+		BuildPaletteOrder: 2
+		Prerequisites: gmercenaryhub
+		Description: Light corvette equipped to engage fighters and missiles.
+	Power:
+		Amount: -2
+	Health:
+		HP: 100000
+	RevealsShroud:
+		Range: 5c0
+	Armament:
+		Weapon: CorvetteMissile
+	MustBeDestroyed:
+	AttackFrontal:
+    WithSpriteTurret:
 
 GCORV2:
 	Inherits: ^Corvette
 	Inherits@2: ^FrigateTargetPriority
 	Buildable:
 		Queue: CorvetteQueue
-		BuildPaletteOrder: 2
+		BuildPaletteOrder: 3
 		Prerequisites: gresearchship
 		Description: Cloaked corvette, fires glaives that bounce 6 times.
 	Valued:

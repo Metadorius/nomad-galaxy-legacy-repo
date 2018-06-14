@@ -129,7 +129,6 @@ World:
 		ClassName: MCV Only
 		Factions: gkor
 		BaseActor: gmothership
-		SupportActors: merc.dummy
 	# MPStartUnits@terranmcv:
 		# Class: none
 		# ClassName: MCV Only

@@ -46,9 +46,6 @@ gcivship:
 	surveyfrigate: gsurveyfrigate
 		Facings: -32
 		UseClassicFacingFudge: True
-	researchship: gresearchship
-		Facings: -32
-		UseClassicFacingFudge: True
 ##### Turrets
 	anticovertteturret: gacplatform
 		Facings: -32
@@ -108,12 +105,34 @@ gengineer:
 	make: gengineermake
 		Length: *
 
+gresearchcoreship
+	Inherits: ^shipdefault
+	icon: gresearchcoreshipicon
+##### Civ Stuff
+	researchship: gresearchship
+		Facings: -32
+		UseClassicFacingFudge: True
+	mercenaryhub: gmercenaryhub
+		Facings: -32
+		UseClassicFacingFudge: True
+	warpgate: gsubspess
+		Facings: -32
+		UseClassicFacingFudge: True
+
 gresearchship:
 	Inherits: ^shipdefault
 	icon: gresearchshipicon
 	deployed: gresearchshipmake
 		Start: 78
 	make: gresearchshipmake
+		Length: *
+
+gmercenaryhub:
+	Inherits: ^shipdefault
+	icon: gmercenaryhubicon
+	deployed: gmercenaryhubmake
+		Start: 68
+	make: gmercenaryhubmake
 		Length: *
 
 gsubspess:

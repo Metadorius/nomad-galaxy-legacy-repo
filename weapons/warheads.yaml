@@ -9,10 +9,12 @@
 		Spread: 1
 		Damage: 1
 		Versus:
+			Fighter: 100
 			Small: 100
-			medium: 100
-			Heavy: 100
+			Medium: 100
+			Big: 100
 		# ValidStances: Neutral, Enemy
+		ValidTargets: CapitalShip, Frigate, Corvette, Fighter, Ground
 
 ^LightWeaponsWarhead:
 	Inherits: ^GeneralDebuffs
@@ -23,19 +25,35 @@
 		Versus:
 			Fighter: 100
 			Small: 100
-			medium: 75
-			Heavy: 50
+			Medium: 75
+			Big: 50
+		ValidTargets: CapitalShip, Frigate, Corvette, Fighter, Ground
 
-^HeavyWeaponsWarhead:
+^MediumWeaponsWarhead:
 	Inherits: ^GeneralDebuffs
 	ValidTargets: CapitalShip, Frigate, Corvette, Fighter, Ground
 	Warhead@1Dam: SpreadDamage
 		Spread: 1
 		Damage: 1
 		Versus:
+			Fighter: 50
 			Small: 50
-			medium: 75
-			Heavy: 100
+			Medium: 100
+			Big: 50
+		ValidTargets: CapitalShip, Frigate, Corvette, Fighter, Ground
+
+^BigWeaponsWarhead:
+	Inherits: ^GeneralDebuffs
+	ValidTargets: CapitalShip, Frigate, Corvette, Fighter, Ground
+	Warhead@1Dam: SpreadDamage
+		Spread: 1
+		Damage: 1
+		Versus:
+			Fighter: 50
+			Small: 50
+			Medium: 75
+			Big: 100
+		ValidTargets: CapitalShip, Frigate, Corvette, Fighter, Ground
 
 ^Flak:
 	Inherits: ^LightWeaponsWarhead
@@ -75,7 +93,6 @@
 
 ^AutoCannon:
 	Inherits: ^NormalWeaponWarhead
-	ValidTargets: CapitalShip, Frigate, Corvette, Ground
 	InvalidTargets: Fighter
 	Range: 4c0
 	Report: rmachinegun1.wav, rmachinegun2.wav
@@ -85,15 +102,12 @@
 		Image: bulletinterceptor
 		Palette: chrome
 		Inaccuracy: 200
-	Warhead@1Dam: SpreadDamage
-		ValidTargets: CapitalShip, Frigate, Corvette, Ground
 	Warhead@2Eff: CreateEffect
 		Explosions: jucflash
 		ExplosionPalette: gensmkexploj
-		ValidTargets: CapitalShip, Frigate, Corvette, Ground
 
 ^PlasmaBomb:
-	Inherits: ^HeavyWeaponsWarhead
+	Inherits: ^BigWeaponsWarhead
 	ValidTargets: CapitalShip, Frigate, Corvette, Fighter, Ground
 	Range: 3c0
 	MinRange: 1c0
@@ -123,7 +137,7 @@
 		ValidStances: Neutral, Enemy
 
 HeavyCannon:
-	Inherits: ^HeavyWeaponsWarhead
+	Inherits: ^BigWeaponsWarhead
 	ReloadDelay: 75
 	Range: 4c768
 	Report: cannon1.wav, cannon2.wav
@@ -171,7 +185,7 @@ HeavyCannon:
 			Fighter: 1
 			Small: 100
 			Medium: 80
-			Heavy: 60
+			Big: 60
 	Warhead@3Eff: CreateEffect
 		Explosions: jsbang16, jsbang16b, jsbang24
 		ExplosionPalette: gensmkexploj
@@ -204,7 +218,7 @@ HeavyCannon:
 			Fighter: 1
 			Small: 150
 			Medium: 50
-			Heavy: 30
+			Big: 30
 	Warhead@3Eff: CreateEffect
 		Explosions: jsbang16, jsbang16b, jsbang24
 		ExplosionPalette: gensmkexploj

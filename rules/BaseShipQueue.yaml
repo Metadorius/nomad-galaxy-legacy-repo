@@ -4,11 +4,12 @@
 
 GCIVSHIP:
 	Inherits: CIVILIANCORESHIP
+    Inherits@2: ^CivShipHP
 	Buildable:
 		Queue: BaseShipQueue
 		BuildPaletteOrder: 1
 		Prerequisites: ~mothership
-		Description: Upgradable ship, it can assume different utility roles depending on the upgrade.\n\nCurrent roles are the following.\n- Fleet capacity provider (Supply ship).\n- Radar provider & Mercenary Contractor (Survey Frigate).\n-Replairs and static defence builder (Engineering Crew)\n- Tech Center and upgrader (Research Ship).
+		Description: Upgradable ship, it can assume different utility roles depending on the upgrade.\n\nCurrent roles are the following.\n- Fleet capacity provider (Supply ship).\n- Radar provider & Mercenary Contractor (Survey Frigate).\n- Repairs and static defence builder (Engineering Crew)\n- Tech Center and upgrader (Research Ship).
 	AnnounceOnBuildAS:
 		Voice: LogisticShipReady
 		OnlyToOwner: True
@@ -18,7 +19,7 @@ GMINER:
 	Buildable:
 		Queue: BaseShipQueue
 		Prerequisites: ghabitatship
-		BuildPaletteOrder: 1
+		BuildPaletteOrder: 2
 		Description: Utility Ship
 	RenderSprites:
 		Image: grefinery
@@ -33,6 +34,18 @@ GPRODUCTIONSHIP:
 	AnnounceOnBuildAS:
 		Voice: FrigateAssemblyBayReady
 		OnlyToOwner: True
+
+GRESEARCHCORESHIP:
+	Inherits: RESEARCHCORESHIP
+	Buildable:
+		Queue: BaseShipQueue
+		BuildPaletteOrder: 4
+		Prerequisites: gproductionship, gminer, gcivship
+		Description: Upgradable ship, provides different bonuses depending on the upgrade.\n\nCurrent roles are the following.\n- Mercenary Provider (Mercenary Hub).\n- Late game tech provider (Research Ship).\n- Faction specific buffs (Core ships)\n- Map detection (Sensor array)\n- Instant travel (Warp Gate)
+	AnnounceOnBuildAS:
+		Voice: LogisticShipReady
+		OnlyToOwner: True
+	ProvidesPrerequisite@GRESEARCHCORESHIP: 
 
 GADERRICK:
 	Inherits: ^DefenceStation
@@ -63,29 +76,6 @@ GADERRICK:
 	Tooltip@anticorvettestation:
 		Name: Needler Turret (Anti Corvette)
 		RequiresCondition: anticorvettestation
-
-GSUBSPESS:
-	Inherits: ^CapitalShip
-	Inherits@2: ^CivilianShipWeaponsGkor
-    Inherits@3: ^SubspessHP
-	Valued:
-		Cost: 1500
-	Tooltip:
-		Name: Subspace Gate
-	Buildable:
-		Queue: BaseShipQueue
-		BuildPaletteOrder: 7
-		Prerequisites: gresearchship
-		Description: Deployable Gate that instantly transport ships.\n- Has to be deployed to enable gate.\n- Cannot be undeployed (engine limitation).
-	Mobile:
-		Speed: 45
-	AnnounceOnBuildAS:
-		Voice: SubspaceGeneratorReady
-		OnlyToOwner: True
-	Transforms:
-		IntoActor: dgsubspess
-		Offset: 0,0
-		Facing: 192
 
 GBC2:
 	Inherits: ^CapitalShip
