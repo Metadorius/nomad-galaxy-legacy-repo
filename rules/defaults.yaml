@@ -100,6 +100,7 @@
 		Modifier: 2000
 
 ^Leachable:
+	DelayedWeaponDetector:
 	DelayedWeaponAttachable:
         Type: bomb
         Condition: LeechEat
@@ -1292,11 +1293,6 @@ CIVILIANCORESHIP:
 	Inherits: ^CapitalShip
 	Inherits@1: ^AIWanderer
 	Inherits@2: ^DeployableText
-	Inherits@3: ^EngineerShipLogo
-	Inherits@4: ^SurveyFrigateShipLogo
-	Inherits@5: ^ResearchShipLogo
-	Inherits@6: ^DefenceShipLogo
-	Inherits@7: ^SupplyShipLogo
 	Valued:
 		Cost: 300
 	Tooltip:
@@ -1392,8 +1388,6 @@ CIVILIANCORESHIP:
 		Offset: 0,0
 		SkipMakeAnims: False
 		RequiresCondition: surveyfrigate && !moving && deployed
-	WithDecoration@surveyfrigate:
-		RequiresCondition: surveyfrigate
 	ProvidesPrerequisite@surveyfrigate:
 		Prerequisite: gsurveyfrigate
 		RequiresCondition: surveyfrigate
@@ -1411,8 +1405,6 @@ CIVILIANCORESHIP:
 		Offset: 0,0
 		SkipMakeAnims: False
 		RequiresCondition: engineeringcrew && !moving && deployed
-	WithDecoration@engineeringcrew:
-		RequiresCondition: engineeringcrew
 	ProvidesPrerequisite@engineeringcrew:
 		Prerequisite: gengineer
 		RequiresCondition: engineeringcrew
@@ -1422,8 +1414,6 @@ CIVILIANCORESHIP:
 	WithFacingSpriteBody@antifighterturret:
 		RequiresCondition: antifighterturret
 		Sequence: antifighteridle
-	WithDecoration@antifighterturret:
-		RequiresCondition: antifighterturret || antismallturret
 	TransformOnCondition@antifighterturret:
 		IntoActor: gfighterturret
 		RequiresCondition: antifighterturret && !moving && deployed

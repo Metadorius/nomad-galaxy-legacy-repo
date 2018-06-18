@@ -83,14 +83,14 @@ GBC2:
 	Buildable:
 		Queue: BaseShipQueue
 		BuildPaletteOrder: 9
-		Prerequisites: ~gmothership, research.Destroyer.Drive
+		Prerequisites: ~gmothership, gresearchship
 		Description: Heavy capital ship, armed with heavy cannons, and ion cannons. It's\nheavy armor allows it to Take great amounts of punshiment.
 	Valued:
 		Cost: 3500
 	Tooltip:
 		Name: Dreadnaught
 	Power:
-		Amount: -30
+		Amount: -70
 	Mobile:
 		Speed: 20
 	Health:

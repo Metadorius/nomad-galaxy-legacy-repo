@@ -83,7 +83,7 @@ GFIGHTER2B:
 	Tooltip:
 		Name: Bomber
 	Health:
-		HP: 80000
+		HP: 15000
 	Valued:
 		Cost: 50
 	Armament:
@@ -131,7 +131,7 @@ GCORV1:
 GCORV3:
 	Inherits: ^Corvette
 	Valued:
-		Cost: 200
+		Cost: 600
 	Tooltip:
 		Name: Torpedo Corvette
 	Buildable:

@@ -72,8 +72,8 @@ BomberPlasma:
 	Projectile: Missile
 		Image: bulletbomber
 	Warhead@1Dam: SpreadDamage
-		Spread: 64
-		Damage: 15000
+		Spread: 32
+		Damage: 20000
 		ValidTargets: CapitalShip, Frigate, Corvette, Ground
 		InvalidTargets: Fighter
 
@@ -162,7 +162,7 @@ FrigateCannon:
 	Inherits: CorvetteCannon
 	Range: 5c0
 	Warhead@1Dam: SpreadDamage
-		Damage: 40000
+		Damage: 50000
 		Spread: 150
 
 FrigateCannonNoDmg:

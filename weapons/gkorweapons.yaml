@@ -33,7 +33,7 @@ PiranhaBite:
 		Damage: -10000
 		ValidTargets: Fighter, CapitalShip, Frigate, Corvette, Ground
 	Warhead@CleanBomb: DetachDelayedWeapon
-		Range: 0c256
+		Range: 1c0
 		DetachLimit: 99
 		Types: bomb
 		ValidTargets: Fighter, CapitalShip, Frigate, Corvette, Ground
@@ -195,7 +195,7 @@ FrigateGasBullet:
 		HorizontalRateOfTurn: 20
 		Palette: apolgren
 		TrailInterval: 3
-	ValidTargets: Fighter, Corvette
+	ValidTargets: Fighter, Corvette, Frigate, Ground, CapitalShip
 	InvalidTargets: Frigate
 	Warhead@1Dam: SpreadDamage
 		Spread: 200
@@ -290,6 +290,9 @@ AlienArtilleryTrail:
 		Damage: 30000
 		ValidStances: Enemy, Neutral
 		DamageTypes: Prone50Percent, TriggerProne, CabalDeath
+		ValidTargets: CapitalShip, Frigate, Corvette, Ground
+	Warhead@3Eff: CreateEffect
+		ValidTargets: CapitalShip, Frigate, Corvette, Ground
 
 PatrolCruiserEmp:
 	Inherits: HeavyCannon

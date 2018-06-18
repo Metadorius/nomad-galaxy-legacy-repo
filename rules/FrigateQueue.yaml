@@ -24,22 +24,10 @@ GFRIG3:
 		Speed: 45
 	Armament@AntiCorvette:
 		Weapon: FrigateGasBullet
-		# LocalYaw: 255, -255, 255, -255, 255, -255
-		# LocalOffset: 175, -250, 5, 175, 250, 5, 5, -250, 5, 5, 250, 5, -175, -250, 5, -175, 250, 5
-	# ExplodeWeapon:
-		# Weapon: GKorGasBulletSpawner
-		# LocalOffset: 300,0,0
-		# RequiresCondition: !HyperSpaceFadeOut
-	# ExplodeWeapon@1:
-		# Weapon: GKorGasBulletSpawner
-		# LocalOffset: 300,0,0
-		# RequiresCondition: !HyperSpaceFadeOut
 	SpawnActorOnDeath:
 		Actor: gfrig3h
 		OwnerType: InternalName
 		InternalOwner: Neutral
-    WithRangeCircle:
-        Range: 6c0
 	AttackFrontal:
         FacingTolerance: 100
 

@@ -50,6 +50,7 @@ GSURVEYFRIGATE:
 
 GMERCENARYHUB:
 	Inherits: ^CapitalShip
+	Inherits@2: ^AIWanderer
 	Inherits@3: ^MercenaryHubHP
 	Transforms:
 		IntoActor: dgmercenaryhub
@@ -63,6 +64,7 @@ GMERCENARYHUB:
 
 GRESEARCHSHIP:
 	Inherits: ^CapitalShip
+	Inherits@2: ^AIWanderer
 	Inherits@3: ^ResearchShipHP
 	Transforms:
 		IntoActor: dgresearchship

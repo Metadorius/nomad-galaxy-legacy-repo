@@ -262,7 +262,7 @@ upgrade.researchship:
 	Buildable:
 		Queue: ResearchShipUpgrade
 		Description: Provides advanced technologies.
-		Prerequisites: gmercenaryhub
+		Prerequisites: gsurveyfrigate, gengineer
 		BuildLimit: 0
 		IconPalette: terrain
 	Valued:
