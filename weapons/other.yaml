@@ -42,8 +42,8 @@ CommetDummyBullet:
 	Range: 8c0
 	Projectile: Bullet
 		-Image:
-	# -Warhead@1Dam: SpreadDamage
-		# Damage: 1
+	# # -Warhead@1Dam: SpreadDamage
+	# 	# Damage: 1
 	-Warhead@SlowFighter: GrantExternalCondition
 	-Warhead@2Eff: CreateEffect
 	Warhead@op: FireShrapnel

@@ -136,25 +136,25 @@ GBC2:
 		Voice: CapitalShipReady
 		OnlyToOwner: True
 
-	# WithDecoration@Role:
-		# Image: rank
-		# Sequence: vialicon
-		# Palette: effect
-		# ReferencePoint: Top, Right
-		# RequiresCondition: !weonqloweonlawea
-		# ZOffset: 256
-	# WithIdleOverlay@HyperSpaceGenerator:
-		# Sequence: subpessanimship
-		# Palette: darkbluepal
-		# Offset: 25,0,-500
-		# RequiresCondition: HyperSpaceGenerator && !HyperSpaceFadeOut
-	# GrantTimedConditionOnDeploy:
-		# DeployedCondition: HyperSpaceGenerator
-		# CooldownTicks: 1500
-		# DeployedTicks: 350
-		# StartsFullyCharged: True
-	# ExplodeWeapon@HyperSpace:
-		# Weapon: HyperSpaceGenerator
-		# RequiresCondition: HyperSpaceGenerator && !HyperSpaceFadeOut
-	# ExternalCondition@HyperSpaceGenerator:
-		# Condition: HyperSpaceGenerator
+	# # WithDecoration@Role:
+	# 	# Image: rank
+	# 	# Sequence: vialicon
+	# 	# Palette: effect
+	# 	# ReferencePoint: Top, Right
+	# 	# RequiresCondition: !weonqloweonlawea
+	# 	# ZOffset: 256
+	# # WithIdleOverlay@HyperSpaceGenerator:
+	# 	# Sequence: subpessanimship
+	# 	# Palette: darkbluepal
+	# 	# Offset: 25,0,-500
+	# 	# RequiresCondition: HyperSpaceGenerator && !HyperSpaceFadeOut
+	# # GrantTimedConditionOnDeploy:
+	# 	# DeployedCondition: HyperSpaceGenerator
+	# 	# CooldownTicks: 1500
+	# 	# DeployedTicks: 350
+	# 	# StartsFullyCharged: True
+	# # ExplodeWeapon@HyperSpace:
+	# 	# Weapon: HyperSpaceGenerator
+	# 	# RequiresCondition: HyperSpaceGenerator && !HyperSpaceFadeOut
+	# # ExternalCondition@HyperSpaceGenerator:
+	# 	# Condition: HyperSpaceGenerator

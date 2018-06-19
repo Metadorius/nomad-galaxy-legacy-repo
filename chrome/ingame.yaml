@@ -574,36 +574,6 @@ Container@PLAYER_WIDGETS:
 							X: 7
 							Y: 5
 							ImageCollection: order-icons
-				# Button@SELL_BUTTON:
-					# Logic: SellOrderButtonLogic
-					# X: 102
-					# Y: 0 - 24
-					# Width: 30
-					# Height: 25
-					# Font: Bold
-					# Key: Sell
-					# TooltipText: Sell
-					# TooltipContainer: TOOLTIP_CONTAINER
-					# Children:
-						# Image@ICON:
-							# X: 7
-							# Y: 5
-							# ImageCollection: order-icons
-				# Button@REPAIR_BUTTON:
-					# Logic: RepairOrderButtonLogic
-					# X: 142
-					# Y: 0 - 24
-					# Width: 30
-					# Height: 25
-					# Font: Bold
-					# Key: Repair
-					# TooltipText: Repair
-					# TooltipContainer: TOOLTIP_CONTAINER
-					# Children:
-						# Image@ICON:
-							# X: 7
-							# Y: 5
-							# ImageCollection: order-icons
 				Background@RADAR:
 					X: 13
 					Y: 5

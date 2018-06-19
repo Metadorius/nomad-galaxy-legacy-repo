@@ -10,9 +10,7 @@ PCARRIER:
 		HP: 4500000
 
 IUNIT3MASTER:
-	Inherits@1: ^ExistsInWorld
-	Inherits@4: ^SpriteActor
-	HiddenUnderShroud:
+	Inherits@1: MOBSPANWERMASTER
 	Valued:
 		Cost: 300
 	RenderSprites:
@@ -30,33 +28,7 @@ IUNIT3MASTER:
 		Weapon: PlatformFighterSpawn
 	Health:
 		HP: 30000
-	# Aircraft:
-		# Speed: 90
-	Mobile:
-		Speed: 90
-		Crushes: mine, crate
-		SharesCell: true
-		OccupySpace: false
-		Voice: Move
-		TerrainSpeeds:
-			Clear: 100
-			Ground: 100
-			Tiberium: 100
-			BlueTiberium: 100
-			Junk: 100
-			Gas: 100
-			SpaceGray: 100
-			SpaceGray2: 100
-			SpaceGreen: 100
-			SpaceGreen2: 100
-			SpaceBlue: 100
-			SpaceBlue2: 100
-			SpaceRed: 100
-			SpaceRed2: 100
-	SpeedMultiplier@Generic:
-		Modifier: 200
-	DamageMultiplier@INVINCIBLE:
-		Modifier: 0
+
 	Selectable:
 
 IUNIT3:
@@ -76,9 +48,9 @@ IUNIT3:
 	MobSpawnerSlave:
 	MustBeDestroyed:
 	# AttackHeli:
+	# AttackPlane:
 	Turreted:
 	AttackTurreted:
-	# AttackPlane:
 	SelectionDecorations:
 		VisualBounds: 20,20
 	AutoTarget:

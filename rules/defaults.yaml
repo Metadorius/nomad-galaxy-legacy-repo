@@ -213,8 +213,8 @@
 	Targetable@DeployedShip:
 		TargetTypes: DeployedShip
 		RequiresCondition: deployed
-	# Mobile:
-		# RequiresCondition: !deployed
+	# # Mobile:
+	# 	# RequiresCondition: !deployed
 	GrantConditionOnDeploy:
 		DeployedCondition: deployed
 	GrantConditionOnMovement:
@@ -401,19 +401,7 @@
 	Mobile:
 		Speed: 25
 		TurnSpeed: 5
-		TerrainSpeeds:
-			Clear: 100
-			Ground: 100
-			Tiberium: 100
-			BlueTiberium: 100
-			Junk: 100
-			Gas: 100
-			SpaceGray: 100
-			SpaceGray2: 100
-			SpaceBlue: 100
-			SpaceBlue2: 100
-			SpaceRed: 130
-			SpaceRed2: 130
+		Locomotor: Frigate
 	Targetable:
 		TargetTypes: CapitalShip
 	ProvidesPrerequisite:
@@ -559,9 +547,9 @@
 	Hovers:
 	Voiced:
 		VoiceSet: GenericVoice
-#####################################
-# Gravity Generator Debuff
-#####################################
+	#####################################
+	# Gravity Generator Debuff
+	#####################################
 	FirepowerMultiplier@GravGenSlow:
 		RequiresCondition: GravGenSlow
 		Modifier: 0
@@ -655,19 +643,7 @@
 		Speed: 80
 		TurnSpeed: 10
 		SharesCell: True
-		TerrainSpeeds:
-			Clear: 100
-			Ground: 100
-			Tiberium: 70
-			BlueTiberium: 70
-			Gas: 70
-			Junk: 70
-			SpaceGray: 100
-			SpaceGray2: 100
-			SpaceBlue: 100
-			SpaceBlue2: 100
-			SpaceRed: 130
-			SpaceRed2: 130
+		Locomotor: Corvette
 	AttackTurreted:
     Turreted:
 	Targetable:
@@ -967,9 +943,9 @@
 	RenderSprites:
 	Interactable:
 
-#########################################################################
-# Base Rules Starts here
-#########################################################################
+	#########################################################################
+	# Base Rules Starts here
+	#########################################################################
 
 ^CivilianShipWeaponsGkor:
 	ExplodeWeapon@1:
@@ -1315,22 +1291,22 @@ CIVILIANCORESHIP:
 		Actor: ghabitatshiph
 		OwnerType: InternalName
 		InternalOwner: Neutral
-#######################################
-# PRODUCTION STUFF
-#######################################
+	#######################################
+	# PRODUCTION STUFF
+	#######################################
 	Exit:
         SpawnOffset: 99999,99999,99999
         ExitCell: 3,3
 	ProvidesPrerequisite@unitname:
 	ProductionBar:
-#######################################
-# Deployment related traits
-#######################################
+	#######################################
+	# Deployment related traits
+	#######################################
 	WithFacingSpriteBody:
 		RequiresCondition: !supplyship && !surveyfrigate && !engineeringcrew && !antismallturret && !antifighterturret
-#######################################
-# SELF UPGRADE
-#######################################
+	#######################################
+	# SELF UPGRADE
+	#######################################
 	ProductionQueue@CivilianShipUpgrade:
 		Type: CivilianShipUpgrade
 		Group: Vehicle
@@ -1355,9 +1331,9 @@ CIVILIANCORESHIP:
 		Actors: upgrade.antismallturret
 	Power:
 		Amount: 15
-#######################################
-# Supply Ship Bonus
-#######################################
+	#######################################
+	# Supply Ship Bonus
+	#######################################
 	Power@1:
 		Amount: 25
 		RequiresCondition: supplyship
@@ -1374,9 +1350,9 @@ CIVILIANCORESHIP:
 		Sequence: supplyship
 	ProvidesPrerequisite@supplyship:
 		Prerequisite: ghabitatship
-#######################################
-# Survey Frigate Bonus
-#######################################
+	#######################################
+	# Survey Frigate Bonus
+	#######################################
 	WithFacingSpriteBody@surveyfrigate:
 		RequiresCondition: surveyfrigate
 		Sequence: surveyfrigate
@@ -1391,9 +1367,9 @@ CIVILIANCORESHIP:
 	ProvidesPrerequisite@surveyfrigate:
 		Prerequisite: gsurveyfrigate
 		RequiresCondition: surveyfrigate
-#######################################
-# Engineering Crew Bonus
-#######################################
+	#######################################
+	# Engineering Crew Bonus
+	#######################################
 	WithFacingSpriteBody@engineeringcrew:
 		RequiresCondition: engineeringcrew
 		Sequence: engineeringcrew
@@ -1408,9 +1384,9 @@ CIVILIANCORESHIP:
 	ProvidesPrerequisite@engineeringcrew:
 		Prerequisite: gengineer
 		RequiresCondition: engineeringcrew
-#######################################
-# Anti Fighter Turret
-#######################################
+	#######################################
+	# Anti Fighter Turret
+	#######################################
 	WithFacingSpriteBody@antifighterturret:
 		RequiresCondition: antifighterturret
 		Sequence: antifighteridle
@@ -1419,9 +1395,9 @@ CIVILIANCORESHIP:
 		RequiresCondition: antifighterturret && !moving && deployed
 	ExternalCondition@antifighterturret:
 		Condition: antifighterturret
-#######################################
-# Anti Normal Turret
-#######################################
+	#######################################
+	# Anti Normal Turret
+	#######################################
 	WithFacingSpriteBody@antismallturret:
 		RequiresCondition: antismallturret
 		Sequence: anticovertteturret
@@ -1501,9 +1477,9 @@ PRODUCTIONSHIP:
 		InternalOwner: Neutral
 	WithFacingSpriteBody:
 		RequiresCondition: !CorvetteQueue && !FrigateQueue && !BaseShipQueue
-#######################################
-# PRODUCTION
-#######################################
+	#######################################
+	# PRODUCTION
+	#######################################
 	ProductionQueue@AssemblyBayUpgrade:
 		Type: AssemblyBayUpgrade
 		Group: Vehicle
@@ -1522,9 +1498,9 @@ PRODUCTIONSHIP:
 	GrantConditionOnProduction@BaseShipQueue:
 		Condition: BaseShipQueue
 		Actors: upgrade.baseshipqueue
-############################################
-# Patrol Cruiser
-############################################
+	###########################################
+	# Patrol Cruiser
+	############################################
 	ProvidesPrerequisite@Corvette:
 		Prerequisite: CorvetteQueue
 		RequiresCondition: CorvetteQueue
@@ -1538,9 +1514,9 @@ PRODUCTIONSHIP:
 	WithFacingSpriteBody@Corvette:
 		RequiresCondition: CorvetteQueue
 		Sequence: CorvetteQueue
-############################################
-# Frigate Assembly Bay
-############################################
+	############################################
+	# Frigate Assembly Bay
+	############################################
 	ProvidesPrerequisite@FrigateQueue:
 		Prerequisite: FrigateQueue
 		RequiresCondition: FrigateQueue
@@ -1555,9 +1531,9 @@ PRODUCTIONSHIP:
 	WithFacingSpriteBody@FrigateQueue:
 		RequiresCondition: FrigateQueue
 		Sequence: FrigateQueue
-############################################
-# Shipyard
-############################################
+	############################################
+	# Shipyard
+	############################################
 	ProvidesPrerequisite@BaseShipQueue:
 		Prerequisite: BaseShipQueue
 		RequiresCondition: BaseShipQueue
@@ -1608,9 +1584,9 @@ RESEARCHCORESHIP:
 		InternalOwner: Neutral
 	WithFacingSpriteBody:
 		RequiresCondition: !mercenaryhub && !researchship && !Coreship1 && !Coreship2 && !warpgate
-#######################################
-# PRODUCTION
-#######################################
+	#######################################
+	# PRODUCTION
+	#######################################
 	ProductionQueue@ResearchShipUpgrade:
 		Type: ResearchShipUpgrade
 		Group: Vehicle
@@ -1635,9 +1611,9 @@ RESEARCHCORESHIP:
 	GrantConditionOnProduction@warpgate:
 		Condition: warpgate
 		Actors: upgrade.warpgate
-#######################################
-# Research Ship Bonus
-#######################################
+	#######################################
+	# Research Ship Bonus
+	#######################################
 	WithFacingSpriteBody@researchship:
 		RequiresCondition: researchship
 		Sequence: researchship
@@ -1652,9 +1628,9 @@ RESEARCHCORESHIP:
 	ProvidesPrerequisite@researchship:
 		Prerequisite: gresearchship
 		RequiresCondition: researchship
-#######################################
-# Mercenary Hub Bonus
-#######################################
+	#######################################
+	# Mercenary Hub Bonus
+	#######################################
 	WithFacingSpriteBody@mercenaryhub:
 		RequiresCondition: mercenaryhub
 		Sequence: mercenaryhub
@@ -1669,35 +1645,35 @@ RESEARCHCORESHIP:
 	ProvidesPrerequisite@mercenaryhub:
 		Prerequisite: gresearchship
 		RequiresCondition: mercenaryhub
-#######################################
-# Support Coreship 1
-#######################################
-	# WithFacingSpriteBody@Coreship1:
-		# RequiresCondition: Coreship1
-		# Sequence: Coreship1
-	# Tooltip@Coreship1:
-		# Name: Research Ship
-		# RequiresCondition: Coreship1
-	# TransformOnCondition@Coreship1:
-		# IntoActor: dgresearchship
-		# Offset: 0,0
-		# RequiresCondition: Coreship1 && !moving && deployed
-#######################################
-# Support Coreship 2
-#######################################
-	# WithFacingSpriteBody@Coreship2:
-		# RequiresCondition: Coreship2
-		# Sequence: Coreship2
-	# Tooltip@Coreship2:
-		# Name: Research Ship
-		# RequiresCondition: Coreship2
-	# TransformOnCondition@Coreship2:
-		# IntoActor: dgresearchship
-		# Offset: 0,0
-		# RequiresCondition: Coreship2 && !moving && deployed
-############################################
-# Warp Gate
-############################################
+	#######################################
+	# Support Coreship 1
+	#######################################
+	# # WithFacingSpriteBody@Coreship1:
+	# 	# RequiresCondition: Coreship1
+	# 	# Sequence: Coreship1
+	# # Tooltip@Coreship1:
+	# 	# Name: Research Ship
+	# 	# RequiresCondition: Coreship1
+	# # TransformOnCondition@Coreship1:
+	# 	# IntoActor: dgresearchship
+	# 	# Offset: 0,0
+	# 	# RequiresCondition: Coreship1 && !moving && deployed
+	#######################################
+	# Support Coreship 2
+	#######################################
+	# # WithFacingSpriteBody@Coreship2:
+	# 	# RequiresCondition: Coreship2
+	# 	# Sequence: Coreship2
+	# # Tooltip@Coreship2:
+	# 	# Name: Research Ship
+	# 	# RequiresCondition: Coreship2
+	# # TransformOnCondition@Coreship2:
+	# 	# IntoActor: dgresearchship
+	# 	# Offset: 0,0
+	# 	# RequiresCondition: Coreship2 && !moving && deployed
+	############################################
+	# Warp Gate
+	############################################
 	ProvidesPrerequisite@warpgate:
 		Prerequisite: warpgate
 		RequiresCondition: warpgate
@@ -1911,9 +1887,9 @@ MOBSPANWERMASTER:
 		RequiresCondition: antifighterstation || anticorvettestation
 	Turreted:
 		TurnSpeed: 5
-#######################################
-# SELF UPGRADE
-#######################################
+	#######################################
+	# SELF UPGRADE
+	#######################################
 	ProductionQueue@DefenceStationUpgrade:
 		Type: DefenceStationUpgrade
 		Group: Vehicle

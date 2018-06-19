@@ -224,7 +224,7 @@ explosion:
 	infdeathexplo1: infdeathexplo1
 	infdeathexplo2: infdeathexplo2
 	infdeathexplo3: infdeathexplo3
-#GKOR
+	#GKOR
 	ggas: ggas
 	ggas2: ggas2
 	gadrenbuff: gadrenbuff
@@ -238,7 +238,9 @@ explosion:
 	subpessanim2: subpessanim2
 	subspaceanim3: subspaceanim3
 	dot: dot
-#TERRAN
+
+	#TERRAN
+
 	tgas: tgas
 	tgas2: tgas2
 
@@ -309,9 +311,9 @@ burn-l:
 		Length: 6
 		ZOffset: 512
 
-################################################################
-#	Shared Projectiles
-################################################################
+	################################################################
+	#	Shared Projectiles
+	###############################################################
 
 bulletinterceptor:
 	idle:
@@ -333,9 +335,9 @@ shellmini:
 	idle:
 		Facings: -32
 
-################################################################
-#	Gkor Projectiles
-################################################################
+	################################################################
+	#	Gkor Projectiles
+	################################################################
 spinesphere:
 	idle:
 		Facings: -32
@@ -374,14 +376,14 @@ babatrail:
 		Length: *
 		Tick: 25
 
-################################################################
-#	Terran Projectiles
-################################################################
+	################################################################
+	#	Terran Projectiles
+	################################################################
 
 
-################################################################
-#	Enviroment Projectiles
-################################################################
+	################################################################
+	#	Enviroment Projectiles
+	################################################################
 
 solarwave:
 	idle:
@@ -418,9 +420,9 @@ debrissmall2:
 debrissmall3:
 	Inherits: comet
 
-################################################################
-#	Mercenary Projectiles
-################################################################
+	################################################################
+	#	Mercenary Projectiles
+	################################################################
 
 piratepod:
 	idle:
@@ -733,8 +735,8 @@ shroud:
 	full: fullshroud
 		Length: 1
 
-# Note: The order of smudges and craters determines
-# the index that is mapped to them in maps
+	# Note: The order of smudges and craters determines
+	# the index that is mapped to them in maps
 scorches:
 	Defaults:
 		UseTilesetExtension: true

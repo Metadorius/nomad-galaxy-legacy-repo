@@ -21,10 +21,10 @@
 		Name: G'kor
 		InternalName: gkor
 		Description A race of nomads that use organic ships.:
-	# Faction@terran:
-		# Name: Terran
-		# InternalName: terran
-		# Description: A race of mammals that enjoy solving problems with explosive weaponry.
+	# # Faction@terran:
+	# 	# Name: Terran
+	# 	# InternalName: terran
+	# 	# Description: A race of mammals that enjoy solving problems with explosive weaponry.
 	Faction@Random:
 		Name: Random
 		InternalName: Random
@@ -90,6 +90,40 @@
 		ValuePerUnit: 7
 		AllowedTerrainTypes: Clear, SpaceGray, SpaceGreen, SpaceBlue, SpaceRed, SpaceGray2, SpaceGreen2, SpaceBlue2, SpaceRed2, Notifier
 		AllowUnderActors: true
+	Locomotor@Corvette:
+		Name: Corvette
+		Crushes: crate
+		SharesCell: True
+		TerrainSpeeds:
+			Clear: 100
+			Ground: 100
+			Tiberium: 70
+			BlueTiberium: 70
+			Gas: 70
+			Junk: 70
+			SpaceGray: 100
+			SpaceGray2: 100
+			SpaceBlue: 100
+			SpaceBlue2: 100
+			SpaceRed: 130
+			SpaceRed2: 130
+	Locomotor@Frigate:
+		Name: Frigate
+		Crushes: crate
+		SharesCell: False
+		TerrainSpeeds:
+			Clear: 100
+			Ground: 100
+			Tiberium: 70
+			BlueTiberium: 70
+			Gas: 70
+			Junk: 70
+			SpaceGray: 100
+			SpaceGray2: 100
+			SpaceBlue: 100
+			SpaceBlue2: 100
+			SpaceRed: 130
+			SpaceRed2: 130
 
 World:
 	Inherits: ^BaseWorld
@@ -129,12 +163,12 @@ World:
 		ClassName: MCV Only
 		Factions: gkor
 		BaseActor: gmothership
-	# MPStartUnits@terranmcv:
-		# Class: none
-		# ClassName: MCV Only
-		# Factions: terran
-		# BaseActor: tmothership
-		# SupportActors: tref, research.dummy, merc.dummy
+	# # MPStartUnits@terranmcv:
+	# 	# Class: none
+	# 	# ClassName: MCV Only
+	# 	# Factions: terran
+	# 	# BaseActor: tmothership
+	# 	# SupportActors: tref, research.dummy, merc.dummy
 	CrateSpawner:
 		Minimum: 10
 		Maximum: 30

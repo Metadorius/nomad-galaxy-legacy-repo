@@ -1,48 +1,3 @@
-# research.dummy:
-	# AlwaysVisible:
-	# Tooltip:
-		# Name: Research Dummy
-	# RenderSprites:
-		# Image: punit3
-	# Mobile:
-		# Speed: 1
-		# TerrainSpeeds:
-			# Clear: 100
-			# Ground: 100
-			# Tiberium: 100
-			# BlueTiberium: 100
-			# Junk: 100
-			# Gas: 100
-			# SpaceGray: 100
-			# SpaceGray2: 100
-			# SpaceGreen: 100
-			# SpaceGreen2: 100
-			# SpaceBlue: 100
-			# SpaceBlue2: 100
-			# SpaceRed: 100
-			# SpaceRed2: 100
-		# TurnSpeed: 3
-	# ProductionQueue@Research:
-		# Type: Research
-		# Factions: gkor, terran
-		# Group: Vehicle
-		# LowPowerSlowdown: 3
-		# QueuedAudio: Building
-		# ReadyAudio: ConstructionComplete
-	# Production:
-		# Produces: Research
-	# Exit:
-	# ProvidesPrerequisite@upgradename:
-	# GrantConditionOnPrerequisite@RadarUnlock:
-		# Prerequisites: research.Improved.Detection.Systems
-		# Condition: RadarUnlock
-	# ExternalCondition@RadarUnlock:
-		# Condition: RadarUnlock
-	# ProvidesRadar:
-		# RequiresCondition: RadarUnlock
-	# ConditionManager:
-	# Interactable:
-
 ^Research:
 	AlwaysVisible:
 	Buildable:
@@ -71,9 +26,9 @@ research.Crystal.Harvest:
 	RenderSprites:
 		Image: crystalicon
 
-###############################################################
-# Individual Upgrades Start Here
-###############################################################
+	###############################################################
+	# Individual Upgrades Start Here
+	###############################################################
 
 ^default.upgrade:
 	Interactable:
@@ -95,9 +50,9 @@ research.Crystal.Harvest:
 		Type: DummyQueue
 		Group: DummyQueues
 
-###############################################################
-# PRODUCTION SHIP UPGRADES
-###############################################################
+	###############################################################
+	# PRODUCTION SHIP UPGRADES
+	###############################################################
 
 upgrade.corvettequeue:
 	Inherits: ^default.upgrade
@@ -149,9 +104,9 @@ upgrade.baseshipqueue:
 	Power:
 		Amount: -40
 
-###############################################################
-# CIVILIAN SHIP UPGRADES
-###############################################################
+	###############################################################
+	# CIVILIAN SHIP UPGRADES
+	###############################################################
 
 upgrade.supplyship:
 	Inherits: ^default.upgrade
@@ -234,9 +189,9 @@ upgrade.antismallturret:
 	RenderSprites:
 		Image: gapplatform
 
-###############################################################
-# RESEARCH CORESHIP UPGRADES
-###############################################################
+	###############################################################
+	# RESEARCH CORESHIP UPGRADES
+	###############################################################
 
 upgrade.mercenaryhub:
 	Inherits: ^default.upgrade
@@ -289,9 +244,9 @@ upgrade.warpgate:
 	RenderSprites:
 		Image: gsubspess
 
-###############################################################
-# MERCENARY RESERACH
-###############################################################
+	###############################################################
+	# MERCENARY RESERACH
+	###############################################################
 
 ^Tier1Contract:
 	AlwaysVisible:
@@ -360,17 +315,17 @@ research.controller:
 	RenderSprites:
 		Image: cunit1
 
-# researchT2.pirates:
-	# Inherits: ^Tier2Contract
-	# Tooltip:
-		# Name: Blood Dust clan contact
-	# Buildable:
-		# Prerequisites: ~T1Contract, ~!T2Contract, ~!research.pirates
-		# Description: Establishes connections with the pirate clans in the sector.\nPirate units focus on boarding actions and hit and run tactics.\n\nUnits unlocked:\n-Boarding Frigate.\n-Corsair.\n-Battle Axe Fighter Bomber.
-	# RenderSprites:
-		# Image: punit3
-	# ProvidesPrerequisite@upgradename:
-		# Prerequisite: research.pirates
+researchT2.pirates:
+	Inherits: ^Tier2Contract
+	Tooltip:
+		Name: Blood Dust clan contact
+	Buildable:
+		Prerequisites: ~T1Contract, ~!T2Contract, ~!research.pirates
+		Description: Establishes connections with the pirate clans in the sector.\nPirate units focus on boarding actions and hit and run tactics.\n\nUnits unlocked:\n-Boarding Frigate.\n-Corsair.\n-Battle Axe Fighter Bomber.
+	RenderSprites:
+		Image: punit3
+	ProvidesPrerequisite@upgradename:
+		Prerequisite: research.pirates
 
 researchT2.hyperion:
 	Inherits: ^Tier2Contract

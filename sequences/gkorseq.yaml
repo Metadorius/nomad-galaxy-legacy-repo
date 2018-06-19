@@ -36,7 +36,7 @@ gproductionship:
 
 gcivship:
 	Inherits: ^shipdefault
-##### Civ Stuff
+	##### Civ Stuff
 	supplyship: ghabitatship
 		Facings: -32
 		UseClassicFacingFudge: True
@@ -46,7 +46,7 @@ gcivship:
 	surveyfrigate: gsurveyfrigate
 		Facings: -32
 		UseClassicFacingFudge: True
-##### Turrets
+	##### Turrets
 	anticovertteturret: gacplatform
 		Facings: -32
 	antifighteridle: gaiplatform
@@ -108,7 +108,7 @@ gengineer:
 gresearchcoreship
 	Inherits: ^shipdefault
 	icon: gresearchcoreshipicon
-##### Civ Stuff
+	##### Civ Stuff
 	researchship: gresearchship
 		Facings: -32
 		UseClassicFacingFudge: True
@@ -203,32 +203,32 @@ gcorv1:
 	icon: corvetteicon
     turret: gturret2
 		Facings: -32
-	# turret-top: tentacletorpedotop
-		# Facings: 16
-		# Stride: 18
-	# turret-top-aim: tentacletorpedotop
-		# Facings: 16
-		# Length: 18
-	# turret-left: tentacletorpedoleft
-		# Facings: 16
-		# Stride: 18
-	# turret-left-aim: tentacletorpedoleft
-		# Facings: 16
-		# Length: 18
-	# turret-right: tentacletorpedoright
-		# Facings: 16
-		# Stride: 18
-	# turret-right-aim: tentacletorpedoright
-		# Facings: 16
-		# Length: 18
-	# turret-bot: tentacletorpedobot
-		# Facings: 16
-		# Stride: 18
-		# ZOffset: -256
-	# turret-bot-aim: tentacletorpedobot
-		# Facings: 16
-		# Length: 18
-		# ZOffset: -256
+	# # turret-top: tentacletorpedotop
+	# 	# Facings: 16
+	# 	# Stride: 18
+	# # turret-top-aim: tentacletorpedotop
+	# 	# Facings: 16
+	# 	# Length: 18
+	# # turret-left: tentacletorpedoleft
+	# 	# Facings: 16
+	# 	# Stride: 18
+	# # turret-left-aim: tentacletorpedoleft
+	# 	# Facings: 16
+	# 	# Length: 18
+	# # turret-right: tentacletorpedoright
+	# 	# Facings: 16
+	# 	# Stride: 18
+	# # turret-right-aim: tentacletorpedoright
+	# 	# Facings: 16
+	# 	# Length: 18
+	# # turret-bot: tentacletorpedobot
+	# 	# Facings: 16
+	# 	# Stride: 18
+	# 	# ZOffset: -256
+	# # turret-bot-aim: tentacletorpedobot
+	# 	# Facings: 16
+	# 	# Length: 18
+	# 	# ZOffset: -256
 
 gcorv2:
 	Inherits: ^shipdefault
