@@ -6,8 +6,8 @@ shellmapbits: chrome.png
 
 logos: chrome.png
 	eva:256,64,128,64
-	nod-load:0,256,256,256
-	gdi-load:256,256,256,256
+	nod-load:512,0,0,0
+	gdi-load:512,0,0,0
 
 button: chrome.png
 	background: 2,194,60,60
